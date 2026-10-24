@@ -33,7 +33,7 @@ Encima del pliegue en móvil: logo y teléfono, titular, subtítulo con las tres
 
 **Reglas:**
 - Siempre de tú.
-- **Primera persona del singular.** Vende una persona, no un "equipo" inventado. Cuando haya equipo, se cambia.
+- **Plural ("hacemos").** Decisión del fundador: habrá equipo detrás y la marca habla como equipo. La historia del fundador va en primera persona.
 - Frases de 15–18 palabras como máximo. Una idea por párrafo.
 - Humor una vez por sección, nunca en el botón ni en el precio.
 - Verbos concretos (contestar, reservar, cobrar), no abstractos (optimizar, impulsar).

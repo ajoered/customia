@@ -23,7 +23,7 @@ web/
 - **Referencias:** ritmo de una idea por pantalla (Tribe AI), paleta cálida y sobria (Distyl), producto real en pantalla (Floema), contenido claro desde la primera pantalla (Estudio Telar). Ver `../estudio/07-benchmark-web.md`.
 - **Colores:** papel cálido, tinta, barro para la arcilla, un solo acento cobalto (que es también el esmalte de la pieza cocida). Con versión oscura.
 - **Tipos:** Fraunces (serifa de libro) para titulares, Atkinson Hyperlegible para el texto, Spline Sans Mono para cifras. Todas alojadas en la propia web.
-- **Voz:** primera persona del singular.
+- **Voz:** plural ("hacemos", "te enseñamos"): aunque el fundador sea la cara visible, hay equipo detrás. Su historia en "Quién está detrás" va en primera persona.
 - **Hilo:** portada con el asistente como ventana → el torno (8 pantallas) → lo que puedo construir (tres maquetas de un restaurante inventado, Casa Lucía) → cómo lo hago → quién soy → preguntas → cierre.
 
 ## Datos que faltan (marcados entre corchetes en la web)
