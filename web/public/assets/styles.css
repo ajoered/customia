@@ -20,12 +20,12 @@
   --linea: #e2ddd2;
   --ladrillo: #c9683f;
   --ladrillo-2: #8f6c54;
-  --barro: #9a9a8c;
-  --barro-2: #7f7f72;
-  --esmalte: #244a9b;
-  --cobalto: #1f3f8f;
-  --cobalto-tinta: #fffdf8;
-  --cobalto-suave: #e4e9f5;
+  --barro: #d9b8a6;
+  --barro-2: #b8927e;
+  --esmalte: #3f7a69;
+  --cobalto: #3f7a69;
+  --cobalto-tinta: #ffffff;
+  --cobalto-suave: #e3efe9;
   --whatsapp: #dff5d8;
   --sombra: 0 1px 0 rgba(29, 27, 23, 0.04), 0 24px 48px -24px rgba(29, 27, 23, 0.25);
 
@@ -181,7 +181,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .m-web .m-foto strong { font-family: var(--serif); font-size: 19px; line-height: 1.1; font-weight: 600; }
 .m-web .m-foto span { opacity: .85; }
 .m-web .m-cuerpo { padding: 12px 14px; display: flex; flex-direction: column; gap: 9px; }
-.m-web .m-btn { background: #1f3f8f; color: #fffdf8; text-align: center; border-radius: 999px; padding: 8px; font-weight: 700; }
+.m-web .m-btn { background: #3f7a69; color: #ffffff; text-align: center; border-radius: 999px; padding: 8px; font-weight: 700; }
 .m-web .m-fila { display: flex; justify-content: space-between; border-bottom: 1px solid #e2ddd2; padding-bottom: 6px; }
 .m-web .m-fila b { font-family: var(--mono); font-weight: 500; }
 .m-wa { background: #efe7dc; }
