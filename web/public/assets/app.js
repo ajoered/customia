@@ -19,6 +19,16 @@
 
   const $ = (sel) => document.querySelector(sel);
   const lista = $("#chat-mensajes");
+  const ventana = $("#ventana");
+  const SALUDO = "Hola. Soy el asistente de Arcilla Studio, una inteligencia artificial. Cuéntame qué negocio tienes y qué te quita el sueño. En dos minutos te digo cuánto te está costando y si podemos ayudarte.";
+  let empezado = false;
+  function empezar() {
+    if (empezado) return;
+    empezado = true;
+    if (ventana) ventana.classList.add("activa");
+    lista.hidden = false;
+    burbuja(SALUDO, "bot");
+  }
   const formulario = $("#chat-formulario");
   const entrada = $("#chat-entrada");
   const enviar = $("#chat-enviar");
@@ -74,6 +84,8 @@
   }
   function quitarOpciones() {
     lista.querySelectorAll(".opciones").forEach((n) => n.remove());
+    const ini = document.getElementById("opciones-iniciales");
+    if (ini) ini.remove();
   }
   function bajar() {
     lista.scrollTop = lista.scrollHeight;
@@ -337,6 +349,7 @@
   document.querySelectorAll("#opciones-iniciales .opcion").forEach((b) => {
     b.addEventListener("click", () => {
       if (ocupado) return;
+      empezar();
       quitarOpciones();
       burbuja(b.textContent, "tu");
       const clave = b.dataset.valor;
@@ -351,6 +364,7 @@
     if (!texto || ocupado) return;
     entrada.value = "";
     entrada.style.height = "";
+    empezar();
     quitarOpciones();
     burbuja(texto, "tu");
     if (modo === "ia" && !terminado) return hablarConIA(texto);

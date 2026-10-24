@@ -29,7 +29,6 @@
       <a href="#construir">Qué hacemos</a>
       <a href="#como">Cómo lo hacemos</a>
       <a href="#quien">Quiénes somos</a>
-      <a class="tel" href="#diagnostico" data-config="telefono">[tu teléfono]</a>
       <a class="boton" href="#diagnostico">Diagnóstico gratis</a>
     </nav>
   </div>
@@ -38,42 +37,30 @@
 <main id="contenido">
   <section class="portada" aria-labelledby="titular">
     <div class="wrap">
-      <p class="etiqueta">Webs · asistentes de WhatsApp · software a medida</p>
-      <h1 id="titular">Más clientes. <em class="acento">Menos teléfono.</em></h1>
-      <p class="sub">Hacemos webs, asistentes de WhatsApp y programas a medida para negocios que no tienen tiempo para esto. <strong>Te lo enseñamos funcionando antes de que pagues nada.</strong></p>
-      <div class="acciones">
-        <a class="boton" href="#diagnostico">Cuéntanos tu negocio</a>
-        <span class="o">o llámanos al <a class="tel" href="#diagnostico" data-config="telefono">[tu teléfono]</a></span>
-      </div>
+      <h1 id="titular">Más clientes. <span class="acento">Menos teléfono.</span></h1>
+      <p class="sub">Hacemos webs, asistentes de WhatsApp y programas a medida para negocios que no tienen tiempo para esto.</p>
     </div>
   </section>
 
   <section class="ventana-wrap" id="diagnostico" aria-label="Diagnóstico con el asistente">
     <div class="wrap">
-      <div class="chat">
-        <div class="chat-cabecera">
-          <span class="chat-avatar" aria-hidden="true"></span>
-          <div class="chat-titulo"><strong>Asistente de Arcilla</strong><span>Una IA · contesta al momento</span></div>
-          <span class="chat-sello">2 min</span>
-        </div>
-        <div class="chat-mensajes" id="chat-mensajes" aria-live="polite">
-          <div class="msg msg-bot">Hola. Soy el asistente de Arcilla Studio, una inteligencia artificial. Cuéntame qué negocio tienes y qué te quita el sueño. En dos minutos te digo cuánto te está costando y si podemos ayudarte.</div>
-          <div class="opciones" id="opciones-iniciales">
-            <button class="opcion" type="button" data-valor="telefono">No llego a coger el teléfono</button>
-            <button class="opcion" type="button" data-valor="whatsapp">Contesto WhatsApps a todas horas</button>
-            <button class="opcion" type="button" data-valor="web">Mi web no me trae clientes</button>
-            <button class="opcion" type="button" data-valor="tareas">Pierdo horas con presupuestos o reservas</button>
-            <button class="opcion" type="button" data-valor="otro">Otra cosa</button>
-          </div>
-        </div>
+      <div class="ventana" id="ventana">
+        <div class="ventana-fondo" aria-hidden="true"><span class="ventana-masa"></span></div>
+        <div class="chat-mensajes" id="chat-mensajes" aria-live="polite" hidden></div>
         <form class="chat-formulario" id="chat-formulario" autocomplete="off">
-          <label class="saltar" for="chat-entrada">Escribe tu mensaje</label>
-          <textarea id="chat-entrada" rows="1" maxlength="800" placeholder="Escribe tu respuesta"></textarea>
-          <button class="boton" type="submit" id="chat-enviar">Enviar</button>
+          <label class="saltar" for="chat-entrada">Cuéntanos tu negocio y qué te quita el sueño</label>
+          <textarea id="chat-entrada" rows="1" maxlength="800" placeholder="Prueba: 'No llego a coger el teléfono'"></textarea>
+          <button class="enviar" type="submit" id="chat-enviar" aria-label="Enviar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         </form>
-        <p class="chat-nota">Es una IA y puede equivocarse. No escribas datos de salud ni bancarios. <a href="privacidad.html">Privacidad</a>.</p>
+        <div class="opciones opciones-portada" id="opciones-iniciales">
+          <button class="opcion" type="button" data-valor="telefono">No llego a coger el teléfono</button>
+          <button class="opcion" type="button" data-valor="whatsapp">Contesto WhatsApps a todas horas</button>
+          <button class="opcion" type="button" data-valor="web">Mi web no me trae clientes</button>
+          <button class="opcion" type="button" data-valor="tareas">Pierdo horas con presupuestos</button>
+        </div>
+        <p class="ventana-nota">Asistente con inteligencia artificial. En dos minutos te dice cuánto te está costando. Puede equivocarse; no escribas datos de salud ni bancarios. <a href="privacidad.html">Privacidad</a>.</p>
       </div>
-      <p class="chat-humano">¿Prefieres una persona? Llama o escribe por WhatsApp al <strong class="tel" data-config="telefono">[tu teléfono]</strong>, también por WhatsApp.</p>
+      <p class="chat-humano">¿Prefieres una persona? Llama o escribe por WhatsApp al <strong class="tel" data-config="telefono">[tu teléfono]</strong>.</p>
     </div>
   </section>
 
