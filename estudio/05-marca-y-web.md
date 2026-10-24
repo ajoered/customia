@@ -1,4 +1,4 @@
-# Marca y estructura de la web (borrador v11)
+# Marca y estructura de la web (borrador v12)
 
 Titular: **AR Ventures, S.L.** La marca comercial puede ser distinta del nombre de la sociedad. En el aviso legal pondremos: *"[Marca] es una marca de AR Ventures, S.L."*
 
@@ -30,6 +30,32 @@ Titular: **AR Ventures, S.L.** La marca comercial puede ser distinta del nombre 
 **Si prefieres algo más cálido que irónico: Marmita.**
 
 **Antes de decidir:** búscalo en la OEPM (clases 35 y 42) y registra la marca a nombre de AR Ventures. "Enchufe" es una palabra común, así que conviene registrar marca mixta (palabra más logo).
+
+## Nombre (v12: personajes como Dédalo)
+
+**Lo que tiene que representar el personaje:** alguien que **construye para otros** la herramienta que les libera (unas alas, el agua, unos ayudantes), de forma que el pequeño consigue lo que antes solo tenían los poderosos. Y sin hype.
+
+Dominios comprobados el 24/10/2026. El .com sale del registro oficial; .es y .ai, solo por DNS.
+
+| # | Personaje | La historia | Qué representa de lo nuestro | Pegas | Dominios |
+|---|---|---|---|---|---|
+| 1 ⭐ | **Juanelo** (Juanelo Turriano, h. 1500–1585) | Relojero italiano al que Carlos V trajo a España en 1529. Construyó el *Cristalino*, un reloj astronómico. Su gran obra fue el **Artificio de Juanelo** de Toledo: una máquina movida por el propio río que subía el agua del Tajo casi 100 metros, hasta el Alcázar. Hasta entonces el agua se subía a lomos de burro. Según la leyenda, también construyó un autómata de madera, el **Hombre de Palo**, y en Toledo todavía hay una calle con ese nombre. Murió pobre porque la ciudad nunca le pagó lo acordado | **La última milla en estado puro:** llevar un recurso básico (el agua) hasta la gente con una máquina. Un artesano de mecanismos a medida (un relojero) y un autómata que trabaja por la gente (el asistente). Es español, tiene historia y suena a persona (*"Habla con Juanelo"*) | Poco conocido fuera de Toledo y de la historia de la ingeniería: hay que contarlo. Existe la Fundación Juanelo Turriano (historia de la ingeniería); conviene revisar la marca | eljuanelo.com ✅ · juaneloia.com ✅ · holajuanelo.com ✅ · juanelo.es ✅? · juanelo.ai ✅? |
+| 2 | **Dédalo** | El gran inventor griego. Encerrado en Creta, se construyó unas alas y escapó. A su hijo Ícaro le advirtió que no volara ni muy alto ni muy bajo. Ícaro no le hizo caso | *"Estabas encerrado; te construimos unas alas."* Y el mensaje contra el hype: *"Vuela como Dédalo, no como Ícaro"* | Ícaro acaba mal | eldedalo.com ✅ · dedaloia.com ✅ |
+| 3 | **Hefesto** (Vulcano) | El dios herrero. Nació cojo y lo arrojaron del Olimpo, pero se convirtió en el mejor artesano de los dioses: forjaba a medida el escudo de Aquiles o las sandalias aladas de Hermes. En la *Ilíada* (canto XVIII) tiene unas doncellas de oro con *"mente, voz y fuerza"*, que aprendieron de los dioses a trabajar. Hoy se citan como la primera imagen de una IA en la literatura | El artesano que hace a medida, el que viene de fuera y **el primer "asistente con mente" de la historia escrita** | El nombre es duro de pronunciar y suena pesado | hefestoia.es ✅? · vulcanoia.com ✅ |
+| 4 | **Garbancito** | En el cuento popular, un niño tan pequeño como un garbanzo se lo traga un buey y aun así sale airoso. En la película *Garbancito de la Mancha* (1945), el primer largometraje de dibujos animados en color de Europa, rescata a sus amigos de un gigante | Lo pequeño que vence al gigante. Muy español, y con gracia de comida, como Vitamina Jota | El diminutivo puede sonar a algo pequeño o barato | garbancito.ai ✅? · garbancitoia.com ✅ |
+| 5 | **Ulises** ("Nadie") | El cíclope Polifemo le pregunta su nombre y Ulises contesta "Nadie". Cuando lo ciega y el gigante grita *"¡Nadie me está matando!"*, ningún otro cíclope acude | El ingenio del pequeño frente al gigante | Ulises es un nombre muy usado por otras marcas | ulisesia.com ✅ |
+| 6 | **Lulio** (Ramon Llull, Mallorca, h. 1305) | Su *Ars Magna* usaba discos de papel giratorios para combinar ideas y llegar a respuestas de forma mecánica. Leibniz se inspiró en ella, y se le considera un precursor de la computación [Probable] | Un precursor español de la "máquina que piensa" | Cuenta la lógica, no la democratización. En catalán se escribe Llull | lulio.es ✅? · lulioia.com ✅ |
+
+**Descartados:** Quirón (el centauro maestro de héroes) por Quirónsalud. Prometeo y Mentor, por demasiado usados.
+
+**Recomendación: Juanelo.** De todos, es el que mejor cuenta lo que permitimos:
+- Una máquina hecha a medida que **lleva hasta la gente algo básico** que antes había que subir a mano. Es la última milla.
+- Un autómata que trabaja por la gente: el asistente.
+- Es una historia española y real. No se le ocurriría a nadie que pida nombres a una IA para "software a medida", al contrario que el telar.
+- Funciona como nombre de persona para la marca y para el asistente.
+- El final triste también sirve, con humor a lo Maxi: *"Juanelo subió el agua a Toledo y nunca le pagaron. Nosotros cobramos poco y cada mes."*
+
+**Segunda opción: Dédalo,** si prefieres que la historia sea la tuya ("estaba encerrado y me construí unas alas").
 
 ## Nombre (v11: Telar descartado del todo)
 
@@ -464,6 +490,11 @@ Sin cambios respecto a la v1. La primera versión:
 - Tipos móviles y Bi Sheng (Billiken): <https://billiken.lat/interesante/quien-invento-la-imprenta-gutenberg-o-bi-sheng/>
 - Proteo en la Odisea (Estudyando): <https://estudyando.com/proteo-el-dios-de-la-mitologia-griega-poderes-y-significado/>
 - Software Proteo, Getxo (Kompass): <https://es.kompass.com/a/software-e-procurement/5760011/>
+- Artificio de Juanelo (Wikipedia): <https://en.wikipedia.org/wiki/Artificio_de_Juanelo>
+- Juanelo Turriano (Hispanopedia): <https://es.hispanopedia.com/wiki/Juanelo_Turriano>
+- Las doncellas de oro de Hefesto (Theoi): <https://www.theoi.com/Ther/AutomotonesKourai.html>
+- ¿Soñó Homero con androides? (Engelsberg Ideas): <https://engelsbergideas.com/notebook/did-homer-dream-of-androids/>
+- Garbancito de la Mancha (Wikipedia): <https://en.wikipedia.org/wiki/Garbancito_de_la_Mancha>
 - Vitamina Jota (referencia de tono): <https://www.vitaminajota.com/>
 - Serenos de Madrid, opción descartada (El Debate): <https://www.eldebate.com/historia/20230720/oficios-ayer-serenos-madrid-guardianes-calles-caer-noche_126981.html>
 - El sereno que guardaba tu calle (eldiario.es): <https://www.eldiario.es/madrid/somos/malasana/el-sereno-que-guardaba-tu-calle-y-te-vigilaba-a-ti_1_6423534.html>
