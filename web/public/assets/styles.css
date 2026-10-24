@@ -164,26 +164,37 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   .paso-torno h2 { font-size: clamp(1.8rem, 1.2rem + 3vw, 2.4rem); }
 }
 
-/* Lo que puedo construir: pantallas reales */
+/* El taller: texto a la izquierda, el producto cambia a la derecha */
+.taller .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 80px); align-items: start; padding-block: clamp(40px, 6vw, 80px) 0; border-top: 1px solid var(--linea); }
+.taller-cabeza { display: flex; flex-direction: column; gap: 12px; padding-block: clamp(24px, 5vw, 64px) 0; }
+.taller-cabeza h2 { max-width: 16ch; }
+.taller-nota { font-size: var(--t-s); color: var(--tinta-2); max-width: 44ch; }
+.paso-taller { min-height: 70vh; display: flex; flex-direction: column; justify-content: center; gap: 12px; padding-block: 6vh; }
+.paso-taller h3 { font-size: clamp(1.6rem, 1.2rem + 1.8vw, 2.4rem); font-weight: 600; max-width: 18ch; }
+.paso-taller p { color: var(--tinta-2); max-width: 40ch; font-size: var(--t-m); }
+.paso-taller .efecto { font-family: var(--mono); font-size: var(--t-s); color: var(--tinta); }
+.paso-taller .efecto::before { content: "→ "; color: var(--cobalto); }
+.taller-escena { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--cab-h, 66px) + 8px); height: calc(100vh - 110px); max-height: 760px; display: grid; place-items: center; }
+.taller-escena .maqueta { grid-area: 1 / 1; opacity: 0; transform: translateY(14px) scale(.98); transition: opacity .45s ease, transform .45s ease; pointer-events: none; display: flex; flex-direction: column; align-items: center; gap: 14px; width: 100%; }
+.taller-escena .maqueta.activa { opacity: 1; transform: none; }
+.maqueta-pie { font-family: var(--mono); font-size: var(--t-xs); color: var(--tinta-2); text-align: center; max-width: 40ch; }
+@media (max-width: 860px) {
+  .taller .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .taller-texto { display: contents; }
+  .taller-cabeza { order: 0; }
+  .taller-escena { order: 1; position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--cab-h, 62px) - 1px); height: auto; max-height: none; z-index: 1; background: var(--papel); padding-block: 10px; border-bottom: 1px solid var(--linea); }
+  .taller-escena .movil { width: min(150px, 46vw); border-radius: 24px; padding: 7px; }
+  .taller-escena .movil-pantalla { border-radius: 18px; font-size: 9px; }
+  .taller-escena .panel { max-width: 340px; font-size: 10px; }
+  .maqueta-pie { display: none; }
+  .paso-taller { order: 2; min-height: 48vh; padding-block: 4vh 8vh; justify-content: flex-start; }
+}
 .seccion .wrap { display: flex; flex-direction: column; gap: clamp(28px, 4vw, 48px); padding-block: clamp(64px, 9vw, 120px); }
 .seccion-cabeza { display: flex; flex-direction: column; gap: 12px; max-width: 60ch; }
 .seccion-cabeza p { font-size: var(--t-l); color: var(--tinta-2); line-height: 1.5; }
 .seccion + .seccion .wrap { border-top: 1px solid var(--linea); }
 
-.productos { display: flex; flex-direction: column; gap: clamp(40px, 6vw, 80px); }
-.producto { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(24px, 4vw, 64px); align-items: center; }
-.producto:nth-child(even) .producto-texto { order: 2; }
-.producto-texto { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
-.producto-texto h3 { font-size: var(--t-xl); font-weight: 600; }
-.producto-texto p { color: var(--tinta-2); max-width: 44ch; font-size: var(--t-m); }
-.producto-texto .efecto { font-family: var(--mono); font-size: var(--t-s); color: var(--tinta); }
-.producto-texto .efecto::before { content: "→ "; color: var(--cobalto); }
-.producto-texto .ejemplos { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 4px 0 0; list-style: none; }
-.producto-texto .ejemplos li { font-size: var(--t-s); border: 1px solid var(--linea); border-radius: 999px; padding: 6px 12px; background: var(--hoja); }
-@media (max-width: 860px) { .producto { grid-template-columns: minmax(0, 1fr); } .producto:nth-child(even) .producto-texto { order: 0; } }
-
 /* Maquetas de producto (hechas en HTML para que pesen poco) */
-.maqueta { display: grid; place-items: center; padding: clamp(18px, 3vw, 36px); background: var(--hoja); border: 1px solid var(--linea); border-radius: var(--radio); }
 .movil { width: min(300px, 100%); aspect-ratio: 9 / 18.6; background: #1d1b17; border-radius: 36px; padding: 10px; box-shadow: var(--sombra); }
 .movil-pantalla { background: #fffdf8; color: #1d1b17; border-radius: 28px; height: 100%; overflow: hidden; display: flex; flex-direction: column; font-size: 11px; line-height: 1.35; }
 .m-web .m-foto { height: 44%; background: linear-gradient(160deg, #8f725a, #4a3a2c); color: #fffdf8; padding: 16px 14px; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; }

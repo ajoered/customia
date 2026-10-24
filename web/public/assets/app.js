@@ -377,6 +377,20 @@
     entrada.style.height = "auto";
     entrada.style.height = Math.min(entrada.scrollHeight, 140) + "px";
   });
+  // El taller: enseña la maqueta del paso que está a la vista.
+  const pasosTaller = Array.from(document.querySelectorAll(".paso-taller[data-maqueta]"));
+  const maquetas = Array.from(document.querySelectorAll(".taller-escena .maqueta"));
+  function tallerMedir() {
+    if (!pasosTaller.length) return;
+    const linea = window.innerHeight * (window.innerWidth <= 860 ? 0.7 : 0.5);
+    let mejor = pasosTaller[0], d = Infinity;
+    pasosTaller.forEach((p) => { const r = p.getBoundingClientRect(); const c = r.top + r.height / 2; const dd = Math.abs(c - linea); if (dd < d) { d = dd; mejor = p; } });
+    maquetas.forEach((m) => m.classList.toggle("activa", m.dataset.maqueta === mejor.dataset.maqueta));
+  }
+  window.addEventListener("scroll", tallerMedir, { passive: true });
+  window.addEventListener("resize", tallerMedir);
+  tallerMedir();
+
   // Sombra en la cabecera al hacer scroll.
   const cab = document.getElementById("cabecera");
   if (cab) window.addEventListener("scroll", () => cab.classList.toggle("con-sombra", window.scrollY > 8), { passive: true });
