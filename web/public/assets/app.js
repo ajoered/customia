@@ -383,8 +383,9 @@
   function tallerMedir() {
     if (!pasosTaller.length) return;
     const linea = window.innerHeight * (window.innerWidth <= 860 ? 0.7 : 0.5);
-    let mejor = pasosTaller[0], d = Infinity;
-    pasosTaller.forEach((p) => { const r = p.getBoundingClientRect(); const c = r.top + r.height / 2; const dd = Math.abs(c - linea); if (dd < d) { d = dd; mejor = p; } });
+    // Se cambia de maqueta cuando el siguiente paso llega a la línea, no antes.
+    let mejor = pasosTaller[0];
+    pasosTaller.forEach((p) => { const r = p.getBoundingClientRect(); if (r.top + r.height * 0.25 <= linea) mejor = p; });
     maquetas.forEach((m) => m.classList.toggle("activa", m.dataset.maqueta === mejor.dataset.maqueta));
     // La web de ejemplo hace scroll dentro del móvil según avanzas por su paso.
     const pasoWeb = pasosTaller.find((p) => p.dataset.maqueta === "web");
