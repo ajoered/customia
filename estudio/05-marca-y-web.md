@@ -1,4 +1,4 @@
-# Marca y estructura de la web (borrador v3)
+# Marca y estructura de la web (borrador v5)
 
 Titular: **AR Ventures, S.L.** La marca comercial puede ser distinta del nombre de la sociedad. En el aviso legal pondremos: *"[Marca] es una marca de AR Ventures, S.L."*
 
@@ -30,6 +30,46 @@ Titular: **AR Ventures, S.L.** La marca comercial puede ser distinta del nombre 
 **Si prefieres algo más cálido que irónico: Marmita.**
 
 **Antes de decidir:** búscalo en la OEPM (clases 35 y 42) y registra la marca a nombre de AR Ventures. "Enchufe" es una palabra común, así que conviene registrar marca mixta (palabra más logo).
+
+## Nombre (v5: con todo lo que has dicho, y con investigación)
+
+### Lo que tiene que contar el nombre (resumen de tus mensajes)
+
+1. **El momento de descubrir:** *"Estaba muy limitado y de repente vi que podía hacer lo que quería"* (la idea de Marmita).
+2. **La última milla:** la IA ya existe; lo difícil es que funcione en tu negocio.
+3. **Los pequeños frente a los grandes:** lo que antes solo tenían las grandes empresas.
+4. **Valor, no humo,** con el tono de Maxi: descarado y honesto.
+5. **La IA aparece, pero no es lo principal.**
+6. **No solo Madrid.** Tiene que servir para webs, WhatsApp y software a medida, y entenderse por teléfono.
+
+### Lo que dice la investigación
+
+- **Las agencias de IA para pymes en España tienen nombres descriptivos:** Agencia IA, Tu Agencia IA, AI Hispania, Automaxia, Aizora… Un nombre que evoque algo destaca solo por eso.
+- **Tipos de nombre (Igor):** los "evocativos" transmiten el posicionamiento, no el servicio. Es el tipo que necesitamos, y el de Vitamina Jota: una palabra cotidiana más un guiño.
+- **Hay que descartar Sésamo:** en España ya existe Sesame HR, software de recursos humanos de Valencia [Probable].
+- **Un competidor inesperado: lo gratis.** La Comunidad de Madrid lanzó en enero de 2026 AI4Pymes, una plataforma gratuita para que las pymes creen asistentes [Probable]. Confirma la idea de la última milla: las herramientas ya existen, incluso gratis. Lo que falta es quien las haga funcionar en tu negocio. Ese es nuestro valor.
+
+### Nombres nuevos
+
+Dominios comprobados el 24/10/2026. En .es y .ai solo sé que no tienen DNS, así que hay que confirmarlo en el registrador.
+
+| # | Nombre | Qué cuenta | Cómo queda nuestra historia | Pegas | Dominios libres |
+|---|---|---|---|---|---|
+| 1 ⭐ | **Dicho y Hecho** | Las dos mitades de la tesis. *Dicho*: ahora puedes pedir lo que quieras, ya no estás limitado al software que hay. *Hecho*: alguien lo hace funcionar en tu negocio (la última milla) | *"Construyendo Hyrise descubrí que podía decir lo que necesitaba y tenerlo funcionando en días. Dicho y hecho. Eso es lo que hago ahora por ti."* La portada lo cumple literalmente: escribes en el chat (dicho) y te lo construimos (hecho) | Son tres palabras. Al ser una frase común, como marca hay que registrarla con logo o con "IA" | dichoyhechoia.com · dichoyhechoia.es · dichoyhechoia.ai · hechoia.com |
+| 2 | **Curro** | *El curro* es el trabajo, y Curro es un nombre de persona. Es la última milla dicha a lo Maxi: *"La IA es muy lista, pero alguien tiene que hacer el curro."* Además, el asistente tiene nombre de persona: *"Habla con Curro"* | *"La IA ya existe. Lo que faltaba era alguien que hiciera el curro."* | Es jerga de España (en Latinoamérica dicen chamba o laburo). Hay quien se acordará de la mascota de la Expo 92 | curroia.com · curroia.es · curroia.ai |
+| 3 | **Carta Blanca** | *Dar carta blanca* es dar libertad total. Antes el software te decía lo que podías hacer; ahora tú decides | *"Toda la vida me dijo el software lo que podía hacer. Con la IA tuve carta blanca."* | Hay una cerveza mexicana con ese nombre (otra clase de marca). Es más elegante que gracioso | cartablanca.ai · cartablancaia.com |
+| 4 | **Seiscientos** | El SEAT 600 (1957–1973, unas 800.000 unidades, 65.000 pesetas) llevó a la clase media española lo que antes era de ricos: el coche | *"El 600 puso a España sobre ruedas. Nosotros queremos poner a cada negocio sobre IA."* | Recuerda a SEAT, así que habrá que tener cuidado con la marca. No sugiere IA | seiscientos.es · seiscientos.ai |
+| 5 | **Ferretería** | El ferretero del barrio escucha tu problema ("me gotea un grifo"), te da justo la pieza que necesitas y te explica cómo ponerla. Es nuestro método y la última milla en una tienda que todo el mundo conoce | *"Somos la ferretería de la IA: nos cuentas el problema y te damos la pieza que encaja."* | Largo. Puede sonar a algo pequeño o barato | ferreteriaia.com · ferreteriaia.es · laferreteria.ai |
+| — | Manitas · Manos Libres · Al Gusto | Variantes del "lo arreglamos nosotros" y del "a tu gusto" | — | Más débiles: suenan a trabajos pequeños | manitasia.com · manoslibres.ai · algusto.es |
+
+**Recomendación: Dicho y Hecho.** Es el único que une las tres ideas que más te gustan:
+- el descubrimiento ("ya puedo pedir lo que quiera"),
+- la última milla ("y alguien lo hace funcionar"),
+- el valor ("hecho" es un resultado, no una promesa).
+
+Encaja con el chat de la portada, es castellano llano y sirve en toda España y en Latinoamérica.
+
+**Segunda opción: Curro,** si prefieres más descaro y que el asistente tenga nombre de persona. También se pueden combinar: la marca Dicho y Hecho y el asistente *Curro*.
 
 ## Nombre (v4: la idea de Marmita, "estaba limitado y de repente pude hacer lo que quería")
 
