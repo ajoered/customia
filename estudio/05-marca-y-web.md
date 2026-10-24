@@ -1,4 +1,4 @@
-# Marca y estructura de la web (borrador v7)
+# Marca y estructura de la web (borrador v8)
 
 Titular: **AR Ventures, S.L.** La marca comercial puede ser distinta del nombre de la sociedad. En el aviso legal pondremos: *"[Marca] es una marca de AR Ventures, S.L."*
 
@@ -30,6 +30,46 @@ Titular: **AR Ventures, S.L.** La marca comercial puede ser distinta del nombre 
 **Si prefieres algo más cálido que irónico: Marmita.**
 
 **Antes de decidir:** búscalo en la OEPM (clases 35 y 42) y registra la marca a nombre de AR Ventures. "Enchufe" es una palabra común, así que conviene registrar marca mixta (palabra más logo).
+
+## Nombre (v8: variantes de "Telar" con SEO y dominios)
+
+### Qué importa del SEO para elegir el nombre
+
+1. **Una palabra clave en el dominio apenas ayuda a posicionar.** Google le quitó peso a los dominios "de palabra exacta" en 2012 [Probable; lo dicen casi todas las guías, aunque Google no lo ha confirmado de nuevo].
+2. **Lo que sí importa es que la búsqueda de tu marca sea tuya.** Si buscas "telar" en Google, salen telares de tejer, tiendas de ropa y artesanía. Con un nombre compuesto y único, la primera página es tuya enseguida. Eso también ayuda a que ChatGPT y otros asistentes reconozcan la marca y la recomienden [Probable].
+3. **El tráfico de verdad vendrá de páginas por sector** ("web para restaurantes de eventos", "asistente de WhatsApp para hostales"), no del dominio.
+4. **Mejor con .com y .es libres los dos,** sin guiones. El .ai, como extra.
+
+### Variantes
+
+Dominios comprobados el 24/10/2026. El .com sale del registro oficial; .es y .ai, solo por DNS, así que confírmalo en el registrador.
+
+| # | Nombre | Qué cuenta | Búsqueda en Google | Dominios |
+|---|---|---|---|---|
+| 1 ⭐ | **Telar y Punto** | Triple sentido: *"y punto"* (sin rodeos, el "sin más" de Maxi), *punto* de tejer y *punto* com. Eslogan: *"Software a medida, y punto."* | Única: no hay ninguna empresa con ese nombre | telarypunto.com ✅ · .es ✅? · .ai ✅? |
+| 2 | **Nuevo Telar** / El Nuevo Telar | La historia en el nombre: *"La IA es el nuevo telar."* Claro y elegante | Única | nuevotelar.com ✅ · .es ✅? · elnuevotelar.com ✅ |
+| 3 | **Telar Abierto** | Doble sentido: abierto a todos los negocios (la democratización) y abierto 24 horas (el asistente que nunca cierra) | Única | telarabierto.com ✅ · .es ✅? |
+| 4 | **Telar y Cía** | Suena a comercio de toda la vida ("Ultramarinos y Cía."), cálido y de oficio | Única | telarycia.com ✅ · .es ✅? |
+| 5 | **Mil Telares** | La misión: un telar para cada negocio | Única | miltelares.com ✅ · .es ✅? |
+| 6 | **Telar Propio** | La tesis: tu propio software, no el que alquilas a otros | Única | telarpropio.com ✅ · tupropiotelar.com ✅ |
+| 7 | **Telar Works** | En inglés: *works* son las obras y también "funciona". Sirve fuera de España | Única | telarworks.com ✅ |
+| — | Hola Telar · Telar House | Variantes simpáticas, más flojas | — | holatelar.com ✅ · telarhouse.com ✅ |
+
+**Descartados:**
+- **Telar Studio, Telar Lab y Telar Digital:** el .com está cogido y suenan genéricos ("digital" es casposo).
+- **Tutelar:** el doble sentido era bonito, pero en España "tutelar" se asocia a la tutela legal de personas incapacitadas (fundaciones tutelares). Malo para el SEO y por la connotación.
+- **TelarIA:** el .com y el .es están cogidos, y ya existe Telaria S.L., una empresa de ropa de Jaén.
+
+**Gancho para las llamadas, no para el nombre:** *"¿Tu web tiene telarañas?"*. "Telaraña" viene de "tela", y una web abandonada "tiene telarañas". Perfecto para el primer contacto con negocios con webs viejas.
+
+### Recomendación
+
+- **Telar y Punto,** si quieres personalidad. Es el que más suena a Maxi y deja el eslogan hecho.
+- **Nuevo Telar,** si quieres que el nombre cuente la historia sin explicarla.
+
+Las dos tienen .com libre y una búsqueda en Google que sería solo tuya.
+
+**Prueba por teléfono:** di *"telar y punto punto com"* y *"nuevo telar punto com"* a 3 personas y pídeles que lo escriban. Gana el que escriban bien a la primera.
 
 ## Nombre (v7: magia, y otras ideas como el telar)
 
@@ -338,6 +378,8 @@ Sin cambios respecto a la v1. La primera versión:
 - Isaac Singer (Britannica): <https://www.britannica.com/biography/Isaac-Singer>
 - "You Press the Button, We Do the Rest" (Wikipedia): <https://en.wikipedia.org/wiki/You_Press_the_Button,_We_Do_the_Rest>
 - El eslogan de Kodak (Museo de la Cámara, Suiza): <https://www.cameramuseum.ch/en/discover/permanent-exhibition/the-century-of-the-film/you-press-the-button-we-do-the-rest>
+- Dominios de palabra exacta y SEO (Fruits): <https://fruits.co/news/do-exact-match-domains-still-work-for-seo-in-2026>
+- Telaria S.L. (eInforma): <https://www.einforma.com/informacion-empresa/telaria>
 - Vitamina Jota (referencia de tono): <https://www.vitaminajota.com/>
 - Serenos de Madrid, opción descartada (El Debate): <https://www.eldebate.com/historia/20230720/oficios-ayer-serenos-madrid-guardianes-calles-caer-noche_126981.html>
 - El sereno que guardaba tu calle (eldiario.es): <https://www.eldiario.es/madrid/somos/malasana/el-sereno-que-guardaba-tu-calle-y-te-vigilaba-a-ti_1_6423534.html>
