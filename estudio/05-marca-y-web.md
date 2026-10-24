@@ -1,112 +1,131 @@
-# Marca y estructura de la web (borrador v1)
+# Marca y estructura de la web (borrador v2)
 
-## Nombre
+Titular: **AR Ventures, S.L.** La marca comercial puede ser distinta del nombre de la sociedad. En el aviso legal pondremos: *"[Marca] es una marca de AR Ventures, S.L."*
+
+## Nombre: conceptos
 
 **Criterios:**
-1. Se entiende y se deletrea por teléfono a la primera (vamos a captar clientes llamando).
-2. Lleva "IA" o lo sugiere, porque la IA vende.
-3. Transmite la idea de **a medida**, que es la tesis.
-4. Suena a oficio de confianza, no a startup de Silicon Valley.
-5. Sirve para otros sectores y ciudades en el futuro.
-6. El dominio está libre.
+- Un concepto con historia detrás, no un nombre descriptivo.
+- Se entiende por teléfono a la primera.
+- Encaja con la tesis: valor práctico, a medida, para el negocio de todos los días.
+- Tiene algún dominio libre.
 
-Comprobación de dominios hecha el 24/10/2026. "Libre" en .com sale del registro oficial (RDAP de Verisign). Para .es y .ai solo comprobé que no tienen DNS: **hay que confirmarlo en el registrador antes de comprar**.
+Dominios comprobados el 24/10/2026. "Libre" en .com sale del registro oficial (RDAP de Verisign). En .es y .ai solo comprobé que no tienen DNS, así que **hay que confirmarlo en el registrador**. Las palabras sueltas (sereno, sancho, molino, telar…) están ocupadas en todas las extensiones.
 
-| Nombre | Dominios | A favor | En contra |
-|---|---|---|---|
-| **Sastre IA** ⭐ | sastreia.com ✅ · sastreia.es ✅ · sastreia.ai ✅ | El sastre hace las cosas **a medida**: es justo la tesis. Es un oficio tradicional de confianza, cercano para dueños poco digitales. Lleva "IA" en el nombre. Por teléfono se dice fácil: "Sastre IA, como el sastre". Y el método encaja con la metáfora (tomar medidas, confeccionar, ajustar) | Hay quien puede pensar en moda, aunque se resuelve con la frase de debajo del logo. "Sastre" es apellido, pero no vimos ninguna empresa de IA con ese nombre |
-| **Barrio IA** | barrioia.com ✅ · barrioia.es ✅ | Va directo a la misión ("el negocio de tu barrio") y es muy cercano | Puede sonar barato. Muy madrileño, sirve peor para otras ciudades |
-| **Customia** | customia.com ❌ · customia.es ❌ · customia.ai ✅ | Une "custom" e "IA". Es el nombre actual del repositorio | "Custom" es inglés: por teléfono acabaría escrito "Costumia". Solo queda libre el .ai |
-| Echa Mano | echamano.com ✅ | Muy cálido ("te echamos una mano") | No sugiere IA ni "a medida" |
+| # | Nombre | La historia detrás | Por qué encaja | Pegas | Dominios libres |
+|---|---|---|---|---|---|
+| 1 ⭐ | **Sereno** | Los serenos guardaron las calles de Madrid de noche desde 1765 hasta finales de los 70. Tenían las llaves de todos los portales del barrio. Si un vecino daba tres palmadas y gritaba "¡Sereno!", contestaba "¡Voy!" y venía a abrirle | Es justo nuestro asistente: **despierto toda la noche y viene cuando lo llamas**. Es de confianza, del barrio, y tiene las llaves de tu negocio. Además, "sereno" significa tranquilo, que es lo que busca el dueño. El chat de la portada puede abrir con un *"¡Voy!"* | Muy madrileño (bien para empezar). Los menores de 40 no lo conocen, así que hay que contar la historia | serenoia.es · serenoia.ai · holasereno.es · holasereno.ai · elsereno.ai |
+| 2 | **Sancho** | Don Quijote veía gigantes donde había molinos; Sancho veía molinos. Cuando gobernó la ínsula Barataria lo hizo con sentido común | Es la tesis contra el hype: **IA con los pies en la tierra.** Todo el mundo vende gigantes; nosotros, lo que funciona. El chat: *"Habla con Sancho"* | En México "el sancho" es el amante de tu pareja, un problema si algún día vamos a Latinoamérica. Hay muchos negocios llamados Sancho | sanchoia.es · holasancho.es · holasancho.ai · elsancho.es |
+| 3 | **Duende** | En el cuento de los hermanos Grimm *El zapatero y los duendes* (1812), un zapatero pobre se despierta cada mañana con los zapatos hechos: unos duendes trabajan de noche y su negocio prospera. Y "tener duende" es ese encanto que no se explica | **El trabajo se hace mientras duermes** (el asistente), y una web "con duende" (el diseño) | Puede sonar infantil para un despacho o una clínica | duendeia.com · duendeia.es · duendeia.ai |
+| 4 | **Telar** | El telar de Jacquard (1804) fue la primera máquina programable: con tarjetas perforadas, cualquier taller podía tejer dibujos que antes solo hacían los maestros. Inspiró a Babbage, uno de los padres de la informática | **"A medida" hecho accesible,** el origen de la programación y la tesis del software a medida en una sola imagen | Más frío, y la historia hay que explicarla | telaria.ai |
+| 5 | **SaaStrería** | Juego de palabras: software como servicio (SaaS) más sastrería | Ingenioso para un público de tecnología | El dentista no sabe qué es SaaS. Por teléfono suena igual que "sastrería", así que escribirían sastreria.com, que está ocupado y no es nuestro | saastreria.com · saastreria.es · lasaastreria.com |
 
-Ocupados en todas las extensiones útiles: Listo, Mostrador, Oficio, Cuadrilla, Trastienda, Kilómetro Cero, Tendero.
+**Recomendación: Sereno.** Es el que mejor junta producto, historia y sitio:
+- **Producto:** el asistente que nunca duerme.
+- **Historia:** el vecino de confianza con las llaves.
+- **Sitio:** Madrid.
 
-**Recomendación: Sastre IA.** Antes de comprar el dominio, haz una búsqueda rápida en la OEPM (registro de marcas) por "Sastre" en la clase 42, servicios informáticos.
+Además, el nombre funciona igual para la marca y para el asistente. El segundo sería Sancho, si prefieres que el mensaje principal sea "contra el hype".
 
-## Mensaje
+**Antes de decidir:** busca el nombre en la OEPM (clases 42 y 35) y registra la marca a nombre de AR Ventures.
 
-- **Frase sobre el titular:** Software e IA a medida para negocios de Madrid
-- **Titular:** Más clientes. Menos teléfono.
-- **Subtítulo:** Te hacemos la web y los asistentes con IA que tu negocio necesita, a tu medida. Te lo enseñamos funcionando antes de que pagues nada.
-- **Botón principal:** Pide tu diagnóstico gratis
-- **Al lado:** teléfono y WhatsApp visibles. Nuestro cliente prefiere llamar a rellenar un formulario.
+## Nuestra historia (borrador para "Quiénes somos")
 
-## Estructura (una sola página, de arriba abajo)
+> Mientras construía Hyrise, me di cuenta del salto: con IA empecé a montar mis propios sistemas en días, cosas que antes habrían necesitado un equipo y meses. **[Un ejemplo concreto: qué construiste y cuánto tiempo o dinero te ahorra.]**
+>
+> Ese salto lo están dando las grandes empresas. En España usa IA el 58 % de las grandes y solo el 13 % de las microempresas. Los negocios que hacen funcionar un barrio, la clínica, el hostal o el restaurante, se están quedando fuera.
+>
+> Hasta ahora tenían que adaptarse al software que había. Ahora pueden tener el suyo, a su medida. Monté [Marca] para llevarles ese mismo salto.
 
-1. **Portada:** titular, subtítulo, botón, teléfono y WhatsApp. A la derecha, el móvil con un antes y después.
-2. **El problema, en su idioma.** Tres tarjetas con datos:
-   - *"Llamadas que nadie coge."* En hora punta, X de cada 10 negocios no contestan (lo medimos nosotros con la prueba de llamadas).
-   - *"Una web que en el móvil no se ve."* Ejemplo: en una muestra de 180 hostales de Madrid, el 27 % sale como "No seguro" en Chrome.
-   - *"Comisiones que se llevan otros."* Booking, los portales y las plataformas de reservas.
-3. **Por qué ahora (la tesis):** *"Hasta ahora tenías que adaptarte al software que había. Las grandes empresas se lo hacían a medida. Con la IA, eso ya está a tu alcance."* Con el dato del INE y Cotec: 58 % de las grandes empresas frente al 13 % de las microempresas.
-4. **Qué hacemos.** Tres productos, cada uno con su resultado:
-   - **Web a medida:** rediseño completo, rápida y pensada para el móvil. *Resultado: más contactos y reservas directas.*
-   - **Asistente de WhatsApp con IA:** contesta al momento, 24 horas, en español e inglés. Filtra los mensajes y te pasa solo lo que importa. *Resultado: ningún cliente sin respuesta.*
-   - **A medida:** *"¿Qué haces a mano cada día?"* Presupuestos, recordatorios de citas, reseñas… *Resultado: horas libres cada semana.*
-5. **Cómo trabajamos** (con la metáfora del sastre):
-   - **Tomamos medidas:** 20 minutos contigo para entender tu negocio.
-   - **Confeccionamos:** lo construimos y lo ajustamos hasta que funcione. Lo ves antes de pagar.
-   - **Ajustamos siempre:** lo mantenemos y mejoramos por una cuota fija, con un informe mensual en euros.
-6. **Ejemplo de antes y después.** Al principio será un negocio **inventado** (por ejemplo "Hostal Ejemplo"). Nunca uses uno real sin su permiso por escrito. Cuando tengamos clientes, casos reales con cifras.
-7. **Sectores.** Tarjetas para los nichos elegidos (lo decidirán los análisis). Con el tiempo, cada una tendrá su página: *"Para clínicas dentales"*, *"Para hostales"*…
-8. **Precio.** Al principio: *"Precio cerrado antes de empezar. Sin sorpresas."* Cuando hayamos probado los precios en 5–10 conversaciones de venta, publicamos los "desde". Ninguno de los 5 referentes publica precios, así que eso nos diferencia.
-9. **Quiénes somos.** La misión (*"Que cualquier negocio de barrio tenga la misma tecnología que una gran empresa"*), tu foto y tu nombre. Para un dueño de pyme, ver una persona real de Madrid genera más confianza que cualquier logo.
-10. **Preguntas frecuentes.**
-    - ¿Tengo que saber de tecnología?
-    - ¿Y si no me gusta?
-    - ¿Qué pasa con mi web, mi dominio y mi email actuales?
-    - ¿Hay permanencia?
-    - ¿El asistente dice que es una IA? (Sí, lo exige la ley desde agosto de 2026.)
-    - ¿Qué hacéis con los datos de mis clientes?
-11. **Contacto.** Teléfono, WhatsApp, email y un formulario de 3 campos.
-12. **Pie de página.** Aviso legal, privacidad y cookies.
-    - La LSSI (art. 10) obliga a mostrar nombre, NIF, dirección y email del titular de la web.
-    - Para firmar y facturar a título personal necesitas darte de alta como autónomo (Hacienda y Seguridad Social).
+**Lo que falta:** el ejemplo concreto. Una frase con una cifra real ("un sistema que me ahorra 10 horas a la semana") convence más que todo lo demás.
+
+## Portada: un chat en lugar de un botón
+
+Arriba, la frase sobre el titular, el titular y, justo debajo, **un chat con nuestro asistente** en lugar del botón.
+
+- **Primer mensaje del asistente** (dice que es una IA, como exige el art. 50 del Reglamento de IA):
+  > *"Hola, soy el asistente de [Marca] (una IA). Cuéntame: ¿qué te quita más tiempo o por dónde se te escapan clientes?"*
+- **Respuestas rápidas en botones:**
+  - "No llego a coger el teléfono"
+  - "Mi web no me trae clientes"
+  - "Pierdo horas con presupuestos o reservas"
+  - "Otra cosa"
+- **Diagnóstico en 5 preguntas como mucho:**
+  1. ¿Qué negocio tienes? (sector, tamaño)
+  2. ¿Cuál es el problema?
+  3. **¿Cuánto te cuesta?** ¿Cuántas veces a la semana pasa? ¿Cuánto vale de media un cliente? Con eso el asistente calcula y enseña: *"Esto te está costando unos X € al mes."*
+  4. ¿Qué has probado ya y cuánto pagaste?
+  5. ¿Hablamos? Pide nombre y teléfono o email, con una casilla de **permiso para contactarle**. Con esa casilla, el email de seguimiento ya es legal (LSSI art. 21).
+- **Debajo del chat, siempre a la vista:** *"¿Prefieres llamar?"* con teléfono y WhatsApp. Habrá dueños que no quieran escribir.
+
+**Para qué sirve, además de captar clientes:** cada diagnóstico se guarda en una tabla (sector, problema, frecuencia, valor del cliente, coste estimado). Así **medimos el dolor y el dinero** de cada nicho, que es justo lo que necesitamos para poner a prueba la tesis. Y la propia web hace de demo del asistente de WhatsApp: el cliente lo prueba antes de que se lo vendamos.
+
+**Cómo preguntar:** pregunta por lo que ya pasó y lo que cuesta, no por lo que pagarían. "¿Cuánto pagarías por resolverlo?" da respuestas poco fiables: la gente contesta lo que suena bien [Probable; es la idea del libro *The Mom Test*]. "¿Cuántas llamadas perdiste la semana pasada?" sí es fiable.
+
+**Lo que hay que construir:**
+- Un pequeño servidor (por ejemplo un Cloudflare Worker) que llame a la API de Claude, con límite de uso por visitante para evitar abusos.
+- Unas instrucciones al asistente con límites: no prometer precios, no salirse del tema, no pedir datos de salud.
+- Una base de datos para los diagnósticos.
+- Aviso de privacidad y plazo de borrado de las conversaciones.
+
+**Lo que necesito de ti:** una clave de API de Anthropic. El coste por conversación es de céntimos [Probable; lo calculo cuando elijamos el modelo].
+
+## Estructura de la página (de arriba abajo)
+
+1. **Portada con el chat** (ver arriba).
+2. **El problema, con datos.** Llamadas que nadie coge, webs que en el móvil no se ven, comisiones de los portales.
+3. **Por qué ahora.** La tesis del software a medida, con el dato del INE y Cotec.
+4. **Qué hacemos:**
+   - Web a medida.
+   - Asistente de WhatsApp con IA.
+   - Automatizaciones a medida.
+
+   Cada uno con su resultado.
+5. **Cómo trabajamos:** entendemos tu negocio · construimos hasta que funcione · nos quedamos a mantenerlo. Los nombres de los pasos se adaptan a la marca que elijamos. Con Sereno, por ejemplo: *Escuchamos · Construimos · Vigilamos*.
+6. **Antes y después** con un negocio inventado. Cuando los haya, casos reales con cifras.
+7. **Sectores:** los que salgan de los análisis.
+8. **Precio:** "Precio cerrado antes de empezar". Los precios "desde" se publican cuando los hayamos probado.
+9. **Quiénes somos:** la historia de Hyrise, tu foto y la misión.
+10. **Preguntas frecuentes, contacto y pie legal.**
+    - **Aviso legal de AR Ventures, S.L.** (LSSI art. 10): denominación social, CIF, domicilio social, datos del Registro Mercantil y email.
+    - **Privacidad**, que incluya el chat.
+    - **Cookies.**
 
 **Páginas aparte:**
-- `/demo/<código>`: las demos privadas para cada negocio, con `noindex` y la franja de "propuesta, no es la web oficial".
+- `/demo/<código>`: las demos privadas, con `noindex` y la franja de "propuesta, no es la web oficial".
 - Las páginas legales.
 
 ## Tecnología
 
-- **Web estática** (HTML y CSS, o Astro) alojada gratis en Cloudflare Pages o Netlify.
-- **Misma tecnología que usaremos con los clientes.** Así nuestra web es la primera pieza del portafolio y el coste de alojarla es cero.
-- **Lo que necesitamos de ti:**
-  - comprar el dominio (unos 10–15 €/año por un .es),
-  - una cuenta en Cloudflare o Netlify,
-  - una foto tuya.
+- **Web estática** alojada gratis en Cloudflare Pages, con un Worker para el chat.
+- **Misma tecnología que usaremos con los clientes,** así que nuestra web es la primera pieza del portafolio.
+- **Lo que necesito de ti:**
+  - el dominio,
+  - una cuenta de Cloudflare,
+  - una clave de API de Anthropic,
+  - tu foto,
+  - los datos de AR Ventures para el aviso legal.
 
 ## Segundo producto: asistente de WhatsApp para consultas
 
-De acuerdo en que sea el segundo producto, y antes que el agente de voz. Motivos:
-
-- Es texto, así que se revisa y se corrige fácilmente.
-- No hay que conectarlo a su centralita.
-- En España casi todo el mundo usa WhatsApp para hablar con negocios [Probable].
-
-**Alcance de la primera versión (para que el mantenimiento sea bajo):**
-
-1. **Contesta preguntas frecuentes:** horario, ubicación, servicios y precios publicados.
-2. **Filtra las consultas según el sector:**
-   - **Reformas:** tipo de obra, metros, zona, fotos y plazo.
-   - **Eventos:** fecha, número de invitados y presupuesto.
-   - **Hostal:** fechas y número de personas, con enlace a su motor de reservas.
-3. **Pasa la consulta al dueño** con un resumen. **Nunca** se inventa precios ni disponibilidad.
-4. Reservar directamente en su agenda queda para una versión posterior, porque ahí está casi todo el mantenimiento.
+Sin cambios respecto a la v1. La primera versión:
+1. contesta preguntas frecuentes,
+2. filtra la consulta,
+3. pasa un resumen al dueño,
+4. nunca inventa precios ni disponibilidad.
 
 **Lo que hay que saber:**
-
-- **Normas de Meta:** desde el 15 de enero de 2026 prohíbe en WhatsApp los asistentes de IA de uso general (tipo ChatGPT). Los bots de atención al cliente de un negocio siguen permitidos [Probable].
-- **Mismo número:** con la función "coexistencia" (desde 2025), el negocio puede mantener su número y seguir usando la app de WhatsApp Business en el móvil mientras el asistente contesta. Hay requisitos de antigüedad y calidad de la cuenta [Probable].
-- **Coste por mensaje:** Meta cobra por mensaje desde julio de 2025. Contestar a quien escribe primero es barato o gratis. Los mensajes que envía el negocio por iniciativa propia (plantillas) se cobran [Probable; revisar las tarifas de Meta para España].
+- **Normas de Meta:** permite los bots de atención al cliente de un negocio. Desde el 15 de enero de 2026 solo prohíbe los asistentes de uso general tipo ChatGPT [Probable].
+- **Mismo número:** con la función "coexistencia", el negocio conserva su número y sigue usando la app de WhatsApp Business en su móvil [Probable].
 - **Aviso de IA:** el art. 50 del Reglamento de IA obliga a decir que es una IA en el primer mensaje.
-- **Dentistas:** más cuidado, porque la conversación puede incluir datos de salud.
-- **Cómo lo vendemos:** el tiempo de respuesta y el número de consultas contestadas fuera de horario. En reformas y eventos suele ganar el que contesta primero [Probable].
+
+**El chat de nuestra web es la primera versión de este producto.**
 
 ## Fuentes
 
+- Serenos de Madrid (El Debate): <https://www.eldebate.com/historia/20230720/oficios-ayer-serenos-madrid-guardianes-calles-caer-noche_126981.html>
+- El sereno que guardaba tu calle (eldiario.es): <https://www.eldiario.es/madrid/somos/malasana/el-sereno-que-guardaba-tu-calle-y-te-vigilaba-a-ti_1_6423534.html>
+- La llamada al sereno (columna de Alfonso Ussía en El Debate): <https://www.eldebate.com/opinion/20250623/sereno_309566.html>
 - Prohibición de Meta a los chatbots generales: <https://respond.io/blog/whatsapp-general-purpose-chatbots-ban>
-- Política de chatbots de WhatsApp en 2026: <https://respond.io/blog/whatsapp-chatbot-policy-2026>
 - Coexistencia de la app y la API de WhatsApp: <https://docs.360dialog.com/docs/hub/embedded-signup/whatsapp-coexistence>
-- Coexistencia y precios por mensaje: <https://guiawabusiness.cliengo.com/que-es>
-- LSSI, art. 10 (datos que debe mostrar una web de empresa): <https://www.boe.es/buscar/act.php?id=BOE-A-2002-13758>
+- LSSI (arts. 10 y 21): <https://www.boe.es/buscar/act.php?id=BOE-A-2002-13758>
