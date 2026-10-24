@@ -428,6 +428,22 @@
   window.addEventListener("resize", tallerMedir);
   tallerMedir();
 
+  // La línea de tiempo se dibuja según bajas por ella.
+  const linea = document.getElementById("linea");
+  function lineaMedir() {
+    if (!linea) return;
+    const r = linea.getBoundingClientRect();
+    const horizontal = window.innerWidth > 900;
+    const inicio = window.innerHeight * 0.85, fin = window.innerHeight * (horizontal ? 0.35 : 0.45);
+    const t = Math.min(1, Math.max(0, (inicio - r.top) / Math.max(1, (horizontal ? inicio - fin : r.height + inicio - fin))));
+    linea.style.setProperty("--prog", t.toFixed(3));
+    const hitos = linea.querySelectorAll(".hito");
+    hitos.forEach((h, i) => h.classList.toggle("hecho", t >= (i + 0.5) / hitos.length || (horizontal && t > 0.98) ));
+  }
+  window.addEventListener("scroll", lineaMedir, { passive: true });
+  window.addEventListener("resize", lineaMedir);
+  lineaMedir();
+
   // Sombra en la cabecera al hacer scroll.
   const cab = document.getElementById("cabecera");
   if (cab) window.addEventListener("scroll", () => cab.classList.toggle("con-sombra", window.scrollY > 8), { passive: true });
