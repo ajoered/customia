@@ -41,6 +41,39 @@ Objetivo: ver qué hacen bien los mejores para copiar la estructura de nuestra w
 - Ya ocupan la metáfora del tejido.
 - Se dirigen a la salud. Nosotros empezamos por restaurantes de eventos, fincas y hostales, así que no chocamos de frente.
 
+## Competidor directo en Madrid: Estudio Telar
+
+**Estudio Telar** (estudiotelar.com, dominio registrado el 03/10/2026, también nuevo). Lo encontraste tú.
+
+- **Qué es:** se presenta como *"Software a medida y agentes de IA para pymes"*, un estudio pequeño en Madrid que trabaja para toda España.
+- **Qué hace:** webs, apps, CRM, backoffices, herramientas a medida y "equipos de agentes de IA" (*"un agente por tarea repetida y una persona que confirma"*).
+- **Cuenta justo la historia de Jacquard:** *"Por qué nos llamamos Telar: en 1804, el telar de Jacquard…"*. Su método son las tarjetas perforadas, los hilos y las pasadas.
+- **Método:**
+  1. *Mapa de mejora*: una auditoría de procesos de una semana por **290 €**, que se descuenta si luego hacen el proyecto.
+  2. *Prototipo* (1–2 semanas): ves la herramienta funcionando con tus datos.
+  3. Construcción.
+  4. *Continuidad* mensual, sin permanencia.
+- **Promesas:** *"Precio cerrado antes de empezar. Hablas con quien lo programa. El código y los datos son tuyos."*
+- **Clientes que enseña:**
+  - netfurgo.es (alquiler de furgonetas, con la web conectada al backoffice),
+  - Vekta (gestión de flotas, app),
+  - Taxio (app para taxistas),
+  - ADYAN Reformas,
+  - VELA Studio.
+
+  Muy orientado a operaciones (facturas, conciliación bancaria, turnos, CRM) más que a captar clientes.
+- **Webs:** de 3 a 5 semanas.
+
+## Qué nos dicen estos dos competidores
+
+1. **El hueco existe, pero se está llenando.** Dos estudios nuevos con nuestra misma tesis se han lanzado solo en septiembre y octubre de 2026.
+2. **Los dos usan la metáfora del tejido** (Kerkis = lanzadera en griego; Telar = Jacquard). Probablemente porque es la metáfora "obvia" para software a medida, y las herramientas de IA la proponen a todo el mundo [Suposición]. **Conclusión: nuestro nombre no puede ser el primero que se le ocurriría a una IA.**
+3. **Dónde nos diferenciamos:**
+   - **Sector:** ellos son generalistas (Estudio Telar) o de salud (Kerkis). Nosotros empezamos por restaurantes de eventos, fincas y hostales, con un producto concreto: el asistente que filtra las consultas de eventos.
+   - **Forma de vender:** ellos esperan a que les pidas una auditoría (290 € o gratis en 48 horas). Nosotros llegamos con la demo hecha o avisando de un problema real (web caída o hackeada) antes de que nos conozcan.
+   - **Voz:** el fundador con nombre y apellido, la historia de Hyrise y el tono de Maxi. Las dos webs de la competencia son correctas pero impersonales.
+   - **Lo que ya hacen igual que nosotros** (precio cerrado, verlo funcionando antes, cuota mensual): no nos diferencia, es lo mínimo.
+
 ## Lo que hacen todos (y deberíamos hacer nosotros)
 
 1. **Prometen resultados, no tecnología.** "AI that ships", "We don't just talk AI. We deliver it". Nadie habla de modelos ni de herramientas en la portada.

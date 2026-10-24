@@ -1,4 +1,4 @@
-# Marca y estructura de la web (borrador v10)
+# Marca y estructura de la web (borrador v11)
 
 Titular: **AR Ventures, S.L.** La marca comercial puede ser distinta del nombre de la sociedad. En el aviso legal pondremos: *"[Marca] es una marca de AR Ventures, S.L."*
 
@@ -30,6 +30,21 @@ Titular: **AR Ventures, S.L.** La marca comercial puede ser distinta del nombre 
 **Si prefieres algo más cálido que irónico: Marmita.**
 
 **Antes de decidir:** búscalo en la OEPM (clases 35 y 42) y registra la marca a nombre de AR Ventures. "Enchufe" es una palabra común, así que conviene registrar marca mixta (palabra más logo).
+
+## Nombre (v11: Telar descartado del todo)
+
+**Estudio Telar** (estudiotelar.com, Madrid, octubre de 2026) ya vende *"software a medida y agentes de IA para pymes"* con el nombre Telar y la historia de Jacquard contada en su web. **Cualquier nombre con "telar" queda descartado,** también como historia principal en "Quiénes somos".
+
+**La lección:** en un mes han aparecido dos competidores con la misma metáfora del tejido (Kerkis Lab y Estudio Telar). Las metáforas "obvias" para software a medida (telar, sastre, arcilla, plastilina, Prometeo) son las que cualquier persona con una herramienta de IA va a recibir como sugerencia [Suposición]. Arcilla y Dédalo siguen libres hoy, pero tienen ese mismo riesgo.
+
+**Qué propongo ahora:** un nombre que lleve **algo tuyo** que nadie más puede tener, como Vitamina Jota, que es de Maxi y de nadie más:
+
+- una palabra, un apodo o una expresión tuya o de tu familia;
+- un lugar con significado para ti;
+- algo de la historia de Hyrise (el momento exacto en que "se encendió la bombilla", el primer sistema que construiste);
+- una broma interna que tenga sentido para un dueño de negocio.
+
+Con eso, más la idea de "del ladrillo a lo maleable", buscamos el nombre. **Si prefieres seguir con lo que ya tenemos, mi orden es: Arcilla, Dédalo, Dicho y Hecho.** Antes de comprar, busca cada uno en Google con "IA" y "pymes" para comprobar que no ha salido otro competidor.
 
 ## Nombre (v10: "Telar Labs" y un competidor que ya usa el telar)
 
