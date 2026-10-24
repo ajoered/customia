@@ -47,6 +47,11 @@ En la web se presentan como dos opciones (prueba H3 del documento de posicionami
 
 - **Primeros 3 clientes:** descuento a cambio de testimonio y permiso para usarles como caso de éxito.
 - **Referencia de mercado:** una web para pyme en España ronda los 2.000 € más 30–150 €/mes [Probable].
+- **Competidor directo con precios públicos (Kerkis Lab, octubre de 2026):**
+  - Web: 590–1.490 € + 39 €/mes.
+  - Web con asistente de IA: 2.400 € + 119 €/mes.
+
+  Ver `03-competidores.md`.
 
 ## Límites de este estudio
 

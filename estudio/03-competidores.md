@@ -21,6 +21,26 @@ Objetivo: ver qué hacen bien los mejores para copiar la estructura de nuestra w
 - **Neurons Lab**: solo trabaja con banca y seguros.
 - **Las listas tipo "top AI agencies 2026"**: casi todas las publican las propias agencias para posicionarse a sí mismas.
 
+## Competidor directo en España: Kerkis Lab
+
+**Kerkis Lab** (kerkislab.com) apareció al revisar el nombre "Telar Labs". Dominio registrado el 15/10/2026, así que es nuevo. Vende webs, contenido y asistentes de IA para negocios que atienden clientes, con foco en salud (médicos, dentistas, fisios, estética, veterinarios), en España y Colombia.
+
+- **Gancho:** una revisión gratis en 48 horas: *"3 cosas de tu web, Google e Instagram que te quitan citas y clientes."* Se parece mucho a nuestro diagnóstico.
+- **Publica precios** ("porque tú también los comparas"):
+
+| Plan | Pago inicial | Cuota |
+|---|---|---|
+| Web Esencial | 590 € | 39 €/mes |
+| Marca y Web | 1.490 € | 39 €/mes |
+| Marca, Web e IA (asistente que agenda, hasta 500 conversaciones al mes, y seguimiento de quien no reservó) | 2.400 € | 119 €/mes |
+| Parrilla con IA (herramienta de contenido, autoservicio) | — | 249 €/mes |
+| Contenido hecho por ellos | 490 € de puesta en marcha | 590 €/mes |
+
+**Qué aprendemos:**
+- Nuestros precios de prueba (1.490 € + 49 €/mes, o 0 € + 169 €/mes) están en su mismo rango. El asistente de IA lo cobran a 2.400 € + 119 €/mes.
+- Ya ocupan la metáfora del tejido.
+- Se dirigen a la salud. Nosotros empezamos por restaurantes de eventos, fincas y hostales, así que no chocamos de frente.
+
 ## Lo que hacen todos (y deberíamos hacer nosotros)
 
 1. **Prometen resultados, no tecnología.** "AI that ships", "We don't just talk AI. We deliver it". Nadie habla de modelos ni de herramientas en la portada.

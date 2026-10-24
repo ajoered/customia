@@ -1,4 +1,4 @@
-# Marca y estructura de la web (borrador v9)
+# Marca y estructura de la web (borrador v10)
 
 Titular: **AR Ventures, S.L.** La marca comercial puede ser distinta del nombre de la sociedad. En el aviso legal pondremos: *"[Marca] es una marca de AR Ventures, S.L."*
 
@@ -30,6 +30,22 @@ Titular: **AR Ventures, S.L.** La marca comercial puede ser distinta del nombre 
 **Si prefieres algo más cálido que irónico: Marmita.**
 
 **Antes de decidir:** búscalo en la OEPM (clases 35 y 42) y registra la marca a nombre de AR Ventures. "Enchufe" es una palabra común, así que conviene registrar marca mixta (palabra más logo).
+
+## Nombre (v10: "Telar Labs" y un competidor que ya usa el telar)
+
+**Telar Labs queda descartado.**
+
+- **telarlabs.com** está registrado desde febrero de 2026 (en Cloudflare) y no muestra ninguna web. Solo quedan telarlabs.es y telarlabs.ai.
+- **telarlab.com** (registrado el 24/09/2026) **redirige a Kerkis Lab** (kerkislab.com, registrado el 15/10/2026), un competidor directo nuevo:
+  - Vende webs, contenido y asistentes de IA para negocios, con foco en salud, en España y Colombia.
+  - **Usa toda la metáfora del tejido:** *"Tejemos tu presencia digital"*, *"Tres hilos, una sola pieza"*, *"Lo que tejemos"*, *"un perfil bien tejido"*. "Kerkis" es la lanzadera del telar en griego antiguo.
+- **"Labs"** es además un tópico de startup: suena a experimento, justo lo contrario de nuestro *"resultados, no pruebas piloto"*. Y a un dueño de restaurante le suena lejano.
+
+**Qué implica para toda la familia del telar:** un competidor de nuestro mismo sector ya ocupa la metáfora del tejido en español. Con "Telar y Punto" o "Nuevo Telar" pareceríamos una copia, y en Google competiríamos con ellos por lo mismo. **Esto cambia mi recomendación:**
+
+1. **Arcilla** ("del ladrillo a la arcilla"): nadie del sector la usa.
+2. **Dédalo** ("estaba encerrado y me construí unas alas").
+3. El telar, solo como historia en "Quiénes somos", no como marca.
 
 ## Nombre (v9: de ladrillo a algo maleable: mitos, cuentos, objetos y materiales)
 
