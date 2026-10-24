@@ -1,4 +1,4 @@
-# Marca y estructura de la web (borrador v12)
+# Marca y estructura de la web (borrador v13)
 
 Titular: **AR Ventures, S.L.** La marca comercial puede ser distinta del nombre de la sociedad. En el aviso legal pondremos: *"[Marca] es una marca de AR Ventures, S.L."*
 
@@ -30,6 +30,41 @@ Titular: **AR Ventures, S.L.** La marca comercial puede ser distinta del nombre 
 **Si prefieres algo más cálido que irónico: Marmita.**
 
 **Antes de decidir:** búscalo en la OEPM (clases 35 y 42) y registra la marca a nombre de AR Ventures. "Enchufe" es una palabra común, así que conviene registrar marca mixta (palabra más logo).
+
+## Nombre (v13: la píldora roja y "unchained")
+
+### La píldora roja: la idea sí, el nombre no
+
+**Como nombre, descartada.** Desde hace años, "red pill" o "píldora roja" es el término de la *manosfera*: comunidades en internet contra el feminismo para las que "tomar la píldora roja" significa culpar a las mujeres de los problemas de los hombres (Britannica). Quien lo conozca lo leerá así [Seguro]. Además, Matrix es una marca de Warner.
+
+**La idea de fondo sí nos sirve:** el momento en que ves cómo funcionan las cosas de verdad. Ese momento es nuestro diagnóstico: *"¿Quieres ver cuánto te está costando?"*. Se puede usar sin citar Matrix.
+
+**Otras formas de contar "te damos acceso a un poder que no tenías":**
+
+| Nombre | La idea | Pegas | Dominios |
+|---|---|---|---|
+| **Lumbre** | El fuego de Prometeo, pero en casa: la lumbre del hogar. Y en castellano *"¿me das lumbre?"* es pedir fuego a un desconocido: el fuego que pasa de mano en mano | Suena rústico | lumbreia.com ✅ · damelumbre.com ✅ · lalumbre.ai ✅? |
+| **Conejo Blanco** | *"Sigue al conejo blanco"*: la invitación a otro mundo, en *Alicia* y en *Matrix*, pero sin el lastre de la píldora roja | En España, "conejo" tiene un sentido vulgar y habrá chistes | conejoblancoia.com ✅ · conejoblanco.ai ✅? |
+| **Armadura** | La armadura de Iron Man: una persona normal con superpoderes. Es el mensaje correcto sobre la IA: *"no te sustituye, te pone una armadura"* | Suena a guerra y pesa (como un ladrillo) | armaduraia.com ✅ |
+| Antorcha · Catalejo | Pasar el fuego · ver más lejos que los demás | Más flojos | antorchaia.com ✅ · catalejoia.com ✅ |
+
+### "Unchained": romper las cadenas
+
+| # | Nombre | La idea | Pegas | Dominios |
+|---|---|---|---|---|
+| 1 ⭐ | **Sin Cadenas** | Triple sentido: **libre de ataduras** (unchained); **no es una cadena**, es decir, negocios independientes frente a las cadenas, que es justo nuestro cliente (el restaurante, el hostal o la clínica de toda la vida que compite con Vitaldent, NH o los grupos de restauración); y **sin permanencia** | sincadenas.com y .es están cogidos. Hay que confirmar que no lo usa nadie del sector | sincadenasia.com ✅ · sincadenas.ai ✅? |
+| 2 | **Desencadena** | Doble sentido: **quitar las cadenas** y **desencadenar**, es decir, poner en marcha una reacción en cadena. Es un verbo en imperativo, así que funciona como llamada a la acción | "Desencadenar" se usa mucho para cosas malas ("desencadenó una crisis"). En imperativo suena a orden | **desencadena.com ✅** · .es ✅? · desencadenaia.com ✅ |
+| 3 | **Prometeo Liberado** | *Prometheus Unbound*, de Shelley (1820): el titán que dio el fuego a los humanos, encadenado a una roca como castigo, por fin libre. Junta la píldora roja (el fuego, el acceso) y el *unchained* | Largo y culto | prometeoliberado.com ✅ · prometeolibre.com ✅ |
+| — | Desatado · Rompecadenas · Unchained | Variantes | "Desatado" suena a fuera de control. "Rompecadenas" recuerda a *Juego de Tronos*. "Unchained" es inglés y recuerda a Tarantino | desatadoia.com ✅ · rompecadenas.es ✅? · unchained.es ✅? |
+
+### Recomendación
+
+**Sin Cadenas** es el único de esta tanda en el que la metáfora **es nuestro mercado**: negocios independientes que compiten contra las cadenas y que no quieren atarse a un software rígido ni a una permanencia. Además:
+- Se entiende a la primera.
+- Es castellano y sirve en toda España y en Latinoamérica.
+- Encaja con el tono de Maxi: *"Para los que no son una cadena. Ni quieren llevarla."*
+
+**Frente a Juanelo:** Sin Cadenas es más directo y más fácil de vender; Juanelo es más original y tiene más historia. **Desencadena** es la opción si quieres un .com limpio.
 
 ## Nombre (v12: personajes como Dédalo)
 
@@ -495,6 +530,8 @@ Sin cambios respecto a la v1. La primera versión:
 - Las doncellas de oro de Hefesto (Theoi): <https://www.theoi.com/Ther/AutomotonesKourai.html>
 - ¿Soñó Homero con androides? (Engelsberg Ideas): <https://engelsbergideas.com/notebook/did-homer-dream-of-androids/>
 - Garbancito de la Mancha (Wikipedia): <https://en.wikipedia.org/wiki/Garbancito_de_la_Mancha>
+- Píldora roja y píldora azul (Britannica): <https://www.britannica.com/print/article/2233589>
+- Prometheus Unbound (Britannica): <https://britannica.com/EBchecked/topic/478706/Prometheus-Unbound>
 - Vitamina Jota (referencia de tono): <https://www.vitaminajota.com/>
 - Serenos de Madrid, opción descartada (El Debate): <https://www.eldebate.com/historia/20230720/oficios-ayer-serenos-madrid-guardianes-calles-caer-noche_126981.html>
 - El sereno que guardaba tu calle (eldiario.es): <https://www.eldiario.es/madrid/somos/malasana/el-sereno-que-guardaba-tu-calle-y-te-vigilaba-a-ti_1_6423534.html>
