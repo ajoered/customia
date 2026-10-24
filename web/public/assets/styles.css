@@ -202,7 +202,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .m-scroll { position: absolute; inset: 0 0 auto; will-change: transform; transition: transform .35s ease-out; }
 .movil { min-height: 0; }
 .movil-pantalla { min-height: 0; }
-.m-hero { height: 100%; min-height: 300px; background-size: cover; background-position: center; display: flex; align-items: flex-end; position: relative; }
+.m-hero { background-image: url("casa-lucia.jpg"); height: 100%; min-height: 300px; background-size: cover; background-position: center; display: flex; align-items: flex-end; position: relative; }
 .m-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(20,14,10,.78)); }
 .m-hero-texto { position: relative; z-index: 1; color: #fffdf8; padding: 16px 14px; display: flex; flex-direction: column; gap: 5px; width: 100%; }
 .m-hero-texto strong { font-family: var(--serif); font-size: 22px; line-height: 1.05; font-weight: 600; }

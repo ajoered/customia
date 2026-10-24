@@ -4,5 +4,7 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
 
+# Sin caché larga: el dominio pasa por la caché de Cloudflare y los archivos no llevan versión en el nombre.
+# Así cada despliegue se ve al momento; el navegador revalida con ETag (respuesta 304, sin descargar de nuevo).
 /assets/*
-  Cache-Control: public, max-age=86400
+  Cache-Control: public, max-age=0, must-revalidate

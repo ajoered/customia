@@ -13,7 +13,7 @@
   const CONFIG = {
     telefono: "", // vacío: la web no muestra teléfono
     whatsapp: "", // solo dígitos con prefijo, p. ej. "34600000000"
-    email: "arojaspen@gmail.com",
+    email: "hola@arcillastudio.com",
     api: "/api",
   };
 
