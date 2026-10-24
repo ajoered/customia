@@ -47,17 +47,19 @@
     <div class="wrap">
       <div class="ventana" id="ventana">
         <h2 class="ventana-lema" id="lema">Cuéntanos qué te quita el sueño.</h2>
-        <div class="opciones opciones-portada" id="opciones-iniciales">
-          <button class="opcion" type="button" data-valor="telefono">No llego a coger el teléfono</button>
-          <button class="opcion" type="button" data-valor="whatsapp">Contesto WhatsApps a todas horas</button>
-          <button class="opcion" type="button" data-valor="web">Mi web no me trae clientes</button>
-          <button class="opcion" type="button" data-valor="tareas">Pierdo horas con presupuestos</button>
-        </div>
         <div class="chat-mensajes" id="chat-mensajes" aria-live="polite" hidden></div>
-        <form class="chat-formulario" id="chat-formulario" autocomplete="off">
+        <form class="caja" id="chat-formulario" autocomplete="off">
           <label class="saltar" for="chat-entrada">Cuéntanos qué te quita el sueño</label>
-          <textarea id="chat-entrada" rows="1" maxlength="800" placeholder="O escríbelo con tus palabras"></textarea>
-          <button class="enviar" type="submit" id="chat-enviar" aria-label="Enviar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <textarea id="chat-entrada" rows="2" maxlength="800" placeholder="Por ejemplo: «Tengo un restaurante y no doy abasto con los WhatsApps»"></textarea>
+          <div class="caja-pie">
+            <div class="opciones opciones-portada" id="opciones-iniciales">
+              <button class="opcion" type="button" data-valor="telefono">No llego a coger el teléfono</button>
+              <button class="opcion" type="button" data-valor="whatsapp">Contesto WhatsApps a todas horas</button>
+              <button class="opcion" type="button" data-valor="web">Mi web no me trae clientes</button>
+              <button class="opcion" type="button" data-valor="tareas">Pierdo horas con presupuestos</button>
+            </div>
+            <button class="enviar" type="submit" id="chat-enviar" aria-label="Enviar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+          </div>
         </form>
       </div>
       <p class="chat-humano">¿Prefieres una persona? Llama o escribe por WhatsApp al <strong class="tel" data-config="telefono">[tu teléfono]</strong>.</p>
