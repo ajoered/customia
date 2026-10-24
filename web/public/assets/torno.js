@@ -197,7 +197,7 @@
   // Cada paso de texto lleva data-etapa. El progreso es la posición del centro de la
   // ventana respecto a los centros de los pasos, interpolada linealmente.
   function medir() {
-    const centro = window.innerHeight * (window.innerWidth <= 860 ? 0.62 : 0.5);
+    const centro = window.innerHeight * (window.innerWidth <= 860 ? 0.74 : 0.5);
     const centros = pasos.map((p) => { const r = p.getBoundingClientRect(); return r.top + r.height / 2; });
     let prog = 0;
     if (centro <= centros[0]) prog = 0;
@@ -228,6 +228,8 @@
   const cab = document.getElementById("cabecera");
   function altoCabecera() { if (cab) document.documentElement.style.setProperty("--cab-h", cab.offsetHeight + "px"); }
   altoCabecera();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { altoCabecera(); medir(); pedirCuadro(); });
+  window.addEventListener("load", altoCabecera);
   window.addEventListener("scroll", () => { medir(); pedirCuadro(); }, { passive: true });
   window.addEventListener("resize", () => { altoCabecera(); medir(); pedirCuadro(); });
   medir(); progreso = objetivo; pintar(); pedirCuadro();

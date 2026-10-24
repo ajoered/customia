@@ -144,7 +144,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 /* El torno: texto que pasa, pieza que se queda */
 .torno .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 80px); align-items: start; padding-block: clamp(24px, 4vw, 48px) 0; }
-.torno-pieza { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--cab-h, 66px) + 8px); height: calc(100vh - 110px); max-height: 760px; display: grid; place-items: center; }
+.torno-pieza { margin: 0; width: 100%; position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--cab-h, 66px) + 8px); height: calc(100vh - 110px); max-height: 760px; display: grid; place-items: center; }
 .torno-pieza canvas { width: 100%; max-width: 520px; height: auto; aspect-ratio: 1; display: block; }
 .torno-pieza figcaption { position: absolute; bottom: 14px; left: 0; right: 0; text-align: center; font-family: var(--mono); font-size: var(--t-xs); color: var(--tinta-2); }
 .torno-pasos { display: flex; flex-direction: column; }
