@@ -31,6 +31,29 @@ Titular: **AR Ventures, S.L.** La marca comercial puede ser distinta del nombre 
 
 **Antes de decidir:** búscalo en la OEPM (clases 35 y 42) y registra la marca a nombre de AR Ventures. "Enchufe" es una palabra común, así que conviene registrar marca mixta (palabra más logo).
 
+## Nombre (v4: la idea de Marmita, "estaba limitado y de repente pude hacer lo que quería")
+
+**La historia que queremos contar:** *"Estaba limitado al software que había. Descubrí lo que podía construir con IA y, de repente, podía hacer lo que quisiera."* Buscamos un nombre que sea ese momento.
+
+Dominios comprobados el 24/10/2026. En .ai y .es solo sé que no tienen DNS, así que hay que confirmarlo en el registrador.
+
+| # | Nombre | El momento de la historia | Cómo queda nuestra historia | Pegas | Dominios libres |
+|---|---|---|---|---|---|
+| 1 ⭐ | **Habichuelas** | Jack es pobre y cambia la vaca por unas habichuelas de las que todos se ríen. Por la noche crece una planta hasta el castillo de los gigantes. Y doble sentido: *ganarse las habichuelas* | *"Me decían que la IA eran cuatro habichuelas. Las planté en Hyrise y crecieron hasta donde viven los gigantes."* · *"Para ganarte las habichuelas."* | El humor puede no gustar a un cliente muy serio. En parte de Latinoamérica dicen frijoles | habichuelas.ai · habichuelasia.com · habichuela.es |
+| 2 | **Plastilina** | Antes el software era un ladrillo: te adaptabas a él. Ahora es plastilina: toma la forma de tu negocio. Es la tesis del software a medida en un objeto | *"Toda la vida adaptándome al software que había. Con la IA, el software se volvió plastilina."* · *"Software con la forma de tu negocio."* | Suena a juguete y puede parecer frágil | plastilina.ai · plastilinaia.com |
+| 3 | **Bombilla** | *Se me encendió la bombilla*: el momento exacto del descubrimiento. Además, la bombilla llevó a todas las casas la luz que antes era un lujo | *"Construyendo Hyrise se me encendió la bombilla. Ahora quiero que se te encienda a ti."* | Palabra muy común: hay muchos bares y tiendas "La Bombilla", así que será difícil registrarla como marca | bombilla.ai · bombillaia.com |
+| 4 | **Siete Leguas** | Pulgarcito, el más pequeño de los hermanos, se pone las botas de siete leguas del ogro: cada paso, siete leguas. Y doble sentido: *ponerse las botas* | *"Era como ir a pie y de repente calzarme las botas de siete leguas."* · *"Pasos de gigante para negocios pequeños."* | Más largo. Mucha gente no recuerda el cuento. Existe un tequila con ese nombre (otra clase de marca) | sieteleguas.ai · 7leguas.es |
+| 5 | **Ábrete Sésamo** | Alí Babá, un leñador pobre, oye las dos palabras que abren la cueva del tesoro | *"Puertas que antes solo se abrían para las grandes empresas."* | Recuerda a Barrio Sésamo. Largo | abretesesamo.ai · sesamoia.com |
+| — | **Marmita** (referencia) | Obélix cae en la marmita de pequeño y es fuerte para siempre | *"Nos caímos en la marmita de la IA."* | Derechos de Astérix: nada de dibujos ni nombres de personajes | marmitaia.com · lamarmita.ai |
+
+**Recomendación: Habichuelas.**
+- Es la que mejor cuenta el paso de estar limitado a poder hacerlo todo: alguien pequeño encuentra algo de lo que todos se ríen y llega hasta los gigantes.
+- Tiene el humor de Maxi, y el doble sentido de "ganarse las habichuelas" habla justo del dueño del negocio.
+
+**Alternativa seria:** Plastilina, que explica mejor la tesis del software a medida, pero emociona menos.
+
+**Prueba antes de decidir** (cuesta un día): di los 3 finalistas a 5 dueños de negocio que conozcas. Al día siguiente, pregúntales de cuál se acuerdan. Gana el que recuerden sin ayuda.
+
 ## Voz y tono (inspirado en Vitamina Jota)
 
 Lo que hace Maxi en vitaminajota.com y cómo lo traducimos:
