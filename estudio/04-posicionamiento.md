@@ -8,6 +8,21 @@ Los negocios de todos los días pierden clientes por cosas que la IA ya resuelve
 
 Hasta ahora, un negocio pequeño tenía que adaptarse al software que ya existía. Las grandes empresas, en cambio, se lo hacían a medida. Con la IA, hacer software a medida cuesta una fracción de lo que costaba [Probable]. Esa ventaja la están aprovechando primero las grandes: en España usa IA el 58 % de las grandes empresas y el 13 % de las microempresas. Lo que vendemos es **software a medida al precio de una cuota mensual**.
 
+## Concepto central: la última milla de la IA
+
+En logística, la última milla es el tramo final hasta la puerta del cliente: el más caro, el más difícil y el que nadie quiere hacer. Con la IA pasa lo mismo:
+
+- **Los modelos ya existen y son baratos** (OpenAI, Anthropic, Google…).
+- **Las grandes empresas pagan a consultoras para hacer su última milla:** Ode, Distyl o Tribe mandan ingenieros a trabajar dentro del cliente.
+- **La pyme no tiene a nadie que le haga ese último tramo:** entender su negocio, conectarlo con su WhatsApp y su agenda, y mantenerlo. **Ese tramo somos nosotros.**
+
+**Cómo usarlo:**
+- **En X, con inversores y en "Quiénes somos":** tal cual. *"Somos la última milla de la IA para los negocios de todos los días."*
+- **Con el dueño del restaurante:** traducido, porque "última milla" es jerga de logística y puede no decirle nada [Probable]. *"La IA ya existe. Lo difícil es que funcione en tu negocio. Ese último tramo lo hacemos nosotros."*
+- **Como nombre:** no lo recomiendo. Hay muchas empresas de reparto llamadas "Última Milla", aunque ultimamillaia.com y ultimamilla.ai parecen libres. Funciona mejor como frase de posicionamiento junto a un nombre con historia, por ejemplo *"Habichuelas: la última milla de la IA"*.
+
+**Cómo encaja con la historia del fundador:** *"Construyendo Hyrise recorrí esa última milla yo solo y vi el salto. Ahora la recorro por ti."*
+
 ## ¿Ponemos "IA" en la web?
 
 Sí, pero como **el cómo**, no como el titular. La IA vende porque despierta curiosidad, así que tiene que verse: en el nombre o en la frase pequeña encima del titular. El titular sigue siendo el resultado, porque si el gancho es "IA" atraes a curiosos en vez de a compradores [Probable].
