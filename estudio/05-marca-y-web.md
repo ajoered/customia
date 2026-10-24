@@ -1,4 +1,4 @@
-# Marca y estructura de la web (borrador v6)
+# Marca y estructura de la web (borrador v7)
 
 Titular: **AR Ventures, S.L.** La marca comercial puede ser distinta del nombre de la sociedad. En el aviso legal pondremos: *"[Marca] es una marca de AR Ventures, S.L."*
 
@@ -30,6 +30,60 @@ Titular: **AR Ventures, S.L.** La marca comercial puede ser distinta del nombre 
 **Si prefieres algo más cálido que irónico: Marmita.**
 
 **Antes de decidir:** búscalo en la OEPM (clases 35 y 42) y registra la marca a nombre de AR Ventures. "Enchufe" es una palabra común, así que conviene registrar marca mixta (palabra más logo).
+
+## Nombre (v7: magia, y otras ideas como el telar)
+
+### Magia
+
+**Cuidado:** la magia choca con nuestro "valor, no humo". Un dueño de negocio poco digital que ya se ha llevado algún chasco desconfía de lo que suena a magia [Probable].
+
+**La salida honesta** es la tercera ley de Arthur C. Clarke (1973): *"Cualquier tecnología suficientemente avanzada es indistinguible de la magia."* Aplicada a nosotros: *"A tus clientes les parecerá magia. A ti te enseñamos el truco."*
+
+| Nombre | La idea | Pegas | Dominios libres |
+|---|---|---|---|
+| **Chistera** ⭐ | Doble sentido: la chistera del mago (sacar algo de la chistera) y la chistera de la cesta punta vasca. Esta última es un guante-cesta que multiplica el brazo: la pelota llega a 305,77 km/h, récord Guinness de Ibon Aldazabal en 2017. Magia y herramienta a la vez | Hay que contar la segunda mitad. La primera puede sonar a truco barato | chistera.ai · chisteraia.com · chisteraia.es |
+| **Truco** | La pregunta del dueño escéptico, *"¿dónde está el truco?"*, contestada: *"El truco es que lo hacemos nosotros."* | "Tiene truco" también significa "tiene trampa" | trucoia.com · eltruco.es |
+| **Paje** | Los pajes de los Reyes Magos recogen tu carta y se encargan de que llegue. Es la última milla de la magia, y el chat de la portada sería *"escribe tu carta"* | Muy de temporada; no se entiende fuera de España y parte de Latinoamérica | elpaje.es · elpaje.ai |
+| **MagIA / AlquimIA** | Las dos palabras ya terminan en "ia" | Genéricos, muy usados y con mucho tono de humo | magiaia.es · alquimiaia.com |
+
+**Descubrimiento, más útil que la magia:** en castellano los oficios terminan en *-ería*, así que la IA encaja sola al final. Es el patrón de SaaStrería, que te gustó:
+- **SastrerIA:** a medida.
+- **CerrajerIA:** abre lo que estaba cerrado para ti. Libre: cerrajeriaia.com.
+- **ArtesanIA:** hecho a mano. Libre: artesaniaia.com.
+- **FerreterIA:** la pieza exacta. Libre: ferreteriaia.com.
+- **TelarIA:** el telar. Libre: telaria.ai.
+
+Es un sistema de nombres entero: *oficio de toda la vida + IA*.
+
+### Ideas parecidas al telar
+
+**A. De la misma familia (el tejido):**
+
+| Nombre | Qué es | Valoración | Dominios libres |
+|---|---|---|---|
+| **Trama** | Los hilos que cruzan el telar. También significa *argumento de una historia* | Bonito, pero "trama" también es una conspiración ("una trama corrupta") | tramaia.es · latrama.ai |
+| **Ovillo** | El hilo de Ariadna, que saca a Teseo del laberinto: te guiamos por el laberinto de la IA | Cuenta "te guiamos", no "ahora puedes hacerlo tú" | ovilloia.com |
+| **Urdimbre** | Los hilos fijos del telar | Difícil de decir y de deletrear | urdimbre.ai |
+| **Rueca** | El torno de hilar | Recuerda a la Bella Durmiente, que se pincha con el huso | ruecaia.com |
+| ~~Lanzadera~~ | La pieza que cruza el hilo | **Descartado:** Lanzadera es la aceleradora de startups de Juan Roig en Valencia | — |
+
+**B. Otros inventos que, como el telar, pusieron al alcance de todos algo que era a medida y caro:**
+
+| Invento | La historia | Para qué nos sirve |
+|---|---|---|
+| **La imprenta** (Gutenberg, hacia 1450) | Los monjes copiaban los libros a mano; con la imprenta, los libros llegaron a todos | Comparación clara (programadores = monjes copistas), pero **muy usada** para hablar de IA [Probable] |
+| **La máquina de coser Singer** (década de 1850) | Llevó la costura a medida a cada casa. En 1856, Edward Clark, socio de Singer, inventó el **pago a plazos**: pagabas un poco cada mes y la máquina era tuya. Fue el primer plan de este tipo en EE. UU. [Seguro] | **La historia perfecta para justificar la cuota mensual:** *"Singer no vendía máquinas; vendía poder pagarlas."* |
+| **Kodak** (1888) | Antes, hacer una foto exigía saber química y cargar con equipo pesado. George Eastman lo resumió en un eslogan: ***"Usted apriete el botón, nosotros hacemos el resto."*** Mandabas la cámara y te la devolvían con las fotos reveladas y otro carrete puesto. Eligió el nombre "Kodak" porque se pronuncia igual en todos los idiomas | **Es literalmente nuestra última milla,** 140 años antes. Úsalo como eslogan: *"Tú cuéntanos qué necesitas. Nosotros hacemos el resto."* |
+| **VisiCalc** (1979) | La primera hoja de cálculo. Hizo que cualquier pequeña empresa o gestoría pudiera hacer cuentas que antes requerían un ordenador central y un programador | Buen ejemplo para X y para inversores, no como nombre |
+| **SEAT 600** (1957) | El coche para la clase media | Ya estaba en la v5 |
+
+### Cómo lo combinaría
+
+- **Nombre:** **TelarIA** (o **El Telar**), con la historia de Jacquard.
+- **Eslogan:** el de Kodak adaptado: *"Tú cuéntanos qué necesitas. Nosotros hacemos el resto."* Es la última milla en una frase, y encaja con el chat de la portada.
+- **Por qué cobramos cuota:** la historia de Singer.
+
+Las tres son historias de lo mismo: algo que solo tenían unos pocos y que una idea sencilla puso al alcance de todos.
 
 ## Nombre (v6: un animal o un objeto, y la historia del telar)
 
@@ -278,6 +332,12 @@ Sin cambios respecto a la v1. La primera versión:
 - Ada Lovelace (Britannica): <https://www.britannica.com/print/article/349551>
 - Neuronas del pulpo (Xataka): <https://www.xataka.com.mx/investigacion/pocos-dudaban-inteligencia-pulpos-no-al-punto-tener-cerebro-cada-brazo>
 - Pulpo, software de flotas (El Referente): <https://elreferente.es/america/inversiones/pulpo-cierra-ronda-8m-anuncia-lanzamiento-propio-sistema-de-pago/>
+- Leyes de Clarke (Wikipedia): <https://en.wikipedia.org/wiki/Clarke%27s_three_laws>
+- Récord de cesta punta (Guinness): <https://www.guinnessworldrecords.com/world-records/111467-fastest-jai-alai-pelota-throw>
+- Edward Clark y el pago a plazos (Wikipedia): <https://en.wikipedia.org/wiki/Edward_Cabot_Clark>
+- Isaac Singer (Britannica): <https://www.britannica.com/biography/Isaac-Singer>
+- "You Press the Button, We Do the Rest" (Wikipedia): <https://en.wikipedia.org/wiki/You_Press_the_Button,_We_Do_the_Rest>
+- El eslogan de Kodak (Museo de la Cámara, Suiza): <https://www.cameramuseum.ch/en/discover/permanent-exhibition/the-century-of-the-film/you-press-the-button-we-do-the-rest>
 - Vitamina Jota (referencia de tono): <https://www.vitaminajota.com/>
 - Serenos de Madrid, opción descartada (El Debate): <https://www.eldebate.com/historia/20230720/oficios-ayer-serenos-madrid-guardianes-calles-caer-noche_126981.html>
 - El sereno que guardaba tu calle (eldiario.es): <https://www.eldiario.es/madrid/somos/malasana/el-sereno-que-guardaba-tu-calle-y-te-vigilaba-a-ti_1_6423534.html>
