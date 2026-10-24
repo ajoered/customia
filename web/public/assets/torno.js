@@ -28,8 +28,6 @@
     };
   }
   let col = tokens();
-  const mq = window.matchMedia("(prefers-color-scheme: dark)");
-  mq.addEventListener && mq.addEventListener("change", () => { col = tokens(); pintar(); });
 
   // ---------- Formas (puntos en sentido horario alrededor del centro) ----------
   function rectRedondeado(w, h, r, cx, cy) {
