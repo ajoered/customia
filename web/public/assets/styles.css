@@ -167,7 +167,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 /* El taller: texto a la izquierda, el producto cambia a la derecha */
 .taller .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 80px); align-items: start; padding-block: clamp(40px, 6vw, 80px) 0; border-top: 1px solid var(--linea); }
 .taller-cabeza { display: flex; flex-direction: column; gap: 12px; padding-block: clamp(24px, 5vw, 64px) 0; }
-.taller-cabeza h2 { max-width: 16ch; }
+.taller-cabeza h2 { max-width: 14ch; font-size: clamp(2.2rem, 1.4rem + 3vw, 3.6rem); }
+.taller-sub { font-size: var(--t-l); color: var(--tinta-2); max-width: 36ch; }
 .taller-nota { font-size: var(--t-s); color: var(--tinta-2); max-width: 44ch; }
 .paso-taller { min-height: 70vh; display: flex; flex-direction: column; justify-content: center; gap: 12px; padding-block: 6vh; }
 .paso-taller h3 { font-size: clamp(1.6rem, 1.2rem + 1.8vw, 2.4rem); font-weight: 600; max-width: 18ch; }
