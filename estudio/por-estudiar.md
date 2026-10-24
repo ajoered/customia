@@ -1,6 +1,6 @@
 # Pendiente de estudiar
 
-- **@jjvelazs en X** (<https://x.com/jjvelazs>): está haciendo algo parecido (según Álvaro).
+- **@jjvelazs en X** (<https://x.com/jjvelazs>): está haciendo algo parecido a nosotros.
   - X no deja ver perfiles sin iniciar sesión, así que desde aquí no pude leerlo.
   - Tampoco encontré en buscadores quién está detrás de la cuenta.
   - **Falta:** que me pases capturas de 3–5 posts, su web o el nombre de su empresa.
