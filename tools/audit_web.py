@@ -20,6 +20,13 @@ import requests
 
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/124.0 Safari/537.36")
+# Cabeceras de navegador completas: con solo el User-Agent, algunos hostings
+# (SiteGround) sirven su página anti-bot y la web parece rota.
+HEADERS = {
+    "User-Agent": UA,
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "es-ES,es;q=0.9,en;q=0.8",
+}
 THIS_YEAR = date.today().year
 
 # Motores de reserva habituales en hoteles/hostales españoles.
@@ -48,8 +55,7 @@ def fetch(url):
     for u in candidates:
         try:
             t0 = time.time()
-            r = requests.get(u, headers={"User-Agent": UA}, timeout=20,
-                             allow_redirects=True)
+            r = requests.get(u, headers=HEADERS, timeout=20, allow_redirects=True)
             return r, time.time() - t0, last_err
         except requests.exceptions.SSLError as e:
             last_err = f"ssl_error: {type(e).__name__}"
@@ -63,7 +69,8 @@ def looks_blocked(r, low):
     if r.status_code == 202 and len(r.content) < 4096:
         return True
     return any(s in low for s in ("cf-chl", "challenge-platform", "just a moment...",
-                                  "checking your browser", "captcha-delivery"))
+                                  "checking your browser", "captcha-delivery",
+                                  "sgcaptcha"))
 
 
 def detect_cms(html, headers):
