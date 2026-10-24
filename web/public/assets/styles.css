@@ -146,10 +146,10 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .torno-pieza canvas { width: 100%; max-width: 520px; height: auto; aspect-ratio: 1; display: block; }
 .torno-pieza figcaption { position: absolute; bottom: 14px; left: 0; right: 0; text-align: center; font-family: var(--mono); font-size: var(--t-xs); color: var(--tinta-2); }
 .torno-pasos { display: flex; flex-direction: column; }
-.paso-torno { min-height: 92vh; display: flex; flex-direction: column; justify-content: center; gap: 18px; padding-block: 10vh; }
+.paso-torno { min-height: 78vh; display: flex; flex-direction: column; justify-content: center; gap: 16px; padding-block: 8vh; }
 .paso-torno h2 { font-size: clamp(2rem, 1.3rem + 2.8vw, 3.4rem); font-weight: 400; max-width: 16ch; }
 .paso-torno h2 strong { font-weight: 600; }
-.paso-torno p { font-size: var(--t-l); color: var(--tinta-2); line-height: 1.5; max-width: 38ch; }
+.paso-torno p { font-size: var(--t-l); color: var(--tinta-2); line-height: 1.5; max-width: 34ch; }
 .paso-torno .lista { display: flex; flex-direction: column; gap: 10px; padding: 0; margin: 6px 0 0; list-style: none; }
 .paso-torno .lista li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; color: var(--tinta); }
 .paso-torno .lista li::before { content: "→"; color: var(--cobalto); font-family: var(--mono); }
@@ -160,7 +160,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   .torno-pieza { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--cab-h, 62px) - 1px); height: auto; max-height: none; z-index: 1; background: var(--papel); display: flex; flex-direction: column; align-items: center; gap: 2px; padding-block: 6px 10px; border-bottom: 1px solid var(--linea); }
   .torno-pieza canvas { max-width: 30vh; }
   .torno-pieza figcaption { position: static; }
-  .paso-torno { min-height: 52vh; padding-block: 5vh 10vh; justify-content: flex-start; }
+  .paso-torno { min-height: 46vh; padding-block: 4vh 8vh; justify-content: flex-start; }
   .paso-torno h2 { font-size: clamp(1.8rem, 1.2rem + 3vw, 2.4rem); }
 }
 
