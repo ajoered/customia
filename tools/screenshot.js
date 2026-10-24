@@ -16,14 +16,20 @@ async function main() {
   }
   fs.mkdirSync(outDir, { recursive: true });
   const browser = await chromium.launch();
+  // El user-agent de iPhone importa: algunos constructores (Duda, IONOS) sirven
+  // la versión móvil según el user-agent y no según el ancho de pantalla.
+  const IPHONE_UA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) '
+    + 'AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1';
   const views = [
     { tag: 'escritorio', viewport: { width: 1366, height: 860 }, isMobile: false },
-    { tag: 'movil', viewport: { width: 390, height: 844 }, isMobile: true },
+    { tag: 'movil', viewport: { width: 390, height: 844 }, isMobile: true, userAgent: IPHONE_UA },
   ];
   for (const v of views) {
     const page = await browser.newPage({
       viewport: v.viewport,
       isMobile: v.isMobile,
+      hasTouch: v.isMobile,
+      userAgent: v.userAgent,
       deviceScaleFactor: 1,
       ignoreHTTPSErrors: true,
     });
