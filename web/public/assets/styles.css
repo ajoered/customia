@@ -88,31 +88,23 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .portada h1 { max-width: 14ch; font-size: clamp(2.8rem, 1.6rem + 5.2vw, 6rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.02; }
 .portada .sub { font-size: clamp(1.1rem, 1rem + 0.5vw, 1.4rem); color: var(--tinta-2); max-width: 44ch; line-height: 1.45; }
 
-/* La ventana del asistente (estilo America.gov: una tarjeta grande y una sola caja) */
-.ventana-wrap .wrap { padding-block: 0 clamp(48px, 7vw, 96px); display: flex; flex-direction: column; align-items: center; gap: 16px; }
-.ventana { position: relative; width: min(880px, 100%); border-radius: 32px; overflow: hidden; background: var(--hoja); box-shadow: var(--sombra); display: flex; flex-direction: column; gap: 14px; padding: 26px; min-height: 440px; isolation: isolate; }
-.ventana-fondo { position: absolute; inset: 0; z-index: -1; background: linear-gradient(170deg, color-mix(in srgb, var(--barro) 28%, var(--hoja)) 0%, color-mix(in srgb, var(--barro) 62%, var(--hoja)) 55%, color-mix(in srgb, var(--cobalto) 18%, var(--barro)) 100%); transition: opacity .6s ease; }
-.ventana-masa { position: absolute; right: -8%; bottom: -22%; width: 62%; aspect-ratio: 1; background: var(--barro); border-radius: 58% 42% 63% 37% / 45% 55% 45% 55%; opacity: .9; filter: blur(0.5px); }
-.ventana.activa { min-height: 0; background: var(--hoja); }
-.ventana.activa .ventana-fondo { opacity: 0; }
-.ventana .chat-formulario { padding: 0; border: 0; }
-.ventana .chat-formulario textarea { background: var(--hoja); border: 1px solid color-mix(in srgb, var(--tinta) 10%, transparent); border-radius: 999px; padding: 16px 22px; font-size: var(--t-l); box-shadow: 0 10px 30px -12px rgba(29,27,23,.35); }
+/* La ventana del asistente: sin tarjeta. Una pregunta, las burbujas y una caja. */
+.ventana-wrap .wrap { padding-block: clamp(28px, 5vw, 64px) clamp(48px, 7vw, 96px); display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.ventana { width: min(760px, 100%); display: flex; flex-direction: column; align-items: center; gap: 22px; }
+.ventana-lema { font-family: var(--serif); font-weight: 500; font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem); line-height: 1.15; letter-spacing: -0.01em; text-align: center; max-width: 22ch; }
+.ventana.activa .ventana-lema { display: none; }
+.opciones-portada { justify-content: center; }
+.opciones-portada .opcion { font-size: var(--t-m); padding: 12px 20px; background: var(--hoja); border: 1px solid var(--linea); color: var(--tinta); box-shadow: 0 1px 0 rgba(29,27,23,.03); }
+.opciones-portada .opcion:hover { border-color: var(--cobalto); color: var(--cobalto); }
+.ventana.activa .opciones-portada { display: none; }
+.ventana .chat-formulario { width: min(640px, 100%); padding: 0; border: 0; }
+.ventana.activa .chat-formulario { width: 100%; }
+.ventana .chat-formulario textarea { background: var(--hoja); border: 1px solid var(--linea); border-radius: 999px; padding: 16px 22px; font-size: var(--t-l); box-shadow: 0 12px 32px -18px rgba(29,27,23,.35); }
 .ventana .chat-formulario textarea::placeholder { color: var(--tinta-2); }
-.ventana .enviar { flex: none; width: 54px; height: 54px; border-radius: 50%; border: 0; background: var(--cobalto); color: #fff; display: grid; place-items: center; cursor: pointer; box-shadow: 0 10px 30px -12px rgba(29,27,23,.35); }
+.ventana .enviar { flex: none; width: 54px; height: 54px; border-radius: 50%; border: 0; background: var(--cobalto); color: #fff; display: grid; place-items: center; cursor: pointer; }
 .ventana .enviar:hover { filter: brightness(1.08); }
 .ventana .enviar:disabled { opacity: .5; cursor: default; }
-.opciones-portada { position: relative; }
-.opciones-portada .opcion { background: color-mix(in srgb, var(--hoja) 85%, transparent); border-color: transparent; color: var(--tinta); backdrop-filter: blur(6px); }
-.opciones-portada .opcion:hover { background: var(--hoja); }
-.ventana-nota { margin-top: auto; font-size: var(--t-xs); color: var(--tinta-2); max-width: 56ch; }
-.ventana.activa .ventana-nota { color: var(--tinta-2); }
-.ventana .chat-mensajes { padding: 4px 2px 8px; min-height: 0; max-height: min(560px, 64vh); overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
-.ventana.activa .chat-formulario { order: 2; }
-.ventana.activa .opciones-portada { display: none; }
-.ventana.activa .ventana-nota { order: 3; }
-.ventana-lema { font-family: var(--serif); font-weight: 500; font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.3rem); line-height: 1.15; letter-spacing: -0.01em; max-width: 22ch; padding: 6px 4px 10px; }
-.ventana-lema span { display: block; font-family: var(--sans); font-weight: 400; font-size: var(--t-m); color: var(--tinta-2); margin-top: 8px; max-width: 46ch; }
-.ventana.activa .ventana-lema { display: none; }
+.ventana .chat-mensajes { width: 100%; padding: 0; min-height: 0; max-height: min(560px, 64vh); overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
 .msg { max-width: 86%; padding: 12px 16px; border-radius: 20px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; font-size: var(--t-m); }
 .msg-bot { align-self: flex-start; background: var(--papel); border-bottom-left-radius: 6px; }
 .msg-tu { align-self: flex-end; background: var(--cobalto); color: #fff; border-bottom-right-radius: 6px; }
@@ -139,7 +131,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .aviso { font-size: var(--t-s); background: var(--cobalto-suave); border-radius: 12px; padding: 12px; }
 .aviso pre { white-space: pre-wrap; font-family: var(--mono); font-size: var(--t-xs); margin: 8px 0; user-select: all; }
 .enlace-boton { font: inherit; background: none; border: 0; color: var(--cobalto); text-decoration: underline; cursor: pointer; padding: 0; }
-@media (max-width: 600px) { .ventana { padding: 16px; border-radius: 24px; min-height: 380px; } .ventana .chat-formulario textarea { font-size: var(--t-m); padding: 14px 18px; } .ventana .enviar { width: 48px; height: 48px; } }
+@media (max-width: 600px) { .ventana .chat-formulario textarea { font-size: var(--t-m); padding: 14px 18px; } .ventana .enviar { width: 48px; height: 48px; } .opciones-portada .opcion { font-size: var(--t-s); padding: 10px 16px; } }
 
 /* El torno: texto que pasa, pieza que se queda */
 .torno .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 80px); align-items: start; padding-block: clamp(24px, 4vw, 48px) 0; }
