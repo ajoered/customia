@@ -4,12 +4,21 @@
 
 Los negocios de todos los días pierden clientes por cosas que la IA ya resuelve, pero nadie se lo instala en su idioma ni a su precio. Nosotros sí: nicho a nicho, empezando por el valor y no por la tecnología.
 
+## Por qué ahora
+
+Hasta ahora, un negocio pequeño tenía que adaptarse al software que ya existía. Las grandes empresas, en cambio, se lo hacían a medida. Con la IA, hacer software a medida cuesta una fracción de lo que costaba [Probable]. Esa ventaja la están aprovechando primero las grandes: en España usa IA el 58 % de las grandes empresas y el 13 % de las microempresas. Lo que vendemos es **software a medida al precio de una cuota mensual**.
+
+## ¿Ponemos "IA" en la web?
+
+Sí, pero como **el cómo**, no como el titular. La IA vende porque despierta curiosidad, así que tiene que verse: en el nombre o en la frase pequeña encima del titular. El titular sigue siendo el resultado, porque si el gancho es "IA" atraes a curiosos en vez de a compradores [Probable].
+
 ## Misión y promesa: son dos cosas distintas
 
 | | Para quién | Texto |
 |---|---|---|
 | **Misión** | Nosotros, la sección "sobre nosotros", prensa, inversores | *Que cualquier negocio de barrio tenga la misma tecnología que una gran empresa.* (En inglés: *Deliver the benefits of transformative AI to small businesses.*) |
-| **Promesa** | El dueño del negocio. Es el titular de la web | *Más clientes. Menos teléfono. Sin tener que entender de IA.* |
+| **Frase sobre el titular** | Todos | *Software e IA a medida para negocios de Madrid.* |
+| **Promesa** | El dueño del negocio. Es el titular de la web | *Más clientes. Menos teléfono.* |
 | **Garantía** | El dueño del negocio. Va debajo del titular | *Te lo enseñamos funcionando antes de que pagues nada.* |
 
 **Por qué separarlas:** a un dentista el miedo a "quedarse atrás con la IA" le motiva poco. Le mueve una pérdida concreta: *"El martes te llamé tres veces a las 14:00 y no lo cogió nadie."* [Probable] El argumento de la brecha con las grandes empresas va en la sección "por qué existimos", con datos:
