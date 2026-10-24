@@ -48,6 +48,8 @@ def main(salida):
     index = (RAIZ / "index.html").read_text(encoding="utf-8")
     foto = base64.b64encode((RAIZ / "assets" / "casa-lucia.jpg").read_bytes()).decode()
     index = index.replace("url('assets/casa-lucia.jpg')", f"url('data:image/jpeg;base64,{foto}')")
+    retrato = base64.b64encode((RAIZ / "assets" / "alvaro.jpg").read_bytes()).decode()
+    index = index.replace('src="assets/alvaro.jpg"', f'src="data:image/jpeg;base64,{retrato}"')
     pagina = "\n".join([
         f"<title>{titulo(index)}</title>",
         '<meta name="claude:viewport-fit-sides" content="cover">',
