@@ -19,8 +19,10 @@
   function tokens() {
     const cs = getComputedStyle(document.documentElement);
     return {
-      barro: cs.getPropertyValue("--barro").trim() || "#b89a7e",
-      barro2: cs.getPropertyValue("--barro-2").trim() || "#8f725a",
+      ladrillo: cs.getPropertyValue("--ladrillo").trim() || "#c9683f",
+      ladrillo2: cs.getPropertyValue("--ladrillo-2").trim() || "#8f6c54",
+      barro: cs.getPropertyValue("--barro").trim() || "#9a9a8c",
+      barro2: cs.getPropertyValue("--barro-2").trim() || "#7f7f72",
       esmalte: cs.getPropertyValue("--esmalte").trim() || "#244a9b",
       hoja: cs.getPropertyValue("--hoja").trim() || "#fffdf8",
       tinta: cs.getPropertyValue("--tinta").trim() || "#1d1b17",
@@ -123,7 +125,7 @@
     ctx.save();
     ctx.globalAlpha = alpha;
     if (etapa === "ladrillo" || etapa === "ladrillo-gira") {
-      ctx.fillStyle = col.barro2;
+      ctx.fillStyle = col.ladrillo2;
       for (let i = -1; i <= 1; i++) { ctx.beginPath(); ctx.roundRect(i * 92 - 30, -50, 60, 100, 4); ctx.fill(); }
     } else if (etapa === "movil") {
       ctx.fillStyle = col.hoja; ctx.beginPath(); ctx.roundRect(-72, -150, 144, 300, 26); ctx.fill();
@@ -165,10 +167,13 @@
     const A = formaDe(ETAPAS[i]), B = formaDe(ETAPAS[j]);
     const pts = mezclar(A, B, t);
 
-    // Color: barro hasta el horno, esmalte después.
+    // Color: ladrillo cocido al principio, arcilla cruda al ablandarse, esmalte tras el horno.
+    const iMasa = ETAPAS.indexOf("masa");
+    const ablandado = Math.min(1, Math.max(0, progreso - (iMasa - 1)));
     const iHorno = ETAPAS.indexOf("horno");
     const cocido = Math.min(1, Math.max(0, progreso - iHorno + 0.2));
-    const relleno = cocido > 0 ? mezclarColor(col.barro, col.esmalte, cocido) : col.barro;
+    let relleno = mezclarColor(col.ladrillo, col.barro, ablandado);
+    if (cocido > 0) relleno = mezclarColor(col.barro, col.esmalte, cocido);
 
     ctx.save();
     ctx.translate(SIZE / 2, SIZE / 2);
