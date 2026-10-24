@@ -21,9 +21,9 @@
     return {
       ladrillo: cs.getPropertyValue("--ladrillo").trim() || "#c9683f",
       ladrillo2: cs.getPropertyValue("--ladrillo-2").trim() || "#8f6c54",
-      barro: cs.getPropertyValue("--barro").trim() || "#d9b8a6",
-      barro2: cs.getPropertyValue("--barro-2").trim() || "#b8927e",
-      esmalte: cs.getPropertyValue("--esmalte").trim() || "#3f7a69",
+      barro: cs.getPropertyValue("--barro").trim() || "#3a3634",
+      barro2: cs.getPropertyValue("--barro-2").trim() || "#262321",
+      esmalte: cs.getPropertyValue("--esmalte").trim() || "#244a9b",
       hoja: cs.getPropertyValue("--hoja").trim() || "#fffdf8",
       tinta: cs.getPropertyValue("--tinta").trim() || "#1d1b17",
       linea: cs.getPropertyValue("--linea").trim() || "#e2ddd2",
