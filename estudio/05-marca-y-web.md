@@ -1,4 +1,4 @@
-# Marca y estructura de la web (borrador v5)
+# Marca y estructura de la web (borrador v6)
 
 Titular: **AR Ventures, S.L.** La marca comercial puede ser distinta del nombre de la sociedad. En el aviso legal pondremos: *"[Marca] es una marca de AR Ventures, S.L."*
 
@@ -30,6 +30,73 @@ Titular: **AR Ventures, S.L.** La marca comercial puede ser distinta del nombre 
 **Si prefieres algo más cálido que irónico: Marmita.**
 
 **Antes de decidir:** búscalo en la OEPM (clases 35 y 42) y registra la marca a nombre de AR Ventures. "Enchufe" es una palabra común, así que conviene registrar marca mixta (palabra más logo).
+
+## Nombre (v6: un animal o un objeto, y la historia del telar)
+
+### La historia del telar de Jacquard
+
+**Antes (siglo XVIII).** La seda con dibujos complejos (brocados, flores, escudos) era un lujo de reyes, nobles e Iglesia. Para tejerla, en el telar de lazos hacía falta el tejedor maestro y un ayudante, a menudo un niño, sentado encima del telar. Ese ayudante levantaba a mano los hilos que tocaban en cada pasada. Era lento, caro y se cometían errores. Un dibujo nuevo implicaba volver a montar el telar.
+
+**El invento (Lyon, 1804).** Joseph-Marie Jacquard (1752–1834), hijo de tejedores de seda, le añadió al telar una cadena de **tarjetas perforadas**:
+- Cada tarjeta es una pasada del dibujo.
+- Donde hay agujero, el hilo sube; donde no, se queda abajo.
+- **Cambias las tarjetas y la misma máquina teje cualquier dibujo.**
+- El tejedor ya no necesitaba ayudante [Seguro].
+
+Lo que antes solo podían encargar los ricos, ahora podía tejerlo cualquier taller.
+
+**La reacción.** Los tejedores de Lyon (los *canuts*) temieron quedarse sin trabajo: destrozaron telares y atacaron al propio Jacquard [Seguro]. Napoleón vio el telar en Lyon en 1805, le dio una pensión de por vida (unos 3.000 francos) y 50 francos por cada telar vendido [Probable]. Al principio se vendieron pocos, porque el mecanismo de tarjetas fallaba. Tras 1815, una vez resueltos esos fallos, el telar se extendió por toda Europa [Probable].
+
+**Lo que vino después:**
+- **Babbage (década de 1830)** tomó las tarjetas perforadas para su máquina analítica, el antecesor del ordenador. En su casa tenía un retrato de Jacquard tejido en seda con ese mismo telar; según una fuente hicieron falta 24.000 tarjetas [Probable].
+- **Ada Lovelace (1843)** escribió que la máquina de Babbage *"teje patrones algebraicos igual que el telar de Jacquard teje flores y hojas"* [Seguro].
+- **Herman Hollerith** usó tarjetas perforadas para el censo de EE. UU. de 1890. Su empresa acabó siendo IBM [Seguro].
+
+**El telar de Jacquard es, literalmente, el origen de la programación.**
+
+### El paralelismo con lo que hacemos
+
+| El telar | Nosotros |
+|---|---|
+| Los dibujos a medida eran solo para reyes y nobles | El software a medida era solo para las grandes empresas |
+| Hacía falta un maestro y un ayudante, y montar el telar de nuevo para cada dibujo | Hacía falta un equipo de programadores y meses de trabajo |
+| Tarjetas perforadas: cambias las tarjetas y tejes cualquier dibujo | IA: describes lo que necesitas y se construye |
+| Cualquier taller pudo tejer lo que antes solo encargaban los ricos | Cualquier negocio puede tener su propio software |
+| Los tejedores tuvieron miedo; la seda acabó llegando a mucha más gente | El miedo a la IA; los que la usan primero ganan |
+| **El "tejido"** | En España, a las pymes se las llama **"el tejido empresarial"**: nosotros somos su telar |
+
+**Tu historia con el telar:** *"Yo estaba como un tejedor antes de Jacquard: para cada cosa nueva necesitaba un equipo y meses. Construyendo Hyrise descubrí las tarjetas perforadas de nuestra época. Ahora quiero que el tejido empresarial, la clínica, el hostal, el restaurante, tenga su propio telar."*
+
+### Nombres con el telar
+
+| Nombre | Por qué | Dominios libres |
+|---|---|---|
+| **TelarIA** ⭐ | Telar + IA en una sola palabra, como SaaStrería (que te gustó). Se lee "telaria" y se ve "telar IA" | telaria.ai |
+| **El Telar** | Más cálido y sencillo; la IA va en la frase de debajo | eltelar.ai |
+| **Tarjeta Perforada** | Para los que conocen la historia, pero largo | tarjetaperforada.com |
+
+**Pegas:**
+- telaria.com y telaria.es ya están cogidos.
+- "Telaria" fue el nombre de una empresa de publicidad en vídeo de EE. UU. que se fusionó en 2020 y dejó de existir con ese nombre [Probable]. Hay que comprobarlo en la OEPM y la EUIPO.
+- El dominio sería .ai, que se entiende peor por teléfono ("telaria punto a i").
+
+### Otros animales y objetos que he mirado
+
+| Nombre | Qué representa | Problema |
+|---|---|---|
+| **Pulpo** | Ocho brazos, y unos dos tercios de sus neuronas están en los brazos: inteligencia repartida por todo el negocio. *"Con dos manos no llegabas a todo. Con ocho, sí."* | **Ya existe Pulpo,** software español de gestión de flotas (ronda de 8 M€). Descartado |
+| **Grifo** | La última milla del agua: el embalse ya existe (los modelos de IA), el grifo hace que salga en tu cocina. *"La IA, como el agua: del grifo."* Además, el grifo es también el animal mitológico que guarda tesoros | "Agua del grifo" suena a barato. En Perú, "grifo" es una gasolinera. grifoia.com libre |
+| **Hormiga** | Pequeña, carga varias veces su peso (entre 8 y 50 según la especie) y lleva las cosas hasta el nido | Común. hormigaia.com libre |
+| **Mechero** | El fuego de los dioses (Prometeo) en el bolsillo de cualquiera | Suena a tabaco. mechero.ai libre |
+| Lince, Búho, Castor | Listo, nocturno y constructor | Dominios cogidos y nombres muy usados |
+
+**Recomendación:** si te ha gustado el telar, **TelarIA** cuenta tu historia mejor que cualquier otro:
+- el límite ("hacía falta un equipo para cada dibujo"),
+- el descubrimiento (las tarjetas),
+- la democratización ("cualquier taller")
+- y la última milla (el telar está en tu taller, no en una fábrica lejana).
+
+Y "tejido empresarial" le da un doble sentido muy español.
 
 ## Nombre (v5: con todo lo que has dicho, y con investigación)
 
@@ -205,6 +272,12 @@ Sin cambios respecto a la v1. La primera versión:
 
 ## Fuentes
 
+- Joseph Marie Jacquard (Wikipedia): <https://en.wikipedia.org/wiki/Joseph_Marie_Jacquard>
+- Jacquard and His Cards (John Beatty): <https://www.jdbcom.com/p/jacquard-and-his-cards>
+- Jacquard Patents His First Loom (History Today): <https://www.historytoday.com/node/57538>
+- Ada Lovelace (Britannica): <https://www.britannica.com/print/article/349551>
+- Neuronas del pulpo (Xataka): <https://www.xataka.com.mx/investigacion/pocos-dudaban-inteligencia-pulpos-no-al-punto-tener-cerebro-cada-brazo>
+- Pulpo, software de flotas (El Referente): <https://elreferente.es/america/inversiones/pulpo-cierra-ronda-8m-anuncia-lanzamiento-propio-sistema-de-pago/>
 - Vitamina Jota (referencia de tono): <https://www.vitaminajota.com/>
 - Serenos de Madrid, opción descartada (El Debate): <https://www.eldebate.com/historia/20230720/oficios-ayer-serenos-madrid-guardianes-calles-caer-noche_126981.html>
 - El sereno que guardaba tu calle (eldiario.es): <https://www.eldiario.es/madrid/somos/malasana/el-sereno-que-guardaba-tu-calle-y-te-vigilaba-a-ti_1_6423534.html>
