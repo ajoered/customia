@@ -1,4 +1,4 @@
-# Marca y estructura de la web (borrador v8)
+# Marca y estructura de la web (borrador v9)
 
 Titular: **AR Ventures, S.L.** La marca comercial puede ser distinta del nombre de la sociedad. En el aviso legal pondremos: *"[Marca] es una marca de AR Ventures, S.L."*
 
@@ -30,6 +30,54 @@ Titular: **AR Ventures, S.L.** La marca comercial puede ser distinta del nombre 
 **Si prefieres algo más cálido que irónico: Marmita.**
 
 **Antes de decidir:** búscalo en la OEPM (clases 35 y 42) y registra la marca a nombre de AR Ventures. "Enchufe" es una palabra común, así que conviene registrar marca mixta (palabra más logo).
+
+## Nombre (v9: de ladrillo a algo maleable: mitos, cuentos, objetos y materiales)
+
+**La idea:** el software era un **ladrillo**: rígido, igual para todos, y eras tú quien se adaptaba a él. Con la IA se vuelve **maleable**: toma exactamente la forma que necesita tu negocio. Buscamos historias de ese paso.
+
+Dominios comprobados el 24/10/2026. El .com sale del registro oficial; .es y .ai, solo por DNS.
+
+### A. Materiales maleables
+
+| Nombre | La historia | Cómo queda nuestra historia | Pegas | Dominios |
+|---|---|---|---|---|
+| **Arcilla** ⭐ | El primer material que el ser humano moldeó a su medida (vasijas, ladrillos, tablillas de escritura). En el mito griego, Prometeo modeló a los humanos con arcilla y luego les dio el fuego | *"El software era un ladrillo. Con la IA vuelve a ser arcilla: toma la forma de tu negocio."* Es el paso de ladrillo a arcilla en una frase | Palabra común (cerámica, alfarería), así que necesita apellido o "IA" | arcillaia.com ✅ · laarcilla.com ✅ |
+| **Masa Madre** | La masa viva con la que se hace cualquier pan. Hay que alimentarla cada día (la cuota mensual) y se comparte entre vecinos. Tiene el tono gastronómico de Vitamina Jota | *"Te dejamos la masa madre de tu negocio. Nosotros la alimentamos; tú haces el pan que quieras."* | En Google, "masa madre" es todo panaderías. Largo | masamadreia.com ✅ |
+| **Plastilina** | Lo más maleable que existe, y todo el mundo la ha tocado de pequeño | *"Software de plastilina: se adapta a tu negocio y no al revés."* | Suena a juguete | plastilina.ai ✅? · plastilinaia.com ✅ |
+| Maleable | La palabra tal cual | — | Descriptivo, sin historia | maleableia.com ✅ · maleable.es ✅? |
+| Barro | Lo humilde | — | *"Pies de barro"* = cimientos débiles | barroia.com ✅ |
+
+### B. Mitología
+
+| Nombre | La historia | Por qué encaja | Pegas | Dominios |
+|---|---|---|---|---|
+| **Dédalo** | El gran inventor griego. Encerrado con su hijo Ícaro en la isla de Creta, se construyó unas alas con plumas y cera y escapó volando. A Ícaro le advirtió que no volara ni muy alto (el sol derrite la cera) ni muy bajo (el mar moja las plumas). Ícaro subió demasiado y cayó | **"Estaba encerrado y me construí unas alas."** Es tu historia. Y lo de Ícaro es nuestro mensaje contra el hype: *"Vuela como Dédalo, no como Ícaro."* Además, en castellano "dédalo" significa laberinto | Ícaro acaba mal (aunque lo usamos a favor) | eldedalo.com ✅ · dedaloia.com ✅ |
+| **Aracne** | Una tejedora mortal que tejía tan bien como la diosa Atenea y la retó. Su tapiz no tenía ni un fallo. Atenea, furiosa, la convirtió en araña: la tejedora eterna | Lo pequeño que teje tan bien como los dioses (la pyme frente a las grandes), el telar y la telaraña, es decir, la web | La aracnofobia, y el final es un castigo | aracneia.com ✅ |
+| ~~Proteo~~ | El dios que cambiaba de forma a voluntad ("proteico" = que cambia de forma). Maleable y con el guiño de "proteína", al estilo Vitamina Jota | Perfecto en concepto | **Descartado:** ya existe un software Proteo de industria 4.0 en Getxo, y en Google todo es proteómica | — |
+
+### C. Cuentos
+
+| Nombre | La historia | Por qué encaja | Pegas | Dominios |
+|---|---|---|---|---|
+| **El Sastrecillo Valiente** | Cuento de los hermanos Grimm: un sastre pequeño mata siete moscas de un golpe y borda en su cinturón *"Siete de un golpe"*. Con ingenio vence a gigantes y acaba siendo rey | Un oficio **a medida** (el sastre, que ya te gustó) que vence a los gigantes. Y *"siete de un golpe"* es la automatización: varias tareas de una vez | Largo. Con "Sastrecillo" a secas se pierde lo de "valiente" | sastrecillo.es ✅? · sastrecillovaliente.com ✅ · sietedeungolpe.com ✅ |
+
+### D. Objetos e inventos (del ladrillo a las piezas)
+
+| Nombre | La historia | Por qué encaja | Pegas | Dominios |
+|---|---|---|---|---|
+| **Tipos Móviles** | Antes de la imprenta, cada página se tallaba entera en un bloque de madera, literalmente un ladrillo: para cambiar una letra había que tallar otra página. Bi Sheng en China (hacia 1040) y después Gutenberg (hacia 1450) hicieron cada letra una pieza suelta que se recoloca para componer cualquier texto | **Es exactamente tu metáfora del ladrillo:** del bloque rígido a las piezas que se recombinan | "Tipos" también significa tíos. Suena a tipografía | tiposmoviles.es ✅? · tipomovil.es ✅? |
+| **Telekino** (extra español) | Leonardo Torres Quevedo, ingeniero cántabro, patentó en 1903 el telekino, el primer mando a distancia por radio (hito IEEE). En 1912 construyó *El Ajedrecista*, una máquina que jugaba finales de ajedrez sola, y en 1914 escribió *Ensayos sobre Automática*. Se le considera precursor de la IA [Probable] | Una historia de IA **hecha en España** muy buena para X y para "Quiénes somos" | No cuenta la democratización | telekino.es ✅? · telekino.ai ✅? |
+
+### Cómo decidir (para no dar más vueltas)
+
+**Primero elige la historia y después la palabra.** Las cuatro que más encajan con todo lo que has dicho:
+
+1. **De ladrillo a arcilla** (Arcilla): la más directa y clara.
+2. **El telar de Jacquard** (Telar y Punto, Nuevo Telar): la más rica, porque es el origen real de la programación.
+3. **Dédalo:** la más personal ("estaba encerrado y me construí unas alas"), y trae el mensaje contra el hype.
+4. **El Sastrecillo Valiente:** la más de cuento y la más "pequeño contra gigantes".
+
+**Mi orden:** Arcilla, Telar, Dédalo. Podemos también combinarlas: nombre con una historia y "Quiénes somos" con otra. Por ejemplo, la marca *Arcilla* y la sección *"Del telar de Jacquard a la IA"*.
 
 ## Nombre (v8: variantes de "Telar" con SEO y dominios)
 
@@ -380,6 +428,11 @@ Sin cambios respecto a la v1. La primera versión:
 - El eslogan de Kodak (Museo de la Cámara, Suiza): <https://www.cameramuseum.ch/en/discover/permanent-exhibition/the-century-of-the-film/you-press-the-button-we-do-the-rest>
 - Dominios de palabra exacta y SEO (Fruits): <https://fruits.co/news/do-exact-match-domains-still-work-for-seo-in-2026>
 - Telaria S.L. (eInforma): <https://www.einforma.com/informacion-empresa/telaria>
+- Torres Quevedo (RAE): <https://www.rae.es/academico/leonardo-torres-quevedo>
+- Torres Quevedo, adelantado a su tiempo (Think Big): <https://blogthinkbig.com/leonardo-torres-quevedo-visionario>
+- Tipos móviles y Bi Sheng (Billiken): <https://billiken.lat/interesante/quien-invento-la-imprenta-gutenberg-o-bi-sheng/>
+- Proteo en la Odisea (Estudyando): <https://estudyando.com/proteo-el-dios-de-la-mitologia-griega-poderes-y-significado/>
+- Software Proteo, Getxo (Kompass): <https://es.kompass.com/a/software-e-procurement/5760011/>
 - Vitamina Jota (referencia de tono): <https://www.vitaminajota.com/>
 - Serenos de Madrid, opción descartada (El Debate): <https://www.eldebate.com/historia/20230720/oficios-ayer-serenos-madrid-guardianes-calles-caer-noche_126981.html>
 - El sereno que guardaba tu calle (eldiario.es): <https://www.eldiario.es/madrid/somos/malasana/el-sereno-que-guardaba-tu-calle-y-te-vigilaba-a-ti_1_6423534.html>
