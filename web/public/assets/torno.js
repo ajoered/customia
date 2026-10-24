@@ -224,8 +224,12 @@
     if (Math.abs(objetivo - progreso) > 0.0015 || ETAPAS[Math.floor(progreso)] === "masa") requestAnimationFrame(cuadro); else animando = false;
   }
   function pedirCuadro() { if (!animando) { animando = true; requestAnimationFrame(cuadro); } }
+  // La pieza se pega justo debajo de la cabecera, mida lo que mida.
+  const cab = document.getElementById("cabecera");
+  function altoCabecera() { if (cab) document.documentElement.style.setProperty("--cab-h", cab.offsetHeight + "px"); }
+  altoCabecera();
   window.addEventListener("scroll", () => { medir(); pedirCuadro(); }, { passive: true });
-  window.addEventListener("resize", () => { medir(); pedirCuadro(); });
+  window.addEventListener("resize", () => { altoCabecera(); medir(); pedirCuadro(); });
   medir(); progreso = objetivo; pintar(); pedirCuadro();
 
   // Pie de foto que nombra la etapa.
