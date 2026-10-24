@@ -33,6 +33,8 @@ web/
 
 Decisión: por ahora la web no muestra teléfono ni WhatsApp.
 
+La clave de Anthropic se llama `CLAUDE_ANTHROPIC_API_KEY` (no `ANTHROPIC_API_KEY`). Las funciones del servidor deben leerla con ese nombre. Nunca se imprime ni se escribe en el repo.
+
 ## Pendiente: el servidor del chat con IA
 
 Ahora mismo el chat funciona en modo guiado: preguntas fijas y la cuenta hecha en el navegador. La versión con IA está empezada en `lib/claude.js`. Usa Claude con un historial que solo se añade y nunca se edita, una herramienta que enseña el diagnóstico y un límite diario de conversaciones. Faltan:
