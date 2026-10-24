@@ -270,7 +270,14 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   .m-barra { position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; height: 42px; background: #efe9df; border-bottom: 1px solid #e2ddd2; flex: none; }
   .m-barra span { font-family: var(--mono); font-size: 12px; color: #5f5a51; background: #fffdf8; border-radius: 999px; padding: 3px 14px; }
   .m-barra span::before { content: ""; display: inline-block; width: 7px; height: 8px; margin-right: 7px; border: 1.5px solid #5f5a51; border-radius: 2px; vertical-align: -0.5px; }
-  .m-web .m-scroll { top: 42px; }
+  .m-web .m-scroll { top: 42px; transition: none; }
+  /* La web de ejemplo baja con una animación ligada al scroll: la mueve el navegador junto con la
+     página, sin esperar al JavaScript, y no da tirones. Va de cuando la pantalla se fija a cuando se
+     suelta (el tramo del ::after). Cuánto baja (--web-fin) lo mide app.js. Sin soporte, la mueve app.js. */
+  @supports (animation-timeline: view()) {
+    .maqueta[data-maqueta="web"] { view-timeline: --tramo-web block; }
+    .m-web .m-scroll { animation: bajar-web linear both; animation-timeline: --tramo-web; animation-range: contain calc(-1 * (env(safe-area-inset-top, 0px) + var(--cab-h, 62px) + 16px)) contain calc(var(--recorrido) - env(safe-area-inset-top, 0px) - var(--cab-h, 62px) - 16px); }
+  }
   .m-hero-texto { padding: 22px 18px; gap: 6px; }
   .m-hero-texto strong { font-size: 32px; }
   .m-hero-texto span { font-size: 15px; }
@@ -319,8 +326,9 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   /* Sin tramos fijos: app.js deja cada pantalla en su estado final. */
   .taller-escena .maqueta::after { display: none; }
   .maqueta-escenario { position: static; }
-  .m-wa .b.visto, .panel .fila-nueva.vista { animation: none; }
+  .m-wa .b.visto, .panel .fila-nueva.vista, .m-web .m-scroll { animation: none; }
 }
+@keyframes bajar-web { to { transform: translateY(var(--web-fin, 0px)); } }
 @keyframes burbuja { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 @keyframes entra { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
 

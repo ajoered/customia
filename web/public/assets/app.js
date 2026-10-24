@@ -389,13 +389,23 @@
   const menosMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)");
   const acotar = (x) => Math.min(1, Math.max(0, x));
 
-  // La web de ejemplo baja de la portada (solo foto y "Reservar ahora") hasta la reserva. t de 0 a 1.
-  function moverWeb(t) {
-    if (!scrollWeb) return;
+  // La web de ejemplo baja de la portada (solo foto y "Reservar ahora") hasta la reserva.
+  // En el móvil, si el navegador sabe ligar animaciones al scroll, la mueve el CSS (sin tirones).
+  const webPorCSS = Boolean(window.CSS && CSS.supports && CSS.supports("animation-timeline: view()"));
+  let webFin = null; // cuánto puede bajar la web, en px; se mide al cargar y al cambiar el tamaño
+  function medirWeb() {
+    if (!scrollWeb) return 0;
     const hero = scrollWeb.querySelector(".m-hero");
     const alto = scrollWeb.parentElement.clientHeight - scrollWeb.offsetTop;
     if (hero && alto > 0 && hero.style.height !== alto + "px") hero.style.height = alto + "px";
-    const max = Math.max(0, scrollWeb.scrollHeight - alto);
+    webFin = Math.max(0, scrollWeb.scrollHeight - alto);
+    scrollWeb.style.setProperty("--web-fin", -webFin + "px");
+    return webFin;
+  }
+  // t de 0 a 1.
+  function moverWeb(t) {
+    if (!scrollWeb) return;
+    const max = webFin === null ? medirWeb() : webFin;
     scrollWeb.style.transform = `translateY(${-Math.round(max * t)}px)`;
   }
 
@@ -421,6 +431,9 @@
   function tallerMedirMovil() {
     pararChat();
     const quieto = menosMovimiento.matches;
+    if (webFin === null) medirWeb();
+    // Primero se lee todo y después se escribe, para no forzar al navegador a recalcular a medias.
+    const tramos = [];
     maquetas.forEach((m) => {
       // t: cuánto se ha recorrido del tramo en el que la pantalla está fija (0 al fijarse, 1 al soltarse).
       const escenario = m.querySelector(".maqueta-escenario");
@@ -428,10 +441,12 @@
       if (r.bottom < -200 || r.top > window.innerHeight + 200) return;
       const tope = parseFloat(getComputedStyle(escenario).top) || 0;
       const recorrido = Math.max(1, r.height - escenario.offsetHeight);
-      const t = quieto ? 1 : acotar((tope - r.top) / recorrido);
-      if (m.dataset.maqueta === "web") moverWeb(quieto ? 0 : t);
-      else if (m.dataset.maqueta === "wa") escribirChat(t);
-      else if (m.dataset.maqueta === "panel") entrarReserva(t);
+      tramos.push([m.dataset.maqueta, quieto ? 1 : acotar((tope - r.top) / recorrido)]);
+    });
+    tramos.forEach(([tipo, t]) => {
+      if (tipo === "web") { if (webPorCSS) scrollWeb.style.transform = ""; else moverWeb(quieto ? 0 : t); }
+      else if (tipo === "wa") escribirChat(t);
+      else if (tipo === "panel") entrarReserva(t);
     });
   }
 
@@ -484,8 +499,16 @@
     chatActivo = false;
     chatTimers.forEach(clearTimeout); chatTimers = [];
   }
-  window.addEventListener("scroll", tallerMedir, { passive: true });
-  window.addEventListener("resize", tallerMedir);
+  // Una medida por fotograma, por muchos eventos de scroll que lleguen.
+  let tallerPedido = false;
+  function pedirTaller() {
+    if (tallerPedido) return;
+    tallerPedido = true;
+    requestAnimationFrame(() => { tallerPedido = false; tallerMedir(); });
+  }
+  window.addEventListener("scroll", pedirTaller, { passive: true });
+  window.addEventListener("resize", () => { webFin = null; pedirTaller(); });
+  window.addEventListener("load", () => { webFin = null; pedirTaller(); });
   tallerMedir();
 
   // La línea de tiempo se dibuja según bajas por ella.
