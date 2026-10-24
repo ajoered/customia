@@ -4,6 +4,55 @@
 
 Los negocios de todos los días pierden clientes por cosas que la IA ya resuelve, pero nadie se lo instala en su idioma ni a su precio. Nosotros sí: nicho a nicho, empezando por el valor y no por la tecnología.
 
+## Qué permitimos (la idea central)
+
+**En una frase:** un negocio pequeño puede tener lo que antes solo tenían los grandes: tecnología hecha a la medida de cómo trabaja, que le trae clientes y le ahorra horas, sin tener que entenderla ni contratar a un equipo.
+
+### El antes y el después
+
+| | Antes (el "ladrillo") | Ahora (con nosotros) |
+|---|---|---|
+| **El software** | Dos opciones. **Comprar algo genérico** (Wix, TheFork, el programa de la clínica, Excel) y adaptar tu forma de trabajar a él. O **pagar un desarrollo a medida** de decenas de miles de euros y meses de trabajo, algo que solo podían permitirse los grandes [Probable] | Algo hecho para ti, que se adapta a cómo trabajas. Con IA, hacerlo a medida cuesta una fracción de lo que costaba |
+| **Quién lo hace** | Un departamento de informática o una consultora: solo las grandes empresas | Alguien de confianza que entiende tu negocio, lo construye, lo conecta y se queda a mantenerlo (la última milla) |
+| **Qué notas tú** | Una herramienta más que aprender | Un resultado: menos llamadas perdidas, más reservas, horas libres |
+
+### Cómo se ve en nuestros primeros nichos
+
+- **Restaurante de eventos.**
+  - **Antes:** los menús de grupo se piden "por email", y el dueño contesta WhatsApps a medianoche y pierde eventos.
+  - **Después:** los menús y salones están en la web, y el asistente pregunta fecha, personas y presupuesto y le pasa un resumen al dueño, que solo tiene que cerrar.
+  - **Lo que permitimos:** no perder eventos de 1.000–4.500 €.
+- **Finca de bodas.**
+  - **Antes:** depende de bodas.net y no publica precios ni fechas.
+  - **Después:** tiene una web propia con precios, fechas libres y sus opiniones, y el asistente filtra a las parejas.
+  - **Lo que permitimos:** depender menos del portal.
+- **Hostal.**
+  - **Antes:** entre un 15 % y un 20 % de cada reserva se va a Booking, y a las 3 de la mañana nadie contesta en inglés.
+  - **Después:** reservas directas y un asistente en inglés las 24 horas.
+  - **Lo que permitimos:** quedarse con esa comisión.
+
+### Qué parte cuenta cada analogía
+
+Ninguna analogía lo cuenta todo; cada una explica una pieza.
+
+| Analogía | Qué parte explica | El ladrillo | Lo nuevo |
+|---|---|---|---|
+| **Telar de Jacquard, arcilla, tipos móviles** | **Qué cambia:** de rígido a adaptable | Montar el telar entero, o tallar la página entera, para cada dibujo | Cambias las tarjetas o recolocas las piezas, y sale otro dibujo |
+| **SEAT 600, imprenta** | **Quién accede:** de unos pocos a todos | El coche y los libros eran para ricos | La clase media, y luego todo el mundo |
+| **Kodak** ("usted apriete el botón, nosotros hacemos el resto") | **Cómo:** nosotros hacemos la parte difícil | Saber química y revelar tú | Mandas la cámara y te la devuelven con las fotos |
+| **Singer** (pago a plazos) | **Cómo se paga:** cada mes | Pagar de golpe | Una cuota |
+| **Dédalo** | **Tu historia:** estabas encerrado y te construiste unas alas, sin volar como Ícaro (sin hype) | — | — |
+
+### El matiz importante
+
+El telar y la arcilla sugieren que **el cliente moldea** el software él mismo. **En nuestro modelo, el cliente no moldea nada: lo moldeamos nosotros.** Lo maleable es nuestra herramienta; lo que le importa al cliente es que **le queda a medida**.
+
+- **Si fuera "moldéalo tú":** serían las herramientas tipo AI4Pymes de la Comunidad de Madrid, o los creadores de webs con IA.
+- **Por eso, las analogías que mejor describen lo que vendemos** son **Kodak** (nosotros hacemos el resto) y el **sastre** (hecho a tu medida).
+- **El telar y la arcilla** describen bien **por qué ahora es posible**, pero no lo que vendemos.
+
+**La promesa, juntando todo:** *"Hecho a tu medida, funcionando, y alguien que se queda a cuidarlo."*
+
 ## Por qué ahora
 
 Hasta ahora, un negocio pequeño tenía que adaptarse al software que ya existía. Las grandes empresas, en cambio, se lo hacían a medida. Con la IA, hacer software a medida cuesta una fracción de lo que costaba [Probable]. Esa ventaja la están aprovechando primero las grandes: en España usa IA el 58 % de las grandes empresas y el 13 % de las microempresas. Lo que vendemos es **software a medida al precio de una cuota mensual**.
