@@ -50,12 +50,20 @@ def fetch(url):
             t0 = time.time()
             r = requests.get(u, headers={"User-Agent": UA}, timeout=20,
                              allow_redirects=True)
-            return r, time.time() - t0, None
+            return r, time.time() - t0, last_err
         except requests.exceptions.SSLError as e:
             last_err = f"ssl_error: {type(e).__name__}"
         except Exception as e:  # noqa: BLE001 - cualquier fallo de red cuenta
             last_err = f"{type(e).__name__}"
     return None, None, last_err
+
+
+def looks_blocked(r, low):
+    """Páginas anti-bot (Cloudflare, hosting) que no son la web real."""
+    if r.status_code == 202 and len(r.content) < 4096:
+        return True
+    return any(s in low for s in ("cf-chl", "challenge-platform", "just a moment...",
+                                  "checking your browser", "captcha-delivery"))
 
 
 def detect_cms(html, headers):
@@ -85,8 +93,14 @@ def audit(url):
 
     html = r.text or ""
     low = html.lower()
+    if looks_blocked(r, low):
+        # Puntuarla daría un falso positivo: revisar a mano con screenshot.js.
+        row.update(final_url=r.url, estado=f"antibot_{r.status_code}", puntos=-1)
+        return row
     reasons = []
     pts = 0
+    if err and err.startswith("ssl_error"):
+        reasons.append("certificado HTTPS roto o caducado")
     row["final_url"] = r.url
     row["estado"] = r.status_code
     row["tiempo_s"] = round(elapsed, 2)
