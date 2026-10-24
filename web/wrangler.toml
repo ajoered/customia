@@ -1,0 +1,12 @@
+# Cloudflare Pages: web estática en public/ y funciones en functions/.
+name = "arcilla-studio"
+pages_build_output_dir = "./public"
+compatibility_date = "2026-10-01"
+
+[vars]
+# Conversaciones nuevas con IA al día. Al pasarlo, el chat sigue en modo guiado.
+CUPO_DIARIO = "300"
+
+[[kv_namespaces]]
+binding = "ARCILLA"
+id = "ef384a86a63e4c75be0cb4f9b8e7839f"

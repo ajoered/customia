@@ -6,8 +6,9 @@ import Anthropic from "@anthropic-ai/sdk";
 
 const MODELO = "claude-opus-5-5";
 
+// El mismo saludo que pinta assets/app.js.
 export const SALUDO =
-  "Hola. Soy el asistente de Arcilla Studio, una inteligencia artificial. En dos minutos te digo cuánto te puede estar costando tu problema y qué haríamos. ¿Qué te quita más tiempo, o por dónde se te escapan clientes?";
+  "Hola. Soy el asistente de Arcilla Studio, una inteligencia artificial. Cuéntame qué negocio tienes y qué te quita el sueño. En dos minutos te digo cuánto te está costando y si podemos ayudarte.";
 
 const SISTEMA = `Eres el asistente de diagnóstico de Arcilla Studio, una marca de ARVENTURES S.L. Arcilla Studio hace webs, asistentes de WhatsApp y herramientas a medida con IA para negocios pequeños y medianos: restaurantes, fincas de bodas, hoteles y hostales, clínicas, reformas, tiendas y similares.
 
@@ -94,6 +95,7 @@ function pedir(client, messages) {
     betas: ["server-side-fallback-2026-07-01"],
     fallbacks: "default",
     output_config: { effort: "low" },
+    cache_control: { type: "ephemeral" }, // el historial crece turno a turno: se reaprovecha lo ya enviado
     system: SISTEMA,
     tools: [HERRAMIENTA],
     messages,
@@ -131,7 +133,7 @@ export async function conversar(apiKey, estado, mensaje) {
   if (respuesta.stop_reason === "refusal") {
     // No guardamos este turno: el historial sigue siendo válido para el siguiente.
     return {
-      respuesta: "Eso mejor lo vemos con una persona. Si quieres, déjanos tu contacto por WhatsApp o teléfono y te llamamos.",
+      respuesta: "Eso mejor lo vemos con una persona. Escríbenos a hola@arcillastudio.com y te contestamos.",
       diagnostico: null,
     };
   }

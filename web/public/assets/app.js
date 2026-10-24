@@ -13,7 +13,7 @@
   const CONFIG = {
     telefono: "", // vacío: la web no muestra teléfono
     whatsapp: "", // solo dígitos con prefijo, p. ej. "34600000000"
-    email: "arojaspen@gmail.com",
+    email: "hola@arcillastudio.com",
     api: "/api",
   };
 
@@ -377,38 +377,97 @@
     entrada.style.height = "auto";
     entrada.style.height = Math.min(entrada.scrollHeight, 140) + "px";
   });
-  // El taller: enseña la maqueta del paso que está a la vista.
+  // El taller. En escritorio, una escena fija enseña la maqueta del paso que está a la vista.
+  // En el móvil, cada maqueta va bajo su texto y avanza con el scroll mientras está fija.
   const pasosTaller = Array.from(document.querySelectorAll(".paso-taller[data-maqueta]"));
   const maquetas = Array.from(document.querySelectorAll(".taller-escena .maqueta"));
+  const scrollWeb = document.getElementById("m-scroll");
+  const cajaChat = document.getElementById("m-chat");
+  const filaNueva = document.querySelector(".panel .fila-nueva");
+  const pendientes = document.querySelector(".panel [data-pendientes]");
+  const tallerMovil = window.matchMedia("(max-width: 860px)");
+  const menosMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const acotar = (x) => Math.min(1, Math.max(0, x));
+
+  // La web de ejemplo baja de la portada (solo foto y "Reservar ahora") hasta la reserva. t de 0 a 1.
+  function moverWeb(t) {
+    if (!scrollWeb) return;
+    const hero = scrollWeb.querySelector(".m-hero");
+    const alto = scrollWeb.parentElement.clientHeight - scrollWeb.offsetTop;
+    if (hero && alto > 0 && hero.style.height !== alto + "px") hero.style.height = alto + "px";
+    const max = Math.max(0, scrollWeb.scrollHeight - alto);
+    scrollWeb.style.transform = `translateY(${-Math.round(max * t)}px)`;
+  }
+
   function tallerMedir() {
     if (!pasosTaller.length) return;
-    const linea = window.innerHeight * (window.innerWidth <= 860 ? 0.7 : 0.5);
+    if (tallerMovil.matches) return tallerMedirMovil();
+    if (filaNueva) filaNueva.classList.add("vista");
+    if (pendientes) pendientes.textContent = pendientes.dataset.pendientes;
+    const linea = window.innerHeight * 0.5;
     // Se cambia de maqueta cuando el siguiente paso llega a la línea, no antes.
     let mejor = pasosTaller[0];
     pasosTaller.forEach((p) => { const r = p.getBoundingClientRect(); if (r.top + r.height * 0.25 <= linea) mejor = p; });
     maquetas.forEach((m) => m.classList.toggle("activa", m.dataset.maqueta === mejor.dataset.maqueta));
-    // La web de ejemplo hace scroll dentro del móvil según avanzas por su paso.
     const pasoWeb = pasosTaller.find((p) => p.dataset.maqueta === "web");
-    const scrollWeb = document.getElementById("m-scroll");
-    if (pasoWeb && scrollWeb) {
-      // La portada de la web de ejemplo ocupa toda la pantalla del móvil: solo foto y "Reservar ahora".
-      const hero = scrollWeb.querySelector(".m-hero");
-      const alto = scrollWeb.parentElement.clientHeight;
-      if (hero && alto && hero.style.height !== alto + "px") hero.style.height = alto + "px";
+    if (pasoWeb) {
       const r = pasoWeb.getBoundingClientRect();
-      const t = Math.min(1, Math.max(0, (linea - r.top) / r.height));
-      const max = Math.max(0, scrollWeb.scrollHeight - scrollWeb.parentElement.clientHeight);
-      scrollWeb.style.transform = `translateY(${-Math.round(max * Math.min(1, t * 1.25))}px)`;
+      moverWeb(Math.min(1, acotar((linea - r.top) / r.height) * 1.25));
     }
     // La conversación de WhatsApp se escribe sola cuando su paso está a la vista.
     if (mejor.dataset.maqueta === "wa") reproducirChat(); else pararChat();
   }
+
+  function tallerMedirMovil() {
+    pararChat();
+    const quieto = menosMovimiento.matches;
+    maquetas.forEach((m) => {
+      // t: cuánto se ha recorrido del tramo en el que la pantalla está fija (0 al fijarse, 1 al soltarse).
+      const escenario = m.querySelector(".maqueta-escenario");
+      const r = m.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > window.innerHeight + 200) return;
+      const tope = parseFloat(getComputedStyle(escenario).top) || 0;
+      const recorrido = Math.max(1, r.height - escenario.offsetHeight);
+      const t = quieto ? 1 : acotar((tope - r.top) / recorrido);
+      if (m.dataset.maqueta === "web") moverWeb(quieto ? 0 : t);
+      else if (m.dataset.maqueta === "wa") escribirChat(t);
+      else if (m.dataset.maqueta === "panel") entrarReserva(t);
+    });
+  }
+
+  // El chat avanza con el scroll: el primer mensaje ya está al llegar y el último cae al 85 % del tramo.
+  // Antes de cada mensaje del asistente aparece "escribiendo".
+  function escribirChat(t) {
+    if (!cajaChat) return;
+    const bs = Array.from(cajaChat.querySelectorAll(".b[data-t]"));
+    const esc = cajaChat.querySelector(".b.esc");
+    const avance = acotar(t / 0.85) * (bs.length - 1);
+    const vistos = 1 + Math.floor(avance + 1e-6);
+    let cambio = false;
+    bs.forEach((b, i) => { const v = i < vistos; if (b.classList.contains("visto") !== v) { b.classList.toggle("visto", v); cambio = true; } });
+    const siguiente = bs[vistos];
+    const escribe = Boolean(siguiente && siguiente.classList.contains("yo") && avance - (vistos - 1) > 0.45);
+    if (esc && esc.classList.contains("visto") !== escribe) { esc.classList.toggle("visto", escribe); cambio = true; }
+    if (cambio) cajaChat.scrollTop = cajaChat.scrollHeight;
+  }
+
+  // La reserva de Marta entra en el panel y suma una "por confirmar".
+  function entrarReserva(t) {
+    if (!filaNueva) return;
+    const vista = t > 0.3;
+    filaNueva.classList.toggle("vista", vista);
+    if (pendientes) {
+      const n = Number(pendientes.dataset.pendientes);
+      pendientes.textContent = String(vista ? n : n - 1);
+    }
+  }
+
   let chatTimers = [];
   let chatActivo = false;
   function reproducirChat() {
     if (chatActivo) return;
     chatActivo = true;
-    const caja = document.getElementById("m-chat");
+    const caja = cajaChat;
     if (!caja) return;
     const bs = Array.from(caja.querySelectorAll(".b[data-t]"));
     const esc = caja.querySelector(".b.esc");

@@ -1,0 +1,15 @@
+{
+  "name": "arcilla-studio-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler pages dev",
+    "deploy": "wrangler pages deploy --branch main"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "0.137.0"
+  },
+  "devDependencies": {
+    "wrangler": "4.150.0"
+  }
+}

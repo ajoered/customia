@@ -47,13 +47,13 @@ def main(salida):
     # Portada: el visor de Artifacts pone su propio doctype/head/body.
     index = (RAIZ / "index.html").read_text(encoding="utf-8")
     foto = base64.b64encode((RAIZ / "assets" / "casa-lucia.jpg").read_bytes()).decode()
-    index = index.replace("url('assets/casa-lucia.jpg')", f"url('data:image/jpeg;base64,{foto}')")
+    css_portada = css.replace('url("casa-lucia.jpg")', f'url("data:image/jpeg;base64,{foto}")')
     retrato = base64.b64encode((RAIZ / "assets" / "alvaro.jpg").read_bytes()).decode()
     index = index.replace('src="assets/alvaro.jpg"', f'src="data:image/jpeg;base64,{retrato}"')
     pagina = "\n".join([
         f"<title>{titulo(index)}</title>",
         '<meta name="claude:viewport-fit-sides" content="cover">',
-        f"<style>\n{css}\n</style>",
+        f"<style>\n{css_portada}\n</style>",
         cuerpo(index),
         f"<script>\n{js}\n</script>",
     ])

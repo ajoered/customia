@@ -23,6 +23,7 @@
   --barro: #d9b8a6;
   --barro-2: #b8927e;
   --esmalte: #2f6b86;
+  --fuego: #e2874e;
   --cobalto: #2f6b86;
   --cobalto-tinta: #ffffff;
   --cobalto-suave: #e1ecf2;
@@ -157,11 +158,15 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .paso-torno .dato strong { font-family: var(--serif); font-weight: 600; font-size: 1.7em; color: var(--tinta); margin-right: 6px; }
 @media (max-width: 860px) {
   .torno .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
-  .torno-pieza { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--cab-h, 62px) - 1px); height: auto; max-height: none; z-index: 1; background: var(--papel); display: flex; flex-direction: column; align-items: center; gap: 2px; padding-block: 6px 10px; border-bottom: 1px solid var(--linea); }
-  .torno-pieza canvas { max-width: 30vh; }
+  /* La pieza se queda arriba y el texto se lee en el hueco de debajo (torno.js cambia de etapa en
+     su centro). El texto se desvanece al pasar bajo la pieza en vez de cortarse en seco. */
+  .torno-pieza { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--cab-h, 62px) - 1px); height: auto; max-height: none; z-index: 1; background: var(--papel); display: flex; flex-direction: column; align-items: center; gap: 2px; padding-block: 6px 4px; }
+  .torno-pieza::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 44px; background: linear-gradient(var(--papel), rgba(246, 243, 236, 0)); pointer-events: none; }
+  .torno-pieza canvas { max-width: min(29vh, 66vw); }
   .torno-pieza figcaption { position: static; }
-  .paso-torno { min-height: 46vh; padding-block: 4vh 8vh; justify-content: flex-start; }
+  .paso-torno { min-height: 54vh; padding-block: 5vh; justify-content: center; }
   .paso-torno h2 { font-size: clamp(1.8rem, 1.2rem + 3vw, 2.4rem); }
+  .paso-torno p { font-size: var(--t-m); }
 }
 
 /* El taller: texto a la izquierda, el producto cambia a la derecha */
@@ -176,19 +181,10 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .paso-taller .efecto { font-family: var(--mono); font-size: var(--t-s); color: var(--tinta); }
 .paso-taller .efecto::before { content: "→ "; color: var(--cobalto); }
 .taller-escena { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--cab-h, 66px) + 8px); height: calc(100vh - 110px); max-height: 760px; display: grid; place-items: center; }
-.taller-escena .maqueta { grid-area: 1 / 1; opacity: 0; transform: translateY(14px) scale(.98); transition: opacity .45s ease, transform .45s ease; pointer-events: none; display: flex; flex-direction: column; align-items: center; gap: 14px; width: 100%; }
+.taller-escena .maqueta { grid-area: 1 / 1; opacity: 0; transform: translateY(14px) scale(.98); transition: opacity .45s ease, transform .45s ease; pointer-events: none; width: 100%; }
+.maqueta-escenario { display: flex; flex-direction: column; align-items: center; gap: 14px; width: 100%; }
 .taller-escena .maqueta.activa { opacity: 1; transform: none; }
 .maqueta-pie { font-family: var(--mono); font-size: var(--t-xs); color: var(--tinta-2); text-align: center; max-width: 40ch; }
-@media (max-width: 860px) {
-  .taller .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
-  .taller-texto { display: contents; }
-  .taller-cabeza { order: 0; }
-  .taller-escena { order: 1; position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--cab-h, 62px) - 1px); height: auto; max-height: none; z-index: 1; background: var(--papel); padding-block: 10px; border-bottom: 1px solid var(--linea); }
-  .taller-escena .movil { width: min(150px, 46vw); border-radius: 24px; padding: 7px; }
-  .taller-escena .movil-pantalla { border-radius: 18px; font-size: 9px; }
-  .taller-escena .panel { max-width: 340px; font-size: 10px; }
-  .maqueta-pie { display: none; }
-  .paso-taller { order: 2; min-height: 70vh; padding-block: 4vh 10vh; justify-content: flex-start; }
 }
 .seccion .wrap { display: flex; flex-direction: column; gap: clamp(28px, 4vw, 48px); padding-block: clamp(64px, 9vw, 120px); }
 .seccion-cabeza { display: flex; flex-direction: column; gap: 12px; max-width: 60ch; }
@@ -202,7 +198,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .m-scroll { position: absolute; inset: 0 0 auto; will-change: transform; transition: transform .35s ease-out; }
 .movil { min-height: 0; }
 .movil-pantalla { min-height: 0; }
-.m-hero { height: 100%; min-height: 300px; background-size: cover; background-position: center; display: flex; align-items: flex-end; position: relative; }
+.m-hero { background-image: url("casa-lucia.jpg"); height: 100%; min-height: 300px; background-size: cover; background-position: center; display: flex; align-items: flex-end; position: relative; }
 .m-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(20,14,10,.78)); }
 .m-hero-texto { position: relative; z-index: 1; color: #fffdf8; padding: 16px 14px; display: flex; flex-direction: column; gap: 5px; width: 100%; }
 .m-hero-texto strong { font-family: var(--serif); font-size: 22px; line-height: 1.05; font-weight: 600; }
@@ -211,12 +207,14 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .m-web .m-cuerpo { padding: 12px 14px 6px; display: flex; flex-direction: column; gap: 8px; }
 .m-tit { font-family: var(--serif); font-weight: 600; font-size: 14px; margin-top: 4px; }
 .m-reserva { margin: 8px 10px 12px; background: #f6f3ec; border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 7px; }
-.m-campo { display: flex; justify-content: space-between; background: #fff; border: 1px solid #e2ddd2; border-radius: 8px; padding: 7px 9px; }
+.m-campo { display: flex; justify-content: space-between; gap: 8px; background: #fff; border: 1px solid #e2ddd2; border-radius: 8px; padding: 7px 9px; }
 .m-campo b { font-family: var(--mono); font-weight: 500; }
 .m-btn-ok { margin-top: 4px; }
 .m-peq { font-size: 9px; color: #5f5a51; text-align: center; }
 .m-web .m-fila { display: flex; justify-content: space-between; border-bottom: 1px solid #e2ddd2; padding-bottom: 6px; }
 .m-web .m-fila b { font-family: var(--mono); font-weight: 500; }
+.m-barra { display: none; }
+.panel .via { display: block; font-weight: 400; color: #2f6b86; font-size: 9px; }
 .m-wa { background: #efe7dc; }
 .m-wa .m-top { background: #075e54; color: #fff; padding: 12px 12px 8px; display: flex; align-items: center; gap: 8px; }
 .m-wa .m-top i { width: 24px; height: 24px; border-radius: 50%; background: #b89a7e; flex: none; }
@@ -224,7 +222,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .m-wa .m-chat { padding: 10px; display: flex; flex-direction: column; gap: 6px; }
 .m-wa .b { max-width: 84%; padding: 6px 9px; border-radius: 10px; background: #fff; opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .3s; }
 .m-wa .b.visto { opacity: 1; transform: none; }
-.m-wa .b.esc { display: none; gap: 4px; align-items: center; padding: 8px 10px; }
+.m-wa .b.esc { display: none; align-self: flex-start; gap: 4px; align-items: center; padding: 8px 10px; }
 .m-wa .b.esc.visto { display: inline-flex; }
 .m-wa .b.esc i { width: 5px; height: 5px; border-radius: 50%; background: #8a8a8a; animation: latido 1.2s infinite ease-in-out; }
 .m-wa .b.esc i:nth-child(2) { animation-delay: .15s; } .m-wa .b.esc i:nth-child(3) { animation-delay: .3s; }
@@ -243,6 +241,88 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .panel .ok { color: #1f6b3a; font-weight: 700; }
 .panel .pend { color: #8f5a1f; font-weight: 700; }
 .maqueta-nota { font-family: var(--mono); font-size: var(--t-xs); color: var(--tinta-2); text-align: center; margin-top: 10px; }
+@media (max-width: 860px) {
+  /* En el móvil el teléfono es el del visitante: cada producto va debajo de su texto, sin marco
+     de teléfono y con letra de verdad. Su pantalla se queda fija mientras se recorre su tramo
+     y lo de dentro avanza con el scroll: la web baja hasta la reserva, el
+     WhatsApp se escribe, y la reserva de Marta entra en el panel. El tramo es un espaciador
+     (::after) y no padding: sticky solo se mueve dentro de la caja de contenido del padre. */
+  .taller .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .taller-texto, .taller-escena { display: contents; }
+  .taller-cabeza { order: 0; }
+  .paso-taller { min-height: 0; padding-block: clamp(48px, 9vh, 80px) 28px; justify-content: flex-start; }
+  .paso-taller[data-maqueta="web"] { order: 1; }
+  .maqueta[data-maqueta="web"] { order: 2; --recorrido: 95vh; }
+  .paso-taller[data-maqueta="wa"] { order: 3; }
+  .maqueta[data-maqueta="wa"] { order: 4; --recorrido: 110vh; }
+  .paso-taller[data-maqueta="panel"] { order: 5; }
+  .maqueta[data-maqueta="panel"] { order: 6; --recorrido: 45vh; }
+  .taller-escena .maqueta { grid-area: auto; opacity: 1; transform: none; transition: none; --pantalla-h: min(540px, calc(100vh - var(--cab-h, 62px) - 132px)); }
+  .taller-escena .maqueta::after { content: ""; display: block; height: var(--recorrido); }
+  .maqueta-escenario { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--cab-h, 62px) + 16px); gap: 12px; }
+  .maqueta-pie { font-size: var(--t-xs); max-width: 34ch; line-height: 1.45; }
+
+  /* Pantallas sin marco */
+  .taller-escena .movil { width: min(100%, 380px); height: var(--pantalla-h); aspect-ratio: auto; background: none; padding: 0; border-radius: 22px; }
+  .taller-escena .movil-pantalla { border-radius: 22px; border: 1px solid var(--linea); font-size: 15px; line-height: 1.4; }
+
+  /* La web de ejemplo, con su barra de dirección */
+  .m-barra { position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; height: 42px; background: #efe9df; border-bottom: 1px solid #e2ddd2; flex: none; }
+  .m-barra span { font-family: var(--mono); font-size: 12px; color: #5f5a51; background: #fffdf8; border-radius: 999px; padding: 3px 14px; }
+  .m-barra span::before { content: ""; display: inline-block; width: 7px; height: 8px; margin-right: 7px; border: 1.5px solid #5f5a51; border-radius: 2px; vertical-align: -0.5px; }
+  .m-web .m-scroll { top: 42px; }
+  .m-hero-texto { padding: 22px 18px; gap: 6px; }
+  .m-hero-texto strong { font-size: 32px; }
+  .m-hero-texto span { font-size: 15px; }
+  .m-web .m-btn { padding: 12px; margin-top: 10px; }
+  .m-web .m-cuerpo { padding: 20px 18px 8px; gap: 12px; }
+  .m-web .m-fila { padding-bottom: 10px; }
+  .m-tit { font-size: 20px; }
+  .m-reserva { margin: 14px 14px 20px; padding: 16px; gap: 10px; border-radius: 16px; }
+  .m-campo { padding: 11px 12px; border-radius: 10px; }
+  .m-peq { font-size: 12px; }
+
+  /* El WhatsApp */
+  .m-wa .m-top { padding: 14px 16px 12px; gap: 12px; font-weight: 700; }
+  .m-wa .m-top i { width: 36px; height: 36px; }
+  .m-wa .m-top small { font-size: 12px; font-weight: 400; }
+  .m-wa .m-chat { flex: 1; min-height: 0; overflow: hidden; padding: 14px 12px; gap: 8px; }
+  .m-wa .b { padding: 8px 11px 6px; border-radius: 12px; }
+  .m-wa .b time { font-size: 11px; }
+  .m-wa .b:not(.visto) { display: none; }
+  .m-wa .b.visto { animation: burbuja .3s ease both; }
+
+  /* El panel, como lo vería Lucía en su móvil */
+  .taller-escena .panel { width: min(100%, 380px); font-size: 15px; border-radius: 22px; }
+  .panel-top { padding: 14px 16px; }
+  .panel-grid { padding: 14px 16px; gap: 8px; }
+  .panel-kpi { padding: 10px; }
+  .panel-kpi b { font-size: 19px; white-space: nowrap; }
+  .panel-kpi span { font-size: 12px; }
+  .panel table, .panel tbody { display: block; }
+  .panel tr { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; grid-template-areas: "f g e" "f s e"; column-gap: 12px; align-items: center; padding: 12px 16px; border-top: 1px solid #e2ddd2; }
+  .panel tr:first-child { display: none; }
+  .panel td { padding: 0; border: 0; }
+  .panel td:nth-child(1) { grid-area: f; font-family: var(--mono); font-size: 13px; color: #5f5a51; }
+  .panel td:nth-child(2) { grid-area: g; font-weight: 700; }
+  .panel td:nth-child(3) { grid-area: s; font-size: 13px; color: #5f5a51; }
+  .panel td:nth-child(3)::before { content: "Salón "; }
+  .panel td:nth-child(4) { grid-area: e; font-size: 12px; padding: 4px 9px; border-radius: 999px; }
+  .panel .ok { background: #e4f0e6; }
+  .panel .pend { background: #f6e9d6; }
+  .panel .via { font-size: 12px; }
+  .panel .fila-nueva { background: var(--cobalto-suave); }
+  .panel .fila-nueva:not(.vista) { display: none; }
+  .panel .fila-nueva.vista { animation: entra .5s ease both; }
+}
+@media (max-width: 860px) and (prefers-reduced-motion: reduce) {
+  /* Sin tramos fijos: app.js deja cada pantalla en su estado final. */
+  .taller-escena .maqueta::after { display: none; }
+  .maqueta-escenario { position: static; }
+  .m-wa .b.visto, .panel .fila-nueva.vista { animation: none; }
+}
+@keyframes burbuja { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes entra { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
 
 /* Cómo lo hacemos: una línea de tiempo que se va dibujando */
 .proceso .wrap { display: flex; flex-direction: column; gap: clamp(32px, 5vw, 64px); padding-block: clamp(64px, 9vw, 120px); border-top: 1px solid var(--linea); }
