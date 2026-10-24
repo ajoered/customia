@@ -90,7 +90,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 /* La ventana del asistente (estilo America.gov: una tarjeta grande y una sola caja) */
 .ventana-wrap .wrap { padding-block: 0 clamp(48px, 7vw, 96px); display: flex; flex-direction: column; align-items: center; gap: 16px; }
-.ventana { position: relative; width: min(880px, 100%); border-radius: 32px; overflow: hidden; background: var(--hoja); box-shadow: var(--sombra); display: flex; flex-direction: column; gap: 14px; padding: 22px; min-height: 420px; isolation: isolate; }
+.ventana { position: relative; width: min(880px, 100%); border-radius: 32px; overflow: hidden; background: var(--hoja); box-shadow: var(--sombra); display: flex; flex-direction: column; gap: 14px; padding: 26px; min-height: 440px; isolation: isolate; }
 .ventana-fondo { position: absolute; inset: 0; z-index: -1; background: linear-gradient(170deg, color-mix(in srgb, var(--barro) 28%, var(--hoja)) 0%, color-mix(in srgb, var(--barro) 62%, var(--hoja)) 55%, color-mix(in srgb, var(--cobalto) 18%, var(--barro)) 100%); transition: opacity .6s ease; }
 .ventana-masa { position: absolute; right: -8%; bottom: -22%; width: 62%; aspect-ratio: 1; background: var(--barro); border-radius: 58% 42% 63% 37% / 45% 55% 45% 55%; opacity: .9; filter: blur(0.5px); }
 .ventana.activa { min-height: 0; background: var(--hoja); }
@@ -110,6 +110,9 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .ventana.activa .chat-formulario { order: 2; }
 .ventana.activa .opciones-portada { display: none; }
 .ventana.activa .ventana-nota { order: 3; }
+.ventana-lema { font-family: var(--serif); font-weight: 500; font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.3rem); line-height: 1.15; letter-spacing: -0.01em; max-width: 22ch; padding: 6px 4px 10px; }
+.ventana-lema span { display: block; font-family: var(--sans); font-weight: 400; font-size: var(--t-m); color: var(--tinta-2); margin-top: 8px; max-width: 46ch; }
+.ventana.activa .ventana-lema { display: none; }
 .msg { max-width: 86%; padding: 12px 16px; border-radius: 20px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; font-size: var(--t-m); }
 .msg-bot { align-self: flex-start; background: var(--papel); border-bottom-left-radius: 6px; }
 .msg-tu { align-self: flex-end; background: var(--cobalto); color: #fff; border-bottom-right-radius: 6px; }
