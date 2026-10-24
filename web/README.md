@@ -26,6 +26,10 @@ web/
 
 - **Idea:** una sola pieza de arcilla (`assets/torno.js`, canvas 2D) que se moldea con el scroll: ladrillo → arcilla → tu web → tu WhatsApp → tu herramienta → horno → pieza esmaltada. Si el navegador prefiere menos movimiento, se muestra la forma fija de cada etapa.
 - **Referencias:** ritmo de una idea por pantalla (Tribe AI), paleta cálida y sobria (Distyl), producto real en pantalla (Floema), contenido claro desde la primera pantalla (Estudio Telar). Ver `../estudio/07-benchmark-web.md`.
+- **En el móvil:**
+  - **"Lo que podemos construir":** cada producto va debajo de su texto, sin marco de teléfono y con letra a tamaño real (el teléfono es el del visitante). La pantalla se queda fija un tramo y lo de dentro avanza con el scroll: la web baja hasta la reserva, el WhatsApp se escribe, y la reserva de Marta entra en el panel. Es la misma historia en las tres pantallas.
+  - **El torno:** la pieza se queda arriba, el texto se lee en el hueco de debajo y se desvanece al pasar bajo ella.
+  - Con "reducir movimiento" no hay tramos fijos y todo sale en su estado final.
 - **Colores:** papel cálido, tinta, barro para la arcilla, un solo acento cobalto (que es también el esmalte de la pieza cocida). Con versión oscura.
 - **Tipos:** Fraunces (serifa de libro) para titulares, Atkinson Hyperlegible para el texto, Spline Sans Mono para cifras. Todas alojadas en la propia web.
 - **Voz:** plural ("hacemos", "te enseñamos"): aunque el fundador sea la cara visible, hay equipo detrás. Su historia en "Quién está detrás" va en primera persona.

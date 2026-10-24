@@ -24,6 +24,7 @@
       barro: cs.getPropertyValue("--barro").trim() || "#d9b8a6",
       barro2: cs.getPropertyValue("--barro-2").trim() || "#b8927e",
       esmalte: cs.getPropertyValue("--esmalte").trim() || "#2f6b86",
+      fuego: cs.getPropertyValue("--fuego").trim() || "#e2874e",
       hoja: cs.getPropertyValue("--hoja").trim() || "#fffdf8",
       tinta: cs.getPropertyValue("--tinta").trim() || "#1d1b17",
       linea: cs.getPropertyValue("--linea").trim() || "#e2ddd2",
@@ -88,18 +89,26 @@
     return pts;
     function perfil(u) { return 70 + 80 * Math.sin(Math.PI * Math.pow(u, 0.9)) * (1 - 0.35 * u) + (u < 0.08 ? 10 : 0); }
   }
+  // Todas las formas empiezan su contorno arriba en el centro y van en el sentido del reloj.
+  // Así, al mezclar dos formas, cada punto va a su sitio y la pieza no se retuerce por el camino.
+  function alinear(pts) {
+    let k = 0, mejor = Infinity;
+    pts.forEach(([x, y], i) => { if (y < 0) { const d = Math.abs(Math.atan2(x, -y)); if (d < mejor) { mejor = d; k = i; } } });
+    return pts.slice(k).concat(pts.slice(0, k));
+  }
   const FORMAS = {
-    ladrillo: rectRedondeado(330, 160, 6, 0, 0),
-    masa: masa(150, 1.3),
-    movil: rectRedondeado(170, 330, 34, 0, 0),
-    burbuja: burbuja(),
-    panel: rectRedondeado(340, 220, 16, 0, 0),
-    vasija: vasija(),
+    ladrillo: alinear(rectRedondeado(330, 160, 6, 0, 0)),
+    masa: alinear(masa(150, 1.3)),
+    movil: alinear(rectRedondeado(170, 330, 34, 0, 0)),
+    burbuja: alinear(burbuja()),
+    panel: alinear(rectRedondeado(340, 220, 16, 0, 0)),
+    vasija: alinear(vasija()),
   };
   // Etapas en orden y, para cada una, qué dibujar dentro.
   const ETAPAS = ["ladrillo", "ladrillo-gira", "masa", "movil", "burbuja", "panel", "horno", "vasija"];
 
   function lerp(a, b, t) { return a + (b - a) * t; }
+  function acotar(x) { return Math.min(1, Math.max(0, x)); }
   function mezclar(A, B, t) { const o = []; for (let i = 0; i < N; i++) o.push([lerp(A[i][0], B[i][0], t), lerp(A[i][1], B[i][1], t)]); return o; }
   function suavizar(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
   function formaDe(etapa) {
@@ -120,10 +129,14 @@
     ctx.quadraticCurveTo(p[0], p[1], (p[0] + q[0]) / 2, (p[1] + q[1]) / 2);
     ctx.closePath();
   }
-  function detalles(etapa, alpha, giro) {
-    if (alpha <= 0.02) return;
+  // Qué dibujo lleva dentro cada etapa. El ladrillo y el ladrillo que gira comparten el suyo.
+  const DIBUJO = { ladrillo: "ladrillo", "ladrillo-gira": "ladrillo", movil: "movil", burbuja: "burbuja", panel: "panel" };
+  function detalles(etapa, alpha) {
+    if (alpha <= 0.02 || !DIBUJO[etapa]) return;
     ctx.save();
     ctx.globalAlpha = alpha;
+    const s = 0.94 + 0.06 * alpha;
+    ctx.scale(s, s);
     if (etapa === "ladrillo" || etapa === "ladrillo-gira") {
       ctx.fillStyle = col.ladrillo2;
       for (let i = -1; i <= 1; i++) { ctx.beginPath(); ctx.roundRect(i * 92 - 30, -50, 60, 100, 4); ctx.fill(); }
@@ -143,14 +156,25 @@
       const barras = [38, 62, 48, 80, 70, 96, 88];
       ctx.fillStyle = col.esmalte;
       barras.forEach((b, i) => { ctx.beginPath(); ctx.roundRect(-146 + i * 42, 92 - b, 28, b, 5); ctx.fill(); });
-    } else if (etapa === "horno" || etapa === "vasija") {
-      // Brillo del esmalte.
-      const g = ctx.createLinearGradient(-120, -150, 120, 150);
-      g.addColorStop(0, "rgba(255,255,255,0.28)"); g.addColorStop(0.5, "rgba(255,255,255,0)"); g.addColorStop(1, "rgba(0,0,0,0.12)");
-      ctx.fillStyle = g; trazar(FORMAS.vasija); ctx.fill();
-      ctx.strokeStyle = "rgba(255,255,255,0.35)"; ctx.lineWidth = 2;
-      for (let y = -90; y <= 90; y += 45) { ctx.beginPath(); ctx.moveTo(-(60 + Math.abs(y) * 0.1), y); ctx.lineTo(60 + Math.abs(y) * 0.1, y); ctx.stroke(); }
     }
+    ctx.restore();
+  }
+  // El esmalte cae de arriba abajo, con alguna gota, y deja el brillo y los anillos del torno.
+  function esmaltar(e) {
+    if (e <= 0.001) return;
+    const borde = lerp(-190, 200, e);
+    const gota = (x) => 7 * Math.sin(x / 19) + 18 * Math.pow(Math.max(0, Math.sin(x / 37 + 0.8)), 4);
+    ctx.save();
+    ctx.fillStyle = col.esmalte;
+    ctx.beginPath(); ctx.moveTo(-260, -260); ctx.lineTo(260, -260);
+    for (let x = 260; x >= -260; x -= 8) ctx.lineTo(x, borde + gota(x));
+    ctx.closePath(); ctx.fill();
+    ctx.globalAlpha = e;
+    const g = ctx.createLinearGradient(-120, -150, 120, 150);
+    g.addColorStop(0, "rgba(255,255,255,0.28)"); g.addColorStop(0.5, "rgba(255,255,255,0)"); g.addColorStop(1, "rgba(0,0,0,0.12)");
+    ctx.fillStyle = g; ctx.fillRect(-260, -260, 520, 520);
+    ctx.strokeStyle = "rgba(255,255,255,0.35)"; ctx.lineWidth = 2;
+    for (let y = -90; y <= 90; y += 45) { ctx.beginPath(); ctx.moveTo(-(60 + Math.abs(y) * 0.1), y); ctx.lineTo(60 + Math.abs(y) * 0.1, y); ctx.stroke(); }
     ctx.restore();
   }
 
@@ -167,28 +191,41 @@
     const A = formaDe(ETAPAS[i]), B = formaDe(ETAPAS[j]);
     const pts = mezclar(A, B, t);
 
-    // Color: ladrillo cocido al principio, arcilla cruda al ablandarse, esmalte tras el horno.
+    // Color: ladrillo al principio y arcilla cruda al ablandarse. Camino del horno la pieza se pone
+    // al rojo (brasa) y al salir se esmalta. Sin mezclar barro con azul, que da un gris sucio.
     const iMasa = ETAPAS.indexOf("masa");
-    const ablandado = Math.min(1, Math.max(0, progreso - (iMasa - 1)));
     const iHorno = ETAPAS.indexOf("horno");
-    const cocido = Math.min(1, Math.max(0, progreso - iHorno + 0.2));
-    let relleno = mezclarColor(col.ladrillo, col.barro, ablandado);
-    if (cocido > 0) relleno = mezclarColor(col.barro, col.esmalte, cocido);
+    const ablandado = acotar(progreso - (iMasa - 1));
+    const calor = acotar(progreso - (iHorno - 1));
+    const esmalte = suavizar(acotar(progreso - iHorno));
+    const brasa = calor * (1 - esmalte);
+    const relleno = mezclarColor(mezclarColor(col.ladrillo, col.barro, ablandado), col.fuego, brasa);
 
     ctx.save();
     ctx.translate(SIZE / 2, SIZE / 2);
-    // El ladrillo gira al ablandarse; la masa respira un poco.
-    const girando = ETAPAS[i] === "ladrillo-gira" ? t : (ETAPAS[i] === "ladrillo" ? 0 : 1);
-    giro = girando * -0.35 + (ETAPAS[i] === "masa" ? Math.sin(Date.now() / 900) * 0.03 : 0);
-    ctx.rotate(ETAPAS[j] === "masa" || ETAPAS[i] === "masa" ? giro : (ETAPAS[i] === "ladrillo-gira" ? giro : 0));
+    // El ladrillo se tuerce al ablandarse y la pieza se endereza poco a poco al tomar forma.
+    // La masa respira un poco mientras es masa.
+    const respira = (ETAPAS[i] === "masa" ? 1 - t : 0) + (ETAPAS[j] === "masa" ? t : 0);
+    giro = lerp(angulo(ETAPAS[i]), angulo(ETAPAS[j]), t) + respira * Math.sin(Date.now() / 900) * 0.03;
+    ctx.rotate(giro);
     // Sombra suave de la pieza sobre la mesa.
     ctx.save(); ctx.translate(0, 12); ctx.scale(1, 0.96); ctx.fillStyle = "rgba(29,27,23,0.10)"; trazar(pts); ctx.fill(); ctx.restore();
+    // En el horno, la pieza brilla.
+    if (brasa > 0.01) { ctx.shadowColor = colorAlfa(col.fuego, 0.6 * brasa); ctx.shadowBlur = 46 * brasa * dpr; }
     ctx.fillStyle = relleno; trazar(pts); ctx.fill();
-    // Detalles de la etapa saliente y la entrante.
-    detalles(ETAPAS[i], 1 - t, giro);
-    detalles(ETAPAS[j], t, giro);
+    ctx.shadowColor = "transparent"; ctx.shadowBlur = 0;
+    // Todo lo de dentro va recortado a la silueta. Los detalles de la etapa que sale se van al
+    // principio del cambio y los de la que entra llegan al final: nunca se ven dos piezas a la vez.
+    ctx.save();
+    trazar(pts); ctx.clip();
+    if (DIBUJO[ETAPAS[i]] && DIBUJO[ETAPAS[i]] === DIBUJO[ETAPAS[j]]) detalles(ETAPAS[i], 1);
+    else { detalles(ETAPAS[i], acotar(1 - t / 0.35)); detalles(ETAPAS[j], acotar((t - 0.65) / 0.35)); }
+    esmaltar(esmalte);
+    ctx.restore();
     ctx.restore();
   }
+  function angulo(etapa) { return etapa === "masa" ? -0.35 : 0; }
+  function colorAlfa(h, a) { const p = hex(h); return p ? `rgba(${p[0]},${p[1]},${p[2]},${a})` : "transparent"; }
   function mezclarColor(a, b, t) {
     const pa = hex(a), pb = hex(b);
     if (!pa || !pb) return t > 0.5 ? b : a;
@@ -199,8 +236,11 @@
   // ---------- Scroll → progreso ----------
   // Cada paso de texto lleva data-etapa. El progreso es la posición del centro de la
   // ventana respecto a los centros de los pasos, interpolada linealmente.
+  const pieza = canvas.closest(".torno-pieza");
   function medir() {
-    const centro = window.innerHeight * (window.innerWidth <= 860 ? 0.74 : 0.5);
+    const centro = window.innerWidth <= 860 && pieza
+      ? (Math.max(0, pieza.getBoundingClientRect().bottom) + window.innerHeight) / 2
+      : window.innerHeight * 0.5;
     const centros = pasos.map((p) => { const r = p.getBoundingClientRect(); return r.top + r.height / 2; });
     let prog = 0;
     if (centro <= centros[0]) prog = 0;
