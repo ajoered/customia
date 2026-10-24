@@ -1,33 +1,52 @@
-# Marca y estructura de la web (borrador v2)
+# Marca y estructura de la web (borrador v3)
 
 Titular: **AR Ventures, S.L.** La marca comercial puede ser distinta del nombre de la sociedad. En el aviso legal pondremos: *"[Marca] es una marca de AR Ventures, S.L."*
 
-## Nombre: conceptos
+## Nombre (v3: en la línea de Vitamina Jota)
 
-**Criterios:**
-- Un concepto con historia detrás, no un nombre descriptivo.
-- Se entiende por teléfono a la primera.
-- Encaja con la tesis: valor práctico, a medida, para el negocio de todos los días.
-- Tiene algún dominio libre.
+**Lo que pides:** un nombre con la gracia de *Vitamina Jota*, que no se limite a Madrid. Por eso descartamos Sereno.
 
-Dominios comprobados el 24/10/2026. "Libre" en .com sale del registro oficial (RDAP de Verisign). En .es y .ai solo comprobé que no tienen DNS, así que **hay que confirmarlo en el registrador**. Las palabras sueltas (sereno, sancho, molino, telar…) están ocupadas en todas las extensiones.
+**Por qué funciona Vitamina Jota:**
+- Junta una palabra cotidiana y cálida ("vitamina": lo que necesitas cada día) con un guiño al producto (la J del jamón y de las "jotas" del ibérico).
+- Se dice y se recuerda a la primera, y no presume.
 
-| # | Nombre | La historia detrás | Por qué encaja | Pegas | Dominios libres |
+**Dominios:** comprobados el 24/10/2026. "Libre" en .com sale del registro oficial; en .es y .ai solo sé que no tienen DNS, así que **hay que confirmarlo en el registrador**.
+
+| # | Nombre | La historia o el guiño | Frase de ejemplo | Pegas | Dominios libres |
 |---|---|---|---|---|---|
-| 1 ⭐ | **Sereno** | Los serenos guardaron las calles de Madrid de noche desde 1765 hasta finales de los 70. Tenían las llaves de todos los portales del barrio. Si un vecino daba tres palmadas y gritaba "¡Sereno!", contestaba "¡Voy!" y venía a abrirle | Es justo nuestro asistente: **despierto toda la noche y viene cuando lo llamas**. Es de confianza, del barrio, y tiene las llaves de tu negocio. Además, "sereno" significa tranquilo, que es lo que busca el dueño. El chat de la portada puede abrir con un *"¡Voy!"* | Muy madrileño (bien para empezar). Los menores de 40 no lo conocen, así que hay que contar la historia | serenoia.es · serenoia.ai · holasereno.es · holasereno.ai · elsereno.ai |
-| 2 | **Sancho** | Don Quijote veía gigantes donde había molinos; Sancho veía molinos. Cuando gobernó la ínsula Barataria lo hizo con sentido común | Es la tesis contra el hype: **IA con los pies en la tierra.** Todo el mundo vende gigantes; nosotros, lo que funciona. El chat: *"Habla con Sancho"* | En México "el sancho" es el amante de tu pareja, un problema si algún día vamos a Latinoamérica. Hay muchos negocios llamados Sancho | sanchoia.es · holasancho.es · holasancho.ai · elsancho.es |
-| 3 | **Duende** | En el cuento de los hermanos Grimm *El zapatero y los duendes* (1812), un zapatero pobre se despierta cada mañana con los zapatos hechos: unos duendes trabajan de noche y su negocio prospera. Y "tener duende" es ese encanto que no se explica | **El trabajo se hace mientras duermes** (el asistente), y una web "con duende" (el diseño) | Puede sonar infantil para un despacho o una clínica | duendeia.com · duendeia.es · duendeia.ai |
-| 4 | **Telar** | El telar de Jacquard (1804) fue la primera máquina programable: con tarjetas perforadas, cualquier taller podía tejer dibujos que antes solo hacían los maestros. Inspiró a Babbage, uno de los padres de la informática | **"A medida" hecho accesible,** el origen de la programación y la tesis del software a medida en una sola imagen | Más frío, y la historia hay que explicarla | telaria.ai |
-| 5 | **SaaStrería** | Juego de palabras: software como servicio (SaaS) más sastrería | Ingenioso para un público de tecnología | El dentista no sabe qué es SaaS. Por teléfono suena igual que "sastrería", así que escribirían sastreria.com, que está ocupado y no es nuestro | saastreria.com · saastreria.es · lasaastreria.com |
+| 1 ⭐ | **Enchufe** | Doble sentido: *enchufar* la IA a tu negocio y *tener enchufe*. Las grandes empresas siempre han tenido acceso privilegiado a la mejor tecnología; ahora tú también. Es la tesis en una palabra, con la ironía de Maxi | *"Las grandes empresas siempre han tenido enchufe. Ahora tú también."* | "Enchufe" suena a favoritismo, pero precisamente ahí está la gracia. Alguien muy formal (un despacho) puede torcer el gesto | enchufe.ai · enchufeia.com · enchufeia.es · tuenchufe.com |
+| 2 | **Marmita** | Obélix se cayó de pequeño en la marmita de la poción y por eso es fuerte para siempre. La aldea pequeña resiste al Imperio gracias a la poción, igual que la pyme frente a las grandes. "Nos caímos en la marmita" = somos una empresa nativa en IA | *"Nos caímos en la marmita de la IA. Ahora te toca a ti."* | Hay que conocer Astérix, aunque en España casi todo el mundo lo conoce. Tiene derechos de autor, así que nada de dibujos ni nombres de personajes | marmitaia.com · marmitaia.es · marmitaia.ai |
+| 3 | **Comodín** | La carta que vale para todo, y el *comodín de la llamada* de "¿Quién quiere ser millonario?": el asistente que coge el teléfono por ti | *"Tu comodín de la llamada."* | Algo genérico, y no transmite "a medida" | comodin.ai · comodinia.com · comodinia.es |
+| 4 | **Espinacas** | Las espinacas de Popeye: una lata y el marinero normal se vuelve fuerte. Es lo más parecido al patrón de "vitamina" (un alimento que te da poder) | *"Espinacas para tu negocio."* | Puede sonar a broma. Popeye tiene derechos de autor, así que nada de dibujos | espinacas.ai · espinacasia.com · espinacasia.es |
+| 5 | **Con Fundamento** | El "rico, rico y con fundamento" de Arguiñano: IA con sustancia, no humo | *"IA rica, rica y con fundamento."* | Es largo y depende de una referencia de la tele | confundamento.ai |
+| 6 | **Tirachinas** | David contra Goliat: una herramienta pequeña y barata que tumba al gigante | *"Para los que juegan contra gigantes."* | Largo; un poco agresivo | tirachinas.ai |
+| — | **Becario** (para el producto, no para la marca) | El becario que lo hace todo y nunca se queja | *"Contrata al becario que no duerme, no se queja y no pide vacaciones."* | Como marca abarata el precio. **Como nombre del asistente de WhatsApp es perfecto** | becarioia.com · becarioia.es · elbecario.es |
 
-**Recomendación: Sereno.** Es el que mejor junta producto, historia y sitio:
-- **Producto:** el asistente que nunca duerme.
-- **Historia:** el vecino de confianza con las llaves.
-- **Sitio:** Madrid.
+**Recomendación: Enchufe**, con el asistente de WhatsApp llamado **"el Becario"**.
+- **Enchufe:** cuenta la tesis en una palabra, tiene el humor y el descaro de Maxi y no está atado a Madrid.
+- **Dominio:** enchufe.ai parece libre (confírmalo ya, que un .ai con palabra sola no dura).
+- **El Becario:** nombrar así al asistente da juego para contenido en X del tipo *"Lo que hizo el Becario esta semana en un restaurante de Chamberí"*.
 
-Además, el nombre funciona igual para la marca y para el asistente. El segundo sería Sancho, si prefieres que el mensaje principal sea "contra el hype".
+**Si prefieres algo más cálido que irónico: Marmita.**
 
-**Antes de decidir:** busca el nombre en la OEPM (clases 42 y 35) y registra la marca a nombre de AR Ventures.
+**Antes de decidir:** búscalo en la OEPM (clases 35 y 42) y registra la marca a nombre de AR Ventures. "Enchufe" es una palabra común, así que conviene registrar marca mixta (palabra más logo).
+
+## Voz y tono (inspirado en Vitamina Jota)
+
+Lo que hace Maxi en vitaminajota.com y cómo lo traducimos:
+
+| Lo que hace Maxi | Ejemplo suyo | Nuestra versión |
+|---|---|---|
+| Habla en primera persona, con nombre | *"Soy Maxi y antes de que sigas leyendo…"* | *"Soy [tu nombre]. Monté esto después de ver lo que la IA hizo por mi propia empresa."* |
+| Dice para quién **no** es | *"Si buscas un jamón por precio, esta no es tu tienda."* | *"Si buscas IA porque está de moda, no somos para ti."* |
+| Nada de superlativos | *"No te voy a decir que son los mejores jamones del mundo, eso me daría vergüenza."* | *"No te vamos a prometer que la IA va a cambiar tu vida. Te vamos a enseñar cuánto dinero pierdes y cuánto recuperas."* |
+| Humor seco y honesto | *"Pon tu correo aquí, si no lo quieres no lo pongas."* · *"Tan amigos."* | Igual en los formularios y en el chat |
+| Pruebas antes que promesas | *"4067 reviews"* en portada | Casos con euros, en cuanto los tengamos |
+| Contacto humano | WhatsApp y su email personal: *"Siempre contesto aunque tarde un poco."* | Tu WhatsApp y tu email, no un info@ |
+| Ayuda a decidir, aunque no compres | Un test de 3 preguntas y una guía *"aunque compres en otro sitio, úsala"* | El chat de diagnóstico: te dice cuánto te cuesta el problema aunque no nos contrates |
+| Frase corta y sin adornos | *"Jamón del bueno, sin más."* | *"IA que sirve, sin más."* |
+
+**Sobre su cuenta de X** (<https://x.com/MaxiPortes>): no pude leerla porque X pide iniciar sesión. Si me pasas capturas de 5–10 tuits que te gusten, saco el patrón (temas, longitud, cómo engancha) y preparo una guía para tus tuits.
 
 ## Nuestra historia (borrador para "Quiénes somos")
 
@@ -81,7 +100,7 @@ Arriba, la frase sobre el titular, el titular y, justo debajo, **un chat con nue
    - Automatizaciones a medida.
 
    Cada uno con su resultado.
-5. **Cómo trabajamos:** entendemos tu negocio · construimos hasta que funcione · nos quedamos a mantenerlo. Los nombres de los pasos se adaptan a la marca que elijamos. Con Sereno, por ejemplo: *Escuchamos · Construimos · Vigilamos*.
+5. **Cómo trabajamos:** entendemos tu negocio · construimos hasta que funcione · nos quedamos a mantenerlo. Los nombres de los pasos se adaptan a la marca que elijamos. Con Enchufe, por ejemplo: *Escuchamos · Enchufamos · Nos quedamos*.
 6. **Antes y después** con un negocio inventado. Cuando los haya, casos reales con cifras.
 7. **Sectores:** los que salgan de los análisis.
 8. **Precio:** "Precio cerrado antes de empezar". Los precios "desde" se publican cuando los hayamos probado.
@@ -123,7 +142,8 @@ Sin cambios respecto a la v1. La primera versión:
 
 ## Fuentes
 
-- Serenos de Madrid (El Debate): <https://www.eldebate.com/historia/20230720/oficios-ayer-serenos-madrid-guardianes-calles-caer-noche_126981.html>
+- Vitamina Jota (referencia de tono): <https://www.vitaminajota.com/>
+- Serenos de Madrid, opción descartada (El Debate): <https://www.eldebate.com/historia/20230720/oficios-ayer-serenos-madrid-guardianes-calles-caer-noche_126981.html>
 - El sereno que guardaba tu calle (eldiario.es): <https://www.eldiario.es/madrid/somos/malasana/el-sereno-que-guardaba-tu-calle-y-te-vigilaba-a-ti_1_6423534.html>
 - La llamada al sereno (columna de Alfonso Ussía en El Debate): <https://www.eldebate.com/opinion/20250623/sereno_309566.html>
 - Prohibición de Meta a los chatbots generales: <https://respond.io/blog/whatsapp-general-purpose-chatbots-ban>
