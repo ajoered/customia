@@ -386,6 +386,43 @@
     let mejor = pasosTaller[0], d = Infinity;
     pasosTaller.forEach((p) => { const r = p.getBoundingClientRect(); const c = r.top + r.height / 2; const dd = Math.abs(c - linea); if (dd < d) { d = dd; mejor = p; } });
     maquetas.forEach((m) => m.classList.toggle("activa", m.dataset.maqueta === mejor.dataset.maqueta));
+    // La web de ejemplo hace scroll dentro del móvil según avanzas por su paso.
+    const pasoWeb = pasosTaller.find((p) => p.dataset.maqueta === "web");
+    const scrollWeb = document.getElementById("m-scroll");
+    if (pasoWeb && scrollWeb) {
+      // La portada de la web de ejemplo ocupa toda la pantalla del móvil: solo foto y "Reservar ahora".
+      const hero = scrollWeb.querySelector(".m-hero");
+      const alto = scrollWeb.parentElement.clientHeight;
+      if (hero && alto && hero.style.height !== alto + "px") hero.style.height = alto + "px";
+      const r = pasoWeb.getBoundingClientRect();
+      const t = Math.min(1, Math.max(0, (linea - r.top) / r.height));
+      const max = Math.max(0, scrollWeb.scrollHeight - scrollWeb.parentElement.clientHeight);
+      scrollWeb.style.transform = `translateY(${-Math.round(max * Math.min(1, t * 1.25))}px)`;
+    }
+    // La conversación de WhatsApp se escribe sola cuando su paso está a la vista.
+    if (mejor.dataset.maqueta === "wa") reproducirChat(); else pararChat();
+  }
+  let chatTimers = [];
+  let chatActivo = false;
+  function reproducirChat() {
+    if (chatActivo) return;
+    chatActivo = true;
+    const caja = document.getElementById("m-chat");
+    if (!caja) return;
+    const bs = Array.from(caja.querySelectorAll(".b[data-t]"));
+    const esc = caja.querySelector(".b.esc");
+    bs.forEach((b) => b.classList.remove("visto"));
+    bs.forEach((b, i) => {
+      const t = Number(b.dataset.t);
+      const esBot = b.classList.contains("yo");
+      if (esBot && esc) chatTimers.push(setTimeout(() => { esc.classList.add("visto"); caja.scrollTop = caja.scrollHeight; }, Math.max(0, t - 1100)));
+      chatTimers.push(setTimeout(() => { if (esc) esc.classList.remove("visto"); b.classList.add("visto"); caja.scrollTop = caja.scrollHeight; }, t));
+    });
+  }
+  function pararChat() {
+    if (!chatActivo) return;
+    chatActivo = false;
+    chatTimers.forEach(clearTimeout); chatTimers = [];
   }
   window.addEventListener("scroll", tallerMedir, { passive: true });
   window.addEventListener("resize", tallerMedir);

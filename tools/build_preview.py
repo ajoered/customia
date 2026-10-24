@@ -42,10 +42,12 @@ def main(salida):
     out = pathlib.Path(salida)
     out.mkdir(parents=True, exist_ok=True)
     css = css_con_fuentes()
-    js = (RAIZ / "assets" / "app.js").read_text(encoding="utf-8") + "\n" + (RAIZ / "assets" / "torno.js").read_text(encoding="utf-8")
+    js = (RAIZ / "assets" / "app.js").read_text(encoding="utf-8").replace("assets/", "") + "\n" + (RAIZ / "assets" / "torno.js").read_text(encoding="utf-8")
 
     # Portada: el visor de Artifacts pone su propio doctype/head/body.
     index = (RAIZ / "index.html").read_text(encoding="utf-8")
+    foto = base64.b64encode((RAIZ / "assets" / "casa-lucia.jpg").read_bytes()).decode()
+    index = index.replace("url('assets/casa-lucia.jpg')", f"url('data:image/jpeg;base64,{foto}')")
     pagina = "\n".join([
         f"<title>{titulo(index)}</title>",
         '<meta name="claude:viewport-fit-sides" content="cover">',

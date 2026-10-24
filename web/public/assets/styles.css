@@ -198,11 +198,23 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 /* Maquetas de producto (hechas en HTML para que pesen poco) */
 .movil { width: min(300px, 100%); aspect-ratio: 9 / 18.6; background: #1d1b17; border-radius: 36px; padding: 10px; box-shadow: var(--sombra); }
 .movil-pantalla { background: #fffdf8; color: #1d1b17; border-radius: 28px; height: 100%; overflow: hidden; display: flex; flex-direction: column; font-size: 11px; line-height: 1.35; }
-.m-web .m-foto { height: 44%; background: linear-gradient(160deg, #8f725a, #4a3a2c); color: #fffdf8; padding: 16px 14px; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; }
-.m-web .m-foto strong { font-family: var(--serif); font-size: 19px; line-height: 1.1; font-weight: 600; }
-.m-web .m-foto span { opacity: .85; }
-.m-web .m-cuerpo { padding: 12px 14px; display: flex; flex-direction: column; gap: 9px; }
-.m-web .m-btn { background: #2f6b86; color: #ffffff; text-align: center; border-radius: 999px; padding: 8px; font-weight: 700; }
+.m-web { position: relative; }
+.m-scroll { position: absolute; inset: 0 0 auto; will-change: transform; transition: transform .35s ease-out; }
+.movil { min-height: 0; }
+.movil-pantalla { min-height: 0; }
+.m-hero { height: 100%; min-height: 300px; background-size: cover; background-position: center; display: flex; align-items: flex-end; position: relative; }
+.m-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(20,14,10,.78)); }
+.m-hero-texto { position: relative; z-index: 1; color: #fffdf8; padding: 16px 14px; display: flex; flex-direction: column; gap: 5px; width: 100%; }
+.m-hero-texto strong { font-family: var(--serif); font-size: 22px; line-height: 1.05; font-weight: 600; }
+.m-hero-texto span { opacity: .9; }
+.m-web .m-btn { background: #2f6b86; color: #ffffff; text-align: center; border-radius: 999px; padding: 9px; font-weight: 700; margin-top: 6px; display: block; }
+.m-web .m-cuerpo { padding: 12px 14px 6px; display: flex; flex-direction: column; gap: 8px; }
+.m-tit { font-family: var(--serif); font-weight: 600; font-size: 14px; margin-top: 4px; }
+.m-reserva { margin: 8px 10px 12px; background: #f6f3ec; border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 7px; }
+.m-campo { display: flex; justify-content: space-between; background: #fff; border: 1px solid #e2ddd2; border-radius: 8px; padding: 7px 9px; }
+.m-campo b { font-family: var(--mono); font-weight: 500; }
+.m-btn-ok { margin-top: 4px; }
+.m-peq { font-size: 9px; color: #5f5a51; text-align: center; }
 .m-web .m-fila { display: flex; justify-content: space-between; border-bottom: 1px solid #e2ddd2; padding-bottom: 6px; }
 .m-web .m-fila b { font-family: var(--mono); font-weight: 500; }
 .m-wa { background: #efe7dc; }
@@ -210,7 +222,12 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .m-wa .m-top i { width: 24px; height: 24px; border-radius: 50%; background: #b89a7e; flex: none; }
 .m-wa .m-top small { display: block; opacity: .8; font-size: 9px; }
 .m-wa .m-chat { padding: 10px; display: flex; flex-direction: column; gap: 6px; }
-.m-wa .b { max-width: 84%; padding: 6px 9px; border-radius: 10px; background: #fff; }
+.m-wa .b { max-width: 84%; padding: 6px 9px; border-radius: 10px; background: #fff; opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .3s; }
+.m-wa .b.visto { opacity: 1; transform: none; }
+.m-wa .b.esc { display: none; gap: 4px; align-items: center; padding: 8px 10px; }
+.m-wa .b.esc.visto { display: inline-flex; }
+.m-wa .b.esc i { width: 5px; height: 5px; border-radius: 50%; background: #8a8a8a; animation: latido 1.2s infinite ease-in-out; }
+.m-wa .b.esc i:nth-child(2) { animation-delay: .15s; } .m-wa .b.esc i:nth-child(3) { animation-delay: .3s; }
 .m-wa .b.yo { align-self: flex-end; background: #dcf8c6; }
 .m-wa .b time { display: block; text-align: right; font-size: 8px; opacity: .55; margin-top: 2px; }
 .panel { width: 100%; max-width: 520px; background: #fffdf8; color: #1d1b17; border: 1px solid #e2ddd2; border-radius: 14px; box-shadow: var(--sombra); overflow: hidden; font-size: 11px; }

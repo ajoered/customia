@@ -112,7 +112,6 @@
           <p class="etiqueta">Qué hacemos</p>
           <h2 id="construir-t">Lo que podemos construir para tu negocio.</h2>
           <p class="taller-sub">Primero lo que más se nota. Después, lo que te falte.</p>
-          <p class="taller-nota">Los ejemplos son de un restaurante inventado, Casa Lucía. En cuanto haya clientes reales, verás los suyos.</p>
         </div>
         <div class="paso-taller" data-maqueta="web">
           <p class="etiqueta">Tu web</p>
@@ -135,26 +134,40 @@
       </div>
       <div class="taller-escena" aria-hidden="true">
         <div class="maqueta activa" data-maqueta="web">
-          <div class="movil"><div class="movil-pantalla m-web">
-            <div class="m-foto"><strong>Casa Lucía</strong><span>Asador · salones para hasta 80 personas</span></div>
+          <div class="movil"><div class="movil-pantalla m-web"><div class="m-scroll" id="m-scroll">
+            <div class="m-hero" style="background-image:url('assets/casa-lucia.jpg')">
+              <div class="m-hero-texto"><strong>Casa Lucía</strong><span>Asador en Chamberí · salones para hasta 80</span><a class="m-btn">Reservar ahora</a></div>
+            </div>
             <div class="m-cuerpo">
-              <div class="m-btn">Reservar mesa</div>
-              <div class="m-fila"><span>Menú de grupo</span><b>desde 38 €</b></div>
+              <p class="m-tit">Menú de grupo</p>
+              <div class="m-fila"><span>Menú Tajo</span><b>38 €</b></div>
+              <div class="m-fila"><span>Menú Jardín</span><b>52 €</b></div>
+              <div class="m-fila"><span>Opción vegetariana</span><b>sí</b></div>
+              <p class="m-tit">Salones</p>
               <div class="m-fila"><span>Salón Tajo</span><b>hasta 40</b></div>
               <div class="m-fila"><span>Salón Jardín</span><b>hasta 80</b></div>
-              <div class="m-fila"><span>Abierto hoy</span><b>13:00–00:00</b></div>
             </div>
-          </div></div>
-          <p class="maqueta-pie">Cambias el precio del menú desde el móvil. Tarda 10 segundos.</p>
+            <div class="m-reserva">
+              <p class="m-tit">Reserva</p>
+              <div class="m-campo"><span>Fecha</span><b>vie 19 dic</b></div>
+              <div class="m-campo"><span>Personas</span><b>30</b></div>
+              <div class="m-campo"><span>Salón</span><b>Tajo</b></div>
+              <div class="m-btn m-btn-ok">Confirmar reserva</div>
+              <p class="m-peq">Sin señal hasta que Lucía confirme.</p>
+            </div>
+          </div></div></div>
+          <p class="maqueta-pie">Cambias un precio desde el móvil en diez segundos.</p>
         </div>
         <div class="maqueta" data-maqueta="wa">
           <div class="movil"><div class="movil-pantalla m-wa">
             <div class="m-top"><i></i><div>Casa Lucía<small>Asistente · responde al momento</small></div></div>
-            <div class="m-chat">
-              <div class="b">Hola, ¿tenéis sitio para una cena de empresa el 19 de diciembre? Seríamos unos 30.<time>23:41</time></div>
-              <div class="b yo">Hola, soy el asistente de Casa Lucía (una IA). El 19 tenemos libre el Salón Tajo, para hasta 40. ¿Prefieres menú de grupo desde 38 € o carta?<time>23:41</time></div>
-              <div class="b">Menú de grupo. ¿Podemos tener opción vegetariana?<time>23:42</time></div>
-              <div class="b yo">Sí, hay dos. Te lo dejo apuntado: 19 de diciembre, 30 personas, Salón Tajo, menú de grupo. Lucía te confirma mañana por aquí. ¿A qué nombre?<time>23:42</time></div>
+            <div class="m-chat" id="m-chat">
+              <div class="b" data-t="0">Hola, ¿tenéis sitio para una cena de empresa el 19 de diciembre? Seríamos unos 30.<time>23:41</time></div>
+              <div class="b yo" data-t="1600">Hola, soy el asistente de Casa Lucía (una IA). El 19 tenemos libre el Salón Tajo, para hasta 40. ¿Prefieres menú de grupo desde 38 € o carta?<time>23:41</time></div>
+              <div class="b" data-t="3600">Menú de grupo. ¿Podemos tener opción vegetariana?<time>23:42</time></div>
+              <div class="b yo" data-t="5200">Sí, hay dos. Te lo dejo apuntado: 19 de diciembre, 30 personas, Salón Tajo, menú de grupo. Lucía te confirma mañana por aquí. ¿A qué nombre?<time>23:42</time></div>
+              <div class="b" data-t="7200">Marta, de Grupo Vela. ¡Gracias!<time>23:43</time></div>
+              <div class="b esc" aria-hidden="true"><i></i><i></i><i></i></div>
             </div>
           </div></div>
           <p class="maqueta-pie">A las 23:41, un jueves. Lucía lo ve por la mañana con todo apuntado.</p>
