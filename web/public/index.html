@@ -4,28 +4,33 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Arcilla Studio</title>
-<meta name="description" content="Webs, asistentes de WhatsApp y herramientas con IA hechas a la medida de tu negocio. Te lo enseñamos funcionando antes de que pagues nada.">
-<meta property="og:title" content="Arcilla Studio">
-<meta property="og:description" content="Software e IA a medida para negocios. Más clientes, menos teléfono.">
+<meta name="description" content="Hago webs, asistentes de WhatsApp y programas a medida para negocios de Madrid. Te lo enseño funcionando antes de que pagues nada.">
+<meta property="og:title" content="Arcilla Studio: webs, WhatsApp y software a medida para negocios">
+<meta property="og:description" content="Más clientes. Menos teléfono. Te lo enseño funcionando antes de que pagues nada.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#14286f">
+<meta name="theme-color" content="#f6f3ec">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="assets/fonts/corben-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/styles.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Arcilla Studio","description":"Webs, asistentes de WhatsApp y software a medida para pymes.","areaServed":"Madrid, España","url":"https://arcillastudio.com","telephone":"[tu teléfono]","priceRange":"€€","parentOrganization":{"@type":"Organization","name":"AR Ventures, S.L."}}
+</script>
 <script src="assets/app.js" defer></script>
+<script src="assets/torno.js" defer></script>
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
 
-<header class="cabecera">
+<header class="cabecera" id="cabecera">
   <div class="wrap">
     <a class="marca" href="./" aria-label="Arcilla Studio, inicio"><span class="marca-forma" aria-hidden="true"></span>Arcilla Studio</a>
     <nav class="nav" aria-label="Principal">
-      <a href="#que-hacemos">Qué hacemos</a>
-      <a href="#como-trabajamos">Cómo trabajamos</a>
-      <a href="#quien">Quién está detrás</a>
-      <a class="boton-llamar" href="#diagnostico">Diagnóstico gratis</a>
+      <a href="#construir">Qué hago</a>
+      <a href="#como">Cómo lo hago</a>
+      <a href="#quien">Quién soy</a>
+      <a class="tel" href="#diagnostico" data-config="telefono">[tu teléfono]</a>
+      <a class="boton" href="#diagnostico">Diagnóstico gratis</a>
     </nav>
   </div>
 </header>
@@ -33,233 +38,260 @@
 <main id="contenido">
   <section class="portada" aria-labelledby="titular">
     <div class="wrap">
-      <div class="portada-texto">
-        <p class="etiqueta">Software e IA a medida para negocios</p>
-        <h1 id="titular"><span>Más clientes.</span> <span>Menos teléfono.</span></h1>
-        <p class="entrada">Te hacemos la web, el asistente de WhatsApp y las herramientas que tu negocio necesita, a su medida. <strong>Te lo enseñamos funcionando antes de que pagues nada.</strong></p>
-        <ul class="portada-pruebas">
-          <li>Precio cerrado antes de empezar</li>
-          <li>Hablas con quien lo construye</li>
-          <li>Nos quedamos a cuidarlo</li>
-        </ul>
-      </div>
-
-      <div id="diagnostico">
-        <section class="chat" aria-label="Diagnóstico con el asistente">
-          <div class="chat-cabecera">
-            <span class="chat-avatar" aria-hidden="true"></span>
-            <div class="chat-titulo">
-              <strong>Asistente de Arcilla</strong>
-              <span>IA · contesta al momento</span>
-            </div>
-            <span class="chat-sello">2 min</span>
-          </div>
-          <div class="chat-mensajes" id="chat-mensajes" aria-live="polite">
-            <div class="msg msg-bot">Hola. Soy el asistente de Arcilla Studio, una inteligencia artificial. En dos minutos te digo cuánto te puede estar costando tu problema y qué haríamos. ¿Qué te quita más tiempo, o por dónde se te escapan clientes?</div>
-            <div class="opciones" id="opciones-iniciales">
-              <button class="opcion" type="button" data-valor="telefono">No llego a coger el teléfono</button>
-              <button class="opcion" type="button" data-valor="whatsapp">Contesto WhatsApps a todas horas</button>
-              <button class="opcion" type="button" data-valor="web">Mi web no me trae clientes</button>
-              <button class="opcion" type="button" data-valor="tareas">Pierdo horas con presupuestos o reservas</button>
-              <button class="opcion" type="button" data-valor="otro">Otra cosa</button>
-            </div>
-          </div>
-          <form class="chat-formulario" id="chat-formulario" autocomplete="off">
-            <label class="saltar" for="chat-entrada">Escribe tu mensaje</label>
-            <textarea id="chat-entrada" rows="1" maxlength="800" placeholder="Escribe tu respuesta"></textarea>
-            <button class="boton" type="submit" id="chat-enviar">Enviar</button>
-          </form>
-          <p class="chat-nota">Es una IA y puede equivocarse. No escribas datos de salud ni bancarios. <a href="privacidad.html">Privacidad</a>.</p>
-        </section>
-        <p class="chat-humano">¿Prefieres hablar con una persona? Llama o escribe por WhatsApp al <strong data-config="telefono">[tu teléfono]</strong>.</p>
+      <p class="etiqueta">Webs · asistentes de WhatsApp · software a medida</p>
+      <h1 id="titular">Más clientes. <em class="acento">Menos teléfono.</em></h1>
+      <p class="sub">Hago webs, asistentes de WhatsApp y programas a medida para negocios que no tienen tiempo para esto. <strong>Te lo enseño funcionando antes de que pagues nada.</strong></p>
+      <div class="acciones">
+        <a class="boton" href="#diagnostico">Cuéntame tu negocio</a>
+        <span class="o">o llámame al <a class="tel" href="#diagnostico" data-config="telefono">[tu teléfono]</a></span>
       </div>
     </div>
   </section>
 
-  <section class="banda" aria-labelledby="ladrillo">
+  <section class="ventana-wrap" id="diagnostico" aria-label="Diagnóstico con el asistente">
     <div class="wrap">
-      <div class="banda-texto">
-        <h2 id="ladrillo">El software era un ladrillo. <span>Ahora es arcilla.</span></h2>
-        <p>Hasta ahora tenías dos opciones: adaptarte a un programa hecho para todos o pagar decenas de miles de euros por uno a medida. Las grandes empresas elegían lo segundo. Con la IA, hacerlo a medida cuesta una fracción. Nosotros lo moldeamos para tu negocio.</p>
-        <p class="dato"><strong>58 %</strong> de las grandes empresas españolas ya usa IA. <strong>13 %</strong> de las microempresas. Fuente: Cotec, con datos del INE de 2024.</p>
+      <div class="chat">
+        <div class="chat-cabecera">
+          <span class="chat-avatar" aria-hidden="true"></span>
+          <div class="chat-titulo"><strong>Asistente de Arcilla</strong><span>Una IA · contesta al momento</span></div>
+          <span class="chat-sello">2 min</span>
+        </div>
+        <div class="chat-mensajes" id="chat-mensajes" aria-live="polite">
+          <div class="msg msg-bot">Hola. Soy el asistente de Arcilla Studio, una inteligencia artificial. Cuéntame qué negocio tienes y qué te quita el sueño. En dos minutos te digo cuánto te está costando y si puedo ayudarte.</div>
+          <div class="opciones" id="opciones-iniciales">
+            <button class="opcion" type="button" data-valor="telefono">No llego a coger el teléfono</button>
+            <button class="opcion" type="button" data-valor="whatsapp">Contesto WhatsApps a todas horas</button>
+            <button class="opcion" type="button" data-valor="web">Mi web no me trae clientes</button>
+            <button class="opcion" type="button" data-valor="tareas">Pierdo horas con presupuestos o reservas</button>
+            <button class="opcion" type="button" data-valor="otro">Otra cosa</button>
+          </div>
+        </div>
+        <form class="chat-formulario" id="chat-formulario" autocomplete="off">
+          <label class="saltar" for="chat-entrada">Escribe tu mensaje</label>
+          <textarea id="chat-entrada" rows="1" maxlength="800" placeholder="Escribe tu respuesta"></textarea>
+          <button class="boton" type="submit" id="chat-enviar">Enviar</button>
+        </form>
+        <p class="chat-nota">Es una IA y puede equivocarse. No escribas datos de salud ni bancarios. <a href="privacidad.html">Privacidad</a>.</p>
       </div>
-      <figure class="torno" aria-hidden="true">
-        <div class="forma"></div>
-        <figcaption>ladrillo hueco → pieza a medida</figcaption>
+      <p class="chat-humano">¿Prefieres una persona? Te contesto yo: <strong class="tel" data-config="telefono">[tu teléfono]</strong>, también por WhatsApp.</p>
+    </div>
+  </section>
+
+  <section class="torno" aria-label="El software era un ladrillo; ahora es arcilla">
+    <div class="wrap">
+      <figure class="torno-pieza">
+        <canvas id="torno-canvas" width="520" height="520" aria-hidden="true"></canvas>
+        <figcaption id="torno-cap">ladrillo</figcaption>
       </figure>
-    </div>
-  </section>
-
-  <section class="seccion" aria-labelledby="fugas">
-    <div class="wrap">
-      <div class="seccion-cabeza">
-        <p class="etiqueta">Dónde se te escapa el dinero</p>
-        <h2 id="fugas">Tres fugas que vemos cada semana</h2>
-      </div>
-      <div class="fugas">
-        <article class="fuga">
-          <p class="fuga-dato">«por email»</p>
-          <h3>Consultas que nadie contesta</h3>
-          <p>Hay restaurantes con más de mil reseñas en Google que todavía piden "solicite el menú de grupos por email". Mientras atiendes, el teléfono suena y el WhatsApp se acumula. Cada consulta perdida puede ser una cena de empresa o una boda.</p>
-        </article>
-        <article class="fuga">
-          <p class="fuga-dato">27 %</p>
-          <h3>Webs que en el móvil asustan</h3>
-          <p>De 180 webs de hostales y hoteles pequeños de Madrid que revisamos, el 27 % sale como "No seguro" en Chrome. Muchas no se ven bien en el móvil, que es por donde entra casi todo el mundo.</p>
-          <p class="fuente">Revisión propia, octubre de 2026.</p>
-        </article>
-        <article class="fuga">
-          <p class="fuga-dato">15–20 %</p>
-          <h3>Comisiones que se queda otro</h3>
-          <p>Portales y plataformas de reservas se llevan un trozo de cada cliente que podría haberte llegado directo. En Booking, en torno al 15–20 % de cada reserva.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="seccion" id="que-hacemos" aria-labelledby="hacemos">
-    <div class="wrap">
-      <div class="seccion-cabeza">
-        <p class="etiqueta">Qué hacemos</p>
-        <h2 id="hacemos">Tres cosas, hechas a tu medida</h2>
-      </div>
-      <div class="productos">
-        <article class="producto">
-          <h3>Web a medida</h3>
-          <p>Rápida, pensada para el móvil y escrita para que te llamen. Con tus precios, tus fotos, tus menús y tus reservas. Nada de plantillas.</p>
-          <p class="efecto">Más contactos directos</p>
-        </article>
-        <article class="producto">
-          <h3>Asistente de WhatsApp</h3>
-          <p>Contesta al momento, a cualquier hora, en español y en inglés. Pregunta lo necesario (fecha, personas, presupuesto) y te pasa un resumen. Dice siempre que es una IA y nunca se inventa un precio.</p>
-          <p class="efecto">Ninguna consulta sin respuesta</p>
-        </article>
-        <article class="producto">
-          <h3>Herramientas a medida</h3>
-          <p>¿Qué haces a mano cada semana? Presupuestos, recordatorios de citas, pedir reseñas, pasar facturas. Lo automatizamos y tú solo revisas.</p>
-          <p class="efecto">Horas libres cada semana</p>
-        </article>
-      </div>
-      <p class="contra">Si buscas IA porque está de moda, no somos para ti. <span>Si quieres dejar de perder clientes, hablamos.</span></p>
-    </div>
-  </section>
-
-  <section class="seccion" id="como-trabajamos" aria-labelledby="como">
-    <div class="wrap">
-      <div class="seccion-cabeza">
-        <p class="etiqueta">Cómo trabajamos</p>
-        <h2 id="como">Como en un taller de cerámica</h2>
-      </div>
-      <ol class="pasos">
-        <li class="paso">
-          <h3>Amasamos</h3>
-          <p>Veinte minutos contigo, por teléfono o en tu negocio, para entender cómo te llegan los clientes y dónde se pierden.</p>
-          <p class="detalle">Gratis. Si no te podemos ayudar, te lo decimos.</p>
-        </li>
-        <li class="paso">
-          <h3>Modelamos</h3>
-          <p>Lo construimos y lo ajustamos contigo hasta que encaje. Lo ves funcionando antes de pagar.</p>
-          <p class="detalle">Precio cerrado y por escrito antes de empezar.</p>
-        </li>
-        <li class="paso">
-          <h3>Cocemos y cuidamos</h3>
-          <p>Lo dejamos funcionando y nos quedamos. Por una cuota fija lo mantenemos, lo mejoramos y cada mes te contamos en euros qué ha pasado.</p>
-          <p class="detalle">Lo que sale del horno ya no se deforma.</p>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <section class="seccion" aria-labelledby="para-quien">
-    <div class="wrap">
-      <div class="seccion-cabeza">
-        <p class="etiqueta">Para quién</p>
-        <h2 id="para-quien">Empezamos por quien más lo nota</h2>
-        <p>Negocios con mucho cliente y poco tiempo, donde una consulta perdida cuesta dinero de verdad.</p>
-      </div>
-      <ul class="sectores">
-        <li>Restaurantes con salones y eventos</li>
-        <li>Fincas para bodas</li>
-        <li>Hoteles y hostales</li>
-        <li>Clínicas</li>
-        <li>Reformas y cocinas</li>
-        <li class="otro">¿Otro sector? Pruébalo en el chat</li>
-      </ul>
-      <ul class="compromisos">
-        <li>Hablas con quien lo construye, no con un comercial.</li>
-        <li>Tu web y tus datos son tuyos. Si un día te vas, te los llevas.</li>
-        <li>El asistente siempre dice que es una IA, como exige la ley europea.</li>
-        <li>Firmamos contigo el contrato de protección de datos (RGPD).</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="seccion" id="quien" aria-labelledby="quien-titulo">
-    <div class="wrap">
-      <div class="fundador">
-        <div class="fundador-foto">Tu foto aquí</div>
-        <div class="fundador-texto">
-          <p class="etiqueta">Quién está detrás</p>
-          <h2 id="quien-titulo">Lo monté después de vivirlo</h2>
-          <p>Soy <span class="pendiente">[tu nombre]</span>. Construyendo Hyrise me di cuenta del salto: con IA empecé a montar en días sistemas propios que antes habrían necesitado un equipo y meses. <span class="pendiente">[Un ejemplo concreto: qué construiste y cuánto tiempo o dinero te ahorra]</span>.</p>
-          <p>Ese salto lo están dando las grandes empresas. La clínica, el hostal o el restaurante de siempre se están quedando fuera, no porque no lo necesiten, sino porque nadie se lo hace a su medida ni a su precio. Monté Arcilla Studio para eso.</p>
-          <p class="firma"><span class="pendiente">[Tu nombre]</span>, fundador</p>
+      <div class="torno-pasos">
+        <div class="paso-torno" data-etapa="ladrillo">
+          <h2>El software era <strong>un ladrillo.</strong></h2>
+          <p>Comprabas un programa hecho para todos y te adaptabas tú. O pagabas decenas de miles de euros por uno a medida. Eso solo lo hacían las grandes empresas.</p>
+          <p class="dato"><strong>58 %</strong>de las grandes empresas españolas ya usa IA. <strong>13 %</strong>de las microempresas. Cotec, con datos del INE.</p>
+        </div>
+        <div class="paso-torno" data-etapa="ladrillo-gira">
+          <h2>Y te adaptabas tú <strong>a él.</strong></h2>
+          <p>El Excel que se rompe. La web que hizo un sobrino. El WhatsApp que contestas a las once de la noche. No es que te falte tecnología: es que la que hay no tiene tu forma.</p>
+        </div>
+        <div class="paso-torno" data-etapa="masa">
+          <h2>Ahora es <strong>arcilla.</strong></h2>
+          <p>Con inteligencia artificial, hacer software a la medida de un negocio cuesta una fracción de lo que costaba. Yo lo moldeo para el tuyo. Tú no tienes que entender de tecnología.</p>
+        </div>
+        <div class="paso-torno" data-etapa="movil">
+          <h2>Toma la forma de <strong>tu web.</strong></h2>
+          <p>Rápida, pensada para el móvil y escrita para que te llamen. Con tus precios, tus menús, tus fotos y tus reservas.</p>
+          <ul class="lista"><li>Más contactos directos, menos comisiones a portales</li><li>Lista en dos o tres semanas</li></ul>
+        </div>
+        <div class="paso-torno" data-etapa="burbuja">
+          <h2>De <strong>tu WhatsApp.</strong></h2>
+          <p>Un asistente que contesta al momento, a cualquier hora, en español y en inglés. Pregunta fecha, personas y presupuesto, y te pasa un resumen. Dice siempre que es una IA y nunca se inventa un precio.</p>
+          <ul class="lista"><li>Ninguna consulta sin respuesta</li><li>Tú solo cierras</li></ul>
+        </div>
+        <div class="paso-torno" data-etapa="panel">
+          <h2>O de lo que a tu negocio <strong>le falte.</strong></h2>
+          <p>Reservas que entran solas en tu calendario. Presupuestos que se calculan con tus tarifas. Un panel con tus clientes, tus citas y tus cobros. Lo que haces a mano cada semana, hecho a tu medida.</p>
+          <ul class="lista"><li>Horas libres cada semana</li><li>Tus datos son tuyos</li></ul>
+        </div>
+        <div class="paso-torno" data-etapa="horno">
+          <h2>Pasa por el horno <strong>antes de entregarse.</strong></h2>
+          <p>Lo pruebo contigo, con tus datos de verdad, hasta que encaje. Lo ves funcionando antes de pagar la parte principal.</p>
+        </div>
+        <div class="paso-torno" data-etapa="vasija">
+          <h2>Y después <strong>lo cuido.</strong></h2>
+          <p>Por una cuota fija lo mantengo, lo mejoro y cada mes te cuento en euros qué ha pasado: reservas, consultas atendidas, horas recuperadas.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="seccion" aria-labelledby="preguntas">
+  <section class="seccion" id="construir" aria-labelledby="construir-t">
     <div class="wrap">
       <div class="seccion-cabeza">
-        <p class="etiqueta">Preguntas</p>
-        <h2 id="preguntas">Lo que nos suelen preguntar</h2>
+        <p class="etiqueta">Lo que puedo construir para tu negocio</p>
+        <h2 id="construir-t">Tres cosas, hechas a tu medida</h2>
+        <p>Así se ven. Son ejemplos de un restaurante inventado; cuando tenga clientes reales, verás los suyos.</p>
       </div>
-      <div class="preguntas">
-        <details>
-          <summary>¿Tengo que saber de tecnología?</summary>
-          <p>No. Tú nos cuentas cómo trabajas y nosotros nos ocupamos del resto. Si algo hay que aprender, te lo enseñamos en una sesión y por escrito.</p>
-        </details>
-        <details>
-          <summary>¿Y si no me gusta?</summary>
-          <p>No pagas. Te enseñamos la web o el asistente funcionando antes de cobrarte la parte principal del proyecto.</p>
-        </details>
-        <details>
-          <summary>¿Qué pasa con mi web, mi dominio y mi email actuales?</summary>
-          <p>Nos encargamos de la migración. El dominio y el email siguen siendo tuyos, a tu nombre.</p>
-        </details>
-        <details>
-          <summary>¿Cuánto cuesta?</summary>
-          <p>Depende de lo que haga falta, por eso lo vemos en la llamada. Te damos un precio cerrado y por escrito antes de empezar, con la cuota mensual incluida. Sin sorpresas.</p>
-        </details>
-        <details>
-          <summary>¿El asistente dice que es una IA?</summary>
-          <p>Siempre, desde el primer mensaje. Lo exige el Reglamento europeo de IA desde agosto de 2026 y nos parece lo justo.</p>
-        </details>
-        <details>
-          <summary>¿Qué hacéis con los datos de mis clientes?</summary>
-          <p>Solo los usamos para lo que tú nos encargas. Firmamos contigo un contrato de encargado del tratamiento, como pide el RGPD, y te explicamos qué proveedores intervienen.</p>
-        </details>
+      <div class="productos">
+        <article class="producto">
+          <div class="producto-texto">
+            <p class="etiqueta">Web a medida</p>
+            <h3>Una web que trae reservas, no visitas</h3>
+            <p>Carga en un segundo, se ve bien en el móvil y tiene un botón claro para reservar o pedir presupuesto. Sin plantillas: con tu marca, tus fotos y tus textos.</p>
+            <p class="efecto">Más reservas directas</p>
+            <ul class="ejemplos"><li>Restaurantes con salones</li><li>Fincas para bodas</li><li>Hostales</li><li>Clínicas</li></ul>
+          </div>
+          <div class="maqueta">
+            <div class="movil" aria-label="Ejemplo de web de restaurante en un móvil">
+              <div class="movil-pantalla m-web">
+                <div class="m-foto"><strong>Casa Lucía</strong><span>Asador · salones para hasta 80 personas</span></div>
+                <div class="m-cuerpo">
+                  <div class="m-btn">Reservar mesa</div>
+                  <div class="m-fila"><span>Menú de grupo</span><b>desde 38 €</b></div>
+                  <div class="m-fila"><span>Salón Tajo</span><b>hasta 40</b></div>
+                  <div class="m-fila"><span>Salón Jardín</span><b>hasta 80</b></div>
+                  <div class="m-fila"><span>Abierto hoy</span><b>13:00–00:00</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="producto">
+          <div class="producto-texto">
+            <p class="etiqueta">Asistente de WhatsApp</p>
+            <h3>Contesta solo, tú cierras</h3>
+            <p>Atiende las consultas en el momento, pregunta lo necesario y te pasa un resumen. De noche, en festivo y en inglés. Siempre dice que es una IA.</p>
+            <p class="efecto">Ninguna consulta sin respuesta</p>
+            <ul class="ejemplos"><li>Eventos y grupos</li><li>Reservas</li><li>Presupuestos</li><li>Citas</li></ul>
+          </div>
+          <div class="maqueta">
+            <div class="movil" aria-label="Ejemplo de conversación de WhatsApp con el asistente">
+              <div class="movil-pantalla m-wa">
+                <div class="m-top"><i></i><div>Casa Lucía<small>Asistente · responde al momento</small></div></div>
+                <div class="m-chat">
+                  <div class="b">Hola, ¿tenéis sitio para una cena de empresa el 19 de diciembre? Seríamos unos 30.<time>23:41</time></div>
+                  <div class="b yo">Hola, soy el asistente de Casa Lucía (una IA). El 19 tenemos libre el Salón Tajo, para hasta 40. ¿Prefieres menú de grupo desde 38 € o carta?<time>23:41</time></div>
+                  <div class="b">Menú de grupo. ¿Podemos tener opción vegetariana?<time>23:42</time></div>
+                  <div class="b yo">Sí, hay dos. Te lo dejo apuntado: 19 de diciembre, 30 personas, Salón Tajo, menú de grupo. Lucía te confirma mañana por aquí. ¿A qué nombre?<time>23:42</time></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="producto">
+          <div class="producto-texto">
+            <p class="etiqueta">Software a medida</p>
+            <h3>Lo que haces a mano, hecho para ti</h3>
+            <p>Un panel con tus reservas, tus clientes y tus cobros. Presupuestos que se calculan con tus tarifas. Recordatorios de cita que se envían solos. Lo que a tu negocio le falte.</p>
+            <p class="efecto">Horas libres cada semana</p>
+            <ul class="ejemplos"><li>Reservas y calendario</li><li>Presupuestos</li><li>CRM sencillo</li><li>Facturas</li></ul>
+          </div>
+          <div class="maqueta">
+            <div class="panel" aria-label="Ejemplo de panel de reservas">
+              <div class="panel-top">Casa Lucía · eventos <span>diciembre</span></div>
+              <div class="panel-grid">
+                <div class="panel-kpi"><b>14</b><span>eventos</span></div>
+                <div class="panel-kpi"><b>21.600 €</b><span>reservado</span></div>
+                <div class="panel-kpi"><b>3</b><span>por confirmar</span></div>
+              </div>
+              <table>
+                <tr><th>Fecha</th><th>Grupo</th><th>Salón</th><th>Estado</th></tr>
+                <tr><td>12 dic</td><td>Cumpleaños · 22</td><td>Tajo</td><td class="ok">Señal pagada</td></tr>
+                <tr><td>19 dic</td><td>Empresa · 30</td><td>Tajo</td><td class="pend">Por confirmar</td></tr>
+                <tr><td>21 dic</td><td>Boda · 76</td><td>Jardín</td><td class="ok">Señal pagada</td></tr>
+              </table>
+            </div>
+          </div>
+        </article>
+      </div>
+      <p class="contra">Si buscas la web más barata, no soy tu sitio. <span class="acento">Si quieres que te llamen más y contestar menos, sigue leyendo.</span></p>
+    </div>
+  </section>
+
+  <section class="seccion" id="como" aria-labelledby="como-t">
+    <div class="wrap">
+      <div class="seccion-cabeza">
+        <p class="etiqueta">Cómo lo hago</p>
+        <h2 id="como-t">Como en un taller de cerámica</h2>
+      </div>
+      <ol class="pasos">
+        <li class="paso">
+          <h3>Amaso</h3>
+          <p>Veinte minutos contigo, por teléfono o en tu local, para entender cómo te llegan los clientes y dónde se pierden. Si no te puedo ayudar, te lo digo.</p>
+          <p class="detalle">Gratis · sin compromiso</p>
+        </li>
+        <li class="paso">
+          <h3>Modelo</h3>
+          <p>Lo construyo y lo ajusto contigo hasta que encaje. Lo ves funcionando con tus datos antes de pagar la parte principal.</p>
+          <p class="detalle">Precio cerrado y por escrito antes de empezar · 2 a 4 semanas</p>
+        </li>
+        <li class="paso">
+          <h3>Cuezo y cuido</h3>
+          <p>Lo dejo funcionando y me quedo. Por una cuota fija lo mantengo, lo mejoro y cada mes te cuento en euros qué ha pasado.</p>
+          <p class="detalle">Sin permanencia · tu web y tus datos son tuyos</p>
+        </li>
+      </ol>
+      <ul class="cuido">
+        <li>Hablas conmigo, que soy quien lo construye. No con un comercial.</li>
+        <li>Copias de seguridad, actualizaciones y vigilancia de caídas incluidas.</li>
+        <li>El asistente siempre dice que es una IA, como exige la ley europea.</li>
+        <li>Firmamos el contrato de protección de datos (RGPD).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="seccion" id="quien" aria-labelledby="quien-t">
+    <div class="wrap">
+      <div class="fundador">
+        <div class="fundador-foto">Tu foto aquí</div>
+        <div class="fundador-texto">
+          <p class="etiqueta">Quién soy</p>
+          <h2 id="quien-t">Lo monté después de vivirlo</h2>
+          <p>Soy <span class="pendiente">[tu nombre]</span>. Vivo en Madrid y puede que nos hayamos conocido porque entré en tu local sin avisar.</p>
+          <p>Construyendo Hyrise me di cuenta del salto: con IA empecé a montar en días sistemas propios que antes habrían necesitado un equipo y meses. <span class="pendiente">[Un ejemplo concreto: qué construiste y cuánto tiempo o dinero te ahorra.]</span></p>
+          <p>Ese salto lo están dando las grandes empresas. El restaurante, el hostal o la clínica de siempre se quedan fuera, no porque no lo necesiten, sino porque nadie se lo hace a su medida ni a su precio. Monté Arcilla Studio para eso.</p>
+          <p class="firma"><span class="pendiente">[Tu nombre]</span></p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="cierre" aria-labelledby="cierre">
+  <section class="seccion" aria-labelledby="preguntas-t">
     <div class="wrap">
-      <h2 id="cierre">¿Cuánto te está costando? En dos minutos lo sabes.</h2>
+      <div class="seccion-cabeza">
+        <p class="etiqueta">Preguntas</p>
+        <h2 id="preguntas-t">Lo que me suelen preguntar</h2>
+      </div>
+      <div class="preguntas">
+        <details><summary>¿Cuánto cuesta?</summary><p>Depende de lo que haga falta, por eso lo vemos en la primera conversación. Te doy el precio cerrado y por escrito antes de empezar, con la cuota mensual incluida. No después de tres reuniones.</p></details>
+        <details><summary>¿Tengo que saber de tecnología?</summary><p>No. Tú me cuentas cómo trabajas y yo me ocupo del resto. Si hay algo que aprender, te lo enseño en una sesión y te lo dejo por escrito.</p></details>
+        <details><summary>¿Y si no me gusta?</summary><p>No pagas la parte principal. Te lo enseño funcionando antes.</p></details>
+        <details><summary>¿Qué pasa con mi web, mi dominio y mi email de ahora?</summary><p>Me encargo de la migración. El dominio y el email siguen siendo tuyos, a tu nombre.</p></details>
+        <details><summary>¿Cuánto se tarda?</summary><p>Una web, entre dos y tres semanas. Un asistente de WhatsApp, de una a dos. Una herramienta a medida depende de lo que haga, y te lo digo antes de empezar.</p></details>
+        <details><summary>¿El asistente dice que es una IA?</summary><p>Siempre, desde el primer mensaje. Lo exige el Reglamento europeo de IA desde agosto de 2026 y me parece lo justo.</p></details>
+        <details><summary>¿Qué haces con los datos de mis clientes?</summary><p>Solo lo que tú me encargas. Firmamos un contrato de encargado del tratamiento, como pide el RGPD, y te explico qué proveedores intervienen.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cierre" aria-labelledby="cierre-t">
+    <div class="wrap">
+      <h2 id="cierre-t">Cuéntame qué haces <strong>a mano.</strong></h2>
+      <p>En dos minutos el asistente te dice cuánto te está costando. Si prefieres, me llamas y te contesto yo, no un formulario.</p>
       <a class="boton" href="#diagnostico">Hacer el diagnóstico</a>
+      <a class="tel" href="#diagnostico" data-config="telefono">[tu teléfono]</a>
     </div>
   </section>
 </main>
 
 <footer class="pie">
   <div class="wrap">
-    <p>Arcilla Studio es una marca de AR Ventures, S.L. · Esta web no usa cookies.</p>
-    <nav aria-label="Legal">
-      <a href="aviso-legal.html">Aviso legal</a>
-      <a href="privacidad.html">Privacidad</a>
-      <span data-config="email">[tu email]</span>
-    </nav>
+    <div>
+      <strong>Arcilla Studio</strong>
+      <p>Webs, asistentes de WhatsApp y software a medida para negocios. Hecho en Madrid, para toda España.</p>
+      <p>Una marca de AR Ventures, S.L. Esta web no usa cookies.</p>
+    </div>
+    <nav aria-label="Secciones"><strong>Qué hago</strong><a href="#construir">Webs a medida</a><a href="#construir">Asistente de WhatsApp</a><a href="#construir">Software a medida</a><a href="#como">Cómo lo hago</a></nav>
+    <nav aria-label="Contacto y legal"><strong>Contacto</strong><span data-config="email">[tu email]</span><span data-config="telefono">[tu teléfono]</span><a href="aviso-legal.html">Aviso legal</a><a href="privacidad.html">Privacidad</a></nav>
   </div>
 </footer>
 </body>

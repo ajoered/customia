@@ -42,7 +42,7 @@ def main(salida):
     out = pathlib.Path(salida)
     out.mkdir(parents=True, exist_ok=True)
     css = css_con_fuentes()
-    js = (RAIZ / "assets" / "app.js").read_text(encoding="utf-8")
+    js = (RAIZ / "assets" / "app.js").read_text(encoding="utf-8") + "\n" + (RAIZ / "assets" / "torno.js").read_text(encoding="utf-8")
 
     # Portada: el visor de Artifacts pone su propio doctype/head/body.
     index = (RAIZ / "index.html").read_text(encoding="utf-8")

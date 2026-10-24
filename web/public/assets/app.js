@@ -363,6 +363,10 @@
     entrada.style.height = "auto";
     entrada.style.height = Math.min(entrada.scrollHeight, 140) + "px";
   });
+  // Sombra en la cabecera al hacer scroll.
+  const cab = document.getElementById("cabecera");
+  if (cab) window.addEventListener("scroll", () => cab.classList.toggle("con-sombra", window.scrollY > 8), { passive: true });
+
   entrada.addEventListener("keydown", (ev) => {
     if (ev.key === "Enter" && !ev.shiftKey) {
       ev.preventDefault();
