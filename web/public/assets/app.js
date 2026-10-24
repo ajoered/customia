@@ -11,9 +11,9 @@
 
   // Datos de contacto: cámbialos aquí y en las páginas legales.
   const CONFIG = {
-    telefono: "[tu teléfono]",
+    telefono: "", // vacío: la web no muestra teléfono
     whatsapp: "", // solo dígitos con prefijo, p. ej. "34600000000"
-    email: "[tu email]",
+    email: "arojaspen@gmail.com",
     api: "/api",
   };
 
@@ -228,7 +228,7 @@
         <label for="c-contacto">Teléfono o email<input type="text" id="c-contacto" autocomplete="tel" maxlength="120" required></label>
         <label for="c-negocio">Nombre del negocio (opcional)<input type="text" id="c-negocio" maxlength="120"></label>
         <label class="consentimiento" for="c-permiso"><input type="checkbox" id="c-permiso" required>
-          <span>Acepto que Arcilla Studio (AR Ventures, S.L.) me contacte sobre este diagnóstico. <a href="privacidad.html">Privacidad</a>.</span></label>
+          <span>Acepto que Arcilla Studio (ARVENTURES S.L.) me contacte sobre este diagnóstico. <a href="privacidad.html">Privacidad</a>.</span></label>
         <button class="boton" type="submit">Quiero que me llaméis</button>
         <p class="contacto-estado" role="status"></p>
       </form>
@@ -284,7 +284,7 @@
       const aviso = document.createElement("div");
       aviso.className = "aviso";
       const texto = resumenTexto(diagnostico, nombre, contacto, negocio);
-      aviso.innerHTML = `<p>No hemos podido enviarlo desde aquí. Mándanos este resumen por WhatsApp o email (${CONFIG.telefono} · ${CONFIG.email}):</p><pre></pre>`;
+      aviso.innerHTML = `<p>No hemos podido enviarlo desde aquí. Mándanos este resumen por email a ${CONFIG.email}:</p><pre></pre>`;
       aviso.querySelector("pre").textContent = texto;
       const copiar = document.createElement("button");
       copiar.type = "button";

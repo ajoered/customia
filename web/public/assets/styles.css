@@ -125,7 +125,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .opcion:hover { background: var(--cobalto-suave); }
 .chat-formulario { display: flex; gap: 10px; align-items: center; }
 .chat-formulario textarea { flex: 1; min-width: 0; resize: none; font: inherit; line-height: 1.4; padding: 12px 15px; border-radius: 16px; border: 1.5px solid var(--linea); background: var(--papel); color: var(--tinta); max-height: 140px; }
-.chat-humano { font-size: var(--t-s); color: var(--tinta-2); text-align: center; }
 .resultado { align-self: stretch; border: 1.5px solid var(--cobalto); border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 12px; background: var(--hoja); }
 .resultado-cifra { font-family: var(--serif); font-weight: 600; font-size: clamp(2rem, 1.4rem + 2vw, 2.8rem); line-height: 1; color: var(--cobalto); font-variant-numeric: tabular-nums; }
 .resultado-cifra small { font-family: var(--sans); font-weight: 400; font-size: var(--t-m); color: var(--tinta-2); }
@@ -307,7 +306,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .cierre h2 strong { font-weight: 600; }
 .cierre p { color: color-mix(in srgb, var(--papel) 75%, transparent); max-width: 44ch; font-size: var(--t-l); }
 .cierre .boton { background: var(--papel); color: var(--tinta); }
-.cierre .tel { color: var(--papel); }
+.cierre p a { color: var(--papel); text-underline-offset: 3px; white-space: nowrap; }
 
 .pie { font-size: var(--t-s); color: var(--tinta-2); }
 .pie .wrap { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 24px 40px; padding-block: 36px 48px; }

@@ -26,12 +26,12 @@ web/
 - **Voz:** plural ("hacemos", "te enseñamos"): aunque el fundador sea la cara visible, hay equipo detrás. Su historia en "Quién está detrás" va en primera persona.
 - **Hilo:** portada (titular + caja del asistente) → el torno (7 pantallas) → "Lo que podemos construir para tu negocio" (infografía: la web de ejemplo con foto, Unsplash, que hace scroll hasta la reserva; el WhatsApp que se escribe solo; el panel) → cómo lo hacemos → quién está detrás → preguntas → cierre. Paleta: rosa porcelana con azul petróleo.
 
-## Datos que faltan (marcados entre corchetes en la web)
+## Datos que faltan
 
-1. Tu nombre y tu foto (sección "Quién está detrás").
-2. Un ejemplo concreto de Hyrise: qué construiste y cuánto te ahorra.
-3. Teléfono, WhatsApp y email. Se cambian en `assets/app.js` (bloque `CONFIG`) y en las páginas legales.
-4. Los datos de AR Ventures, S.L.: CIF, domicilio y datos del Registro Mercantil.
+1. Datos del Registro Mercantil de ARVENTURES S.L. (tomo, folio, hoja) en `aviso-legal.html`. La LSSI los pide.
+2. Email con el dominio (p. ej. hola@arcillastudio.com). Mientras tanto se usa el Gmail en `assets/app.js` (`CONFIG.email`), el pie, el cierre y las páginas legales.
+
+Decisión: por ahora la web no muestra teléfono ni WhatsApp.
 
 ## Pendiente: el servidor del chat con IA
 

@@ -9,7 +9,7 @@ const MODELO = "claude-opus-5-5";
 export const SALUDO =
   "Hola. Soy el asistente de Arcilla Studio, una inteligencia artificial. En dos minutos te digo cuánto te puede estar costando tu problema y qué haríamos. ¿Qué te quita más tiempo, o por dónde se te escapan clientes?";
 
-const SISTEMA = `Eres el asistente de diagnóstico de Arcilla Studio, una marca de AR Ventures, S.L. Arcilla Studio hace webs, asistentes de WhatsApp y herramientas a medida con IA para negocios pequeños y medianos: restaurantes, fincas de bodas, hoteles y hostales, clínicas, reformas, tiendas y similares.
+const SISTEMA = `Eres el asistente de diagnóstico de Arcilla Studio, una marca de ARVENTURES S.L. Arcilla Studio hace webs, asistentes de WhatsApp y herramientas a medida con IA para negocios pequeños y medianos: restaurantes, fincas de bodas, hoteles y hostales, clínicas, reformas, tiendas y similares.
 
 Tu trabajo es tener una conversación corta (unas cuatro o cinco preguntas, una por mensaje) para entender el problema del negocio y estimar cuánto le cuesta al mes. Cuando tengas datos suficientes, llama a la herramienta mostrar_diagnostico: la web enseñará el resultado y un formulario para que le llamemos.
 
