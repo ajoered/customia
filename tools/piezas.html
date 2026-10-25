@@ -22,34 +22,20 @@ canvas { background: transparent; }
 const C = window.Ceramica;
 const COL = {
   barro: "#cfa080", barro2: "#a9775a", ladrillo: "#b8593a", ladrillo2: "#7e3a24",
-  esmalte: "#a9bfae",   // celadón: el esmalte de las piezas grandes
-  esmalte2: "#4f7d6b",  // celadón oscuro: piezas pequeñas, detalles y decoración a pincel
-  acento: "#2f5e4f", porcelana: "#f3f1ea", ocre: "#d99a3e", papel: "#f3f3ef", tinta: "#171a21",
+  esmalte: "#9db0e0",   // cobalto claro: donde el esmalte adelgaza
+  esmalte2: "#24479f",  // cobalto: el esmalte de la taza y los detalles de las piezas
+  gres: "#e6dfd2", hierro: "#3b2a1e", // el gres cocido y sus motas
+  acento: "#1f3f97", acentoOscuro: "#17307a", porcelana: "#f3f1ea", ocre: "#d99a3e", papel: "#f3f3ef", tinta: "#171a21",
 };
 // La serifa de los textos de la imagen para compartir: ?serif=newsreader para la otra prueba.
 const SERIF = new URLSearchParams(location.search).get("serif") === "newsreader" ? "Newsreader" : "Source Serif 4";
 const rr = (x, y, w, h, r) => { const p = new Path2D(); p.roundRect(x, y, w, h, r); return p; };
 const caja = (x, y, w, h) => ({ x, y, w, h });
 
-// El perfil de la vasija del torno (la misma pieza en pequeño).
-function perfil(u) { return 70 + 80 * Math.sin(Math.PI * Math.pow(u, 0.9)) * (1 - 0.35 * u) + 10 * Math.pow(Math.max(0, 1 - u / 0.07), 0.5); }
-const VASIJA = C.vasija(perfil);
-function vasijaRuta(cx, cy, k) {
-  const p = new Path2D(), n = 96, pts = [];
-  for (let i = 0; i < n; i++) {
-    const t = i / n; let x, y;
-    if (t < 0.45) { const u = t / 0.45; y = -150 + u * 300; x = perfil(u); }
-    else if (t < 0.55) { const u = (t - 0.45) / 0.1; y = 150; x = perfil(1) * (1 - 2 * u); }
-    else { const u = (t - 0.55) / 0.45; y = 150 - u * 300; x = -perfil(1 - u); }
-    pts.push([cx + x * k, cy + y * k]);
-  }
-  for (let i = 0; i < n; i++) {
-    const a = pts[i], b = pts[(i + 1) % n], mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2;
-    if (i === 0) p.moveTo(mx, my); else p.quadraticCurveTo(a[0], a[1], mx, my);
-  }
-  p.closePath();
-  return { ruta: p, caja: caja(cx - 152 * k, cy - 150 * k, 304 * k, 300 * k) };
-}
+// La vasija del torno (la misma pieza en pequeño) y su baño de esmalte.
+const VASIJA = C.laVasija();
+const BANO = { gres: COL.gres, motas: COL.hierro, esmalte: COL.esmalte2, oscuro: COL.acentoOscuro, claro: COL.esmalte, nivel: VASIJA.nivel, gotas: VASIJA.gotas };
+function conVasija(ctx, dpr, k, dibujo) { ctx.save(); ctx.translate(100, 102); ctx.scale(k, k); dibujo(dpr * k); ctx.restore(); }
 
 // Cada pieza se dibuja en una caja de 200 × 200 unidades.
 const PIEZAS = {
@@ -112,40 +98,31 @@ const PIEZAS = {
     for (let i = 0; i < 3; i++) C.hueco(ctx, rr(34 + i * 46, 54, 40, 26, 7), caja(34 + i * 46, 54, 40, 26), { color: COL.porcelana, acabado: "esmalte", dpr, profundidad: 0.28 });
     [22, 34, 28, 44, 40].forEach((b, i) => C.pieza(ctx, rr(38 + i * 26, 146 - b, 16, b, 5), caja(38 + i * 26, 146 - b, 16, b), { color: COL.esmalte2, acabado: "esmalte", dpr, sombra: 0.45, motas: false }));
   },
-  // La vasija terminada: canales tallados y bañada en celadón sin llegar al pie. Para piezas grandes.
+  // La vasija terminada: esmalte cobalto que no llega al pie y el gres moteado debajo. Para piezas grandes.
   vasija(ctx, dpr) {
-    const k = 0.5, v = vasijaRuta(0, 0, 1);
-    ctx.translate(100, 100); ctx.scale(k, k);
-    C.pieza(ctx, v.ruta, v.caja, { color: COL.barro, acabado: "barro", dpr: dpr * k });
-    VASIJA.acabar(ctx, v.ruta, v.caja, { color: COL.esmalte, dpr: dpr * k });
+    conVasija(ctx, dpr, 0.54, (d) => VASIJA.dibujar(ctx, { ...BANO, dpr: d }));
   },
-  // La vasija para el logotipo y los iconos: lisa, en celadón oscuro y con el pie de barro.
-  // Los canales en pequeño no se leen.
+  // La misma vasija para el logotipo y los iconos, un poco más grande en su caja.
   marca(ctx, dpr) {
-    const k = 0.56, v = vasijaRuta(0, 0, 1);
-    ctx.translate(100, 100); ctx.scale(k, k);
-    C.pieza(ctx, v.ruta, v.caja, { color: COL.barro, acabado: "barro", dpr: dpr * k, sombra: 0.55 });
-    VASIJA.bano(ctx, v.ruta, v.caja, { color: COL.esmalte2, dpr: dpr * k });
+    conVasija(ctx, dpr, 0.58, (d) => VASIJA.dibujar(ctx, { ...BANO, dpr: d, sombra: 0.55 }));
   },
-  // La pieza que se rompió: para la página que no existe.
+  // La vasija que se rompió: para la página que no existe. Le falta un trozo del hombro, que está en el suelo.
   rota(ctx, dpr) {
-    const k = 0.5, v = vasijaRuta(92, 100, k);
-    // El trozo que falta: se recorta del dibujo (todo menos el triángulo).
-    const falta = new Path2D(); falta.moveTo(112, 20); falta.lineTo(160, 26); falta.lineTo(146, 66); falta.lineTo(128, 50); falta.closePath();
-    const resto = new Path2D(); resto.rect(0, 0, 200, 200); resto.addPath(falta);
-    ctx.save();
-    ctx.clip(resto, "evenodd");
-    C.pieza(ctx, v.ruta, v.caja, { color: COL.barro, acabado: "barro", dpr, anillos: true });
-    ctx.restore();
-    // El canto roto, más claro: el barro de dentro.
-    ctx.save(); ctx.clip(v.ruta);
-    ctx.strokeStyle = "rgba(240,214,190,0.9)"; ctx.lineWidth = 2.4; ctx.stroke(falta);
-    ctx.restore();
-    // La grieta.
-    C.pincel(ctx, [[126, 48], [118, 70], [124, 86], [112, 108], [116, 122]], 3.2, "rgba(70,40,22,0.75)", 1);
-    // El trozo caído.
-    const t = new Path2D(); t.moveTo(150, 170); t.lineTo(184, 162); t.lineTo(178, 186); t.closePath();
-    C.pieza(ctx, t, caja(150, 162, 34, 24), { color: COL.barro, acabado: "barro", dpr, sombra: 0.7 });
+    conVasija(ctx, dpr, 0.5, (d) => {
+      const falta = new Path2D(); falta.moveTo(40, -180); falta.lineTo(150, -180); falta.lineTo(150, -84); falta.lineTo(98, -44); falta.lineTo(70, -110); falta.closePath();
+      const resto = new Path2D(); resto.rect(-300, -300, 600, 600); resto.addPath(falta);
+      ctx.save(); ctx.clip(resto, "evenodd");
+      VASIJA.dibujar(ctx, { ...BANO, dpr: d });
+      ctx.restore();
+      // El canto roto deja ver el gres.
+      ctx.save(); ctx.clip(VASIJA.sil); ctx.strokeStyle = "rgba(236,229,216,0.95)"; ctx.lineWidth = 4; ctx.stroke(falta); ctx.restore();
+      // La grieta, que baja hasta el gres.
+      C.pincel(ctx, [[96, -46], [86, -14], [96, 12], [80, 46], [88, 84]], 4, "rgba(30,24,18,0.7)", 1);
+    });
+    // El trozo caído, esmaltado por fuera y con el canto de gres.
+    const t = new Path2D(); t.moveTo(146, 168); t.lineTo(186, 158); t.lineTo(180, 184); t.closePath();
+    C.pieza(ctx, t, caja(146, 158, 40, 26), { color: COL.esmalte2, acabado: "esmalte", dpr, sombra: 0.7, motas: false });
+    ctx.save(); ctx.strokeStyle = "rgba(236,229,216,0.95)"; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(146, 168); ctx.lineTo(180, 184); ctx.stroke(); ctx.restore();
   },
 };
 
@@ -167,7 +144,7 @@ function compartir() {
   cv.width = 1200; cv.height = 630;
   const ctx = cv.getContext("2d");
   ctx.fillStyle = COL.papel; ctx.fillRect(0, 0, 1200, 630);
-  ctx.drawImage(dibujar("vasija", 900), 700, 40, 560, 560);
+  ctx.drawImage(dibujar("vasija", 900), 660, 40, 560, 560);
   ctx.drawImage(dibujar("marca", 240), 64, 58, 52, 52);
   ctx.fillStyle = COL.tinta;
   ctx.font = `600 34px '${SERIF}'`; ctx.fillText("Arcilla Studio", 122, 96);
@@ -181,7 +158,21 @@ function compartir() {
 }
 
 const FUENTES = Promise.all([`500 80px '${SERIF}'`, `600 34px '${SERIF}'`, "400 29px 'Schibsted Grotesk'", "600 26px 'Schibsted Grotesk'"].map((f) => document.fonts.load(f)));
+// El favicon: la silueta de la vasija en plano, verde arriba y gres abajo, con la boca.
+function favicon() {
+  const T = VASIJA, s = 60 / (2 * T.ancho), dy = 32 - (T.caja.y + T.caja.h / 2) * s;
+  const P = (x, y) => `${(32 + x * s).toFixed(1)} ${(dy + y * s).toFixed(1)}`;
+  const sil = "M" + T.contorno(72).map(([x, y]) => P(x, y)).join(" L") + " Z";
+  const yN = T.Y(T.nivel), aN = T.r(T.nivel), bajo = [];
+  for (let i = 0; i <= 24; i++) { const x = -aN - 4 + (i / 24) * (2 * aN + 8); bajo.push(P(x, yN + T.vista * aN * Math.sqrt(Math.max(0, 1 - (x / aN) ** 2)))); }
+  const gres = "M" + bajo.join(" L") + ` L${P(aN + 4, T.y1 + 60)} L${P(-aN - 4, T.y1 + 60)} Z`;
+  const boca = `<ellipse cx="32" cy="${(dy + T.y0 * s).toFixed(1)}" rx="${(T.r0 * s - 1.6).toFixed(1)}" ry="${(T.vista * T.r0 * s - 0.6).toFixed(1)}" fill="#132a66"/>`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><clipPath id="t"><path d="${sil}"/></clipPath><path fill="${COL.acento}" d="${sil}"/><path clip-path="url(#t)" fill="#e2d9ca" d="${gres}"/>${boca}<path clip-path="url(#t)" fill="none" stroke="${COL.acento}" stroke-width="3" d="${sil}"/></svg>\n`;
+  return "data:image/svg+xml;base64," + btoa(svg);
+}
+
 window.SALIDAS = async () => { await FUENTES; return [
+  { archivo: "../favicon.svg", url: favicon() },
   ...["telefono", "burbuja", "web", "libreta", "panel", "marca"].map((n) => ({ archivo: `${n}.webp`, url: dibujar(n, 192).toDataURL("image/webp", 0.92) })),
   { archivo: "vasija.webp", url: dibujar("vasija", 640).toDataURL("image/webp", 0.92) },
   { archivo: "rota.webp", url: dibujar("rota", 480).toDataURL("image/webp", 0.92) },

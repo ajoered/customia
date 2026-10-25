@@ -17,9 +17,9 @@
   --tinta: #171a21;
   --tinta-2: #585d68;
   --linea: #dcdcd5;
-  --acento: #2f5e4f;         /* celadón profundo: el único acento de la interfaz */
-  --acento-oscuro: #244a3e;
-  --acento-suave: #e3ebe5;
+  --acento: #1f3f97;         /* cobalto de Talavera: el único acento de la interfaz */
+  --acento-oscuro: #17307a;
+  --acento-suave: #e5e9f4;
   --acento-tinta: #ffffff;
   --porcelana: #f3f1ea;
   /* Solo para las piezas de cerámica (torno.js las lee de aquí) */
@@ -27,8 +27,10 @@
   --ladrillo-2: #7e3a24;
   --barro: #cfa080;
   --barro-2: #a9775a;
-  --esmalte: #a9bfae;        /* celadón: el esmalte de la pieza terminada */
-  --esmalte-2: #4f7d6b;      /* celadón oscuro: detalles esmaltados de las piezas */
+  --esmalte: #9db0e0;        /* cobalto claro: donde el esmalte de la taza adelgaza */
+  --esmalte-2: #24479f;      /* cobalto: el esmalte de la taza y los detalles de las piezas */
+  --gres: #e6dfd2;           /* el gres cocido, a la vista en el pie de la taza */
+  --hierro: #3b2a1e;         /* las motas de hierro del gres */
   --fuego: #e2874e;
   --sombra: 0 1px 2px rgba(23, 26, 33, 0.05), 0 22px 44px -28px rgba(23, 26, 33, 0.32);
 
@@ -395,7 +397,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .cierre h2 { font-weight: 400; max-width: 16ch; font-size: var(--t-xxl); line-height: .98; letter-spacing: -0.03em; }
 .cierre h2 strong { font-weight: 600; }
 .cierre p { color: rgba(255, 255, 255, 0.8); max-width: 44ch; font-size: var(--t-l); line-height: 1.5; }
-.cierre .boton { background: var(--porcelana); color: var(--acento); box-shadow: inset 0 -2px 0 rgba(36, 74, 62, 0.28), 0 1px 2px rgba(0, 0, 0, 0.15); }
+.cierre .boton { background: var(--porcelana); color: var(--acento); box-shadow: inset 0 -2px 0 rgba(23, 48, 122, 0.25), 0 1px 2px rgba(0, 0, 0, 0.15); }
 .cierre .boton:hover { background: #fff; }
 .cierre p a { color: #fff; white-space: nowrap; }
 

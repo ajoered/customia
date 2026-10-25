@@ -158,91 +158,246 @@
     }
   }
 
-  // La vasija terminada, como un celadón de Longquan: canales tallados en crudo y un baño de
-  // esmalte que no llega al pie, así que abajo se ve el barro. Trabaja en el espacio de la vasija
-  // del torno (ancho ±150, alto de -150 a 150); perfil(u) es su radio, con u de 0 (boca) a 1 (pie).
-  // Una vuelta alrededor de la pieza se ve un poco desde arriba: baja 8 unidades hacia el centro.
-  const NIVEL = 78; // hasta dónde llega el esmalte
-  const GOTAS = [[-96, 5, 12], [-38, 6, 22], [22, 4.5, 9], [64, 6, 17], [112, 5, 8]]; // [x, medio ancho, largo]
-  function vasija(perfil) {
-    const radio = (y) => perfil(Math.min(1, Math.max(0, (y + 150) / 300)));
-    const caida = (x, ancho) => 8 * (1 - Math.min(1, (x / ancho) ** 2));
+  // ---------- Pieza torneada: gres con un baño de esmalte reactivo ----------
+  // Como las de los talleres de hoy: esmalte brillante que no llega al pie, con sus gotas, y abajo
+  // el gres a la vista con las motas del hierro y los anillos del torno.
+  // La pieza se ve un poco desde arriba: cada vuelta es la mitad de delante de una elipse de alto
+  // VISTA × radio, y por arriba se ve la boca.
+  const VISTA = 0.16;
+  function azarDe(s) { return () => (s = (s * 16807) % 2147483647) / 2147483647; }
+  // Perfil por puntos [u, radio], con u de 0 (boca) a 1 (pie), suavizado con Catmull-Rom.
+  function perfilDe(puntos) {
+    return (u) => {
+      u = Math.min(1, Math.max(0, u));
+      let k = 0;
+      while (k < puntos.length - 2 && puntos[k + 1][0] < u) k++;
+      const p0 = puntos[Math.max(0, k - 1)][1], p1 = puntos[k][1], p2 = puntos[k + 1][1], p3 = puntos[Math.min(puntos.length - 1, k + 2)][1];
+      const t = (u - puntos[k][0]) / (puntos[k + 1][0] - puntos[k][0]), t2 = t * t, t3 = t2 * t;
+      return 0.5 * (2 * p1 + (-p0 + p2) * t + (2 * p0 - 5 * p1 + 4 * p2 - p3) * t2 + (-p0 + 3 * p1 - 3 * p2 + p3) * t3);
+    };
+  }
 
-    // Los canales se calculan una vez. Hay 30 alrededor y se ven 15. Arriba y abajo acaban en arco.
-    const VISIBLES = 15, D = Math.PI / VISIBLES, TIRAS = 8, Y0 = -100, Y1 = 112;
-    const meridiano = (f) => { const p = []; for (let y = Y0 - 14; y <= Y1 + 14; y += 3) p.push([Math.sin(f) * radio(y), y + 8 * Math.cos(f) ** 2]); return p; };
-    const arco = (Y, signo, fa) => { const p = []; for (let i = 0; i <= 16; i++) { const t = i / 8 - 1, f = fa + (i / 16) * D; p.push([Math.sin(f) * radio(Y), Y + 8 * Math.cos(f) ** 2 + signo * 7 * Math.sqrt(1 - t * t)]); } return p; };
-    const camino = (pts, cerrar) => { const r = new Path2D(); pts.forEach(([x, y], i) => (i ? r.lineTo(x, y) : r.moveTo(x, y))); if (cerrar) r.closePath(); return r; };
-    const canales = [];
-    for (let k = 0; k < VISIBLES; k++) {
-      const fa = -Math.PI / 2 + k * D, arriba = arco(Y0, -1, fa), abajo = arco(Y1, 1, fa);
-      const tiras = [];
-      for (let s = 0; s < TIRAS; s++) {
-        const f0 = fa + (s / TIRAS) * D, f1 = f0 + D / TIRAS;
-        // Canal cóncavo con la luz por la izquierda: la pared izquierda en sombra y la derecha iluminada.
-        tiras.push([camino([...meridiano(f0), ...meridiano(f1).reverse()], true), ((s + 0.5) / TIRAS - 0.5) * 2]);
+  // perfil: una función r(u) o una lista de puntos [u, radio].
+  function torneada(perfil, alto) {
+    const r = typeof perfil === "function" ? perfil : perfilDe(perfil), y0 = -alto / 2, y1 = alto / 2;
+    const Y = (u) => y0 + u * alto, U = (y) => (y - y0) / alto;
+    const r0 = r(0), rb = r(1);
+    let ancho = 0;
+    for (let i = 0; i <= 50; i++) ancho = Math.max(ancho, r(i / 50));
+    const caja = { x: -ancho, y: y0 - VISTA * r0, w: 2 * ancho, h: alto + VISTA * (r0 + rb) };
+    // La vuelta a la altura y, en el punto x.
+    const vuelta = (y, x) => { const a = r(U(y)); return y + VISTA * a * Math.sqrt(Math.max(0, 1 - (x / a) ** 2)); };
+
+    // El contorno en el sentido del reloj desde arriba en el centro: borde de atrás de la boca,
+    // lado derecho, pie y lado izquierdo.
+    function contorno(n) {
+      const p = [];
+      for (let i = 20; i <= 40; i++) { const a = (i / 40) * Math.PI; p.push([-r0 * Math.cos(a), y0 - VISTA * r0 * Math.sin(a)]); }
+      for (let i = 1; i <= 80; i++) { const u = i / 80; p.push([r(u), Y(u)]); }
+      for (let i = 1; i < 40; i++) { const a = (i / 40) * Math.PI; p.push([rb * Math.cos(a), y1 + VISTA * rb * Math.sin(a)]); }
+      for (let i = 80; i >= 0; i--) { const u = i / 80; p.push([-r(u), Y(u)]); }
+      for (let i = 1; i < 20; i++) { const a = (i / 40) * Math.PI; p.push([-r0 * Math.cos(a), y0 - VISTA * r0 * Math.sin(a)]); }
+      if (!n) return p;
+      // Remuestrea a n puntos a la misma distancia.
+      const largo = [0];
+      for (let i = 1; i <= p.length; i++) { const a = p[i - 1], b = p[i % p.length]; largo.push(largo[i - 1] + Math.hypot(b[0] - a[0], b[1] - a[1])); }
+      const total = largo[largo.length - 1], o = [];
+      let j = 1;
+      for (let k = 0; k < n; k++) {
+        const d = (k / n) * total;
+        while (largo[j] < d) j++;
+        const a = p[j - 1], b = p[j % p.length], t = (d - largo[j - 1]) / (largo[j] - largo[j - 1] || 1);
+        o.push([a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t]);
       }
-      canales.push({ zona: camino([...arriba, ...abajo.reverse()], true), borde: [camino(arriba), camino(abajo.reverse())], tiras });
+      return o;
     }
+    const sil = new Path2D();
+    contorno().forEach(([x, y], i) => (i ? sil.lineTo(x, y) : sil.moveTo(x, y)));
+    sil.closePath();
+    const boca = new Path2D();
+    boca.ellipse(0, y0, r0, VISTA * r0, 0, 0, Math.PI * 2);
 
-    // fuerza: 0.55 en el barro y 1 bajo el esmalte, que se acumula en el corte y lo oscurece.
-    // progreso de 0 a 1: los canales se tallan uno detrás de otro, de arriba abajo.
-    function estrias(ctx, o = {}) {
-      const fuerza = o.fuerza === undefined ? 1 : o.fuerza, hechos = (o.progreso === undefined ? 1 : o.progreso) * VISIBLES;
-      canales.forEach(({ zona, borde, tiras }, k) => {
-        const q = Math.min(1, hechos - k);
-        if (q <= 0) return;
-        ctx.save();
-        if (q < 1) { const hasta = new Path2D(); hasta.rect(-200, -200, 400, Y0 + 10 + (Y1 - Y0 + 10) * q + 200); ctx.clip(hasta); }
-        ctx.save();
-        ctx.clip(zona);
-        for (const [tira, v] of tiras) {
-          ctx.fillStyle = v < 0 ? `rgba(28,62,50,${-v * 0.26 * fuerza})` : `rgba(255,255,255,${v * v * 0.3 * fuerza})`;
-          ctx.fill(tira);
-        }
-        ctx.restore();
-        ctx.strokeStyle = `rgba(36,74,62,${0.3 * fuerza})`;
-        ctx.lineWidth = 1.4;
-        borde.forEach((b) => ctx.stroke(b));
-        ctx.restore();
-      });
+    // Las texturas se pintan una vez en un canvas aparte y luego solo se copian.
+    const capas = {};
+    function capa(nombre, dpr, pintar) {
+      const clave = nombre + "|" + dpr;
+      if (!capas[clave]) {
+        const m = 6, c = document.createElement("canvas");
+        c.width = Math.ceil((caja.w + 2 * m) * dpr); c.height = Math.ceil((caja.h + 2 * m) * dpr);
+        const g = c.getContext("2d");
+        g.scale(dpr, dpr); g.translate(m - caja.x, m - caja.y);
+        pintar(g, dpr);
+        capas[clave] = { c, x: caja.x - m, y: caja.y - m, w: c.width / dpr, h: c.height / dpr };
+      }
+      return capas[clave];
     }
+    const poner = (ctx, k) => ctx.drawImage(k.c, k.x, k.y, k.w, k.h);
+    const rect = (g, estilo) => { g.fillStyle = estilo; g.fillRect(caja.x - 6, caja.y - 6, caja.w + 12, caja.h + 12); };
+    const vueltaRuta = (y, dy) => { const p = new Path2D(); for (let x = -ancho; x <= ancho; x += 3) (x === -ancho ? p.moveTo(x, vuelta(y, x) + dy) : p.lineTo(x, vuelta(y, x) + dy)); return p; };
+    function motas(g, n, semilla, color, rmin, rmax, alfa) {
+      const azar = azarDe(semilla);
+      for (let i = 0; i < n; i++) {
+        const x = (azar() * 2 - 1) * ancho, y = caja.y + azar() * caja.h, rr = rmin + azar() * (rmax - rmin);
+        g.fillStyle = rgba(color, alfa * (0.5 + azar() * 0.5)); g.beginPath(); g.arc(x, y, rr, 0, Math.PI * 2); g.fill();
+      }
+    }
+    // Volumen de cilindro: luz por la izquierda, sombra a la derecha y abajo.
+    function volumen(g, brillo) {
+      const h = g.createLinearGradient(-ancho, 0, ancho, 0);
+      h.addColorStop(0, "rgba(0,0,0,0.10)"); h.addColorStop(0.12, `rgba(255,255,255,${0.10 * brillo})`); h.addColorStop(0.32, `rgba(255,255,255,${0.06 * brillo})`);
+      h.addColorStop(0.62, "rgba(0,0,0,0)"); h.addColorStop(0.9, "rgba(0,0,0,0.2)"); h.addColorStop(1, "rgba(0,0,0,0.32)");
+      rect(g, h);
+      const v = g.createLinearGradient(0, y0, 0, y1 + 20);
+      v.addColorStop(0, "rgba(255,255,255,0.04)"); v.addColorStop(0.7, "rgba(0,0,0,0)"); v.addColorStop(1, "rgba(0,0,0,0.16)");
+      rect(g, v);
+    }
+    // Lo que va encima del color del gres: anillos, motas de hierro, granos claros y volumen.
+    const pintarGres = (o) => (g) => {
+      for (let k = 0; k < 14; k++) {
+        const y = y0 + ((k + 0.5) * alto) / 14;
+        g.lineWidth = 0.9;
+        g.strokeStyle = "rgba(255,255,255,0.10)"; g.stroke(vueltaRuta(y, 0));
+        g.strokeStyle = "rgba(40,30,20,0.07)"; g.stroke(vueltaRuta(y, 1.4));
+      }
+      motas(g, 420, 7, o.motas, 0.35, 1.3, 0.75);
+      motas(g, 160, 9, "#ffffff", 0.4, 1.0, 0.18);
+      volumen(g, 0.6);
+    };
+    // El esmalte entero, como si cubriera toda la pieza: luego se recorta por la línea del baño.
+    // Más oscuro junto a la boca, una franja clara a media altura (donde flota) y oscuro y grueso abajo.
+    const pintarEsmalte = (o) => (g) => {
+      const yN = Y(o.nivel), A = yN - y0;
+      rect(g, o.esmalte);
+      const v = g.createLinearGradient(0, y0, 0, yN + 24);
+      v.addColorStop(0, rgba(o.oscuro, 0.30)); v.addColorStop(0.2, rgba(o.oscuro, 0.08));
+      v.addColorStop(0.42, rgba(o.claro, 0.22)); v.addColorStop(0.6, rgba(o.claro, 0.12));
+      v.addColorStop(0.8, rgba(o.oscuro, 0.12)); v.addColorStop(1, rgba(o.oscuro, 0.6));
+      rect(g, v);
+      const azar = azarDe(o.semilla || 3);
+      // Moteado suave.
+      for (let i = 0; i < 180; i++) {
+        const x = (azar() * 2 - 1) * ancho, y = y0 - 10 + azar() * (A + 30), w = 8 + azar() * 16, c = azar() < 0.5 ? o.oscuro : o.claro;
+        const m = g.createRadialGradient(x, y, 0, x, y, w);
+        m.addColorStop(0, rgba(c, 0.05 + azar() * 0.06)); m.addColorStop(1, rgba(c, 0));
+        g.fillStyle = m; g.beginPath(); g.arc(x, y, w, 0, Math.PI * 2); g.fill();
+      }
+      // Regueros: al fundirse, el esmalte corre hacia abajo.
+      for (let i = 0; i < 46; i++) {
+        const x = (azar() * 2 - 1) * ancho, y = y0 + A * (0.25 + azar() * 0.7), w = 1.2 + azar() * 3, h = 14 + azar() * 40;
+        const oscura = azar() < 0.6, c = oscura ? o.oscuro : o.claro, a = oscura ? 0.26 : 0.22;
+        const m = g.createLinearGradient(0, y - h, 0, y + h);
+        m.addColorStop(0, rgba(c, 0)); m.addColorStop(0.6, rgba(c, a)); m.addColorStop(1, rgba(c, 0));
+        g.fillStyle = m; g.beginPath(); g.ellipse(x, y, w, h, 0, 0, Math.PI * 2); g.fill();
+      }
+      motas(g, 140, 11, o.motas, 0.4, 1.2, 0.55); // el hierro del gres asoma por el esmalte
+      volumen(g, 1);
+      // Reflejo de una ventana: una franja vertical que sigue la curva.
+      const xr = -0.52, ref = new Path2D();
+      for (let y = y0 + 8; y <= yN - 10; y += 3) ref.lineTo(r(U(y)) * xr - 7, y);
+      for (let y = yN - 10; y >= y0 + 8; y -= 3) ref.lineTo(r(U(y)) * xr + 7, y);
+      ref.closePath();
+      const xm = r(U((y0 + yN) / 2)) * xr, b = g.createLinearGradient(xm - 8, 0, xm + 8, 0);
+      b.addColorStop(0, "rgba(255,255,255,0)"); b.addColorStop(0.5, "rgba(255,255,255,0.4)"); b.addColorStop(1, "rgba(255,255,255,0)");
+      g.fillStyle = b; g.fill(ref);
+    };
 
-    // El baño de esmalte hasta la altura nivel. colgar (0 a 1) hace crecer las gotas al final.
-    // Devuelve la zona bañada para tallar encima los canales con el esmalte dentro.
-    function bano(ctx, ruta, caja, o) {
-      const nivel = o.nivel === undefined ? NIVEL : o.nivel, colgar = o.colgar === undefined ? 1 : o.colgar;
-      const ancho = radio(nivel) + 4;
-      const y = (x) => {
-        let v = nivel + caida(x, ancho);
-        for (const [x0, w, L] of GOTAS) { const t = (x - x0) / w; if (Math.abs(t) < 1) v += L * colgar * Math.sqrt(1 - t * t); }
-        return v;
-      };
-      const linea = new Path2D(), zona = new Path2D();
-      for (let x = -230; x <= 230; x += 1) (x === -230 ? linea.moveTo(x, y(x)) : linea.lineTo(x, y(x)));
-      zona.moveTo(-230, -230); zona.lineTo(230, -230);
-      for (let x = 230; x >= -230; x -= 1) zona.lineTo(x, y(x));
-      zona.closePath();
+    // o: { gres, motas, esmalte, oscuro, claro, nivel (u del baño), dpr, sombra (0 a 1),
+    //      ruta (otra silueta para recortar, en el torno), cubre (0 a 1: cuánto ha bajado el esmalte),
+    //      colgar (0 a 1: cuánto cuelgan las gotas), boca (0 a 1: cuánto se ve la boca), gotas, semilla }
+    function dibujar(ctx, o) {
+      const dpr = o.dpr || 1, ruta = o.ruta || sil;
+      const sombra = o.sombra === undefined ? 1 : o.sombra;
+      const cubre = o.cubre === undefined ? 1 : o.cubre, colgar = o.colgar === undefined ? 1 : o.colgar;
+      const verBoca = o.boca === undefined ? 1 : o.boca;
+      const gotas = o.gotas || [];
+      if (sombra > 0) {
+        ctx.save();
+        ctx.shadowColor = `rgba(28,22,16,${0.28 * sombra})`; ctx.shadowBlur = ancho * 0.22 * dpr; ctx.shadowOffsetY = ancho * 0.08 * dpr;
+        ctx.fillStyle = o.gres; ctx.fill(ruta);
+        ctx.restore();
+      }
+      ctx.fillStyle = o.gres; ctx.fill(ruta);
       ctx.save();
       ctx.clip(ruta);
-      // El canto del esmalte es más grueso: deja una sombra fina sobre el barro.
-      ctx.save(); ctx.translate(0, 1.6); ctx.strokeStyle = "rgba(70,40,20,0.22)"; ctx.lineWidth = 2.4; ctx.stroke(linea); ctx.restore();
-      ctx.clip(zona);
-      pieza(ctx, ruta, caja, { color: o.color, acabado: "esmalte", dpr: o.dpr, sombra: 0, motas: false });
-      ctx.strokeStyle = "rgba(47,94,79,0.45)"; ctx.lineWidth = 3; ctx.stroke(linea);
+      poner(ctx, capa("gres" + o.motas, dpr, pintarGres(o)));
+
+      // El baño: baja desde la boca hasta su nivel y al final cuelgan las gotas.
+      const yN = Y(o.nivel), aN = r(o.nivel);
+      if (cubre > 0) {
+        const yB = (y0 - VISTA * r0 - 4) + (yN - (y0 - VISTA * r0 - 4)) * Math.min(1, cubre);
+        const borde = (x) => {
+          let y = yB + (cubre >= 1 ? VISTA * aN * Math.sqrt(Math.max(0, 1 - (x / aN) ** 2)) : VISTA * r(U(yB)) * Math.sqrt(Math.max(0, 1 - (x / r(U(yB))) ** 2)));
+          for (const [x0, w, L] of gotas) { const t = (x - x0) / w; if (Math.abs(t) < 1) y += L * colgar * Math.sqrt(1 - t * t); }
+          return y;
+        };
+        const linea = new Path2D(), zona = new Path2D();
+        for (let x = -ancho - 2; x <= ancho + 2; x += 1) (x === -ancho - 2 ? linea.moveTo(x, borde(x)) : linea.lineTo(x, borde(x)));
+        zona.moveTo(-ancho - 40, caja.y - 40); zona.lineTo(ancho + 40, caja.y - 40);
+        for (let x = ancho + 2; x >= -ancho - 2; x -= 1) zona.lineTo(x, borde(x));
+        zona.closePath();
+        // El canto del esmalte es grueso: deja una sombra sobre el gres.
+        ctx.strokeStyle = "rgba(30,20,10,0.10)"; ctx.lineWidth = 5;
+        ctx.save(); ctx.translate(0.5, 2.6); ctx.stroke(linea); ctx.restore();
+        ctx.strokeStyle = "rgba(30,20,10,0.14)"; ctx.lineWidth = 2.4;
+        ctx.save(); ctx.translate(0.5, 1.8); ctx.stroke(linea); ctx.restore();
+        ctx.save();
+        ctx.clip(zona);
+        poner(ctx, capa(["esmalte", o.esmalte, o.oscuro, o.claro, o.nivel, o.semilla].join(), dpr, pintarEsmalte(o)));
+        ctx.strokeStyle = rgba(o.oscuro, 0.5); ctx.lineWidth = 2; ctx.stroke(linea);
+        ctx.save(); ctx.translate(0, -2.2); ctx.strokeStyle = "rgba(255,255,255,0.16)"; ctx.lineWidth = 1.2; ctx.stroke(linea); ctx.restore();
+        // Brillo en las gotas grandes.
+        if (colgar > 0.6) for (const [x0, w, L] of gotas) if (L > 8) {
+          ctx.fillStyle = `rgba(255,255,255,${0.5 * (colgar - 0.6) / 0.4})`;
+          ctx.beginPath(); ctx.ellipse(x0 - w * 0.3, borde(x0) - L * 0.28, w * 0.22, w * 0.32, 0, 0, Math.PI * 2); ctx.fill();
+        }
+        ctx.restore();
+      }
       ctx.restore();
-      return zona;
+
+      // La boca: por dentro, gres crudo hasta que el esmalte la cubre. La pared del fondo
+      // recibe la luz a la derecha.
+      if (verBoca > 0) {
+        ctx.save();
+        ctx.globalAlpha = verBoca;
+        ctx.clip(boca);
+        ctx.fillStyle = o.gres; ctx.fill(boca);
+        const dentro = Math.min(1, cubre / 0.25);
+        if (dentro > 0) { ctx.globalAlpha = verBoca * dentro; ctx.fillStyle = o.esmalte; ctx.fill(boca); ctx.globalAlpha = verBoca; }
+        const oscuro = dentro > 0.5 ? o.oscuro : "#3b2a1e";
+        const i = ctx.createLinearGradient(-r0, 0, r0, 0);
+        i.addColorStop(0, rgba(oscuro, 0.75)); i.addColorStop(0.55, rgba(oscuro, 0.35)); i.addColorStop(1, rgba(dentro > 0.5 ? o.claro : "#ffffff", 0.22));
+        ctx.fillStyle = i; ctx.fill(boca);
+        const b = ctx.createLinearGradient(0, y0 - VISTA * r0, 0, y0 + VISTA * r0);
+        b.addColorStop(0, "rgba(0,0,0,0)"); b.addColorStop(1, "rgba(0,0,0,0.35)");
+        ctx.fillStyle = b; ctx.fill(boca);
+        ctx.restore();
+        // El labio: el esmalte adelgaza y aclara en el borde de delante.
+        ctx.save();
+        ctx.globalAlpha = verBoca;
+        ctx.lineCap = "round";
+        ctx.strokeStyle = rgba(dentro > 0.5 ? o.claro : "#ffffff", dentro > 0.5 ? 0.85 : 0.4); ctx.lineWidth = 3.2;
+        ctx.beginPath(); ctx.ellipse(0, y0, r0 - 1.5, VISTA * r0 - 1, 0, 0.04, Math.PI - 0.04); ctx.stroke();
+        ctx.strokeStyle = "rgba(255,255,255,0.35)"; ctx.lineWidth = 1.2;
+        ctx.beginPath(); ctx.ellipse(0, y0, r0 - 2, VISTA * r0 - 2, 0, Math.PI + 0.3, 2 * Math.PI - 0.3); ctx.stroke();
+        ctx.restore();
+      }
+      // Canto de la silueta: se oscurece un poco por dentro, como una pieza que se curva.
+      ctx.save();
+      ctx.clip(ruta);
+      ctx.strokeStyle = "rgba(20,14,8,0.16)"; ctx.lineWidth = 3;
+      ctx.shadowColor = "rgba(20,14,8,0.3)"; ctx.shadowBlur = 4 * dpr;
+      ctx.stroke(ruta);
+      ctx.restore();
     }
 
-    // La pieza entera sobre una pieza de barro ya pintada: tallada y bañada.
-    function acabar(ctx, ruta, caja, o) {
-      ctx.save(); ctx.clip(ruta); estrias(ctx, { fuerza: 0.55 }); ctx.restore();
-      const zona = bano(ctx, ruta, caja, o);
-      ctx.save(); ctx.clip(ruta); ctx.clip(zona); estrias(ctx); ctx.restore();
-    }
-
-    return { radio, estrias, bano, acabar };
+    return { r, Y, U, y0, y1, r0, ancho, caja, sil, boca, vista: VISTA, contorno, dibujar };
   }
+
+  // La vasija de Arcilla: la del final del torno, el cierre, el logotipo y la imagen para compartir.
+  // Cuello estrecho con el labio vuelto, cuerpo ancho y base; cabe en el espacio del torno
+  // (ancho ±150, alto de -150 a 150). El esmalte llega hasta nivel y deja un poco de gres abajo.
+  const perfilVasija = (u) => 70 + 80 * Math.sin(Math.PI * Math.pow(u, 0.9)) * (1 - 0.35 * u) + 10 * Math.pow(Math.max(0, 1 - u / 0.07), 0.5);
+  const laVasija = () => Object.assign(torneada(perfilVasija, 300), { nivel: 0.8, gotas: [[-70, 5, 10], [-12, 6, 20], [44, 5, 8], [82, 5, 14]] });
 
   // Un contorno único alrededor de una línea central con grosor variable y puntas redondas.
   // puntos: la línea central; ancho(u): medio grosor en cada punto (u de 0 a 1).
@@ -268,5 +423,5 @@
     return p;
   }
 
-  global.Ceramica = { pieza, hueco, pincel, tubo, vasija, rgba };
+  global.Ceramica = { pieza, hueco, pincel, tubo, torneada, laVasija, perfilVasija, rgba };
 })(window);

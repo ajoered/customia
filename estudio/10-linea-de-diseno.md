@@ -16,17 +16,17 @@ No es una contradicción. El artesano siempre ha trabajado con la mejor herramie
 
 La IA es nuestro torno: hace en días lo que antes costaba un equipo y meses. La mano es lo que no se automatiza: el criterio, el cuidado y el trato con cada negocio. Arcilla Studio es el taller que domina la herramienta más avanzada de hoy y la usa con oficio, a la medida de cada cliente.
 
-Fuentes: Wikipedia, "Pierre-Simon Fournier", "Source Serif", "Longquan celadon" y "Potter's wheel" (en).
+Fuentes: Wikipedia, "Pierre-Simon Fournier", "Source Serif" y "Potter's wheel" (en).
 
 ## La regla: cada pieza lleva mano y torno
 
 | | La mano | El torno |
 |---|---|---|
-| **Forma** | Textura, motas de barro, gotas de esmalte, la talla de cada canal | Ejes, cotas, retícula, simetría, canales iguales |
+| **Forma** | Textura, motas del gres, gotas y regueros del esmalte | Ejes, cotas, retícula, simetría |
 | **Letra** | Source Serif 4: titulares, lo que se lee despacio | Schibsted Grotesk: interfaz y datos, con cifras tabulares |
-| **Color** | Barro y celadón claro en las piezas | Celadón oscuro como señal de la interfaz: acción y dato clave |
+| **Color** | Gres y esmalte cobalto en las piezas | El mismo cobalto como señal de la interfaz: acción y dato clave |
 | **Imagen** | Piezas de cerámica, fotos reales de manos y de locales | Producto real en pantalla y datos de verdad |
-| **Movimiento** | Peso e inercia: la pieza gira, se ablanda, se talla, se cuece | Exacto: pegado al scroll, sin retraso ni tirones |
+| **Movimiento** | Peso e inercia: la pieza gira, se ablanda, se cuece, se esmalta | Exacto: pegado al scroll, sin retraso ni tirones |
 | **Texto** | De tú, cercano, con palabras del oficio | Cifras, plazos y precios por escrito |
 
 Si una pieza solo tiene una mitad, falla:
@@ -38,22 +38,22 @@ Si una pieza solo tiene una mitad, falla:
 
 1. **La mano decide; la herramienta se nota.** Enseñamos la tecnología de verdad (el asistente funcionando, pantallas reales) y la persona que decide (Álvaro, su criterio y su cara).
 2. **Una pieza, no una plantilla.** Cada elemento se hace para Arcilla. Si podría estar en otra web, no vale: ni iconos de banco, ni componentes por defecto, ni fotos de stock.
-3. **Irregular en la superficie, exacto en la estructura.** La textura, la talla y las gotas van sobre una retícula precisa. Lo imperfecto es el material, nunca la maquetación.
+3. **Irregular en la superficie, exacto en la estructura.** La textura, los regueros y las gotas van sobre una retícula precisa. Lo imperfecto es el material, nunca la maquetación.
 4. **Las cifras son de verdad.** La precisión se ve en datos reales: plazos, euros, medidas, tiempos. Nunca números de adorno ni métricas inventadas.
-5. **Calma de taller.** Una idea por pantalla. Nada se mueve si no hace algo que haría una pieza: girar, ablandarse, moldearse, tallarse, cocerse o esmaltarse.
-6. **Oficio sin folclore.** Las referencias son de oficio: el celadón de Longquan, el torno, la imprenta. Nada de tópicos: ni flores de Talavera, ni azulejos por todas partes, ni emojis de tapas.
+5. **Calma de taller.** Una idea por pantalla. Nada se mueve si no hace algo que haría una pieza: girar, ablandarse, moldearse, cocerse o esmaltarse.
+6. **Oficio sin folclore.** Las referencias son de oficio: el cobalto de Talavera, el torno, la imprenta y los talleres de cerámica de hoy. Nada de tópicos: ni flores pintadas, ni azulejos por todas partes, ni emojis de tapas.
 7. **Honestidad del material.** La IA dice que es una IA. El precio va por escrito. El cliente lo ve funcionando antes de pagar. El diseño nunca aparenta lo que no es.
 
 ## El sistema
 
 ### Dos lenguajes gráficos que conviven
 
-- **La pieza (la mano).** Piezas de cerámica con volumen (`web/public/assets/ceramica.js`). La vasija se talla con canales y se baña en celadón sin llegar al pie, como el celadón de Longquan: el esmalte se acumula en la talla y oscurece, y abajo se ve el barro. En los iconos, el pincel solo traza las líneas de texto.
+- **La pieza (la mano).** Piezas de cerámica con volumen (`web/public/assets/ceramica.js`). La vasija es de gres moteado y se baña en esmalte cobalto sin llegar al pie, como en los talleres de hoy: el esmalte brilla, corre en regueros, gotea y deja ver un poco de gres abajo. En los iconos, el pincel solo traza las líneas de texto.
   - Sirve para objetos, iconos y los momentos con emoción: el cierre, la 404.
 - **El dibujo técnico (el torno).** Línea de 1 px en tinta: ejes, cotas, perfiles en sección como los dibujos arqueológicos de cerámica, y fichas de catálogo ("N.º 04", medidas, plazos).
   - Sirve para explicar, medir y dar datos.
   - Nunca va de adorno sin un dato detrás.
-- **Juntos:** el dibujo técnico anota la pieza hecha a mano. La imagen de la marca es una vasija con una mitad tallada y bañada y la otra dibujada en sección (ver `img/linea-de-diseno.png`).
+- **Juntos:** el dibujo técnico anota la pieza hecha a mano. La imagen de la marca es una vasija con una mitad bañada en cobalto y la otra dibujada en sección (ver `img/linea-de-diseno.png`).
 
 ### Tipografía
 
@@ -68,9 +68,9 @@ Si una pieza solo tiene una mitad, falla:
 
 ### Color
 
-- **Proporción:** porcelana 80 %, tinta 15 %, celadón 5 %.
-- **El celadón es el único acento.** Oscuro (`#2f5e4f`) en la acción principal y el dato clave; claro (`#a9bfae`) en el esmalte de las piezas.
-- **El barro** solo aparece en las piezas (el pie sin esmaltar) y en las fotos.
+- **Proporción:** porcelana 80 %, tinta 15 %, cobalto 5 %.
+- **El cobalto de Talavera es el único acento** (`#1f3f97`). Va en la acción principal, en el dato clave y en el esmalte de las piezas.
+- **El barro y el gres** solo aparecen en las piezas (el pie sin esmaltar) y en las fotos.
 - **El fuego** solo aparece en el horno.
 - **Prohibido:**
   - Los degradados de "IA" (violetas y neones).
@@ -80,7 +80,7 @@ Si una pieza solo tiene una mitad, falla:
 
 - **La luz** siempre viene de arriba a la izquierda.
 - **El barro** es mate y lleva motas. **El esmalte** brilla.
-- **La decoración** es la del oficio: talla, baño de esmalte y gotas. Nada de dibujos pintados encima.
+- **La decoración** es la del oficio: el baño de esmalte, sus regueros y sus gotas, y el gres a la vista. Nada de dibujos pintados encima.
 - **Cada pieza** se podría hacer en un taller de verdad.
 - **Prohibido:** iconos planos, emojis e ilustraciones de banco.
 
@@ -96,7 +96,7 @@ Si una pieza solo tiene una mitad, falla:
 
 ### Movimiento
 
-- **Solo verbos del oficio:** girar, ablandar, moldear, tallar, cocer, esmaltar.
+- **Solo verbos del oficio:** girar, ablandar, moldear, cocer, esmaltar.
 - **Pegado al scroll y sin retraso.** Las animaciones ligadas al scroll las mueve el navegador, no JavaScript.
 - **En la interfaz:** entre 200 y 450 ms, con curvas que frenan al final (como un torno que se para).
 - **Respeta "reducir movimiento":** todo sale en su estado final.
@@ -126,11 +126,11 @@ Si una pieza solo tiene una mitad, falla:
 
 ## Dónde estamos (diseño v3) y qué cambia
 
-**Diagnóstico.** La v3 ya tiene mucha mano (piezas, talla, esmalte) y poco torno. La tecnología solo se ve en el chat y en las maquetas. El riesgo es que parezca un taller de cerámica y no un estudio de tecnología.
+**Diagnóstico.** La v3 ya tiene mucha mano (piezas, gres, esmalte) y poco torno. La tecnología solo se ve en el chat y en las maquetas. El riesgo es que parezca un taller de cerámica y no un estudio de tecnología.
 
 Lo que propongo, por orden:
 
-1. **La capa de dibujo técnico en el torno.** Un eje y una ficha por etapa ("N.º 4 · Tu WhatsApp · 1–2 semanas"). Al final, la vasija se mide en sección, como en un dibujo arqueológico, antes de tallarse y esmaltarse.
+1. **La capa de dibujo técnico en el torno.** Un eje y una ficha por etapa ("N.º 4 · Tu WhatsApp · 1–2 semanas"). Al final, la vasija se mide en sección, como en un dibujo arqueológico, antes de esmaltarse.
 2. **El asistente como prueba técnica en la portada.** Un estado real ("Asistente con IA · en línea") cuando la clave esté puesta. Solo afirmaciones que sean verdad.
 3. **Una ficha técnica por producto** en "Lo que podemos construir": plazo, qué incluye y cómo se mantiene. Con datos que Álvaro confirme.
 4. **Cifras reales del estudio** cuando existan: diagnósticos hechos y tiempo de respuesta, leídos del KV. Nunca inventadas.

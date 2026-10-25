@@ -9,7 +9,7 @@
 @font-face { font-family: "Source Serif 4"; src: url("../web/public/assets/fonts/source-serif-4-latin-normal.woff2") format("woff2"); font-weight: 400 600; }
 @font-face { font-family: "Source Serif 4"; src: url("../web/public/assets/fonts/source-serif-4-latin-italic.woff2") format("woff2"); font-weight: 400 500; font-style: italic; }
 @font-face { font-family: "Schibsted Grotesk"; src: url("../web/public/assets/fonts/schibsted-grotesk-latin-normal.woff2") format("woff2"); font-weight: 400 900; }
-:root { --papel: #f3f3ef; --tinta: #171a21; --tinta-2: #585d68; --linea: #dcdcd5; --celadon: #2f5e4f; --barro: #cfa080; --fuego: #e2874e; --porcelana: #f3f1ea; }
+:root { --papel: #f3f3ef; --tinta: #171a21; --tinta-2: #585d68; --linea: #dcdcd5; --cobalto: #1f3f97; --barro: #cfa080; --fuego: #e2874e; --porcelana: #f3f1ea; }
 * { box-sizing: border-box; }
 body { margin: 0; width: 1600px; height: 1000px; background: var(--papel); color: var(--tinta); font-family: "Schibsted Grotesk", sans-serif; -webkit-font-smoothing: antialiased; }
 .lamina { position: relative; width: 1600px; height: 1000px; padding: 72px 80px; display: grid; grid-template-columns: 760px 1fr; gap: 40px; }
@@ -58,8 +58,8 @@ canvas { position: absolute; right: 70px; top: 40px; }
     <div><div class="muestra sans">38 € · 2–3 semanas</div><small>Schibsted Grotesk · interfaz y datos</small></div>
   </div>
   <div class="color">
-    <div class="barra"><div style="flex:80;background:var(--papel)"></div><div style="flex:15;background:var(--tinta)"></div><div style="flex:5;background:var(--celadon)"></div></div>
-    <div class="leyenda"><span>Porcelana 80 %</span><span>Tinta 15 %</span><span>Celadón 5 % · único acento</span></div>
+    <div class="barra"><div style="flex:80;background:var(--papel)"></div><div style="flex:15;background:var(--tinta)"></div><div style="flex:5;background:var(--cobalto)"></div></div>
+    <div class="leyenda"><span>Porcelana 80 %</span><span>Tinta 15 %</span><span>Cobalto 5 % · único acento</span></div>
   </div>
 </div>
 <canvas id="vasija" width="1520" height="1640" style="width:760px;height:820px"></canvas>
@@ -86,20 +86,19 @@ function dibujar() {
     C.pieza(c, v.ext, v.caja, { color: "#cfa080", acabado: "barro", dpr: 2, anillos: true });
   }
 
-  // La pieza clave: mitad derecha hecha a mano (tallada y bañada), mitad izquierda dibujada en sección.
+  // La pieza clave: mitad derecha hecha a mano (bañada en cobalto), mitad izquierda dibujada en sección.
   const cv = document.getElementById("vasija"), ctx = cv.getContext("2d");
   const dpr = 2; ctx.scale(dpr, dpr);
   const cx = 400, cy = 400, k = 1.55;
   const v = vasija(cx, cy, k);
   const tinta = "#171a21";
 
-  // La mano: canales tallados y baño de celadón sin llegar al pie, solo en la mitad derecha.
+  // La mano: gres con un baño de esmalte cobalto que no llega al pie, solo en la mitad derecha.
   ctx.save();
   ctx.beginPath(); ctx.rect(cx, 0, 800, 900); ctx.clip();
   ctx.translate(cx, cy); ctx.scale(k, k);
-  const local = vasija(0, 0, 1);
-  C.pieza(ctx, local.ext, local.caja, { color: "#cfa080", acabado: "barro", dpr: dpr * k });
-  C.vasija(perfil).acabar(ctx, local.ext, local.caja, { color: "#a9bfae", dpr: dpr * k });
+  const V = C.laVasija();
+  V.dibujar(ctx, { gres: "#e6dfd2", motas: "#3b2a1e", esmalte: "#24479f", oscuro: "#17307a", claro: "#9db0e0", nivel: V.nivel, gotas: V.gotas, dpr: dpr * k });
   ctx.restore();
 
   // El torno: dibujo arqueológico en la mitad izquierda. Perfil, pared en sección (negro) y eje.
@@ -146,7 +145,7 @@ function dibujar() {
   ctx.textAlign = "left"; ctx.fillText("La mano", cx + 22, yBase + 62);
   ctx.font = "500 14px 'Schibsted Grotesk'"; ctx.fillStyle = "#585d68";
   ctx.textAlign = "right"; ctx.fillText("Medida, sección, eje", cx - 22, yBase + 86);
-  ctx.textAlign = "left"; ctx.fillText("Barro, talla, baño de celadón", cx + 22, yBase + 86);
+  ctx.textAlign = "left"; ctx.fillText("Gres, esmalte cobalto, gotas", cx + 22, yBase + 86);
 }
 Promise.all(["500 15px 'Schibsted Grotesk'", "italic 500 30px 'Source Serif 4'", "500 104px 'Source Serif 4'"].map((f) => document.fonts.load(f)))
   .then(() => { dibujar(); document.body.dataset.listo = "1"; });
