@@ -33,6 +33,8 @@ Cómo consigues que se sienta entendido:
 
 Cómo escribes: de tú, en castellano de España (o en el idioma en que te escriban). Una o dos frases por mensaje, unas treinta palabras como mucho. Cercano, concreto y directo, como el resto de la web. Sin jerga técnica, sin listas, sin negritas, sin superlativos, sin emojis y sin prometer resultados.
 
+Barra de avance: empieza cada mensaje con una etiqueta entre corchetes con el punto sobre el que preguntas: [negocio], [problema], [hoy], [resuelto] o [extra] (tamaño o urgencia). Cuando cierres, usa [cierre]. La web la quita y mueve con ella una barra de avance; la persona no la ve.
+
 Cuándo cierras: cuando sepas al menos los puntos 1 a 3, o cuando la persona quiera terminar. Lo normal son cuatro o cinco preguntas; nunca más de seis. Para cerrar, escribe una frase corta y llama a la herramienta preparar_propuesta: la web le enseñará lo que hemos entendido, lo que haríamos y el siguiente paso, con un formulario para dejarnos su contacto. Si después sigue escribiendo, contesta corto y recuérdale el formulario.
 
 Lo que podemos hacer. Propón una sola cosa, la que más le ayude, contada con sus palabras:
@@ -138,6 +140,15 @@ export function limpiarGuiado(g) {
   return r;
 }
 
+// La etiqueta con la que el modelo empieza cada mensaje: el tema de lo que pregunta. Mueve la barra
+// de avance de la web y no se enseña.
+const ETIQUETA = /^\s*\[(negocio|problema|hoy|resuelto|extra|cierre)\]\s*/i;
+const ETIQUETAS = /\s*\[(?:negocio|problema|hoy|resuelto|extra|cierre)\]\s*/gi;
+function separarEtiqueta(texto) {
+  const m = ETIQUETA.exec(texto);
+  return { paso: m ? m[1].toLowerCase() : null, texto: texto.replace(ETIQUETAS, " ").replace(/ {2,}/g, " ").trim() };
+}
+
 // A partir del quinto mensaje, el servidor le recuerda al modelo que vaya cerrando.
 function recordatorio(numero) {
   if (numero >= 7) return "La persona lleva siete mensajes. Cierra ya: escribe una frase corta y llama a preparar_propuesta con lo que sepas.";
@@ -168,7 +179,7 @@ function pedir(client, messages) {
 }
 
 // estado: { messages, turnos, pendiente, ficha } guardado en KV entre peticiones.
-// Devuelve { respuesta, ficha } (ficha solo al cerrar) y modifica estado (solo añadiendo).
+// Devuelve { respuesta, paso, ficha } (ficha solo al cerrar) y modifica estado (solo añadiendo).
 export async function conversar(apiKey, estado, mensaje) {
   const client = new Anthropic({ apiKey, maxRetries: 1 });
 
@@ -207,11 +218,12 @@ export async function conversar(apiKey, estado, mensaje) {
   estado.turnos = (estado.turnos || 0) + 1;
   estado.pendiente = null;
 
-  const texto = respuesta.content
-    .filter((b) => b.type === "text")
-    .map((b) => b.text)
-    .join("\n")
-    .trim();
+  const { paso, texto } = separarEtiqueta(
+    respuesta.content
+      .filter((b) => b.type === "text")
+      .map((b) => b.text)
+      .join("\n"),
+  );
 
   let ficha = null;
   const llamada = respuesta.content.find((b) => b.type === "tool_use" && b.name === HERRAMIENTA.name);
@@ -223,6 +235,7 @@ export async function conversar(apiKey, estado, mensaje) {
 
   return {
     respuesta: texto || (ficha ? "Con esto ya podemos preparar algo concreto para ti." : "Perdona, no te he entendido. ¿Me lo cuentas en una frase?"),
+    paso: ficha ? "cierre" : paso,
     ficha,
   };
 }

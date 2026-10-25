@@ -29,6 +29,8 @@
     empezado = true;
     if (ventana) ventana.classList.add("activa");
     lista.hidden = false;
+    entrada.placeholder = "Escribe tu respuesta";
+    abrirFoco();
     burbuja(SALUDO, "bot");
   }
   const formulario = $("#chat-formulario");
@@ -74,6 +76,88 @@
     lista.scrollTop = lista.scrollHeight;
   }
   const pausa = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  // ---------- Modo conversación ----------
+  // Al empezar, la ventana ocupa toda la pantalla y se abre desde la caja. "Cerrar", Esc o el botón de
+  // atrás del móvil la devuelven a su sitio, con la conversación dentro.
+  const html = document.documentElement;
+  const hueco = ventana.parentElement;
+  const tactil = window.matchMedia("(pointer: coarse)").matches;
+  const sinMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let enFoco = false;
+  let conHistoria = false;
+  const recorte = (r) => `inset(${Math.max(0, r.top)}px ${Math.max(0, innerWidth - r.right)}px ${Math.max(0, innerHeight - r.bottom)}px ${Math.max(0, r.left)}px round 18px)`;
+  function ajustarAlto() {
+    if (!enFoco) return;
+    // En el móvil, el teclado encoge lo visible: la caja se queda justo encima.
+    const vv = window.visualViewport;
+    html.style.setProperty("--alto-chat", (vv ? vv.height : innerHeight) + "px");
+    ventana.style.top = vv ? vv.offsetTop + "px" : "";
+    bajar();
+  }
+  function abrirFoco() {
+    if (enFoco) return;
+    const caja = formulario.getBoundingClientRect();
+    hueco.style.minHeight = hueco.offsetHeight + "px"; // la página no se mueve por debajo
+    enFoco = true;
+    html.classList.add("chat-abierto");
+    ventana.classList.add("foco");
+    ajustarAlto();
+    if (!sinMovimiento && ventana.animate) {
+      ventana.animate([{ clipPath: recorte(caja) }, { clipPath: "inset(0px 0px 0px 0px round 0px)" }], { duration: 420, easing: "cubic-bezier(.2, .8, .2, 1)" });
+    }
+    history.pushState({ chat: true }, "");
+    conHistoria = true;
+    if (!tactil) entrada.focus();
+  }
+  function cerrarFoco(desdeHistoria) {
+    if (!enFoco) return;
+    enFoco = false;
+    const terminar = () => {
+      ventana.classList.remove("foco");
+      ventana.style.top = "";
+      html.classList.remove("chat-abierto");
+      hueco.style.minHeight = "";
+      lista.scrollTop = lista.scrollHeight;
+    };
+    if (!sinMovimiento && ventana.animate) {
+      const destino = hueco.getBoundingClientRect();
+      ventana.animate([{ clipPath: "inset(0px 0px 0px 0px round 0px)" }, { clipPath: recorte(destino) }], { duration: 300, easing: "cubic-bezier(.4, 0, .2, 1)" }).onfinish = terminar;
+    } else terminar();
+    if (!desdeHistoria && conHistoria) history.back();
+    conHistoria = false;
+  }
+  $("#chat-cerrar").addEventListener("click", () => cerrarFoco(false));
+  window.addEventListener("popstate", () => { if (enFoco) { conHistoria = false; cerrarFoco(true); } });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && enFoco) cerrarFoco(false); });
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", ajustarAlto);
+    window.visualViewport.addEventListener("scroll", ajustarAlto);
+  }
+  window.addEventListener("resize", ajustarAlto);
+
+  // ---------- Avance ----------
+  // Lo marca el tema de lo que el agente pregunta (lo manda el servidor) o la pregunta fija del modo
+  // sin IA. Nunca va hacia atrás y se llena al enseñar la propuesta.
+  const AVANCE = { negocio: 0.125, problema: 0.375, hoy: 0.625, resuelto: 0.7, extra: 0.75, cierre: 1 };
+  const tramos = Array.from(document.querySelectorAll("#chat-progreso li"));
+  const progreso = $("#chat-progreso");
+  let avance = 0;
+  function avanzar(paso) {
+    const v = AVANCE[paso];
+    if (v == null || v <= avance) return;
+    avance = v;
+    tramos.forEach((li, i) => {
+      const lleno = Math.min(1, Math.max(0, avance * tramos.length - i));
+      li.style.setProperty("--lleno", lleno);
+      li.classList.toggle("hecho", lleno >= 1);
+      li.classList.toggle("actual", (lleno > 0 && lleno < 1) || (avance >= 1 && i === tramos.length - 1));
+    });
+    progreso.setAttribute("aria-valuenow", String(Math.round(avance * 100)));
+    const actual = tramos.find((li) => li.classList.contains("actual"));
+    if (actual) progreso.setAttribute("aria-valuetext", actual.textContent);
+    if (avance >= 1) $("#chat-tiempo").textContent = "Listo";
+  }
   const euros = (n) => Math.round(n).toLocaleString("es-ES") + " €"; // espacio que no se parte
   async function decir(texto) {
     const e = escribiendo();
@@ -91,10 +175,10 @@
     otro: "Cuéntame qué pasa, con un ejemplo de la última vez.",
   };
   const PREGUNTAS = [
-    { campo: "negocio", texto: () => "Vamos a ello. ¿Qué negocio tienes? Si tienes web o Instagram, pásame el enlace o el nombre." },
-    { campo: "detalle", texto: () => "Gracias. " + PREGUNTA_PROBLEMA[guia.problema] },
-    { campo: "hoy", texto: () => "Apuntado. ¿Cómo lo haces ahora? Por ejemplo, WhatsApp normal, un programa de reservas, Excel o papel." },
-    { campo: "resuelto", texto: () => "La última: si esto funcionara solo, ¿qué cambiaría en tu día?" },
+    { campo: "negocio", paso: "negocio", texto: () => "Vamos a ello. ¿Qué negocio tienes? Si tienes web o Instagram, pásame el enlace o el nombre." },
+    { campo: "detalle", paso: "problema", texto: () => "Gracias. " + PREGUNTA_PROBLEMA[guia.problema] },
+    { campo: "hoy", paso: "hoy", texto: () => "Apuntado. ¿Cómo lo haces ahora? Por ejemplo, WhatsApp normal, un programa de reservas, Excel o papel." },
+    { campo: "resuelto", paso: "resuelto", texto: () => "La última: si esto funcionara solo, ¿qué cambiaría en tu día?" },
   ];
   const ETIQUETAS = { inicio: "Lo que te pasa", negocio: "Tu negocio", detalle: "En concreto", hoy: "Cómo lo haces hoy", resuelto: "Lo que cambiaría" };
   const PROPUESTAS = {
@@ -122,12 +206,16 @@
     guia.problema = problema;
     guia.respuestas = { inicio };
     guia.paso = 0;
+    avanzar(PREGUNTAS[0].paso);
     await decir(PREGUNTAS[0].texto());
   }
   async function responderGuiado(texto) {
     guia.respuestas[PREGUNTAS[guia.paso].campo] = texto.slice(0, 600);
     guia.paso += 1;
-    if (guia.paso < PREGUNTAS.length) return decir(PREGUNTAS[guia.paso].texto());
+    if (guia.paso < PREGUNTAS.length) {
+      avanzar(PREGUNTAS[guia.paso].paso);
+      return decir(PREGUNTAS[guia.paso].texto());
+    }
     await decir("Gracias. Con esto ya podemos preparar algo concreto para ti.");
     const p = guia.problema;
     mostrarCierre({ propuesta: PROPUESTAS[p], siguiente_paso: PASO[p], producto: PRODUCTO[p], coste_mensual_eur: 0 }, guia.respuestas);
@@ -147,6 +235,7 @@
   function mostrarCierre(datos, respuestas) {
     terminado = true;
     cierre = datos;
+    avanzar("cierre");
     const paso = PASOS[datos.siguiente_paso] || PASOS.llamada;
     const caja = document.createElement("div");
     caja.className = "resultado";
@@ -291,6 +380,7 @@
       e.remove();
       if (datos.respaldo) throw new Error("respaldo");
       respuestasIA += 1;
+      if (datos.paso) avanzar(datos.paso);
       if (datos.respuesta) burbuja(datos.respuesta, "bot");
       if (datos.cierre && !terminado) mostrarCierre(datos.cierre);
     } catch (err) {
@@ -308,6 +398,7 @@
     } finally {
       ocupado = false;
       enviar.disabled = false;
+      if (enFoco && !tactil && !terminado) entrada.focus();
     }
   }
 
@@ -330,6 +421,7 @@
     entrada.value = "";
     entrada.style.height = "";
     empezar();
+    abrirFoco(); // si la había cerrado, vuelve a pantalla completa
     quitarOpciones();
     burbuja(texto, "tu");
     if (modo === "ia") return hablarConIA(texto);
@@ -337,6 +429,13 @@
     decir(`Si quieres añadir algo, escríbelo en el formulario o mándanos un email a ${CONFIG.email}.`);
   });
 
+  // En el ordenador, Intro envía y Mayúsculas + Intro hace un salto de línea. En el móvil, el botón.
+  entrada.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !e.shiftKey && !e.isComposing && !tactil) {
+      e.preventDefault();
+      formulario.requestSubmit();
+    }
+  });
   entrada.addEventListener("input", () => {
     entrada.style.height = "auto";
     entrada.style.height = Math.min(entrada.scrollHeight, 140) + "px";

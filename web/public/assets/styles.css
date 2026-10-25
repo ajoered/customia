@@ -117,14 +117,40 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .ventana .enviar:hover { background: var(--acento-oscuro); }
 .ventana .enviar:active { transform: translateY(1px); }
 .ventana .enviar:disabled { opacity: .5; cursor: default; }
-.ventana .chat-mensajes { width: 100%; padding: 0; min-height: 0; max-height: min(560px, 64vh); overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+.ventana .chat-mensajes { width: 100%; padding: 0; min-height: 0; max-height: min(560px, 64vh); overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
+
+/* Modo conversación: al empezar, la ventana ocupa toda la pantalla (como America.gov o ChatGPT).
+   Arriba, la marca, el avance y "Cerrar"; en medio, la conversación en una columna; abajo, la caja. */
+.ventana-barra { display: none; }
+html.chat-abierto { overflow: hidden; }
+.ventana.foco { position: fixed; top: 0; left: 0; right: 0; height: var(--alto-chat, 100dvh); width: auto; z-index: 60; background: var(--papel);
+  display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: 0; padding-bottom: env(safe-area-inset-bottom, 0px); }
+.ventana.foco .ventana-barra { display: block; padding: calc(env(safe-area-inset-top, 0px) + 10px) max(16px, calc((100% - 720px) / 2)) 12px; border-bottom: 1px solid var(--linea); background: var(--papel); }
+.ventana-barra-fila { display: flex; align-items: center; gap: 12px; }
+.ventana-barra .marca { font-size: 1.05rem; }
+.ventana-tiempo { margin-left: auto; font-size: var(--t-xs); color: var(--tinta-2); }
+.ventana-cerrar { font: inherit; font-size: var(--t-s); font-weight: 500; display: inline-flex; align-items: center; gap: 4px; background: none; border: 0; color: var(--tinta-2); cursor: pointer; padding: 6px 4px 6px 8px; border-radius: 8px; }
+.ventana-cerrar:hover { color: var(--tinta); background: color-mix(in srgb, var(--tinta) 6%, transparent); }
+.ventana.foco .chat-mensajes { max-height: none; height: 100%; padding: 28px max(16px, calc((100% - 680px) / 2)) 20px; gap: 18px; overscroll-behavior: contain; }
+.ventana.foco .caja { width: min(680px, calc(100% - 32px)); margin: 0 auto clamp(12px, 2vw, 20px); }
+
+/* El avance: cuatro tramos que se llenan según lo que el agente está preguntando. Nunca va hacia atrás. */
+.progreso { list-style: none; margin: 12px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.progreso li { position: relative; padding-top: 10px; font-size: var(--t-xs); color: var(--tinta-2); line-height: 1.2; transition: color .2s; }
+.progreso li::before, .progreso li::after { content: ""; position: absolute; top: 0; left: 0; height: 4px; border-radius: 2px; }
+.progreso li::before { right: 0; background: var(--linea); }
+.progreso li::after { width: calc(var(--lleno, 0) * 100%); background: var(--acento); transition: width .5s cubic-bezier(.2, .8, .2, 1); }
+.progreso li.actual { color: var(--tinta); font-weight: 600; }
+.progreso li.hecho { color: var(--tinta); }
+@media (max-width: 480px) { .progreso li { font-size: .7rem; white-space: nowrap; } }
 .ventana.activa .caja { padding: 10px 10px 10px 16px; border-radius: 16px; }
 .ventana.activa .caja textarea { min-height: 28px; font-size: var(--t-m); padding: 8px 0 0; }
 .ventana.activa .caja { flex-direction: row; align-items: flex-end; position: relative; }
 .ventana.activa .caja-pie { position: static; }
-.msg { max-width: 86%; padding: 11px 15px; border-radius: 18px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; font-size: var(--t-m); }
-.msg-bot { align-self: flex-start; background: #e9e9e3; border-bottom-left-radius: 6px; }
-.msg-tu { align-self: flex-end; background: var(--acento); color: #fff; border-bottom-right-radius: 6px; }
+/* Como en los mejores chats: el agente escribe en texto corrido y solo lo tuyo va en burbuja. */
+.msg { max-width: 86%; line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere; font-size: var(--t-m); }
+.msg-bot { align-self: flex-start; max-width: 100%; color: var(--tinta); }
+.msg-tu { align-self: flex-end; background: var(--acento-suave); color: var(--tinta); padding: 10px 15px; border-radius: 18px; border-bottom-right-radius: 6px; }
 .msg-escribiendo { display: inline-flex; gap: 5px; align-items: center; }
 .msg-escribiendo i { width: 7px; height: 7px; border-radius: 50%; background: var(--tinta-2); opacity: .5; animation: latido 1.2s infinite ease-in-out; }
 .msg-escribiendo i:nth-child(2) { animation-delay: .15s; } .msg-escribiendo i:nth-child(3) { animation-delay: .3s; }

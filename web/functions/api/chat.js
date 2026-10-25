@@ -1,4 +1,5 @@
-// POST /api/chat  { sesion, mensaje } -> { respuesta, cierre } o { respaldo: true }
+// POST /api/chat  { sesion, mensaje } -> { respuesta, paso, cierre } o { respaldo: true }
+// paso: el tema de lo que pregunta el agente, para la barra de avance.
 // "respaldo" hace que el navegador siga con las preguntas fijas: sin clave,
 // límite diario alcanzado, conversación demasiado larga o error de la API.
 // La ficha completa para el equipo se queda en la conversación (KV, 24 horas) y
@@ -32,13 +33,13 @@ export async function onRequestPost({ request, env }) {
   if (estado.turnos >= MAX_TURNOS) return json({ respaldo: true });
 
   try {
-    const { respuesta, ficha } = await conversar(env.CLAUDE_ANTHROPIC_API_KEY, estado, mensaje);
+    const { respuesta, paso, ficha } = await conversar(env.CLAUDE_ANTHROPIC_API_KEY, estado, mensaje);
     await env.ARCILLA.put(k, JSON.stringify(estado), { expirationTtl: UN_DIA });
     if (ficha) {
       // Para las estadísticas, sin texto libre ni datos personales.
       await env.ARCILLA.put(clave("diagnostico", sesion), JSON.stringify({ fecha: new Date().toISOString(), modo: "ia", ...anonima(ficha) }));
     }
-    return json({ respuesta, cierre: ficha ? paraPantalla(ficha) : null });
+    return json({ respuesta, paso, cierre: ficha ? paraPantalla(ficha) : null });
   } catch (error) {
     console.error("chat", error?.status, error?.name, error?.message);
     return json({ respaldo: true });

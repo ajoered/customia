@@ -91,6 +91,8 @@ Una conversación de dos o tres minutos para entender qué le pasa al negocio, n
 - **Para que se sientan escuchados:** antes de cada pregunta repite en media frase lo último que le han dicho, con sus palabras; una pregunta por mensaje; mensajes de una o dos frases.
 - **Cierre:** a partir del quinto mensaje el servidor le pide cerrar. Llama a `preparar_propuesta` y la web enseña lo que hemos entendido, lo que haríamos y el siguiente paso (maqueta de la web, demo del agente de WhatsApp, propuesta o llamada) con el formulario.
 - **La ficha para Álvaro** (se guarda con el contacto): sector, nombre, web o redes, quién atiende, problema, ejemplo, cómo lo hacen hoy, qué sería resuelto, volumen, coste si salió, urgencia y qué falta por confirmar en la llamada.
+- **Pantalla completa:** al empezar, la caja se abre a toda la pantalla, como America.gov o ChatGPT: arriba la marca, el avance y "Cerrar"; en medio la conversación en una columna; abajo la caja. "Cerrar", Esc o el botón de atrás del móvil la devuelven a su sitio con la conversación dentro. En el ordenador, Intro envía.
+- **Barra de avance:** cuatro tramos (tu negocio, lo que pasa, cómo lo haces, propuesta). El agente empieza cada mensaje con una etiqueta del tema que pregunta (`[negocio]`, `[problema]`, `[hoy]`, `[resuelto]`, `[extra]`, `[cierre]`); el servidor la quita y la manda como `paso`. La barra nunca va hacia atrás y se llena al enseñar la propuesta.
 - **Sin IA** (sin clave, límite diario o error): cuatro preguntas fijas que también se contestan escribiendo.
 
 El texto del agente está en `lib/claude.js` (`SISTEMA`). Si lo cambias, pruébalo con varias conversaciones antes de publicar.
