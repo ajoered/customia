@@ -1,8 +1,8 @@
 /* Arcilla Studio, v3
    Concepto: un taller de cerámica española. Una sola pieza de arcilla que se moldea con el
    scroll, y piezas de barro y de esmalte (ceramica.js) en lugar de iconos planos.
-   Color: porcelana, tinta, el celadón (el verde gris de la porcelana) como único acento, y el
-   barro solo en las piezas. Letra: Source Serif 4 para lo que se lee despacio; Schibsted Grotesk
+   Color: porcelana, tinta, el cobalto de la loza de Talavera como único acento, y el barro
+   solo en las piezas. Letra: Source Serif 4 para lo que se lee despacio; Schibsted Grotesk
    para todo lo demás. Ver estudio/10-linea-de-diseno.md. */
 
 /* La serifa lleva tamaño óptico: fina y contrastada en grande, más robusta en pequeño (el navegador
@@ -27,10 +27,7 @@
   --ladrillo-2: #7e3a24;
   --barro: #cfa080;
   --barro-2: #a9775a;
-  --esmalte: #9db0e0;        /* cobalto claro: donde el esmalte de la taza adelgaza */
-  --esmalte-2: #24479f;      /* cobalto: el esmalte de la taza y los detalles de las piezas */
-  --gres: #e6dfd2;           /* el gres cocido, a la vista en el pie de la taza */
-  --hierro: #3b2a1e;         /* las motas de hierro del gres */
+  --esmalte: #24479f;        /* cobalto: el esmalte de la vasija y los detalles de las piezas */
   --fuego: #e2874e;
   --sombra: 0 1px 2px rgba(23, 26, 33, 0.05), 0 22px 44px -28px rgba(23, 26, 33, 0.32);
 

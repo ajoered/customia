@@ -26,8 +26,8 @@ web/
 
 **Línea de diseño:** `../estudio/10-linea-de-diseno.md` ("La mano y el torno"). Léela antes de decidir nada de diseño.
 
-- **Idea:** un taller de cerámica. Una sola pieza de arcilla (`assets/torno.js`, canvas 2D) se moldea con el scroll: ladrillo → arcilla → tu web → tu WhatsApp → tu herramienta → vasija → horno (al rojo) → gres claro y baño de esmalte cobalto que no llega al pie. Si el navegador prefiere menos movimiento, se muestra la forma fija de cada etapa.
-- **Piezas de cerámica en vez de iconos planos** (estilo Airbnb). `assets/ceramica.js` pinta barro y esmalte con volumen: luz, canto, motas de chamota, anillos del torno, huecos, pincel y las piezas torneadas (`Ceramica.torneada`): gres moteado con un baño de esmalte brillante, regueros y gotas. Lo usan:
+- **Idea:** un taller de cerámica. Una sola pieza de arcilla (`assets/torno.js`, canvas 2D) se moldea con el scroll: ladrillo → arcilla → tu web → tu WhatsApp → tu herramienta → vasija → horno (al rojo) → baño de esmalte cobalto que no llega al pie. Si el navegador prefiere menos movimiento, se muestra la forma fija de cada etapa.
+- **Piezas de cerámica en vez de iconos planos** (estilo Airbnb). `assets/ceramica.js` pinta barro y esmalte con volumen: luz, canto, motas de chamota, anillos del torno, huecos, pincel y el baño de esmalte de la vasija (`Ceramica.vasija`), que no llega al pie y deja gotas. Lo usan:
   - el torno, en vivo;
   - `tools/piezas.html`, que dibuja los iconos (teléfono, burbuja, web, libreta y panel), el logotipo, la vasija del cierre, la de la 404 y la imagen para compartir.
 
@@ -42,7 +42,7 @@ web/
 - **Colores:**
   - Porcelana de fondo y tinta.
   - El cobalto de la loza de Talavera como único acento, en la interfaz y en el esmalte de las piezas.
-  - El barro y el gres, solo en las piezas (el pie sin esmaltar de la vasija).
+  - El barro, solo en las piezas (el pie sin esmaltar de la vasija).
 
   Lejos del crema con barro, que recordaba a la marca de Claude.
 - **Tipos:**
@@ -66,7 +66,7 @@ web/
   4. Cómo lo hacemos.
   5. Quién está detrás.
   6. Preguntas.
-  7. Cierre en cobalto con la vasija.
+  7. Cierre en cobalto con la vasija bañada en blanco.
 - **Detalles:**
   - Imagen para compartir (`piezas/compartir.jpg`) e icono para el iPhone.
   - Página 404 con la vasija rota.

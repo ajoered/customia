@@ -22,9 +22,9 @@ Fuentes: Wikipedia, "Pierre-Simon Fournier", "Source Serif" y "Potter's wheel" (
 
 | | La mano | El torno |
 |---|---|---|
-| **Forma** | Textura, motas del gres, gotas y regueros del esmalte | Ejes, cotas, retícula, simetría |
+| **Forma** | Textura, motas de barro, gotas de esmalte | Ejes, cotas, retícula, simetría |
 | **Letra** | Source Serif 4: titulares, lo que se lee despacio | Schibsted Grotesk: interfaz y datos, con cifras tabulares |
-| **Color** | Gres y esmalte cobalto en las piezas | El mismo cobalto como señal de la interfaz: acción y dato clave |
+| **Color** | Barro y esmalte cobalto en las piezas | El mismo cobalto como señal de la interfaz: acción y dato clave |
 | **Imagen** | Piezas de cerámica, fotos reales de manos y de locales | Producto real en pantalla y datos de verdad |
 | **Movimiento** | Peso e inercia: la pieza gira, se ablanda, se cuece, se esmalta | Exacto: pegado al scroll, sin retraso ni tirones |
 | **Texto** | De tú, cercano, con palabras del oficio | Cifras, plazos y precios por escrito |
@@ -38,7 +38,7 @@ Si una pieza solo tiene una mitad, falla:
 
 1. **La mano decide; la herramienta se nota.** Enseñamos la tecnología de verdad (el asistente funcionando, pantallas reales) y la persona que decide (Álvaro, su criterio y su cara).
 2. **Una pieza, no una plantilla.** Cada elemento se hace para Arcilla. Si podría estar en otra web, no vale: ni iconos de banco, ni componentes por defecto, ni fotos de stock.
-3. **Irregular en la superficie, exacto en la estructura.** La textura, los regueros y las gotas van sobre una retícula precisa. Lo imperfecto es el material, nunca la maquetación.
+3. **Irregular en la superficie, exacto en la estructura.** La textura y las gotas van sobre una retícula precisa. Lo imperfecto es el material, nunca la maquetación.
 4. **Las cifras son de verdad.** La precisión se ve en datos reales: plazos, euros, medidas, tiempos. Nunca números de adorno ni métricas inventadas.
 5. **Calma de taller.** Una idea por pantalla. Nada se mueve si no hace algo que haría una pieza: girar, ablandarse, moldearse, cocerse o esmaltarse.
 6. **Oficio sin folclore.** Las referencias son de oficio: el cobalto de Talavera, el torno, la imprenta y los talleres de cerámica de hoy. Nada de tópicos: ni flores pintadas, ni azulejos por todas partes, ni emojis de tapas.
@@ -48,7 +48,7 @@ Si una pieza solo tiene una mitad, falla:
 
 ### Dos lenguajes gráficos que conviven
 
-- **La pieza (la mano).** Piezas de cerámica con volumen (`web/public/assets/ceramica.js`). La vasija es de gres moteado y se baña en esmalte cobalto sin llegar al pie, como en los talleres de hoy: el esmalte brilla, corre en regueros, gotea y deja ver un poco de gres abajo. En los iconos, el pincel solo traza las líneas de texto.
+- **La pieza (la mano).** Piezas de cerámica con volumen (`web/public/assets/ceramica.js`), todas con el mismo dibujo: luz, canto, motas y brillo. La vasija se baña en esmalte cobalto liso sin llegar al pie, como en los talleres de hoy: deja unas gotas y el barro a la vista abajo. En el cierre, sobre fondo cobalto, la misma vasija va bañada en blanco. En los iconos, el pincel solo traza las líneas de texto.
   - Sirve para objetos, iconos y los momentos con emoción: el cierre, la 404.
 - **El dibujo técnico (el torno).** Línea de 1 px en tinta: ejes, cotas, perfiles en sección como los dibujos arqueológicos de cerámica, y fichas de catálogo ("N.º 04", medidas, plazos).
   - Sirve para explicar, medir y dar datos.
@@ -70,7 +70,7 @@ Si una pieza solo tiene una mitad, falla:
 
 - **Proporción:** porcelana 80 %, tinta 15 %, cobalto 5 %.
 - **El cobalto de Talavera es el único acento** (`#1f3f97`). Va en la acción principal, en el dato clave y en el esmalte de las piezas.
-- **El barro y el gres** solo aparecen en las piezas (el pie sin esmaltar) y en las fotos.
+- **El barro** solo aparece en las piezas (el pie sin esmaltar) y en las fotos.
 - **El fuego** solo aparece en el horno.
 - **Prohibido:**
   - Los degradados de "IA" (violetas y neones).
@@ -80,7 +80,7 @@ Si una pieza solo tiene una mitad, falla:
 
 - **La luz** siempre viene de arriba a la izquierda.
 - **El barro** es mate y lleva motas. **El esmalte** brilla.
-- **La decoración** es la del oficio: el baño de esmalte, sus regueros y sus gotas, y el gres a la vista. Nada de dibujos pintados encima.
+- **La decoración** es la del oficio: el baño de esmalte, sus gotas y el barro a la vista. Esmalte liso: nada de manchas, vetas ni dibujos pintados encima.
 - **Cada pieza** se podría hacer en un taller de verdad.
 - **Prohibido:** iconos planos, emojis e ilustraciones de banco.
 
@@ -126,7 +126,7 @@ Si una pieza solo tiene una mitad, falla:
 
 ## Dónde estamos (diseño v3) y qué cambia
 
-**Diagnóstico.** La v3 ya tiene mucha mano (piezas, gres, esmalte) y poco torno. La tecnología solo se ve en el chat y en las maquetas. El riesgo es que parezca un taller de cerámica y no un estudio de tecnología.
+**Diagnóstico.** La v3 ya tiene mucha mano (piezas, barro, esmalte) y poco torno. La tecnología solo se ve en el chat y en las maquetas. El riesgo es que parezca un taller de cerámica y no un estudio de tecnología.
 
 Lo que propongo, por orden:
 

@@ -93,12 +93,13 @@ function dibujar() {
   const v = vasija(cx, cy, k);
   const tinta = "#171a21";
 
-  // La mano: gres con un baño de esmalte cobalto que no llega al pie, solo en la mitad derecha.
+  // La mano: barro con un baño de cobalto que no llega al pie, solo en la mitad derecha.
   ctx.save();
   ctx.beginPath(); ctx.rect(cx, 0, 800, 900); ctx.clip();
   ctx.translate(cx, cy); ctx.scale(k, k);
-  const V = C.laVasija();
-  V.dibujar(ctx, { gres: "#e6dfd2", motas: "#3b2a1e", esmalte: "#24479f", oscuro: "#17307a", claro: "#9db0e0", nivel: V.nivel, gotas: V.gotas, dpr: dpr * k });
+  const local = vasija(0, 0, 1);
+  C.pieza(ctx, local.ext, local.caja, { color: "#cfa080", acabado: "barro", dpr: dpr * k });
+  C.vasija(perfil).bano(ctx, local.ext, local.caja, { color: "#24479f", canto: "#17307a", dpr: dpr * k });
   ctx.restore();
 
   // El torno: dibujo arqueológico en la mitad izquierda. Perfil, pared en sección (negro) y eje.
@@ -145,7 +146,7 @@ function dibujar() {
   ctx.textAlign = "left"; ctx.fillText("La mano", cx + 22, yBase + 62);
   ctx.font = "500 14px 'Schibsted Grotesk'"; ctx.fillStyle = "#585d68";
   ctx.textAlign = "right"; ctx.fillText("Medida, sección, eje", cx - 22, yBase + 86);
-  ctx.textAlign = "left"; ctx.fillText("Gres, esmalte cobalto, gotas", cx + 22, yBase + 86);
+  ctx.textAlign = "left"; ctx.fillText("Barro, esmalte cobalto, gotas", cx + 22, yBase + 86);
 }
 Promise.all(["500 15px 'Schibsted Grotesk'", "italic 500 30px 'Source Serif 4'", "500 104px 'Source Serif 4'"].map((f) => document.fonts.load(f)))
   .then(() => { dibujar(); document.body.dataset.listo = "1"; });
