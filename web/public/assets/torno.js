@@ -2,14 +2,15 @@
 //
 // Dibuja en un canvas 2D una forma definida por 72 puntos. Cada etapa de la historia
 // es una forma objetivo (ladrillo, masa, móvil, burbuja de WhatsApp, panel, pieza
-// cocida) y el progreso del scroll interpola entre ellas. Si el navegador prefiere
-// menos movimiento, se dibuja la forma de la etapa visible sin animar.
+// cocida) y el progreso del scroll interpola entre ellas. El volumen, el barro y el
+// esmalte los pinta ceramica.js. Si el navegador prefiere menos movimiento, se dibuja
+// la forma de la etapa visible sin animar.
 
 (function () {
   "use strict";
   const canvas = document.getElementById("torno-canvas");
   const pasos = Array.from(document.querySelectorAll("[data-etapa]"));
-  if (!canvas || !pasos.length) return;
+  if (!canvas || !pasos.length || !window.Ceramica) return;
   const ctx = canvas.getContext("2d");
   const N = 72;
   const SIZE = 520;
@@ -19,15 +20,13 @@
   function tokens() {
     const cs = getComputedStyle(document.documentElement);
     return {
-      ladrillo: cs.getPropertyValue("--ladrillo").trim() || "#c9683f",
-      ladrillo2: cs.getPropertyValue("--ladrillo-2").trim() || "#8f6c54",
-      barro: cs.getPropertyValue("--barro").trim() || "#d9b8a6",
-      barro2: cs.getPropertyValue("--barro-2").trim() || "#b8927e",
-      esmalte: cs.getPropertyValue("--esmalte").trim() || "#2f6b86",
+      ladrillo: cs.getPropertyValue("--ladrillo").trim() || "#b8593a",
+      ladrillo2: cs.getPropertyValue("--ladrillo-2").trim() || "#7e3a24",
+      barro: cs.getPropertyValue("--barro").trim() || "#cfa080",
+      barro2: cs.getPropertyValue("--barro-2").trim() || "#a9775a",
+      esmalte: cs.getPropertyValue("--esmalte").trim() || "#1f3f97",
+      porcelana: cs.getPropertyValue("--porcelana").trim() || "#f3f1ea",
       fuego: cs.getPropertyValue("--fuego").trim() || "#e2874e",
-      hoja: cs.getPropertyValue("--hoja").trim() || "#fffdf8",
-      tinta: cs.getPropertyValue("--tinta").trim() || "#1d1b17",
-      linea: cs.getPropertyValue("--linea").trim() || "#e2ddd2",
     };
   }
   let col = tokens();
@@ -87,8 +86,11 @@
       pts.push([x, y]);
     }
     return pts;
-    function perfil(u) { return 70 + 80 * Math.sin(Math.PI * Math.pow(u, 0.9)) * (1 - 0.35 * u) + (u < 0.08 ? 10 : 0); }
   }
+  // El labio de la boca sale con una curva, sin escalón.
+  function perfil(u) { return 70 + 80 * Math.sin(Math.PI * Math.pow(u, 0.9)) * (1 - 0.35 * u) + 10 * Math.pow(Math.max(0, 1 - u / 0.07), 0.5); }
+  // La decoración que se pinta a pincel sobre la vasija esmaltada.
+  const DECORACION = Ceramica.decoracionVasija(perfil);
   // Todas las formas empiezan su contorno arriba en el centro y van en el sentido del reloj.
   // Así, al mezclar dos formas, cada punto va a su sitio y la pieza no se retuerce por el camino.
   function alinear(pts) {
@@ -118,64 +120,76 @@
   }
 
   // ---------- Dibujo ----------
-  function trazar(pts) {
-    ctx.beginPath();
+  function ruta(pts) {
+    const r = new Path2D();
     for (let i = 0; i < N; i++) {
       const p = pts[i], q = pts[(i + 1) % N];
       const mx = (p[0] + q[0]) / 2, my = (p[1] + q[1]) / 2;
-      if (i === 0) ctx.moveTo(mx, my); else ctx.quadraticCurveTo(p[0], p[1], mx, my);
+      if (i === 0) r.moveTo(mx, my); else r.quadraticCurveTo(p[0], p[1], mx, my);
     }
     const p = pts[0], q = pts[1];
-    ctx.quadraticCurveTo(p[0], p[1], (p[0] + q[0]) / 2, (p[1] + q[1]) / 2);
-    ctx.closePath();
+    r.quadraticCurveTo(p[0], p[1], (p[0] + q[0]) / 2, (p[1] + q[1]) / 2);
+    r.closePath();
+    return r;
   }
-  // Qué dibujo lleva dentro cada etapa. El ladrillo y el ladrillo que gira comparten el suyo.
+  function cajaDe(pts) {
+    let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+    for (const [x, y] of pts) { x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y); }
+    return { x: x0, y: y0, w: x1 - x0, h: y1 - y0 };
+  }
+  function rr(x, y, w, h, r) { const p = new Path2D(); p.roundRect(x, y, w, h, r); return p; }
+
+  // Qué lleva dentro cada etapa: huecos e incrustaciones de esmalte en la pieza de barro.
+  // El ladrillo y el ladrillo que gira comparten el suyo.
   const DIBUJO = { ladrillo: "ladrillo", "ladrillo-gira": "ladrillo", movil: "movil", burbuja: "burbuja", panel: "panel" };
-  function detalles(etapa, alpha) {
+  function detalles(etapa, alpha, dpr) {
     if (alpha <= 0.02 || !DIBUJO[etapa]) return;
     ctx.save();
     ctx.globalAlpha = alpha;
     const s = 0.94 + 0.06 * alpha;
     ctx.scale(s, s);
-    if (etapa === "ladrillo" || etapa === "ladrillo-gira") {
-      ctx.fillStyle = col.ladrillo2;
-      for (let i = -1; i <= 1; i++) { ctx.beginPath(); ctx.roundRect(i * 92 - 30, -50, 60, 100, 4); ctx.fill(); }
+    const C = Ceramica;
+    if (DIBUJO[etapa] === "ladrillo") {
+      for (let i = -1; i <= 1; i++) C.hueco(ctx, rr(i * 92 - 30, -50, 60, 100, 6), { x: i * 92 - 30, y: -50, w: 60, h: 100 }, { color: col.ladrillo2, dpr, profundidad: 0.5 });
     } else if (etapa === "movil") {
-      ctx.fillStyle = col.hoja; ctx.beginPath(); ctx.roundRect(-72, -150, 144, 300, 26); ctx.fill();
-      ctx.fillStyle = col.barro2; ctx.beginPath(); ctx.roundRect(-72, -150, 144, 120, 26); ctx.fill();
-      ctx.fillStyle = col.barro2; ctx.globalAlpha = alpha * 0.45;
-      for (let i = 0; i < 3; i++) { ctx.beginPath(); ctx.roundRect(-56, -8 + i * 34, 112 - i * 20, 12, 6); ctx.fill(); }
-      ctx.globalAlpha = alpha; ctx.fillStyle = col.esmalte; ctx.beginPath(); ctx.roundRect(-56, 104, 112, 26, 13); ctx.fill();
+      C.hueco(ctx, rr(-66, -144, 132, 288, 24), { x: -66, y: -144, w: 132, h: 288 }, { color: col.porcelana, acabado: "esmalte", dpr, profundidad: 0.3 });
+      C.hueco(ctx, rr(-54, -128, 108, 92, 14), { x: -54, y: -128, w: 108, h: 92 }, { color: col.barro, dpr, profundidad: 0.22 });
+      ctx.fillStyle = "rgba(60,40,30,0.16)";
+      for (let i = 0; i < 3; i++) { ctx.beginPath(); ctx.roundRect(-54, -16 + i * 30, 108 - i * 24, 10, 5); ctx.fill(); }
+      C.pieza(ctx, rr(-54, 96, 108, 28, 14), { x: -54, y: 96, w: 108, h: 28 }, { color: col.esmalte, acabado: "esmalte", dpr, sombra: 0.5, motas: false });
     } else if (etapa === "burbuja") {
-      ctx.fillStyle = col.hoja; ctx.globalAlpha = alpha * 0.9;
-      [[-120, -70, 150, 14], [-120, -40, 200, 14], [-120, -10, 120, 14], [-120, 30, 170, 14]].forEach(([x, y, w, h]) => { ctx.beginPath(); ctx.roundRect(x, y, w, h, 7); ctx.fill(); });
-      ctx.globalAlpha = alpha; ctx.fillStyle = col.esmalte; ctx.beginPath(); ctx.arc(110, 60, 9, 0, Math.PI * 2); ctx.fill();
+      [[-118, -66, 150], [-118, -36, 196], [-118, -6, 120], [-118, 30, 168]].forEach(([x, y, w]) => C.hueco(ctx, rr(x, y, w, 13, 6.5), { x, y, w, h: 13 }, { color: col.barro2, dpr, profundidad: 0.3 }));
+      C.pieza(ctx, rr(99, 50, 22, 22, 11), { x: 99, y: 50, w: 22, h: 22 }, { color: col.esmalte, acabado: "esmalte", dpr, sombra: 0.6, motas: false });
     } else if (etapa === "panel") {
-      ctx.fillStyle = col.hoja; ctx.globalAlpha = alpha * 0.9;
-      for (let i = 0; i < 3; i++) { ctx.beginPath(); ctx.roundRect(-150 + i * 102, -90, 92, 56, 8); ctx.fill(); }
-      const barras = [38, 62, 48, 80, 70, 96, 88];
-      ctx.fillStyle = col.esmalte;
-      barras.forEach((b, i) => { ctx.beginPath(); ctx.roundRect(-146 + i * 42, 92 - b, 28, b, 5); ctx.fill(); });
+      for (let i = 0; i < 3; i++) C.hueco(ctx, rr(-150 + i * 102, -92, 92, 56, 10), { x: -150 + i * 102, y: -92, w: 92, h: 56 }, { color: col.porcelana, acabado: "esmalte", dpr, profundidad: 0.28 });
+      [38, 62, 48, 80, 70, 96, 88].forEach((b, i) => C.pieza(ctx, rr(-146 + i * 42, 92 - b, 28, b, 7), { x: -146 + i * 42, y: 92 - b, w: 28, h: b }, { color: col.esmalte, acabado: "esmalte", dpr, sombra: 0.45, motas: false }));
     }
     ctx.restore();
   }
-  // El esmalte cae de arriba abajo, con alguna gota, y deja el brillo y los anillos del torno.
-  function esmaltar(e) {
+
+  // El esmalte cae de arriba abajo, con alguna gota; deja el borde algo más grueso.
+  function esmaltar(r, caja, e, dpr) {
     if (e <= 0.001) return;
     const borde = lerp(-190, 200, e);
     const gota = (x) => 7 * Math.sin(x / 19) + 18 * Math.pow(Math.max(0, Math.sin(x / 37 + 0.8)), 4);
+    const zona = new Path2D();
+    zona.moveTo(-260, -260); zona.lineTo(260, -260);
+    for (let x = 260; x >= -260; x -= 8) zona.lineTo(x, borde + gota(x));
+    zona.closePath();
     ctx.save();
-    ctx.fillStyle = col.esmalte;
-    ctx.beginPath(); ctx.moveTo(-260, -260); ctx.lineTo(260, -260);
-    for (let x = 260; x >= -260; x -= 8) ctx.lineTo(x, borde + gota(x));
-    ctx.closePath(); ctx.fill();
-    ctx.globalAlpha = e;
-    const g = ctx.createLinearGradient(-120, -150, 120, 150);
-    g.addColorStop(0, "rgba(255,255,255,0.28)"); g.addColorStop(0.5, "rgba(255,255,255,0)"); g.addColorStop(1, "rgba(0,0,0,0.12)");
-    ctx.fillStyle = g; ctx.fillRect(-260, -260, 520, 520);
-    ctx.strokeStyle = "rgba(255,255,255,0.35)"; ctx.lineWidth = 2;
-    for (let y = -90; y <= 90; y += 45) { ctx.beginPath(); ctx.moveTo(-(60 + Math.abs(y) * 0.1), y); ctx.lineTo(60 + Math.abs(y) * 0.1, y); ctx.stroke(); }
+    ctx.clip(r);
+    ctx.clip(zona);
+    Ceramica.pieza(ctx, r, caja, { color: col.esmalte, acabado: "esmalte", dpr, sombra: 0, anillos: true });
     ctx.restore();
+    if (e < 0.999) {
+      ctx.save();
+      ctx.clip(r);
+      ctx.strokeStyle = "rgba(10,20,60,0.28)"; ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      for (let x = -260; x <= 260; x += 8) { const y = borde + gota(x); if (x === -260) ctx.moveTo(x, y); else ctx.lineTo(x, y); }
+      ctx.stroke();
+      ctx.restore();
+    }
   }
 
   let progreso = 0; // 0..ETAPAS.length-1, continuo
@@ -190,14 +204,17 @@
     const t = suavizar(Math.min(1, Math.max(0, progreso - i)));
     const A = formaDe(ETAPAS[i]), B = formaDe(ETAPAS[j]);
     const pts = mezclar(A, B, t);
+    const r = ruta(pts);
+    const caja = cajaDe(pts);
 
     // Color: ladrillo al principio y arcilla cruda al ablandarse. Camino del horno la pieza se pone
-    // al rojo (brasa) y al salir se esmalta. Sin mezclar barro con azul, que da un gris sucio.
+    // al rojo (brasa); al salir se esmalta de cobalto y se le pinta la decoración a pincel.
     const iMasa = ETAPAS.indexOf("masa");
     const iHorno = ETAPAS.indexOf("horno");
     const ablandado = acotar(progreso - (iMasa - 1));
     const calor = acotar(progreso - (iHorno - 1));
-    const esmalte = suavizar(acotar(progreso - iHorno));
+    const esmalte = suavizar(acotar((progreso - iHorno) / 0.55));
+    const pintado = acotar((progreso - iHorno - 0.55) / 0.45);
     const brasa = calor * (1 - esmalte);
     const relleno = mezclarColor(mezclarColor(col.ladrillo, col.barro, ablandado), col.fuego, brasa);
 
@@ -208,20 +225,29 @@
     const respira = (ETAPAS[i] === "masa" ? 1 - t : 0) + (ETAPAS[j] === "masa" ? t : 0);
     giro = lerp(angulo(ETAPAS[i]), angulo(ETAPAS[j]), t) + respira * Math.sin(Date.now() / 900) * 0.03;
     ctx.rotate(giro);
-    // Sombra suave de la pieza sobre la mesa.
-    ctx.save(); ctx.translate(0, 12); ctx.scale(1, 0.96); ctx.fillStyle = "rgba(29,27,23,0.10)"; trazar(pts); ctx.fill(); ctx.restore();
     // En el horno, la pieza brilla.
-    if (brasa > 0.01) { ctx.shadowColor = colorAlfa(col.fuego, 0.6 * brasa); ctx.shadowBlur = 46 * brasa * dpr; }
-    ctx.fillStyle = relleno; trazar(pts); ctx.fill();
-    ctx.shadowColor = "transparent"; ctx.shadowBlur = 0;
+    if (brasa > 0.01) {
+      ctx.save();
+      ctx.shadowColor = colorAlfa(col.fuego, 0.65 * brasa); ctx.shadowBlur = 54 * brasa * dpr;
+      ctx.fillStyle = relleno; ctx.fill(r);
+      ctx.restore();
+    }
+    const vasija = ETAPAS[i] === "horno" || ETAPAS[i] === "vasija";
+    Ceramica.pieza(ctx, r, caja, { color: relleno, acabado: "barro", dpr, anillos: vasija || ETAPAS[i] === "masa" });
     // Todo lo de dentro va recortado a la silueta. Los detalles de la etapa que sale se van al
     // principio del cambio y los de la que entra llegan al final: nunca se ven dos piezas a la vez.
     ctx.save();
-    trazar(pts); ctx.clip();
-    if (DIBUJO[ETAPAS[i]] && DIBUJO[ETAPAS[i]] === DIBUJO[ETAPAS[j]]) detalles(ETAPAS[i], 1);
-    else { detalles(ETAPAS[i], acotar(1 - t / 0.35)); detalles(ETAPAS[j], acotar((t - 0.65) / 0.35)); }
-    esmaltar(esmalte);
+    ctx.clip(r);
+    if (DIBUJO[ETAPAS[i]] && DIBUJO[ETAPAS[i]] === DIBUJO[ETAPAS[j]]) detalles(ETAPAS[i], 1, dpr);
+    else { detalles(ETAPAS[i], acotar(1 - t / 0.35), dpr); detalles(ETAPAS[j], acotar((t - 0.65) / 0.35), dpr); }
     ctx.restore();
+    esmaltar(r, caja, esmalte, dpr);
+    if (pintado > 0) {
+      ctx.save();
+      ctx.clip(r);
+      Ceramica.decorar(ctx, DECORACION, col.porcelana, pintado);
+      ctx.restore();
+    }
     ctx.restore();
   }
   function angulo(etapa) { return etapa === "masa" ? -0.35 : 0; }

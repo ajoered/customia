@@ -9,16 +9,24 @@
 <meta property="og:description" content="Más clientes. Menos teléfono. Te lo enseñamos funcionando antes de que pagues nada.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://arcillastudio.com/">
+<meta property="og:image" content="https://arcillastudio.com/assets/piezas/compartir.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Arcilla Studio. Más clientes. Menos teléfono. Una vasija de cerámica azul cobalto decorada a pincel.">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://arcillastudio.com/">
-<meta name="theme-color" content="#f6f3ec">
+<meta name="theme-color" content="#f3f3ef">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="assets/fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="apple-touch-icon" href="assets/piezas/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/ibarra-real-nova-latin-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/schibsted-grotesk-latin-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/styles.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfessionalService","name":"Arcilla Studio","description":"Webs, asistentes de WhatsApp y software a medida para pymes.","areaServed":"Madrid, España","url":"https://arcillastudio.com/","email":"hola@arcillastudio.com","priceRange":"€€","parentOrganization":{"@type":"Organization","name":"ARVENTURES S.L."}}
 </script>
 <script src="assets/app.js" defer></script>
+<script src="assets/ceramica.js" defer></script>
 <script src="assets/torno.js" defer></script>
 </head>
 <body>
@@ -26,7 +34,7 @@
 
 <header class="cabecera" id="cabecera">
   <div class="wrap">
-    <a class="marca" href="./" aria-label="Arcilla Studio, inicio"><span class="marca-forma" aria-hidden="true"></span>Arcilla Studio</a>
+    <a class="marca" href="./" aria-label="Arcilla Studio, inicio"><img src="assets/piezas/marca.webp" alt="" width="30" height="30">Arcilla Studio</a>
     <nav class="nav" aria-label="Principal">
       <a href="#construir">Qué hacemos</a>
       <a href="#como">Cómo lo hacemos</a>
@@ -39,8 +47,7 @@
 <main id="contenido">
   <section class="portada" aria-labelledby="titular">
     <div class="wrap">
-      <p class="etiqueta">Software a medida</p>
-      <h1 id="titular">Más clientes. <span class="acento">Menos teléfono.</span></h1>
+      <h1 id="titular">Más clientes.<br>Menos teléfono.</h1>
       <p class="sub">Webs, asistentes de WhatsApp y programas hechos a la medida de pequeñas empresas que no tienen tiempo para esto.</p>
     </div>
   </section>
@@ -55,10 +62,10 @@
           <textarea id="chat-entrada" rows="2" maxlength="800" placeholder="Por ejemplo: «Tengo un restaurante y no doy abasto con los WhatsApps»"></textarea>
           <div class="caja-pie">
             <div class="opciones opciones-portada" id="opciones-iniciales">
-              <button class="opcion" type="button" data-valor="telefono">No llego a coger el teléfono</button>
-              <button class="opcion" type="button" data-valor="whatsapp">Contesto WhatsApps a todas horas</button>
-              <button class="opcion" type="button" data-valor="web">Mi web no me trae clientes</button>
-              <button class="opcion" type="button" data-valor="tareas">Pierdo horas con presupuestos</button>
+              <button class="opcion" type="button" data-valor="telefono"><img src="assets/piezas/telefono.webp" alt="" width="30" height="30">No llego a coger el teléfono</button>
+              <button class="opcion" type="button" data-valor="whatsapp"><img src="assets/piezas/burbuja.webp" alt="" width="30" height="30">Contesto WhatsApps a todas horas</button>
+              <button class="opcion" type="button" data-valor="web"><img src="assets/piezas/web.webp" alt="" width="30" height="30">Mi web no me trae clientes</button>
+              <button class="opcion" type="button" data-valor="tareas"><img src="assets/piezas/libreta.webp" alt="" width="30" height="30">Pierdo horas con presupuestos</button>
             </div>
             <button class="enviar" type="submit" id="chat-enviar" aria-label="Enviar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
           </div>
@@ -110,24 +117,23 @@
     <div class="wrap">
       <div class="taller-texto">
         <div class="taller-cabeza">
-          <p class="etiqueta">Qué hacemos</p>
           <h2 id="construir-t">Lo que podemos construir para tu negocio.</h2>
           <p class="taller-sub">Primero lo que más se nota. Después, lo que te falte.</p>
         </div>
         <div class="paso-taller" data-maqueta="web">
-          <p class="etiqueta">Tu web</p>
+          <p class="producto"><img src="assets/piezas/web.webp" alt="" width="48" height="48">Tu web</p>
           <h3>Bonita, rápida, y la cambias tú.</h3>
           <p>Hecha para el móvil y escrita para que te llamen. Subes una foto, cambias un precio o el menú del día desde el teléfono, sin llamar a nadie. Con reservas o petición de presupuesto que te llegan al momento.</p>
           <p class="efecto">Más contactos directos, menos comisiones a portales</p>
         </div>
         <div class="paso-taller" data-maqueta="wa">
-          <p class="etiqueta">Tu asistente de WhatsApp</p>
+          <p class="producto"><img src="assets/piezas/burbuja.webp" alt="" width="48" height="48">Tu asistente de WhatsApp</p>
           <h3>Contesta solo. Tú solo cierras.</h3>
           <p>Responde al momento, a cualquier hora, en español y en inglés. Pregunta fecha, personas y presupuesto, y te pasa un resumen. Siempre dice que es una IA y nunca se inventa un precio.</p>
           <p class="efecto">Ninguna consulta sin respuesta</p>
         </div>
         <div class="paso-taller" data-maqueta="panel">
-          <p class="etiqueta">Y lo que te falte</p>
+          <p class="producto"><img src="assets/piezas/panel.webp" alt="" width="48" height="48">Y lo que te falte</p>
           <h3>Lo que hoy haces a mano.</h3>
           <p>Reservas que entran solas en tu calendario. Presupuestos que se calculan con tus tarifas. Recordatorios de cita que se envían solos. Un panel con tus clientes, tus citas y tus cobros.</p>
           <p class="efecto">Horas libres cada semana</p>
@@ -141,8 +147,8 @@
             </div>
             <div class="m-cuerpo">
               <p class="m-tit">Menú de grupo</p>
-              <div class="m-fila"><span>Menú Tajo</span><b>38 €</b></div>
-              <div class="m-fila"><span>Menú Jardín</span><b>52 €</b></div>
+              <div class="m-fila"><span>Menú Tajo</span><b>38&nbsp;€</b></div>
+              <div class="m-fila"><span>Menú Jardín</span><b>52&nbsp;€</b></div>
               <div class="m-fila"><span>Opción vegetariana</span><b>sí</b></div>
               <p class="m-tit">Salones</p>
               <div class="m-fila"><span>Salón Tajo</span><b>hasta 40</b></div>
@@ -164,7 +170,7 @@
             <div class="m-top"><i></i><div>Casa Lucía<small>Asistente · responde al momento</small></div></div>
             <div class="m-chat" id="m-chat">
               <div class="b" data-t="0">Hola, ¿tenéis sitio para una cena de empresa el 19 de diciembre? Seríamos unos 30.<time>23:41</time></div>
-              <div class="b yo" data-t="1600">Hola, soy el asistente de Casa Lucía (una IA). El 19 tenemos libre el Salón Tajo, para hasta 40. ¿Prefieres menú de grupo desde 38 € o carta?<time>23:41</time></div>
+              <div class="b yo" data-t="1600">Hola, soy el asistente de Casa Lucía (una IA). El 19 tenemos libre el Salón Tajo, para hasta 40. ¿Prefieres menú de grupo desde 38&nbsp;€ o carta?<time>23:41</time></div>
               <div class="b" data-t="3600">Menú de grupo. ¿Podemos tener opción vegetariana?<time>23:42</time></div>
               <div class="b yo" data-t="5200">Sí, hay dos. Te lo dejo apuntado: 19 de diciembre, 30 personas, Salón Tajo, menú de grupo. Lucía te confirma mañana por aquí. ¿A qué nombre?<time>23:42</time></div>
               <div class="b" data-t="7200">Marta, de Grupo Vela. ¡Gracias!<time>23:43</time></div>
@@ -178,7 +184,7 @@
             <div class="panel-top">Casa Lucía · eventos <span>diciembre</span></div>
             <div class="panel-grid">
               <div class="panel-kpi"><b>14</b><span>eventos</span></div>
-              <div class="panel-kpi"><b>21.600 €</b><span>reservado</span></div>
+              <div class="panel-kpi"><b>21.600&nbsp;€</b><span>reservado</span></div>
               <div class="panel-kpi"><b data-pendientes="3">3</b><span>por confirmar</span></div>
             </div>
             <table>
@@ -197,7 +203,6 @@
   <section class="proceso" id="como" aria-labelledby="como-t">
     <div class="wrap">
       <div class="proceso-cabeza">
-        <p class="etiqueta">Cómo lo hacemos</p>
         <h2 id="como-t">Te estarás preguntando: <em>¿cuánto lío es esto para mí?</em></h2>
         <p class="proceso-sub">Poco. Cuatro pasos, con plazos y precios claros.</p>
       </div>
@@ -206,14 +211,14 @@
           <span class="hito-num">1</span>
           <h3>Cuéntanos qué necesitas</h3>
           <p>Media hora, por teléfono o en tu local: cómo te llegan los clientes y dónde se pierden. Si no te podemos ayudar, te lo decimos.</p>
-          <dl class="ficha"><dt>Cuánto</dt><dd>30 min</dd><dt>Tú pones</dt><dd>Tus respuestas</dd><dt>Pagas</dt><dd>0 €</dd></dl>
+          <dl class="ficha"><dt>Cuánto</dt><dd>30 min</dd><dt>Tú pones</dt><dd>Tus respuestas</dd><dt>Pagas</dt><dd>0&nbsp;€</dd></dl>
           <a class="boton hito-cta" href="#diagnostico">Cuéntanos tu caso</a>
         </li>
         <li class="hito">
           <span class="hito-num">2</span>
           <h3>Te lo enseñamos hecho</h3>
           <p>Montamos una primera versión con tus datos de verdad y te la enseñamos funcionando. Si no te gusta, no pasa nada.</p>
-          <dl class="ficha"><dt>Cuánto</dt><dd>1 semana</dd><dt>Tú pones</dt><dd>Fotos y precios</dd><dt>Pagas</dt><dd>0 € hasta verlo</dd></dl>
+          <dl class="ficha"><dt>Cuánto</dt><dd>1 semana</dd><dt>Tú pones</dt><dd>Fotos y precios</dd><dt>Pagas</dt><dd>0&nbsp;€ hasta verlo</dd></dl>
         </li>
         <li class="hito">
           <span class="hito-num">3</span>
@@ -250,7 +255,6 @@
   <section class="seccion" aria-labelledby="preguntas-t">
     <div class="wrap">
       <div class="seccion-cabeza">
-        <p class="etiqueta">Preguntas</p>
         <h2 id="preguntas-t">Lo que nos suelen preguntar</h2>
       </div>
       <div class="preguntas">
@@ -267,6 +271,7 @@
 
   <section class="cierre" aria-labelledby="cierre-t">
     <div class="wrap">
+      <img class="cierre-pieza" src="assets/piezas/blanca.webp" alt="" width="210" height="210" loading="lazy">
       <h2 id="cierre-t">Cuéntanos qué haces <strong>a mano.</strong></h2>
       <p>En dos minutos el asistente te dice cuánto te está costando. Si prefieres escribirnos tú, al otro lado hay una persona: <a href="mailto:hola@arcillastudio.com" data-config="email">hola@arcillastudio.com</a>.</p>
       <a class="boton" href="#diagnostico">Cuéntanos tu caso</a>
@@ -277,7 +282,7 @@
 <footer class="pie">
   <div class="wrap">
     <div>
-      <strong>Arcilla Studio</strong>
+      <a class="marca" href="./"><img src="assets/piezas/marca.webp" alt="" width="26" height="26" loading="lazy">Arcilla Studio</a>
       <p>Webs, asistentes de WhatsApp y software a medida para negocios. Hecho en Madrid, para toda España.</p>
       <p>Una marca de ARVENTURES S.L. Esta web no usa cookies.</p>
     </div>

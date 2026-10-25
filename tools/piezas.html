@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Piezas de Arcilla Studio</title>
+<!-- Taller de piezas: dibuja con ceramica.js los iconos y las imágenes de la web.
+     Lo usa tools/piezas.cjs para exportarlos a web/public/assets/piezas/.
+     Abierto en un navegador, enseña todas las piezas para revisarlas. -->
+<style>
+@font-face { font-family: "Ibarra Real Nova"; src: url("../web/public/assets/fonts/ibarra-real-nova-latin-normal.woff2") format("woff2"); font-weight: 400 700; }
+@font-face { font-family: "Schibsted Grotesk"; src: url("../web/public/assets/fonts/schibsted-grotesk-latin-normal.woff2") format("woff2"); font-weight: 400 900; }
+body { margin: 0; padding: 24px; background: #f3f3ef; font: 14px "Schibsted Grotesk", sans-serif; display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
+figure { margin: 0; display: grid; gap: 6px; justify-items: center; }
+canvas { background: transparent; }
+</style>
+<script src="../web/public/assets/ceramica.js"></script>
+</head>
+<body>
+<script>
+"use strict";
+const C = window.Ceramica;
+const COL = {
+  barro: "#cfa080", barro2: "#a9775a", ladrillo: "#b8593a", ladrillo2: "#7e3a24",
+  esmalte: "#24479f", cobalto: "#1f3f97", porcelana: "#f3f1ea", ocre: "#d99a3e", papel: "#f3f3ef", tinta: "#171a21",
+};
+const rr = (x, y, w, h, r) => { const p = new Path2D(); p.roundRect(x, y, w, h, r); return p; };
+const caja = (x, y, w, h) => ({ x, y, w, h });
+
+// El perfil de la vasija del torno (la misma pieza en pequeño).
+function perfil(u) { return 70 + 80 * Math.sin(Math.PI * Math.pow(u, 0.9)) * (1 - 0.35 * u) + 10 * Math.pow(Math.max(0, 1 - u / 0.07), 0.5); }
+function vasijaRuta(cx, cy, k) {
+  const p = new Path2D(), n = 96, pts = [];
+  for (let i = 0; i < n; i++) {
+    const t = i / n; let x, y;
+    if (t < 0.45) { const u = t / 0.45; y = -150 + u * 300; x = perfil(u); }
+    else if (t < 0.55) { const u = (t - 0.45) / 0.1; y = 150; x = perfil(1) * (1 - 2 * u); }
+    else { const u = (t - 0.55) / 0.45; y = 150 - u * 300; x = -perfil(1 - u); }
+    pts.push([cx + x * k, cy + y * k]);
+  }
+  for (let i = 0; i < n; i++) {
+    const a = pts[i], b = pts[(i + 1) % n], mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2;
+    if (i === 0) p.moveTo(mx, my); else p.quadraticCurveTo(a[0], a[1], mx, my);
+  }
+  p.closePath();
+  return { ruta: p, caja: caja(cx - 152 * k, cy - 150 * k, 304 * k, 300 * k) };
+}
+
+// Cada pieza se dibuja en una caja de 200 × 200 unidades.
+const PIEZAS = {
+  // El auricular de un teléfono, esmaltado en cobalto.
+  telefono(ctx, dpr) {
+    ctx.translate(100, 96); ctx.scale(0.86, 0.86); ctx.rotate(-0.5); ctx.translate(-100, -118);
+    // Línea central por puntos de control: auricular, mango casi recto y micrófono, doblados hacia dentro.
+    const control = [[38, 150], [44, 124], [58, 104], [82, 94], [118, 94], [142, 104], [156, 124], [162, 150]];
+    const linea = [];
+    for (let k = 0; k < control.length - 1; k++) {
+      const p0 = control[Math.max(0, k - 1)], p1 = control[k], p2 = control[k + 1], p3 = control[Math.min(control.length - 1, k + 2)];
+      for (let t = 0; t < 1; t += 0.125) {
+        const t2 = t * t, t3 = t2 * t;
+        linea.push([0, 1].map((d) => 0.5 * (2 * p1[d] + (-p0[d] + p2[d]) * t + (2 * p0[d] - 5 * p1[d] + 4 * p2[d] - p3[d]) * t2 + (-p0[d] + 3 * p1[d] - 3 * p2[d] + p3[d]) * t3)));
+      }
+    }
+    linea.push(control[control.length - 1]);
+    const suave = (x) => x * x * (3 - 2 * x);
+    const ancho = (u) => { const e = Math.min(u, 1 - u); return 9 + 12 * (1 - suave(Math.min(1, Math.max(0, (e - 0.16) / 0.1)))); };
+    C.pieza(ctx, C.tubo(linea.reverse(), ancho), caja(18, 72, 164, 100), { color: COL.esmalte, acabado: "esmalte", dpr, motas: false });
+  },
+  // Un bocadillo de conversación de loza blanca, con el texto pintado a pincel.
+  burbuja(ctx, dpr) {
+    // Un solo contorno: el bocadillo y su cola, sin costuras.
+    const p = new Path2D();
+    p.moveTo(62, 40);
+    p.lineTo(138, 40); p.arcTo(174, 40, 174, 76, 36);
+    p.lineTo(174, 106); p.arcTo(174, 142, 138, 142, 36);
+    p.lineTo(94, 142);
+    p.quadraticCurveTo(66, 150, 34, 170);
+    p.quadraticCurveTo(48, 148, 42, 128);
+    p.quadraticCurveTo(26, 118, 26, 100);
+    p.lineTo(26, 76); p.arcTo(26, 40, 62, 40, 36);
+    p.closePath();
+    C.pieza(ctx, p, caja(26, 40, 148, 128), { color: COL.porcelana, acabado: "esmalte", dpr, motas: false, brillo: 0.8 });
+    C.pincel(ctx, [[54, 72], [146, 72]], 9, COL.cobalto, 1);
+    C.pincel(ctx, [[54, 92], [128, 92]], 9, COL.cobalto, 1);
+    C.pincel(ctx, [[54, 112], [108, 112]], 9, COL.cobalto, 1);
+  },
+  // Una web: una placa de barro con su pantalla de loza.
+  web(ctx, dpr) {
+    C.pieza(ctx, rr(24, 34, 152, 132, 20), caja(24, 34, 152, 132), { color: COL.barro, acabado: "barro", dpr });
+    [[44, COL.cobalto], [60, COL.ocre], [76, COL.porcelana]].forEach(([x, c]) => C.pieza(ctx, rr(x - 5, 49, 10, 10, 5), caja(x - 5, 49, 10, 10), { color: c, acabado: "esmalte", dpr, sombra: 0.5, motas: false }));
+    C.hueco(ctx, rr(38, 68, 124, 84, 12), caja(38, 68, 124, 84), { color: COL.porcelana, acabado: "esmalte", dpr, profundidad: 0.3 });
+    C.pincel(ctx, [[54, 88], [122, 88]], 8, COL.cobalto, 1);
+    C.pincel(ctx, [[54, 106], [100, 106]], 6, "#b9b4a8", 1);
+    C.pieza(ctx, rr(54, 124, 60, 16, 8), caja(54, 124, 60, 16), { color: COL.esmalte, acabado: "esmalte", dpr, sombra: 0.5, motas: false });
+  },
+  // Una libreta de presupuestos: barro cocido con su hoja de loza y las cuentas a pincel.
+  libreta(ctx, dpr) {
+    C.pieza(ctx, rr(42, 22, 116, 156, 14), caja(42, 22, 116, 156), { color: COL.ladrillo, acabado: "barro", dpr });
+    C.hueco(ctx, rr(54, 36, 92, 128, 8), caja(54, 36, 92, 128), { color: COL.porcelana, acabado: "esmalte", dpr, profundidad: 0.3 });
+    [[66, 60, 132], [66, 80, 118], [66, 100, 126]].forEach(([x0, y, x1]) => C.pincel(ctx, [[x0, y], [x1, y]], 5, COL.cobalto, 1));
+    C.pincel(ctx, [[66, 126], [134, 126]], 3, "#b9b4a8", 1);
+    ctx.fillStyle = COL.cobalto; ctx.font = "600 30px 'Ibarra Real Nova'"; ctx.textAlign = "right"; ctx.fillText("€", 134, 156);
+  },
+  // Un panel: placa de barro con fichas de loza y barras esmaltadas.
+  panel(ctx, dpr) {
+    C.pieza(ctx, rr(20, 40, 160, 122, 18), caja(20, 40, 160, 122), { color: COL.barro, acabado: "barro", dpr });
+    for (let i = 0; i < 3; i++) C.hueco(ctx, rr(34 + i * 46, 54, 40, 26, 7), caja(34 + i * 46, 54, 40, 26), { color: COL.porcelana, acabado: "esmalte", dpr, profundidad: 0.28 });
+    [22, 34, 28, 44, 40].forEach((b, i) => C.pieza(ctx, rr(38 + i * 26, 146 - b, 16, b, 5), caja(38 + i * 26, 146 - b, 16, b), { color: COL.esmalte, acabado: "esmalte", dpr, sombra: 0.45, motas: false }));
+  },
+  // La vasija terminada: cobalto y decoración a pincel. Para piezas grandes.
+  vasija(ctx, dpr) {
+    const k = 0.5, v = vasijaRuta(100, 100, k);
+    C.pieza(ctx, v.ruta, v.caja, { color: COL.esmalte, acabado: "esmalte", dpr, anillos: true });
+    ctx.save(); ctx.clip(v.ruta); ctx.translate(100, 100); ctx.scale(k, k);
+    C.decorar(ctx, C.decoracionVasija(perfil).map(([p, g]) => [p, g * 1.35]), COL.porcelana, 1);
+    ctx.restore();
+  },
+  // La misma vasija en loza blanca con la decoración en cobalto, como la de Talavera. Va sobre fondo azul.
+  blanca(ctx, dpr) {
+    const k = 0.5, v = vasijaRuta(100, 100, k);
+    C.pieza(ctx, v.ruta, v.caja, { color: COL.porcelana, acabado: "esmalte", dpr, anillos: true, motas: false, sombra: 0.8 });
+    ctx.save(); ctx.clip(v.ruta); ctx.translate(100, 100); ctx.scale(k, k);
+    C.decorar(ctx, C.decoracionVasija(perfil).map(([p, g]) => [p, g * 1.35]), COL.cobalto, 1);
+    ctx.restore();
+  },
+  // La vasija para el logotipo y los iconos: sin flor, que en pequeño no se lee.
+  marca(ctx, dpr) {
+    const k = 0.56, v = vasijaRuta(100, 100, k);
+    C.pieza(ctx, v.ruta, v.caja, { color: COL.esmalte, acabado: "esmalte", dpr, motas: false, sombra: 0.55 });
+    ctx.save(); ctx.clip(v.ruta); ctx.translate(100, 100); ctx.scale(k, k);
+    const linea = (y, g) => { const a = perfil((y + 150) / 300) - 14; const p = []; for (let x = -a; x <= a; x += 6) p.push([x, y + 8 * (1 - (x / a) ** 2)]); C.pincel(ctx, p, g, COL.porcelana, 1); };
+    linea(-104, 13); linea(96, 11);
+    ctx.restore();
+  },
+  // La pieza que se rompió: para la página que no existe.
+  rota(ctx, dpr) {
+    const k = 0.5, v = vasijaRuta(92, 100, k);
+    // El trozo que falta: se recorta del dibujo (todo menos el triángulo).
+    const falta = new Path2D(); falta.moveTo(112, 20); falta.lineTo(160, 26); falta.lineTo(146, 66); falta.lineTo(128, 50); falta.closePath();
+    const resto = new Path2D(); resto.rect(0, 0, 200, 200); resto.addPath(falta);
+    ctx.save();
+    ctx.clip(resto, "evenodd");
+    C.pieza(ctx, v.ruta, v.caja, { color: COL.barro, acabado: "barro", dpr, anillos: true });
+    ctx.restore();
+    // El canto roto, más claro: el barro de dentro.
+    ctx.save(); ctx.clip(v.ruta);
+    ctx.strokeStyle = "rgba(240,214,190,0.9)"; ctx.lineWidth = 2.4; ctx.stroke(falta);
+    ctx.restore();
+    // La grieta.
+    C.pincel(ctx, [[126, 48], [118, 70], [124, 86], [112, 108], [116, 122]], 3.2, "rgba(70,40,22,0.75)", 1);
+    // El trozo caído.
+    const t = new Path2D(); t.moveTo(150, 170); t.lineTo(184, 162); t.lineTo(178, 186); t.closePath();
+    C.pieza(ctx, t, caja(150, 162, 34, 24), { color: COL.barro, acabado: "barro", dpr, sombra: 0.7 });
+  },
+};
+
+// Dibuja una pieza en un canvas de lado px (cuadrado), con su fondo transparente.
+function dibujar(nombre, lado, fondo) {
+  const cv = document.createElement("canvas");
+  cv.width = cv.height = lado;
+  const ctx = cv.getContext("2d");
+  if (fondo) { ctx.fillStyle = fondo; ctx.fillRect(0, 0, lado, lado); }
+  const dpr = lado / 200;
+  ctx.scale(dpr, dpr);
+  PIEZAS[nombre](ctx, dpr);
+  return cv;
+}
+
+// La imagen para compartir el enlace (1200 × 630).
+function compartir() {
+  const cv = document.createElement("canvas");
+  cv.width = 1200; cv.height = 630;
+  const ctx = cv.getContext("2d");
+  ctx.fillStyle = COL.papel; ctx.fillRect(0, 0, 1200, 630);
+  ctx.drawImage(dibujar("vasija", 900), 700, 40, 560, 560);
+  ctx.drawImage(dibujar("marca", 240), 64, 58, 52, 52);
+  ctx.fillStyle = COL.tinta;
+  ctx.font = "600 34px 'Ibarra Real Nova'"; ctx.fillText("Arcilla Studio", 122, 96);
+  ctx.font = "500 104px 'Ibarra Real Nova'";
+  ctx.fillText("Más clientes.", 64, 300);
+  ctx.fillText("Menos teléfono.", 64, 404);
+  ctx.fillStyle = "#585d68"; ctx.font = "400 30px 'Schibsted Grotesk'";
+  ctx.fillText("Webs, asistentes de WhatsApp y programas", 66, 484);
+  ctx.fillText("a medida para pequeñas empresas.", 66, 526);
+  ctx.fillStyle = COL.cobalto; ctx.font = "600 26px 'Schibsted Grotesk'"; ctx.fillText("arcillastudio.com", 66, 586);
+  return cv;
+}
+
+const FUENTES = Promise.all(["500 104px 'Ibarra Real Nova'", "600 34px 'Ibarra Real Nova'", "400 30px 'Schibsted Grotesk'", "600 26px 'Schibsted Grotesk'"].map((f) => document.fonts.load(f)));
+window.SALIDAS = async () => { await FUENTES; return [
+  ...["telefono", "burbuja", "web", "libreta", "panel", "marca"].map((n) => ({ archivo: `${n}.webp`, url: dibujar(n, 192).toDataURL("image/webp", 0.92) })),
+  { archivo: "vasija.webp", url: dibujar("vasija", 640).toDataURL("image/webp", 0.92) },
+  { archivo: "blanca.webp", url: dibujar("blanca", 640).toDataURL("image/webp", 0.92) },
+  { archivo: "rota.webp", url: dibujar("rota", 480).toDataURL("image/webp", 0.92) },
+  { archivo: "apple-touch-icon.png", url: dibujar("marca", 180, COL.papel).toDataURL("image/png") },
+  { archivo: "compartir.jpg", url: compartir().toDataURL("image/jpeg", 0.9) },
+]; };
+
+// Vista para revisar a ojo.
+FUENTES.then(() => {
+  for (const n of Object.keys(PIEZAS)) {
+    const f = document.createElement("figure");
+    const grande = dibujar(n, 400); grande.style.width = "200px";
+    const peq = dibujar(n, 96); peq.style.width = "32px";
+    f.append(grande, peq, Object.assign(document.createElement("figcaption"), { textContent: n }));
+    document.body.append(f);
+  }
+  const og = compartir(); og.style.width = "600px"; document.body.append(og);
+  document.body.dataset.listo = "1";
+});
+</script>
+</body>
+</html>

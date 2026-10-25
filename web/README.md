@@ -22,18 +22,54 @@ web/
   wrangler.toml        configuración de Pages: carpeta public, KV ARCILLA, límite diario
 ```
 
-## Diseño (v2)
+## Diseño (v3)
 
-- **Idea:** una sola pieza de arcilla (`assets/torno.js`, canvas 2D) que se moldea con el scroll: ladrillo → arcilla → tu web → tu WhatsApp → tu herramienta → horno → pieza esmaltada. Si el navegador prefiere menos movimiento, se muestra la forma fija de cada etapa.
-- **Referencias:** ritmo de una idea por pantalla (Tribe AI), paleta cálida y sobria (Distyl), producto real en pantalla (Floema), contenido claro desde la primera pantalla (Estudio Telar). Ver `../estudio/07-benchmark-web.md`.
+- **Idea:** un taller de cerámica española. Una sola pieza de arcilla (`assets/torno.js`, canvas 2D) se moldea con el scroll: ladrillo → arcilla → tu web → tu WhatsApp → tu herramienta → horno (al rojo) → esmalte cobalto y decoración a pincel. Si el navegador prefiere menos movimiento, se muestra la forma fija de cada etapa.
+- **Piezas de cerámica en vez de iconos planos** (estilo Airbnb). `assets/ceramica.js` pinta barro y esmalte con volumen: luz, canto, motas de chamota, anillos del torno, huecos y pincel. Lo usan:
+  - el torno, en vivo;
+  - `tools/piezas.html`, que dibuja los iconos (teléfono, burbuja, web, libreta y panel), el logotipo, las vasijas del cierre y de la 404 y la imagen para compartir.
+
+  Para regenerarlas: `node tools/piezas.cjs` (escribe en `public/assets/piezas/`). Abre `tools/piezas.html` en el navegador para verlas todas.
+- **Referencias:**
+  - Ritmo de una idea por pantalla (Tribe AI).
+  - Producto real en pantalla (Floema).
+  - Contenido claro desde la primera pantalla (Estudio Telar).
+  - Piezas con volumen (Airbnb).
+
+  Ver `../estudio/07-benchmark-web.md`.
+- **Colores:**
+  - Porcelana de fondo y tinta.
+  - El cobalto de la loza de Talavera como único acento.
+  - El barro, solo en las piezas.
+
+  Lejos del crema con barro, que recordaba a la marca de Claude.
+- **Tipos:**
+  - Ibarra Real Nova para titulares: está basada en la letra de Joaquín Ibarra, el impresor del Quijote de 1780.
+  - Schibsted Grotesk para el resto.
+
+  Las dos son libres (licencia OFL, en `assets/fonts/`) y están alojadas en la propia web.
+- **Sin muletillas de plantilla:**
+  - Sin rótulos en mayúsculas encima de cada título.
+  - Sin segunda línea en color ni flechas.
+  - Botones como azulejos esmaltados.
 - **En el móvil:**
   - **"Lo que podemos construir":** cada producto va debajo de su texto, sin marco de teléfono y con letra a tamaño real (el teléfono es el del visitante). La pantalla se queda fija un tramo y lo de dentro avanza con el scroll: la web baja hasta la reserva, el WhatsApp se escribe, y la reserva de Marta entra en el panel. Es la misma historia en las tres pantallas.
   - **El torno:** la pieza se queda arriba, el texto se lee en el hueco de debajo y se desvanece al pasar bajo ella.
   - Con "reducir movimiento" no hay tramos fijos y todo sale en su estado final.
-- **Colores:** papel cálido, tinta, barro para la arcilla, un solo acento cobalto (que es también el esmalte de la pieza cocida). Con versión oscura.
-- **Tipos:** Fraunces (serifa de libro) para titulares, Atkinson Hyperlegible para el texto, Spline Sans Mono para cifras. Todas alojadas en la propia web.
 - **Voz:** plural ("hacemos", "te enseñamos"): aunque el fundador sea la cara visible, hay equipo detrás. Su historia en "Quién está detrás" va en primera persona.
-- **Hilo:** portada (titular + caja del asistente) → el torno (7 pantallas) → "Lo que podemos construir para tu negocio" (infografía: la web de ejemplo con foto, Unsplash, que hace scroll hasta la reserva; el WhatsApp que se escribe solo; el panel) → cómo lo hacemos → quién está detrás → preguntas → cierre. Paleta: rosa porcelana con azul petróleo.
+- **Hilo:**
+  1. Portada: titular y caja del asistente.
+  2. El torno, en 7 pantallas.
+  3. "Lo que podemos construir para tu negocio": la web de ejemplo, el WhatsApp y el panel.
+  4. Cómo lo hacemos.
+  5. Quién está detrás.
+  6. Preguntas.
+  7. Cierre en cobalto con la vasija blanca.
+- **Detalles:**
+  - Imagen para compartir (`piezas/compartir.jpg`) e icono para el iPhone.
+  - Página 404 con la vasija rota.
+  - Espacio que no se parte antes de "€" y cifras tabulares.
+  - Color de selección propio.
 
 ## Datos que faltan
 

@@ -91,7 +91,7 @@
     lista.scrollTop = lista.scrollHeight;
   }
   const pausa = (ms) => new Promise((r) => setTimeout(r, ms));
-  const euros = (n) => Math.round(n).toLocaleString("es-ES") + " €";
+  const euros = (n) => Math.round(n).toLocaleString("es-ES") + "\u00a0€"; // espacio que no se parte
   const redondear = (n) => Math.round(n / 10) * 10;
 
   // ---------- Modo guiado ----------
