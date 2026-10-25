@@ -13,7 +13,7 @@ web/
     aviso-legal.html   aviso legal (LSSI art. 10)
     privacidad.html    política de privacidad
     assets/styles.css  diseño (colores y tipos definidos al principio)
-    assets/app.js      chat de diagnóstico
+    assets/app.js      chat de la portada
     assets/fonts/      fuentes propias (sin Google Fonts, así no hay que pedir consentimiento)
     _headers           cabeceras de seguridad y caché para Cloudflare Pages
   functions/api/       el servidor (Pages Functions), ver abajo
@@ -60,7 +60,7 @@ web/
   - Con "reducir movimiento" no hay tramos fijos y todo sale en su estado final.
 - **Voz:** plural ("hacemos", "te enseñamos"): aunque el fundador sea la cara visible, hay equipo detrás. Su historia en "Quién está detrás" va en primera persona.
 - **Hilo:**
-  1. Portada: titular y caja del asistente.
+  1. Portada: titular y caja del agente.
   2. El torno, en 7 pantallas.
   3. "Lo que podemos construir para tu negocio": la web de ejemplo, el WhatsApp y el panel.
   4. Cómo lo hacemos.
@@ -83,20 +83,32 @@ Decisión: por ahora la web no muestra teléfono ni WhatsApp.
 
 La clave de Anthropic se llama `CLAUDE_ANTHROPIC_API_KEY` (no `ANTHROPIC_API_KEY`). Las funciones del servidor la leen con ese nombre. Nunca se imprime ni se escribe en el repo.
 
+## El agente de la portada
+
+Una conversación de dos o tres minutos para entender qué le pasa al negocio, no una calculadora. Solo la primera respuesta es un clic (las opciones de la portada); después se escribe.
+
+- **Lo que pregunta**, por orden y sin repetir lo que ya le han contado: el negocio (y su web o Instagram, para la maqueta), el problema con un ejemplo real, cómo lo hacen hoy, qué sería tenerlo resuelto y, solo si sale, el tamaño y la urgencia.
+- **Para que se sientan escuchados:** antes de cada pregunta repite en media frase lo último que le han dicho, con sus palabras; una pregunta por mensaje; mensajes de una o dos frases.
+- **Cierre:** a partir del quinto mensaje el servidor le pide cerrar. Llama a `preparar_propuesta` y la web enseña lo que hemos entendido, lo que haríamos y el siguiente paso (maqueta de la web, demo del agente de WhatsApp, propuesta o llamada) con el formulario.
+- **La ficha para Álvaro** (se guarda con el contacto): sector, nombre, web o redes, quién atiende, problema, ejemplo, cómo lo hacen hoy, qué sería resuelto, volumen, coste si salió, urgencia y qué falta por confirmar en la llamada.
+- **Sin IA** (sin clave, límite diario o error): cuatro preguntas fijas que también se contestan escribiendo.
+
+El texto del agente está en `lib/claude.js` (`SISTEMA`). Si lo cambias, pruébalo con varias conversaciones antes de publicar.
+
 ## El servidor
 
 Son Pages Functions en `functions/api/`:
 
 | Ruta | Qué hace |
 |---|---|
-| `POST /api/chat` | Habla con Claude (`lib/claude.js`). Guarda la conversación en KV 24 horas (`chat:<sesión>`), como promete la política de privacidad. Si no hay clave, se pasa el límite diario, la conversación pasa de 12 turnos o la API falla, contesta `{ respaldo: true }` y el navegador sigue con las preguntas guiadas. |
-| `POST /api/contacto` | Guarda el contacto solo si viene con `consentimiento: true`. Guarda también la fecha y el texto de la casilla como prueba. Se borra solo a los 12 meses. |
-| `POST /api/diagnostico` | Guarda el resultado del modo guiado sin datos personales. Los del modo IA los guarda `/api/chat`. |
+| `POST /api/chat` | Habla con Claude (`lib/claude.js`). Guarda la conversación y la ficha para el equipo en KV 24 horas (`chat:<sesión>`), como promete la política de privacidad. Si no hay clave, se pasa el límite diario, la conversación pasa de 12 turnos o la API falla, contesta `{ respaldo: true }` y el navegador sigue con las preguntas fijas. |
+| `POST /api/contacto` | Guarda el contacto solo si viene con `consentimiento: true`, con la fecha y el texto de la casilla como prueba. Con él guarda lo que contó: la ficha del agente (o la conversación, si se cortó antes) o las respuestas del modo sin IA. Se borra solo a los 12 meses. |
+| `POST /api/diagnostico` | Guarda el cierre del modo sin IA sin texto libre ni datos personales (producto y siguiente paso). Los del modo IA los guarda `/api/chat`. |
 | `GET /api/diagnosticos` | Lista contactos o diagnósticos. Solo existe si configuras `ADMIN_TOKEN` (ver abajo). |
 
 Variables del proyecto en Cloudflare:
 
-- `CLAUDE_ANTHROPIC_API_KEY` (secreto): la clave de Anthropic. Sin ella el chat funciona en modo guiado.
+- `CLAUDE_ANTHROPIC_API_KEY` (secreto, en producción y en vista previa): la clave de Anthropic. Sin ella el chat hace cuatro preguntas fijas.
 - `CUPO_DIARIO` (en `wrangler.toml`, 300): conversaciones nuevas con IA al día.
 - `ADMIN_TOKEN` (secreto, opcional): activa `/api/diagnosticos`.
 - `AVISO_WEBHOOK` (opcional): URL de Slack o Discord que recibe un aviso con cada contacto nuevo.
@@ -124,7 +136,7 @@ Para probar en local: `npm run dev` (abre http://localhost:8788, con un KV de pr
 
 ## Dónde se ven los contactos
 
-- **En el panel de Cloudflare:** Storage & databases → Workers KV → `arcilla-studio`. Busca las claves que empiezan por `contacto:` (llevan la fecha y la hora). Los diagnósticos anónimos empiezan por `diagnostico:`.
+- **En el panel de Cloudflare:** Storage & databases → Workers KV → `arcilla-studio`. Busca las claves que empiezan por `contacto:` (llevan la fecha y la hora). Las estadísticas anónimas empiezan por `diagnostico:`. Ojo: la vista previa usa el mismo KV, así que las pruebas ahí también se guardan.
 - **Desde la terminal:**
   ```bash
   cd web
