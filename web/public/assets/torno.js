@@ -24,7 +24,8 @@
       ladrillo2: cs.getPropertyValue("--ladrillo-2").trim() || "#7e3a24",
       barro: cs.getPropertyValue("--barro").trim() || "#cfa080",
       barro2: cs.getPropertyValue("--barro-2").trim() || "#a9775a",
-      esmalte: cs.getPropertyValue("--esmalte").trim() || "#1f3f97",
+      esmalte: cs.getPropertyValue("--esmalte").trim() || "#a9bfae",
+      esmalte2: cs.getPropertyValue("--esmalte-2").trim() || "#4f7d6b",
       porcelana: cs.getPropertyValue("--porcelana").trim() || "#f3f1ea",
       fuego: cs.getPropertyValue("--fuego").trim() || "#e2874e",
     };
@@ -156,13 +157,13 @@
       C.hueco(ctx, rr(-54, -128, 108, 92, 14), { x: -54, y: -128, w: 108, h: 92 }, { color: col.barro, dpr, profundidad: 0.22 });
       ctx.fillStyle = "rgba(60,40,30,0.16)";
       for (let i = 0; i < 3; i++) { ctx.beginPath(); ctx.roundRect(-54, -16 + i * 30, 108 - i * 24, 10, 5); ctx.fill(); }
-      C.pieza(ctx, rr(-54, 96, 108, 28, 14), { x: -54, y: 96, w: 108, h: 28 }, { color: col.esmalte, acabado: "esmalte", dpr, sombra: 0.5, motas: false });
+      C.pieza(ctx, rr(-54, 96, 108, 28, 14), { x: -54, y: 96, w: 108, h: 28 }, { color: col.esmalte2, acabado: "esmalte", dpr, sombra: 0.5, motas: false });
     } else if (etapa === "burbuja") {
       [[-118, -66, 150], [-118, -36, 196], [-118, -6, 120], [-118, 30, 168]].forEach(([x, y, w]) => C.hueco(ctx, rr(x, y, w, 13, 6.5), { x, y, w, h: 13 }, { color: col.barro2, dpr, profundidad: 0.3 }));
-      C.pieza(ctx, rr(99, 50, 22, 22, 11), { x: 99, y: 50, w: 22, h: 22 }, { color: col.esmalte, acabado: "esmalte", dpr, sombra: 0.6, motas: false });
+      C.pieza(ctx, rr(99, 50, 22, 22, 11), { x: 99, y: 50, w: 22, h: 22 }, { color: col.esmalte2, acabado: "esmalte", dpr, sombra: 0.6, motas: false });
     } else if (etapa === "panel") {
       for (let i = 0; i < 3; i++) C.hueco(ctx, rr(-150 + i * 102, -92, 92, 56, 10), { x: -150 + i * 102, y: -92, w: 92, h: 56 }, { color: col.porcelana, acabado: "esmalte", dpr, profundidad: 0.28 });
-      [38, 62, 48, 80, 70, 96, 88].forEach((b, i) => C.pieza(ctx, rr(-146 + i * 42, 92 - b, 28, b, 7), { x: -146 + i * 42, y: 92 - b, w: 28, h: b }, { color: col.esmalte, acabado: "esmalte", dpr, sombra: 0.45, motas: false }));
+      [38, 62, 48, 80, 70, 96, 88].forEach((b, i) => C.pieza(ctx, rr(-146 + i * 42, 92 - b, 28, b, 7), { x: -146 + i * 42, y: 92 - b, w: 28, h: b }, { color: col.esmalte2, acabado: "esmalte", dpr, sombra: 0.45, motas: false }));
     }
     ctx.restore();
   }
@@ -184,7 +185,7 @@
     if (e < 0.999) {
       ctx.save();
       ctx.clip(r);
-      ctx.strokeStyle = "rgba(10,20,60,0.28)"; ctx.lineWidth = 2.2;
+      ctx.strokeStyle = "rgba(40,70,58,0.32)"; ctx.lineWidth = 2.2;
       ctx.beginPath();
       for (let x = -260; x <= 260; x += 8) { const y = borde + gota(x); if (x === -260) ctx.moveTo(x, y); else ctx.lineTo(x, y); }
       ctx.stroke();
@@ -208,7 +209,7 @@
     const caja = cajaDe(pts);
 
     // Color: ladrillo al principio y arcilla cruda al ablandarse. Camino del horno la pieza se pone
-    // al rojo (brasa); al salir se esmalta de cobalto y se le pinta la decoración a pincel.
+    // al rojo (brasa); al salir se esmalta de celadón y se le pinta la decoración a pincel.
     const iMasa = ETAPAS.indexOf("masa");
     const iHorno = ETAPAS.indexOf("horno");
     const ablandado = acotar(progreso - (iMasa - 1));
@@ -245,7 +246,7 @@
     if (pintado > 0) {
       ctx.save();
       ctx.clip(r);
-      Ceramica.decorar(ctx, DECORACION, col.porcelana, pintado);
+      Ceramica.decorar(ctx, DECORACION, col.esmalte2, pintado);
       ctx.restore();
     }
     ctx.restore();
