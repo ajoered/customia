@@ -33,6 +33,7 @@ const caja = (x, y, w, h) => ({ x, y, w, h });
 
 // El perfil de la vasija del torno (la misma pieza en pequeño).
 function perfil(u) { return 70 + 80 * Math.sin(Math.PI * Math.pow(u, 0.9)) * (1 - 0.35 * u) + 10 * Math.pow(Math.max(0, 1 - u / 0.07), 0.5); }
+const VASIJA = C.vasija(perfil);
 function vasijaRuta(cx, cy, k) {
   const p = new Path2D(), n = 96, pts = [];
   for (let i = 0; i < n; i++) {
@@ -111,30 +112,20 @@ const PIEZAS = {
     for (let i = 0; i < 3; i++) C.hueco(ctx, rr(34 + i * 46, 54, 40, 26, 7), caja(34 + i * 46, 54, 40, 26), { color: COL.porcelana, acabado: "esmalte", dpr, profundidad: 0.28 });
     [22, 34, 28, 44, 40].forEach((b, i) => C.pieza(ctx, rr(38 + i * 26, 146 - b, 16, b, 5), caja(38 + i * 26, 146 - b, 16, b), { color: COL.esmalte2, acabado: "esmalte", dpr, sombra: 0.45, motas: false }));
   },
-  // La vasija terminada: cobalto y decoración a pincel. Para piezas grandes.
+  // La vasija terminada: canales tallados y bañada en celadón sin llegar al pie. Para piezas grandes.
   vasija(ctx, dpr) {
-    const k = 0.5, v = vasijaRuta(100, 100, k);
-    C.pieza(ctx, v.ruta, v.caja, { color: COL.esmalte, acabado: "esmalte", dpr, anillos: true });
-    ctx.save(); ctx.clip(v.ruta); ctx.translate(100, 100); ctx.scale(k, k);
-    C.decorar(ctx, C.decoracionVasija(perfil).map(([p, g]) => [p, g * 1.35]), COL.esmalte2, 1);
-    ctx.restore();
+    const k = 0.5, v = vasijaRuta(0, 0, 1);
+    ctx.translate(100, 100); ctx.scale(k, k);
+    C.pieza(ctx, v.ruta, v.caja, { color: COL.barro, acabado: "barro", dpr: dpr * k });
+    VASIJA.acabar(ctx, v.ruta, v.caja, { color: COL.esmalte, dpr: dpr * k });
   },
-  // La misma vasija en loza blanca con la decoración en cobalto, como la de Talavera. Va sobre fondo azul.
-  blanca(ctx, dpr) {
-    const k = 0.5, v = vasijaRuta(100, 100, k);
-    C.pieza(ctx, v.ruta, v.caja, { color: COL.porcelana, acabado: "esmalte", dpr, anillos: true, motas: false, sombra: 0.8 });
-    ctx.save(); ctx.clip(v.ruta); ctx.translate(100, 100); ctx.scale(k, k);
-    C.decorar(ctx, C.decoracionVasija(perfil).map(([p, g]) => [p, g * 1.35]), COL.esmalte2, 1);
-    ctx.restore();
-  },
-  // La vasija para el logotipo y los iconos: sin flor, que en pequeño no se lee.
+  // La vasija para el logotipo y los iconos: lisa, en celadón oscuro y con el pie de barro.
+  // Los canales en pequeño no se leen.
   marca(ctx, dpr) {
-    const k = 0.56, v = vasijaRuta(100, 100, k);
-    C.pieza(ctx, v.ruta, v.caja, { color: COL.esmalte2, acabado: "esmalte", dpr, motas: false, sombra: 0.55 });
-    ctx.save(); ctx.clip(v.ruta); ctx.translate(100, 100); ctx.scale(k, k);
-    const linea = (y, g) => { const a = perfil((y + 150) / 300) - 14; const p = []; for (let x = -a; x <= a; x += 6) p.push([x, y + 8 * (1 - (x / a) ** 2)]); C.pincel(ctx, p, g, COL.porcelana, 1); };
-    linea(-104, 13); linea(96, 11);
-    ctx.restore();
+    const k = 0.56, v = vasijaRuta(0, 0, 1);
+    ctx.translate(100, 100); ctx.scale(k, k);
+    C.pieza(ctx, v.ruta, v.caja, { color: COL.barro, acabado: "barro", dpr: dpr * k, sombra: 0.55 });
+    VASIJA.bano(ctx, v.ruta, v.caja, { color: COL.esmalte2, dpr: dpr * k });
   },
   // La pieza que se rompió: para la página que no existe.
   rota(ctx, dpr) {
@@ -193,7 +184,6 @@ const FUENTES = Promise.all([`500 80px '${SERIF}'`, `600 34px '${SERIF}'`, "400 
 window.SALIDAS = async () => { await FUENTES; return [
   ...["telefono", "burbuja", "web", "libreta", "panel", "marca"].map((n) => ({ archivo: `${n}.webp`, url: dibujar(n, 192).toDataURL("image/webp", 0.92) })),
   { archivo: "vasija.webp", url: dibujar("vasija", 640).toDataURL("image/webp", 0.92) },
-  { archivo: "blanca.webp", url: dibujar("blanca", 640).toDataURL("image/webp", 0.92) },
   { archivo: "rota.webp", url: dibujar("rota", 480).toDataURL("image/webp", 0.92) },
   { archivo: "apple-touch-icon.png", url: dibujar("marca", 180, COL.papel).toDataURL("image/png") },
   { archivo: "compartir.jpg", url: compartir().toDataURL("image/jpeg", 0.9) },

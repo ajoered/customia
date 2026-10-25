@@ -90,8 +90,8 @@
   }
   // El labio de la boca sale con una curva, sin escalón.
   function perfil(u) { return 70 + 80 * Math.sin(Math.PI * Math.pow(u, 0.9)) * (1 - 0.35 * u) + 10 * Math.pow(Math.max(0, 1 - u / 0.07), 0.5); }
-  // La decoración que se pinta a pincel sobre la vasija esmaltada.
-  const DECORACION = Ceramica.decoracionVasija(perfil);
+  // La vasija terminada: se talla en crudo y, al salir del horno, se baña en celadón sin llegar al pie.
+  const VASIJA = Ceramica.vasija(perfil);
   // Todas las formas empiezan su contorno arriba en el centro y van en el sentido del reloj.
   // Así, al mezclar dos formas, cada punto va a su sitio y la pieza no se retuerce por el camino.
   function alinear(pts) {
@@ -168,29 +168,30 @@
     ctx.restore();
   }
 
-  // El esmalte cae de arriba abajo, con alguna gota; deja el borde algo más grueso.
+  // Los canales se tallan cuando la pieza casi tiene su forma: se encajan en su caja de ahora.
+  const CAJA_VASIJA = cajaDe(FORMAS.vasija);
+  function tallar(r, caja, tallado) {
+    if (tallado <= 0) return;
+    const V = CAJA_VASIJA;
+    ctx.save();
+    ctx.clip(r);
+    ctx.translate(caja.x + caja.w / 2, caja.y + caja.h / 2);
+    ctx.scale(caja.w / V.w, caja.h / V.h);
+    ctx.translate(-(V.x + V.w / 2), -(V.y + V.h / 2));
+    VASIJA.estrias(ctx, { fuerza: 0.55, progreso: tallado });
+    ctx.restore();
+  }
+
+  // El esmalte cae de arriba abajo y se para antes del pie; al final cuelgan las gotas.
+  // Dentro de los canales se acumula y oscurece.
   function esmaltar(r, caja, e, dpr) {
     if (e <= 0.001) return;
-    const borde = lerp(-190, 200, e);
-    const gota = (x) => 7 * Math.sin(x / 19) + 18 * Math.pow(Math.max(0, Math.sin(x / 37 + 0.8)), 4);
-    const zona = new Path2D();
-    zona.moveTo(-260, -260); zona.lineTo(260, -260);
-    for (let x = 260; x >= -260; x -= 8) zona.lineTo(x, borde + gota(x));
-    zona.closePath();
+    const zona = VASIJA.bano(ctx, r, caja, { color: col.esmalte, dpr, nivel: lerp(-190, 78, suavizar(acotar(e / 0.8))), colgar: acotar((e - 0.7) / 0.3) });
     ctx.save();
     ctx.clip(r);
     ctx.clip(zona);
-    Ceramica.pieza(ctx, r, caja, { color: col.esmalte, acabado: "esmalte", dpr, sombra: 0, anillos: true });
+    VASIJA.estrias(ctx);
     ctx.restore();
-    if (e < 0.999) {
-      ctx.save();
-      ctx.clip(r);
-      ctx.strokeStyle = "rgba(40,70,58,0.32)"; ctx.lineWidth = 2.2;
-      ctx.beginPath();
-      for (let x = -260; x <= 260; x += 8) { const y = borde + gota(x); if (x === -260) ctx.moveTo(x, y); else ctx.lineTo(x, y); }
-      ctx.stroke();
-      ctx.restore();
-    }
   }
 
   let progreso = 0; // 0..ETAPAS.length-1, continuo
@@ -208,15 +209,15 @@
     const r = ruta(pts);
     const caja = cajaDe(pts);
 
-    // Color: ladrillo al principio y arcilla cruda al ablandarse. Camino del horno la pieza se pone
-    // al rojo (brasa); al salir se esmalta de celadón y se le pinta la decoración a pincel.
+    // Color: ladrillo al principio y arcilla cruda al ablandarse. Cuando la pieza casi tiene su forma
+    // se tallan los canales; luego se pone al rojo en el horno (brasa) y al salir se baña en celadón.
     const iMasa = ETAPAS.indexOf("masa");
     const iHorno = ETAPAS.indexOf("horno");
     const ablandado = acotar(progreso - (iMasa - 1));
-    const calor = acotar(progreso - (iHorno - 1));
-    const esmalte = suavizar(acotar((progreso - iHorno) / 0.55));
-    const pintado = acotar((progreso - iHorno - 0.55) / 0.45);
-    const brasa = calor * (1 - esmalte);
+    const tallado = acotar((progreso - iHorno + 0.45) / 0.35);
+    const calor = acotar((progreso - iHorno + 0.2) / 0.2);
+    const banado = acotar((progreso - iHorno) / 0.85);
+    const brasa = calor * (1 - suavizar(acotar(banado / 0.5)));
     const relleno = mezclarColor(mezclarColor(col.ladrillo, col.barro, ablandado), col.fuego, brasa);
 
     ctx.save();
@@ -233,8 +234,7 @@
       ctx.fillStyle = relleno; ctx.fill(r);
       ctx.restore();
     }
-    const vasija = ETAPAS[i] === "horno" || ETAPAS[i] === "vasija";
-    Ceramica.pieza(ctx, r, caja, { color: relleno, acabado: "barro", dpr, anillos: vasija || ETAPAS[i] === "masa" });
+    Ceramica.pieza(ctx, r, caja, { color: relleno, acabado: "barro", dpr, anillos: ETAPAS[i] === "masa" });
     // Todo lo de dentro va recortado a la silueta. Los detalles de la etapa que sale se van al
     // principio del cambio y los de la que entra llegan al final: nunca se ven dos piezas a la vez.
     ctx.save();
@@ -242,13 +242,8 @@
     if (DIBUJO[ETAPAS[i]] && DIBUJO[ETAPAS[i]] === DIBUJO[ETAPAS[j]]) detalles(ETAPAS[i], 1, dpr);
     else { detalles(ETAPAS[i], acotar(1 - t / 0.35), dpr); detalles(ETAPAS[j], acotar((t - 0.65) / 0.35), dpr); }
     ctx.restore();
-    esmaltar(r, caja, esmalte, dpr);
-    if (pintado > 0) {
-      ctx.save();
-      ctx.clip(r);
-      Ceramica.decorar(ctx, DECORACION, col.esmalte2, pintado);
-      ctx.restore();
-    }
+    tallar(r, caja, tallado);
+    esmaltar(r, caja, banado, dpr);
     ctx.restore();
   }
   function angulo(etapa) { return etapa === "masa" ? -0.35 : 0; }

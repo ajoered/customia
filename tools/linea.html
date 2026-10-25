@@ -6,23 +6,23 @@
 <!-- Lámina de la línea de diseño (estudio/10-linea-de-diseno.md).
      tools/linea.cjs la guarda como estudio/img/linea-de-diseno.png. -->
 <style>
-@font-face { font-family: "Ibarra Real Nova"; src: url("../web/public/assets/fonts/ibarra-real-nova-latin-normal.woff2") format("woff2"); font-weight: 400 700; }
-@font-face { font-family: "Ibarra Real Nova"; src: url("../web/public/assets/fonts/ibarra-real-nova-latin-italic.woff2") format("woff2"); font-weight: 400 700; font-style: italic; }
+@font-face { font-family: "Source Serif 4"; src: url("../web/public/assets/fonts/source-serif-4-latin-normal.woff2") format("woff2"); font-weight: 400 600; }
+@font-face { font-family: "Source Serif 4"; src: url("../web/public/assets/fonts/source-serif-4-latin-italic.woff2") format("woff2"); font-weight: 400 500; font-style: italic; }
 @font-face { font-family: "Schibsted Grotesk"; src: url("../web/public/assets/fonts/schibsted-grotesk-latin-normal.woff2") format("woff2"); font-weight: 400 900; }
-:root { --papel: #f3f3ef; --tinta: #171a21; --tinta-2: #585d68; --linea: #dcdcd5; --cobalto: #1f3f97; --barro: #cfa080; --fuego: #e2874e; --porcelana: #f3f1ea; }
+:root { --papel: #f3f3ef; --tinta: #171a21; --tinta-2: #585d68; --linea: #dcdcd5; --celadon: #2f5e4f; --barro: #cfa080; --fuego: #e2874e; --porcelana: #f3f1ea; }
 * { box-sizing: border-box; }
 body { margin: 0; width: 1600px; height: 1000px; background: var(--papel); color: var(--tinta); font-family: "Schibsted Grotesk", sans-serif; -webkit-font-smoothing: antialiased; }
 .lamina { position: relative; width: 1600px; height: 1000px; padding: 72px 80px; display: grid; grid-template-columns: 760px 1fr; gap: 40px; }
 .cat { font-size: 15px; font-weight: 500; color: var(--tinta-2); }
-h1 { font-family: "Ibarra Real Nova"; font-weight: 500; font-size: 104px; line-height: .92; letter-spacing: -0.035em; margin: 18px 0 22px; }
+h1 { font-family: "Source Serif 4"; font-weight: 500; font-size: 104px; line-height: .92; letter-spacing: -0.035em; margin: 18px 0 22px; }
 .lema { font-size: 25px; line-height: 1.35; color: var(--tinta-2); max-width: 30ch; }
 .epocas { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 58px; border-top: 1px solid var(--tinta); }
 .epoca { padding: 18px 20px 0 0; display: grid; gap: 6px; align-content: start; }
 .epoca + .epoca { padding-left: 20px; border-left: 1px solid var(--linea); }
 .epoca .n { font-size: 13px; font-weight: 500; color: var(--tinta-2); }
 .epoca .visual { height: 96px; display: flex; align-items: center; }
-.epoca .aa { font-family: "Ibarra Real Nova"; font-size: 84px; line-height: 1; letter-spacing: -0.02em; }
-.epoca b { font-family: "Ibarra Real Nova"; font-weight: 600; font-size: 24px; letter-spacing: -0.01em; }
+.epoca .aa { font-family: "Source Serif 4"; font-size: 84px; line-height: 1; letter-spacing: -0.02em; }
+.epoca b { font-family: "Source Serif 4"; font-weight: 600; font-size: 24px; letter-spacing: -0.01em; }
 .epoca p { margin: 0; font-size: 15px; line-height: 1.45; color: var(--tinta-2); }
 .pie { position: absolute; left: 80px; right: 80px; bottom: 64px; display: grid; grid-template-columns: 760px 1fr; gap: 40px; align-items: end; }
 .color { display: grid; gap: 10px; }
@@ -32,7 +32,7 @@ h1 { font-family: "Ibarra Real Nova"; font-weight: 500; font-size: 104px; line-h
 .tipos { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--tinta); }
 .tipos div { padding-top: 14px; }
 .tipos div + div { border-left: 1px solid var(--linea); padding-left: 20px; }
-.tipos .muestra { font-family: "Ibarra Real Nova"; font-size: 40px; line-height: 1.05; letter-spacing: -0.02em; }
+.tipos .muestra { font-family: "Source Serif 4"; font-size: 40px; line-height: 1.05; letter-spacing: -0.02em; }
 .tipos .muestra.sans { font-family: "Schibsted Grotesk"; font-size: 30px; letter-spacing: -0.01em; }
 .tipos small { display: block; margin-top: 6px; font-size: 13px; color: var(--tinta-2); }
 canvas { position: absolute; right: 70px; top: 40px; }
@@ -47,19 +47,19 @@ canvas { position: absolute; right: 70px; top: 40px; }
     <p class="lema">Hecho a mano, con la herramienta más avanzada del mundo.</p>
     <div class="epocas">
       <div class="epoca"><span class="n">Hace más de 5.000 años</span><div class="visual"><canvas id="c-barro" width="192" height="192" style="position:static;width:96px;height:96px"></canvas></div><b>El torno</b><p>El primer paso hacia la industria. El alfarero lo dominó.</p></div>
-      <div class="epoca"><span class="n">1780</span><div class="visual"><span class="aa">Aa</span></div><b>La imprenta de Ibarra</b><p>Papel satinado y tipos medidos. Nuestra letra.</p></div>
+      <div class="epoca"><span class="n">1737</span><div class="visual"><span class="aa">Aa</span></div><b>La imprenta</b><p>Fournier mide los tipos con el punto. De sus letras sale la nuestra.</p></div>
       <div class="epoca"><span class="n">Hoy</span><div class="visual"><img src="../web/public/assets/piezas/burbuja.webp" width="96" height="96" alt=""></div><b>La inteligencia artificial</b><p>Nuestro torno. La mano sigue decidiendo.</p></div>
     </div>
   </div>
 </div>
 <div class="pie">
   <div class="tipos">
-    <div><div class="muestra">Más clientes.</div><small>Ibarra Real Nova · lo que se lee despacio</small></div>
+    <div><div class="muestra">Más clientes.</div><small>Source Serif 4 · lo que se lee despacio</small></div>
     <div><div class="muestra sans">38 € · 2–3 semanas</div><small>Schibsted Grotesk · interfaz y datos</small></div>
   </div>
   <div class="color">
-    <div class="barra"><div style="flex:80;background:var(--papel)"></div><div style="flex:15;background:var(--tinta)"></div><div style="flex:5;background:var(--cobalto)"></div></div>
-    <div class="leyenda"><span>Porcelana 80 %</span><span>Tinta 15 %</span><span>Cobalto 5 % · único acento</span></div>
+    <div class="barra"><div style="flex:80;background:var(--papel)"></div><div style="flex:15;background:var(--tinta)"></div><div style="flex:5;background:var(--celadon)"></div></div>
+    <div class="leyenda"><span>Porcelana 80 %</span><span>Tinta 15 %</span><span>Celadón 5 % · único acento</span></div>
   </div>
 </div>
 <canvas id="vasija" width="1520" height="1640" style="width:760px;height:820px"></canvas>
@@ -86,20 +86,20 @@ function dibujar() {
     C.pieza(c, v.ext, v.caja, { color: "#cfa080", acabado: "barro", dpr: 2, anillos: true });
   }
 
-  // La pieza clave: mitad derecha hecha a mano (esmalte y pincel), mitad izquierda dibujada en sección.
+  // La pieza clave: mitad derecha hecha a mano (tallada y bañada), mitad izquierda dibujada en sección.
   const cv = document.getElementById("vasija"), ctx = cv.getContext("2d");
   const dpr = 2; ctx.scale(dpr, dpr);
   const cx = 400, cy = 400, k = 1.55;
   const v = vasija(cx, cy, k);
   const tinta = "#171a21";
 
-  // La mano: esmalte cobalto y la flor a pincel, solo en la mitad derecha.
+  // La mano: canales tallados y baño de celadón sin llegar al pie, solo en la mitad derecha.
   ctx.save();
   ctx.beginPath(); ctx.rect(cx, 0, 800, 900); ctx.clip();
-  C.pieza(ctx, v.ext, v.caja, { color: "#24479f", acabado: "esmalte", dpr, anillos: true });
-  ctx.save(); ctx.clip(v.ext); ctx.translate(cx, cy); ctx.scale(k, k);
-  C.decorar(ctx, C.decoracionVasija(perfil), "#f3f1ea", 1);
-  ctx.restore();
+  ctx.translate(cx, cy); ctx.scale(k, k);
+  const local = vasija(0, 0, 1);
+  C.pieza(ctx, local.ext, local.caja, { color: "#cfa080", acabado: "barro", dpr: dpr * k });
+  C.vasija(perfil).acabar(ctx, local.ext, local.caja, { color: "#a9bfae", dpr: dpr * k });
   ctx.restore();
 
   // El torno: dibujo arqueológico en la mitad izquierda. Perfil, pared en sección (negro) y eje.
@@ -141,14 +141,14 @@ function dibujar() {
   ctx.beginPath(); ctx.moveTo(cx - ancho - 60, yTop); ctx.lineTo(ext[0][0] - 6, yTop); ctx.moveTo(cx - ancho - 60, yBase); ctx.lineTo(cx - 70 * k - 6, yBase); ctx.globalAlpha = 0.35; ctx.stroke(); ctx.globalAlpha = 1;
 
   // Rótulos de cada mitad y la ficha de la pieza.
-  ctx.font = "italic 500 30px 'Ibarra Real Nova'"; ctx.fillStyle = tinta;
+  ctx.font = "italic 500 30px 'Source Serif 4'"; ctx.fillStyle = tinta;
   ctx.textAlign = "right"; ctx.fillText("El torno", cx - 22, yBase + 62);
   ctx.textAlign = "left"; ctx.fillText("La mano", cx + 22, yBase + 62);
   ctx.font = "500 14px 'Schibsted Grotesk'"; ctx.fillStyle = "#585d68";
   ctx.textAlign = "right"; ctx.fillText("Medida, sección, eje", cx - 22, yBase + 86);
-  ctx.textAlign = "left"; ctx.fillText("Barro, esmalte cobalto, pincel", cx + 22, yBase + 86);
+  ctx.textAlign = "left"; ctx.fillText("Barro, talla, baño de celadón", cx + 22, yBase + 86);
 }
-Promise.all(["500 15px 'Schibsted Grotesk'", "italic 500 30px 'Ibarra Real Nova'", "500 104px 'Ibarra Real Nova'"].map((f) => document.fonts.load(f)))
+Promise.all(["500 15px 'Schibsted Grotesk'", "italic 500 30px 'Source Serif 4'", "500 104px 'Source Serif 4'"].map((f) => document.fonts.load(f)))
   .then(() => { dibujar(); document.body.dataset.listo = "1"; });
 </script>
 </body>

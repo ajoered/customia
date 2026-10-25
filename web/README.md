@@ -26,10 +26,10 @@ web/
 
 **Línea de diseño:** `../estudio/10-linea-de-diseno.md` ("La mano y el torno"). Léela antes de decidir nada de diseño.
 
-- **Idea:** un taller de cerámica española. Una sola pieza de arcilla (`assets/torno.js`, canvas 2D) se moldea con el scroll: ladrillo → arcilla → tu web → tu WhatsApp → tu herramienta → horno (al rojo) → esmalte cobalto y decoración a pincel. Si el navegador prefiere menos movimiento, se muestra la forma fija de cada etapa.
-- **Piezas de cerámica en vez de iconos planos** (estilo Airbnb). `assets/ceramica.js` pinta barro y esmalte con volumen: luz, canto, motas de chamota, anillos del torno, huecos y pincel. Lo usan:
+- **Idea:** un taller de cerámica. Una sola pieza de arcilla (`assets/torno.js`, canvas 2D) se moldea con el scroll: ladrillo → arcilla → tu web → tu WhatsApp → tu herramienta → vasija tallada → horno (al rojo) → baño de celadón que no llega al pie. Si el navegador prefiere menos movimiento, se muestra la forma fija de cada etapa.
+- **Piezas de cerámica en vez de iconos planos** (estilo Airbnb). `assets/ceramica.js` pinta barro y esmalte con volumen: luz, canto, motas de chamota, anillos del torno, huecos, pincel y la vasija terminada (canales tallados y baño de esmalte con gotas, como el celadón de Longquan). Lo usan:
   - el torno, en vivo;
-  - `tools/piezas.html`, que dibuja los iconos (teléfono, burbuja, web, libreta y panel), el logotipo, las vasijas del cierre y de la 404 y la imagen para compartir.
+  - `tools/piezas.html`, que dibuja los iconos (teléfono, burbuja, web, libreta y panel), el logotipo, la vasija del cierre, la de la 404 y la imagen para compartir.
 
   Para regenerarlas: `node tools/piezas.cjs` (escribe en `public/assets/piezas/`). Abre `tools/piezas.html` en el navegador para verlas todas.
 - **Referencias:**
@@ -41,12 +41,12 @@ web/
   Ver `../estudio/07-benchmark-web.md`.
 - **Colores:**
   - Porcelana de fondo y tinta.
-  - El cobalto de la loza de Talavera como único acento.
-  - El barro, solo en las piezas.
+  - El celadón como único acento: verde oscuro en la interfaz y claro en el esmalte de las piezas.
+  - El barro, solo en las piezas (el pie sin esmaltar de la vasija).
 
   Lejos del crema con barro, que recordaba a la marca de Claude.
 - **Tipos:**
-  - Ibarra Real Nova para titulares: está basada en la letra de Joaquín Ibarra, el impresor del Quijote de 1780.
+  - Source Serif 4 para titulares: de Adobe, inspirada en las letras de Pierre-Simon Fournier, el impresor que en 1737 midió los tipos con el punto. Tiene tamaños ópticos, así que el titular grande y el texto pequeño se ven bien.
   - Schibsted Grotesk para el resto.
 
   Las dos son libres (licencia OFL, en `assets/fonts/`) y están alojadas en la propia web.
@@ -66,7 +66,7 @@ web/
   4. Cómo lo hacemos.
   5. Quién está detrás.
   6. Preguntas.
-  7. Cierre en cobalto con la vasija blanca.
+  7. Cierre en celadón con la vasija tallada y bañada.
 - **Detalles:**
   - Imagen para compartir (`piezas/compartir.jpg`) e icono para el iPhone.
   - Página 404 con la vasija rota.
