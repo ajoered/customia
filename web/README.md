@@ -61,7 +61,7 @@ web/
 - **Voz:** plural ("hacemos", "te enseñamos"): aunque el fundador sea la cara visible, hay equipo detrás. Su historia en "Quién está detrás" va en primera persona.
 - **Hilo:**
   1. Portada: titular y caja del agente.
-  2. El torno, en 3 etapas: ladrillo, se moldea y toma la forma de lo que te falta. En la última el texto se queda quieto mientras la pieza pasa por la web, el WhatsApp y el panel, entra en el horno y sale la vasija (`data-hasta` en el HTML).
+  2. El torno, en 7 pantallas.
   3. "Lo que podemos construir para tu negocio": la web de ejemplo, el WhatsApp y el panel.
   4. Cómo lo hacemos.
   5. Quién está detrás.

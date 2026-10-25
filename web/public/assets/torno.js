@@ -241,25 +241,20 @@
     const centro = window.innerWidth <= 860 && pieza
       ? (Math.max(0, pieza.getBoundingClientRect().bottom) + window.innerHeight) / 2
       : window.innerHeight * 0.5;
-    // Cada paso marca un punto (su centro) con su etapa. Si lleva data-hasta, marca dos: al 15 % de su
-    // altura con su etapa y al 85 % con la de data-hasta, y la pieza pasa por las de en medio mientras el texto
-    // se queda quieto. Entre punto y punto, la etapa se interpola.
-    const anclas = [];
-    for (const p of pasos) {
-      const r = p.getBoundingClientRect();
-      if (p.dataset.hasta) {
-        anclas.push([r.top + r.height * 0.15, ETAPAS.indexOf(p.dataset.etapa)]);
-        anclas.push([r.top + r.height * 0.85, ETAPAS.indexOf(p.dataset.hasta)]);
-      } else anclas.push([r.top + r.height / 2, ETAPAS.indexOf(p.dataset.etapa)]);
-    }
-    let nuevo = anclas[0][1];
-    if (centro >= anclas[anclas.length - 1][0]) nuevo = anclas[anclas.length - 1][1];
-    else if (centro > anclas[0][0]) {
-      for (let k = 0; k < anclas.length - 1; k++) {
-        const [y0, e0] = anclas[k], [y1, e1] = anclas[k + 1];
-        if (centro >= y0 && centro <= y1) { nuevo = lerp(e0, e1, (centro - y0) / (y1 - y0)); break; }
+    const centros = pasos.map((p) => { const r = p.getBoundingClientRect(); return r.top + r.height / 2; });
+    let prog = 0;
+    if (centro <= centros[0]) prog = 0;
+    else if (centro >= centros[centros.length - 1]) prog = centros.length - 1;
+    else {
+      for (let k = 0; k < centros.length - 1; k++) {
+        if (centro >= centros[k] && centro <= centros[k + 1]) { prog = k + (centro - centros[k]) / (centros[k + 1] - centros[k]); break; }
       }
     }
+    // Mapea el índice de paso al índice de etapa.
+    const k = Math.floor(prog), f = prog - k;
+    const e0 = ETAPAS.indexOf(pasos[Math.min(k, pasos.length - 1)].dataset.etapa);
+    const e1 = ETAPAS.indexOf(pasos[Math.min(k + 1, pasos.length - 1)].dataset.etapa);
+    const nuevo = lerp(e0, e1, f);
     if (reducir) { progreso = Math.round(nuevo); pintar(); return; }
     // Suaviza el seguimiento para que no dé tirones.
     objetivo = nuevo;
@@ -274,11 +269,7 @@
   function pedirCuadro() { if (!animando) { animando = true; requestAnimationFrame(cuadro); } }
   // La pieza se pega justo debajo de la cabecera, mida lo que mida.
   const cab = document.getElementById("cabecera");
-  function altoCabecera() {
-    if (cab) document.documentElement.style.setProperty("--cab-h", cab.offsetHeight + "px");
-    // En el móvil, el texto de los pasos largos se queda justo debajo de la pieza.
-    if (pieza) document.documentElement.style.setProperty("--pieza-h", pieza.offsetHeight + "px");
-  }
+  function altoCabecera() { if (cab) document.documentElement.style.setProperty("--cab-h", cab.offsetHeight + "px"); }
   altoCabecera();
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { altoCabecera(); medir(); pedirCuadro(); });
   window.addEventListener("load", altoCabecera);
