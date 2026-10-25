@@ -7,7 +7,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const MODELO = "claude-opus-5-5";
 
 // El mismo saludo que pinta assets/app.js.
-export const SALUDO = "Hola, soy el agente de Arcilla Studio, una IA. Cuéntame qué te pasa y en un par de minutos vemos cómo ayudarte.";
+export const SALUDO = "Hola, soy el agente de Arcilla Studio, una IA. Te hago un par de preguntas y te cuento cómo lo resolveríamos.";
 
 const SISTEMA = `Eres el agente de Arcilla Studio, una marca de ARVENTURES S.L., y hablas en el chat de su web. Arcilla Studio hace webs, agentes de WhatsApp con IA y herramientas a medida para negocios pequeños: restaurantes, fincas de bodas, hoteles y hostales, clínicas, despachos, reformas, tiendas y similares. Al otro lado suele estar el dueño, con poco tiempo.
 
@@ -35,7 +35,12 @@ Cómo escribes: de tú, en castellano de España (o en el idioma en que te escri
 
 Barra de avance: empieza cada mensaje con una etiqueta entre corchetes con lo que preguntas: [negocio], [problema] o [hoy]. Cuando cierres, usa [cierre]. La web la quita y mueve con ella una barra de avance; la persona no la ve.
 
-Cuándo cierras: en cuanto sepas los dos puntos esenciales, o cuando la persona quiera terminar. Lo normal son dos preguntas; nunca más de tres. Mejor corto y bien entendido que largo. Para cerrar, escribe una frase corta y llama a la herramienta preparar_propuesta: la web le enseñará lo que hemos entendido, lo que haríamos y el siguiente paso, con un formulario para dejarnos su contacto. Si después sigue escribiendo, contesta corto y recuérdale el formulario.
+Cuándo cierras: en cuanto sepas los dos puntos esenciales, o cuando la persona quiera terminar. Lo normal son dos preguntas; nunca más de tres. Mejor corto y bien entendido que largo. Para cerrar, llama a la herramienta preparar_propuesta sin escribir nada antes: la web le enseña tu resumen ("A ver si lo he entendido: …") y le pregunta si es así. Si dice que sí, la web le cuenta lo que haríamos y le pide su WhatsApp para mandárselo.
+
+Después del resumen:
+- Si corrige algo o añade algo, vuelve a llamar a preparar_propuesta con todo corregido, sin escribir nada antes.
+- Si te pregunta algo, contesta corto y con verdad.
+- Si ya nos ha dejado su contacto, despídete en una frase: Álvaro le escribe en un día laborable.
 
 Lo que podemos hacer. Propón una sola cosa, la que más le ayude, contada con sus palabras:
 - Una web a medida, pensada para el móvil, con reservas o petición de presupuesto. Le preparamos una maqueta y se la enseñamos antes de que pague. Tarda de dos a tres semanas.
@@ -51,7 +56,7 @@ Lo que puedes contar si te preguntan:
 - No hace falta saber de tecnología.
 
 Límites:
-- No pidas datos de contacto en el chat: el formulario aparece al final. Si los escribe, pídele que use el formulario.
+- No pidas teléfono, email ni nombre: la web se los pide al final, sin pasar por ti. Si los escribe en el chat, no los repitas.
 - No pidas datos de salud, bancarios ni de otras personas.
 - Solo hablas de su negocio y de cómo podemos ayudarle. Si te piden otra cosa (deberes, programar, temas generales), di con amabilidad que aquí solo puedes ayudar con eso.
 - Eres una IA. Si te lo preguntan, dilo, y nunca digas que eres una persona.
@@ -67,7 +72,7 @@ const HERRAMIENTA = {
   input_schema: {
     type: "object",
     properties: {
-      resumen: { type: "string", description: "Lo que hemos entendido, de tú y con sus palabras, en dos o tres frases cortas: 45 palabras como mucho. Lo verá en pantalla." },
+      resumen: { type: "string", description: "Lo que has entendido, de tú y con sus palabras, en dos o tres frases cortas: 45 palabras como mucho. La web lo enseña tras «A ver si lo he entendido:» y le pregunta si es así." },
       propuesta: { type: "string", description: "Lo que haríamos, en una o dos frases sencillas y sin tecnicismos: 35 palabras como mucho. Lo verá en pantalla." },
       siguiente_paso: {
         type: "string",
@@ -178,14 +183,21 @@ function pedir(client, messages) {
   });
 }
 
+// Lo que se le dice al modelo sobre su última llamada a preparar_propuesta, según lo que haya pasado
+// en la web desde entonces.
+const DESPUES = {
+  corrige: "La web le enseñó tu resumen y la persona dice que falta algo o lo corrige.",
+  contacto: "La persona confirmó tu resumen y ya nos ha dejado su contacto.",
+};
+
 // estado: { messages, turnos, pendiente, ficha } guardado en KV entre peticiones.
 // Devuelve { respuesta, paso, ficha } (ficha solo al cerrar) y modifica estado (solo añadiendo).
-export async function conversar(apiKey, estado, mensaje) {
+export async function conversar(apiKey, estado, mensaje, fase) {
   const client = new Anthropic({ apiKey, maxRetries: 1 });
 
   const contenido = estado.pendiente
     ? [
-        { type: "tool_result", tool_use_id: estado.pendiente, content: "Propuesta y formulario a la vista." },
+        { type: "tool_result", tool_use_id: estado.pendiente, content: DESPUES[fase] || "La web le enseñó tu resumen." },
         { type: "text", text: mensaje },
       ]
     : mensaje;
@@ -234,7 +246,7 @@ export async function conversar(apiKey, estado, mensaje) {
   }
 
   return {
-    respuesta: texto || (ficha ? "Con esto ya podemos preparar algo concreto para ti." : "Perdona, no te he entendido. ¿Me lo cuentas en una frase?"),
+    respuesta: texto || (ficha ? "" : "Perdona, no te he entendido. ¿Me lo cuentas en una frase?"),
     paso: ficha ? "cierre" : paso,
     ficha,
   };

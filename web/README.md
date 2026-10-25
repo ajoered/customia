@@ -89,7 +89,11 @@ Una conversación de un par de minutos para entender qué le pasa al negocio, no
 
 - **Lo que pregunta:** solo lo esencial, sin repetir lo que ya le han contado. El negocio, con su web o Instagram para la maqueta, y el problema con un caso real ("¿cuándo fue la última vez?"). Una tercera pregunta (cómo lo hacen hoy) solo si sin ella no puede proponer nada concreto. Lo demás se ve en la llamada; si lo cuentan, lo apunta.
 - **Para que se sientan escuchados:** antes de cada pregunta repite en media frase lo último que le han dicho, con sus palabras; una pregunta por mensaje; mensajes de una o dos frases.
-- **Cierre:** lo normal es cerrar tras dos preguntas; a partir del tercer mensaje el servidor le pide cerrar. Llama a `preparar_propuesta` y la web enseña lo que hemos entendido, lo que haríamos y el siguiente paso (maqueta de la web, demo del agente de WhatsApp, propuesta o llamada) con el formulario.
+- **Cierre:** lo normal es cerrar tras dos preguntas; a partir del tercer mensaje el servidor le pide cerrar. El agente llama a `preparar_propuesta` y la web sigue sola:
+  1. "A ver si lo he entendido: …" y "¿Es así?", con "Sí, es eso" y "Falta algo". Si falta algo, el agente lo corrige y lo vuelve a enseñar.
+  2. Lo que haríamos y la oferta (maqueta de la web, demo del agente de WhatsApp, propuesta o llamada), con la foto de Álvaro: "Te escribe Álvaro".
+  3. El WhatsApp (o el email, con "Prefiero email") y luego el nombre, de uno en uno en la propia caja, con el teclado que toca. No pasan por la IA. El contacto se guarda en cuanto llega, así que si se va antes de decir su nombre no se pierde.
+- **Sin casilla de consentimiento:** la persona nos pide la maqueta, la demo o la propuesta, así que la base legal es esa petición (art. 6.1.b del RGPD). Junto al campo ve "Solo lo usamos para mandarte esto y hablar de ello" y el enlace a privacidad; ese texto se guarda con el contacto.
 - **La ficha para Álvaro** (se guarda con el contacto): sector, nombre, web o redes, quién atiende, problema, ejemplo, cómo lo hacen hoy, qué sería resuelto, volumen, coste si salió, urgencia y qué falta por confirmar en la llamada.
 - **Pantalla completa:** al empezar, la caja se abre a toda la pantalla, como America.gov o ChatGPT: arriba la marca, el avance y "Cerrar"; en medio la conversación en una columna; abajo la caja. "Cerrar", Esc o el botón de atrás del móvil la devuelven a su sitio con la conversación dentro. En el ordenador, Intro envía.
 - **Barra de avance:** tres tramos (tu negocio, lo que pasa, propuesta). El agente empieza cada mensaje con una etiqueta del tema que pregunta (`[negocio]`, `[problema]`, `[hoy]`, `[cierre]`); el servidor la quita y la manda como `paso`. La barra nunca va hacia atrás y se llena al enseñar la propuesta.
@@ -104,7 +108,7 @@ Son Pages Functions en `functions/api/`:
 | Ruta | Qué hace |
 |---|---|
 | `POST /api/chat` | Habla con Claude (`lib/claude.js`). Guarda la conversación y la ficha para el equipo en KV 24 horas (`chat:<sesión>`), como promete la política de privacidad. Si no hay clave, se pasa el límite diario, la conversación pasa de 12 turnos o la API falla, contesta `{ respaldo: true }` y el navegador sigue con las preguntas fijas. |
-| `POST /api/contacto` | Guarda el contacto solo si viene con `consentimiento: true`, con la fecha y el texto de la casilla como prueba. Con él guarda lo que contó: la ficha del agente (o la conversación, si se cortó antes) o las respuestas del modo sin IA. Se borra solo a los 12 meses. |
+| `POST /api/contacto` | Guarda el contacto: WhatsApp (pasado a +34 y con su enlace `wa.me`) o email, y el nombre, que llega en una segunda llamada y actualiza el mismo registro. Guarda el texto informativo que vio. Con él va lo que contó: la ficha del agente (o la conversación, si se cortó antes) o las respuestas del modo sin IA. Se borra solo a los 12 meses. |
 | `POST /api/diagnostico` | Guarda el cierre del modo sin IA sin texto libre ni datos personales (producto y siguiente paso). Los del modo IA los guarda `/api/chat`. |
 | `GET /api/diagnosticos` | Lista contactos o diagnósticos. Solo existe si configuras `ADMIN_TOKEN` (ver abajo). |
 

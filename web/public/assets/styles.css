@@ -159,21 +159,17 @@ html.chat-abierto { overflow: hidden; }
 .opcion { font: inherit; font-size: var(--t-s); font-weight: 500; cursor: pointer; background: var(--hoja); color: var(--acento); border: 1px solid color-mix(in srgb, var(--acento) 45%, transparent); border-radius: 12px; padding: 9px 14px; text-align: left; transition: background-color .15s, border-color .15s; }
 .opcion:hover { background: var(--acento-suave); border-color: var(--acento); }
 .chat-formulario { display: flex; gap: 10px; align-items: center; }
-.resultado { align-self: stretch; border: 1px solid var(--linea); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 12px; background: var(--hoja); box-shadow: var(--sombra); }
-.resultado p, .resultado ul { margin: 0; }
-.resultado .etiqueta { margin-bottom: -6px; }
-.resultado-lista { padding-left: 1.1em; display: grid; gap: 6px; }
-.resultado-calculo { font-size: var(--t-s); color: var(--tinta-2); overflow-wrap: anywhere; }
-.resultado-paso { margin-top: 6px; border-top: 1px solid var(--linea); padding-top: 16px; }
-.resultado-paso strong { font-family: var(--serif); font-weight: 600; font-size: var(--t-l); display: block; margin-bottom: 2px; }
-.contacto { display: grid; gap: 12px; }
-.contacto label { display: grid; gap: 5px; font-size: var(--t-s); font-weight: 600; }
-.contacto input[type="text"] { font: inherit; font-weight: 400; padding: 11px 13px; border-radius: 10px; border: 1px solid var(--linea); background: var(--papel); color: var(--tinta); width: 100%; transition: border-color .15s, background-color .15s; }
-.contacto input[type="text"]:focus { outline: none; border-color: var(--acento); background: var(--hoja); box-shadow: 0 0 0 3px color-mix(in srgb, var(--acento) 14%, transparent); }
-.contacto .consentimiento { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; color: var(--tinta-2); }
-.contacto .consentimiento input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--acento); flex: none; }
-.aviso { font-size: var(--t-s); background: var(--acento-suave); border-radius: 12px; padding: 12px 14px; }
-.aviso pre { white-space: pre-wrap; font-family: var(--sans); font-size: var(--t-xs); margin: 8px 0; user-select: all; }
+/* El final de la conversación: respuestas rápidas, el mensaje con la cara de Álvaro y la nota de privacidad. */
+.rapidas { align-self: flex-end; justify-content: flex-end; }
+.msg-resumen { display: grid; gap: 10px; white-space: normal; }
+.msg-resumen blockquote { margin: 0; padding: 12px 16px; background: var(--hoja); border: 1px solid var(--linea); border-left: 3px solid var(--acento); border-radius: 4px 12px 12px 4px; white-space: pre-wrap; }
+.msg-persona { display: flex; gap: 12px; align-items: center; }
+.msg-persona img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex: none; filter: grayscale(1); }
+.msg-nota { margin: -6px 0 0; font-size: var(--t-xs); color: var(--tinta-2); }
+.msg-nota a { color: inherit; }
+.msg-nota .enlace-boton { font-size: inherit; }
+.caja-campo { flex: 1; min-width: 0; width: 100%; border: 0; background: transparent; color: var(--tinta); font: inherit; font-size: var(--t-m); padding: 9px 0 7px; outline: none; }
+.caja-campo::placeholder { color: color-mix(in srgb, var(--tinta-2) 85%, transparent); }
 .enlace-boton { font: inherit; background: none; border: 0; color: var(--acento); text-decoration: underline; text-underline-offset: .2em; cursor: pointer; padding: 0; }
 @media (max-width: 600px) { .caja textarea { font-size: var(--t-m); } .opciones-portada .opcion { font-size: var(--t-xs); padding: 4px 11px 4px 4px; } .opciones-portada .opcion img { width: 26px; height: 26px; } }
 
