@@ -224,6 +224,72 @@ html.chat-abierto { overflow: hidden; }
 .seccion .wrap { display: flex; flex-direction: column; gap: clamp(28px, 4vw, 48px); padding-block: clamp(64px, 9vw, 120px); }
 .seccion-cabeza { display: flex; flex-direction: column; gap: 12px; max-width: 60ch; }
 .seccion-cabeza p { font-size: var(--t-l); color: var(--tinta-2); line-height: 1.5; }
+
+/* ¿Con qué te ayudamos? Tres servicios, cada uno con un ejemplo de lo que se lleva, plazo, precio y un
+   botón que abre el chat con su primera frase. */
+.servicios .wrap { display: flex; flex-direction: column; gap: clamp(20px, 3vw, 32px); padding-block: clamp(56px, 8vw, 104px) clamp(48px, 7vw, 88px); border-top: 1px solid var(--linea); }
+.garantias { list-style: none; margin: -6px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: var(--t-s); font-weight: 500; }
+.garantias li, .servicio-lista li { display: flex; align-items: baseline; gap: 10px; }
+.garantias li::before, .servicio-lista li::before { content: ""; flex: none; width: 7px; height: 7px; border-radius: 2px; background: var(--acento); transform: translateY(-2px); }
+.servicios-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2vw, 24px); }
+.servicio { background: var(--hoja); border: 1px solid var(--linea); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--sombra); transition: transform .2s ease, box-shadow .2s ease; }
+.servicio:hover { transform: translateY(-3px); box-shadow: 0 1px 2px rgba(23, 26, 33, 0.05), 0 28px 50px -30px rgba(23, 26, 33, 0.4); }
+.servicio-visual { position: relative; height: 232px; padding: 34px 16px 0; display: grid; place-items: center; overflow: hidden; border-bottom: 1px solid var(--linea); }
+.visual-web { background: color-mix(in srgb, var(--barro) 26%, var(--papel)); }
+.visual-wa { background: #e9e3d8; }
+.visual-soft { background: var(--acento-suave); }
+.ejemplo { position: absolute; top: 12px; left: 12px; z-index: 1; font-size: var(--t-xs); font-weight: 500; color: var(--tinta-2); background: rgba(255, 255, 255, 0.78); border-radius: 6px; padding: 2px 8px; }
+.servicio-cuerpo { padding: 22px 22px 24px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.servicio .producto { font-size: var(--t-s); color: var(--tinta-2); gap: 10px; }
+.servicio .producto img { width: 40px; height: 40px; }
+.servicio h3 { font-size: clamp(1.45rem, 1.1rem + .9vw, 1.8rem); font-weight: 500; line-height: 1.1; letter-spacing: -0.02em; }
+.servicio-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; font-size: var(--t-s); color: var(--tinta-2); }
+.servicio-datos { margin: 6px 0 0; padding-top: 14px; border-top: 1px solid var(--linea); display: grid; grid-template-columns: auto 1fr; gap: 6px 18px; }
+.servicio-datos div { display: contents; }
+.servicio-datos dt { font-size: var(--t-xs); color: var(--tinta-2); align-self: center; }
+.servicio-datos dd { margin: 0; font-weight: 600; font-size: var(--t-s); font-variant-numeric: lining-nums; }
+.servicio-cta { margin-top: auto; width: 100%; }
+.servicios-nota { font-size: var(--t-xs); color: var(--tinta-2); }
+
+/* Los ejemplos de cada servicio: un trocito de producto de verdad. */
+.mini-movil { width: 152px; height: 250px; transform: translateY(32px); border-radius: 24px; border: 6px solid #1c1e23; background: #fff; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 24px 40px -22px rgba(23, 26, 33, 0.55); }
+.mini-barra { flex: none; font-size: 9px; text-align: center; padding: 5px; background: #efe9df; color: #6b6458; }
+.mini-foto { flex: none; height: 96px; background: url("casa-lucia.jpg") center / cover; }
+.mini-texto { padding: 9px 10px; display: flex; flex-direction: column; gap: 2px; font-size: 10px; line-height: 1.3; color: #585d68; }
+.mini-texto strong { font-family: var(--serif); font-weight: 600; font-size: 14px; color: var(--tinta); }
+.mini-btn { margin-top: 8px; background: #7e3a24; color: #fff; border-radius: 6px; padding: 6px; text-align: center; font-weight: 600; font-size: 10.5px; }
+.mini-chat { width: min(262px, 84%); background: #efeae2; border-radius: 14px; padding: 10px 10px 12px; display: flex; flex-direction: column; gap: 7px; font-size: 12px; line-height: 1.38; box-shadow: 0 18px 34px -22px rgba(23, 26, 33, 0.5); }
+.mini-chat p { margin: 0; }
+.mini-top { font-weight: 600; font-size: 11px; padding: 0 2px 4px; border-bottom: 1px solid rgba(0, 0, 0, 0.06); }
+.mini-top small { font-weight: 400; color: var(--tinta-2); margin-left: 4px; }
+.mini-b { background: #fff; border-radius: 10px 10px 10px 3px; padding: 6px 9px; max-width: 88%; align-self: flex-start; }
+.mini-b.yo { background: #d9fdd3; align-self: flex-end; border-radius: 10px 10px 3px 10px; }
+.mini-b time { display: block; text-align: right; font-size: 9px; color: #8a8f98; margin-top: 2px; }
+.mini-doc { width: min(252px, 84%); background: #fff; border-radius: 12px; padding: 13px 15px; display: grid; gap: 6px; font-size: 11.5px; box-shadow: 0 18px 34px -22px rgba(23, 26, 33, 0.5); }
+.mini-doc p { margin: 0; }
+.mini-doc-tit { font-family: var(--serif); font-weight: 600; font-size: 14px; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 2px !important; }
+.mini-doc-tit small { font-family: var(--sans); font-weight: 400; font-size: 10.5px; color: var(--tinta-2); }
+.mini-fila { display: flex; justify-content: space-between; gap: 10px; color: var(--tinta-2); }
+.mini-fila b { color: var(--tinta); font-weight: 600; }
+.mini-total { border-top: 1px solid var(--linea); padding-top: 6px; color: var(--tinta); font-weight: 600; }
+.mini-enviado { font-size: 10.5px; color: var(--acento); font-weight: 600; }
+
+/* Cómo funciona: tres pasos. */
+.pasos-seccion .wrap { border-top: 1px solid var(--linea); }
+.pasos3 { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); counter-reset: paso; }
+.pasos3 li { display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 2px solid var(--tinta); }
+.paso-num { font-family: var(--serif); font-weight: 600; font-size: 1.6rem; line-height: 1; color: var(--acento); }
+.pasos3 p { color: var(--tinta-2); }
+.paso-dato { font-size: var(--t-s); font-weight: 600; color: var(--tinta) !important; }
+.pasos-cta { align-self: flex-start; }
+.enlace-fuerte { color: var(--acento); font-weight: 600; text-underline-offset: .2em; }
+.nos-portada .wrap { padding-bottom: clamp(32px, 5vw, 64px); }
+.nos-portada h1 { max-width: 20ch; }
+
+@media (max-width: 900px) {
+  .servicios-grid, .pasos3 { grid-template-columns: minmax(0, 1fr); }
+  .servicio-visual { height: 210px; }
+}
 .seccion + .seccion .wrap { border-top: 1px solid var(--linea); }
 
 /* Maquetas de producto (hechas en HTML para que pesen poco) */

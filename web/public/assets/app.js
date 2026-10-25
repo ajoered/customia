@@ -453,14 +453,22 @@
   }
 
   // ---------- Entradas ----------
+  // La primera respuesta: una opción de la portada o el botón de un servicio ("Quiero una web").
+  function empezarCon(texto, clave) {
+    if (ocupado) return;
+    if (empezado) { abrirFoco(); return; }
+    empezar();
+    quitarOpciones();
+    burbuja(texto, "tu");
+    hablarConIA(texto, clave);
+  }
   document.querySelectorAll("#opciones-iniciales .opcion").forEach((b) => {
-    b.addEventListener("click", () => {
-      if (ocupado) return;
-      empezar();
-      quitarOpciones();
-      const texto = b.textContent.trim();
-      burbuja(texto, "tu");
-      hablarConIA(texto, b.dataset.valor);
+    b.addEventListener("click", () => empezarCon(b.textContent.trim(), b.dataset.valor));
+  });
+  document.querySelectorAll("[data-empezar]").forEach((a) => {
+    a.addEventListener("click", (ev) => {
+      ev.preventDefault();
+      empezarCon(a.dataset.texto, a.dataset.empezar);
     });
   });
 
@@ -650,10 +658,4 @@
   const cab = document.getElementById("cabecera");
   if (cab) window.addEventListener("scroll", () => cab.classList.toggle("con-sombra", window.scrollY > 8), { passive: true });
 
-  entrada.addEventListener("keydown", (ev) => {
-    if (ev.key === "Enter" && !ev.shiftKey) {
-      ev.preventDefault();
-      formulario.requestSubmit();
-    }
-  });
 })();

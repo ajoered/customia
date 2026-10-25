@@ -59,14 +59,13 @@ web/
   - **El torno:** la pieza se queda arriba, el texto se lee en el hueco de debajo y se desvanece al pasar bajo ella.
   - Con "reducir movimiento" no hay tramos fijos y todo sale en su estado final.
 - **Voz:** plural ("hacemos", "te enseñamos"): aunque el fundador sea la cara visible, hay equipo detrás. Su historia en "Quién está detrás" va en primera persona.
-- **Hilo:**
-  1. Portada: titular y caja del agente.
-  2. El torno, en 7 pantallas.
-  3. "Lo que podemos construir para tu negocio": la web de ejemplo, el WhatsApp y el panel.
-  4. Cómo lo hacemos.
-  5. Quién está detrás.
-  6. Preguntas.
-  7. Cierre en cobalto con la vasija bañada en blanco.
+- **Hilo de la portada** (orientada a la conversión):
+  1. Titular y caja del agente.
+  2. "¿Con qué te ayudamos?": webs, agentes de WhatsApp y software a medida. Cada tarjeta lleva un ejemplo marcado como tal, tres puntos, plazo, precio y un botón que abre el chat con su primera frase (`data-empezar`).
+  3. Cómo funciona, en tres pasos.
+  4. Quién está detrás, corto, con enlace a Nosotros.
+  5. Preguntas y cierre.
+- **Nosotros** (`nosotros.html`): la idea de la marca, el torno (ladrillo → vasija) y la historia de Álvaro.
 - **Detalles:**
   - Imagen para compartir (`piezas/compartir.jpg`) e icono para el iPhone.
   - Página 404 con la vasija rota.
