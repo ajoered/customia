@@ -79,6 +79,7 @@
           </div>
         </form>
       </div>
+      <p class="ventana-nota"><span class="punto-vivo" aria-hidden="true"></span>Este chat es un agente de IA hecho por nosotros. Uno así, con lo de tu negocio, contesta a tus clientes por WhatsApp.</p>
     </div>
   </section>
 
@@ -86,7 +87,7 @@
     <div class="wrap">
       <div class="seccion-cabeza">
         <h2 id="servicios-t">¿Con qué te ayudamos?</h2>
-        <p>Tres cosas, hechas a la medida de tu negocio y funcionando antes de que pagues.</p>
+        <p>Elige por dónde empezar. Si no lo tienes claro, cuéntaselo al agente y te decimos qué haríamos.</p>
       </div>
       <ul class="garantias">
         <li>Lo ves funcionando antes de pagar</li>
@@ -94,7 +95,7 @@
         <li>Sin permanencia</li>
       </ul>
       <div class="servicios-grid">
-        <article class="servicio">
+        <article class="servicio" id="webs">
           <div class="servicio-visual visual-web" aria-hidden="true">
             <span class="ejemplo">Ejemplo</span>
             <div class="mini-movil">
@@ -115,7 +116,7 @@
             <a class="boton servicio-cta" href="#diagnostico" data-empezar="web" data-texto="Quiero una web nueva">Quiero una web</a>
           </div>
         </article>
-        <article class="servicio">
+        <article class="servicio" id="agentes-whatsapp">
           <div class="servicio-visual visual-wa" aria-hidden="true">
             <span class="ejemplo">Ejemplo</span>
             <div class="mini-chat">
@@ -128,15 +129,15 @@
             <p class="producto"><img src="assets/piezas/burbuja.webp" alt="" width="40" height="40">Agentes de WhatsApp</p>
             <h3>Ninguna consulta sin contestar.</h3>
             <ul class="servicio-lista">
-              <li>Contesta al momento, a cualquier hora</li>
-              <li>Pregunta lo necesario y te deja un resumen</li>
+              <li>Contesta al momento, también de noche y en fin de semana</li>
+              <li>Si hace falta una persona, te pasa la conversación con un resumen</li>
               <li>Dice que es una IA y nunca se inventa un precio</li>
             </ul>
             <dl class="servicio-datos"><div><dt>Plazo</dt><dd>1–2 semanas</dd></div><div><dt>Precio</dt><dd>590&nbsp;€ + 149&nbsp;€/mes</dd></div></dl>
             <a class="boton servicio-cta" href="#diagnostico" data-empezar="whatsapp" data-texto="Quiero un agente de WhatsApp">Quiero un agente</a>
           </div>
         </article>
-        <article class="servicio">
+        <article class="servicio" id="software-a-medida">
           <div class="servicio-visual visual-soft" aria-hidden="true">
             <span class="ejemplo">Ejemplo</span>
             <div class="mini-doc">
@@ -194,18 +195,20 @@
     </div>
   </section>
 
-  <section class="seccion" aria-labelledby="preguntas-t">
+  <section class="seccion seccion-preguntas" aria-labelledby="preguntas-t">
     <div class="wrap">
       <div class="seccion-cabeza">
         <h2 id="preguntas-t">Lo que nos suelen preguntar</h2>
+        <p>¿Otra duda? Pregúntasela al agente o escríbenos a <a href="mailto:hola@arcillastudio.com" data-config="email">hola@arcillastudio.com</a>.</p>
       </div>
       <div class="preguntas">
         <details><summary>¿Cuánto cuesta?</summary><p>Una web, 1.490&nbsp;€ y 49&nbsp;€ al mes. Un agente de WhatsApp, 590&nbsp;€ y 149&nbsp;€ al mes. El software a medida depende de lo que haga. Siempre con el precio cerrado y por escrito antes de empezar, sin permanencia y sin IVA.</p></details>
-        <details><summary>¿Tengo que saber de tecnología?</summary><p>No. Tú nos cuentas cómo trabajas y nosotros nos ocupamos del resto. Si hay algo que aprender, te lo enseñamos en una sesión y te lo dejamos por escrito.</p></details>
         <details><summary>¿Y si no me gusta?</summary><p>No pagas la parte principal. Te lo enseñamos funcionando antes.</p></details>
+        <details><summary>¿Tengo que saber de tecnología?</summary><p>No. Tú nos cuentas cómo trabajas y nosotros nos ocupamos del resto. Si hay algo que aprender, te lo enseñamos en una sesión y te lo dejamos por escrito.</p></details>
+        <details><summary>¿Y si el agente contesta mal o no sabe algo?</summary><p>Solo contesta con lo que tú le das: tu carta, tus horarios, tus precios. Si no lo sabe, lo dice y te pasa la conversación. Y cada mes repasamos contigo lo que ha contestado.</p></details>
+        <details><summary>¿El agente dice que es una IA?</summary><p>Siempre, desde el primer mensaje. Lo exige el Reglamento europeo de IA desde agosto de 2026 y nos parece lo justo.</p></details>
         <details><summary>¿Qué pasa con mi web, mi dominio y mi email de ahora?</summary><p>Nos encargamos de la migración. El dominio y el email siguen siendo tuyos, a tu nombre.</p></details>
         <details><summary>¿Cuánto se tarda?</summary><p>Una web, entre dos y tres semanas. Un agente de WhatsApp, de una a dos. Una herramienta a medida depende de lo que haga, y te lo decimos antes de empezar.</p></details>
-        <details><summary>¿El agente dice que es una IA?</summary><p>Siempre, desde el primer mensaje. Lo exige el Reglamento europeo de IA desde agosto de 2026 y nos parece lo justo.</p></details>
         <details><summary>¿Qué haces con los datos de mis clientes?</summary><p>Solo lo que tú nos encargas. Firmamos un contrato de encargado del tratamiento, como pide el RGPD, y te explicamos qué proveedores intervienen.</p></details>
       </div>
     </div>
@@ -215,7 +218,7 @@
     <div class="wrap">
       <img class="cierre-pieza" src="assets/piezas/blanca.webp" alt="" width="210" height="210" loading="lazy">
       <h2 id="cierre-t">Cuéntanos qué haces <strong>a mano.</strong></h2>
-      <p>Cuéntaselo al agente: en dos o tres minutos sabremos qué prepararte, una maqueta, una demo o una propuesta. Si prefieres escribirnos tú, al otro lado hay una persona: <a href="mailto:hola@arcillastudio.com" data-config="email">hola@arcillastudio.com</a>.</p>
+      <p>En dos minutos con el agente sabremos qué prepararte: una maqueta, una demo o una propuesta. ¿Prefieres escribirnos? <a href="mailto:hola@arcillastudio.com" data-config="email">hola@arcillastudio.com</a></p>
       <a class="boton" href="#diagnostico">Cuéntanos tu caso</a>
     </div>
   </section>
@@ -228,7 +231,7 @@
       <p>Webs, agentes de WhatsApp y software a medida para negocios. Hecho en Madrid, para toda España.</p>
       <p>Una marca de ARVENTURES S.L. Esta web no usa cookies.</p>
     </div>
-    <nav aria-label="Secciones"><strong>Qué hacemos</strong><a href="#servicios">Webs</a><a href="#servicios">Agentes de WhatsApp</a><a href="#servicios">Software a medida</a><a href="#como">Cómo funciona</a><a href="nosotros.html">Nosotros</a></nav>
+    <nav aria-label="Secciones"><strong>Qué hacemos</strong><a href="#webs">Webs</a><a href="#agentes-whatsapp">Agentes de WhatsApp</a><a href="#software-a-medida">Software a medida</a><a href="#como">Cómo funciona</a><a href="nosotros.html">Nosotros</a></nav>
     <nav aria-label="Contacto y legal"><strong>Contacto</strong><a href="mailto:hola@arcillastudio.com" data-config="email">hola@arcillastudio.com</a><a href="aviso-legal.html">Aviso legal</a><a href="privacidad.html">Privacidad</a></nav>
   </div>
 </footer>
