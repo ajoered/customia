@@ -3,34 +3,40 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Arcilla Studio</title>
-<meta name="description" content="Hacemos webs, asistentes de WhatsApp y programas a medida para negocios de Madrid. Te lo enseñamos funcionando antes de que pagues nada.">
+<title>Arcilla Studio · Software a medida para pequeñas empresas</title>
+<meta name="description" content="Hacemos webs, agentes de WhatsApp y programas a medida para negocios de Madrid. Te lo enseñamos funcionando antes de que pagues nada.">
 <meta property="og:title" content="Arcilla Studio · Software a medida">
-<meta property="og:description" content="Más clientes. Menos teléfono. Te lo enseñamos funcionando antes de que pagues nada.">
+<meta property="og:description" content="Tu web, agentes de WhatsApp que contestan por ti y las herramientas que te falten. Te lo enseñamos funcionando antes de que pagues nada.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://arcillastudio.com/">
+<meta property="og:image" content="https://arcillastudio.com/assets/piezas/compartir.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Arcilla Studio. Software a medida para pequeñas empresas. Una vasija de barro bañada en esmalte cobalto, con el pie de barro a la vista.">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://arcillastudio.com/">
-<meta name="theme-color" content="#f6f3ec">
+<meta name="theme-color" content="#f3f3ef">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="assets/fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="apple-touch-icon" href="assets/piezas/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/source-serif-4-latin-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/schibsted-grotesk-latin-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/styles.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ProfessionalService","name":"Arcilla Studio","description":"Webs, asistentes de WhatsApp y software a medida para pymes.","areaServed":"Madrid, España","url":"https://arcillastudio.com/","email":"hola@arcillastudio.com","priceRange":"€€","parentOrganization":{"@type":"Organization","name":"ARVENTURES S.L."}}
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Arcilla Studio","description":"Webs, agentes de WhatsApp y software a medida para pymes.","areaServed":"Madrid, España","url":"https://arcillastudio.com/","email":"hola@arcillastudio.com","priceRange":"€€","parentOrganization":{"@type":"Organization","name":"ARVENTURES S.L."}}
 </script>
 <script src="assets/app.js" defer></script>
-<script src="assets/torno.js" defer></script>
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
 
 <header class="cabecera" id="cabecera">
   <div class="wrap">
-    <a class="marca" href="./" aria-label="Arcilla Studio, inicio"><span class="marca-forma" aria-hidden="true"></span>Arcilla Studio</a>
+    <a class="marca" href="./" aria-label="Arcilla Studio, inicio"><img src="assets/piezas/marca.webp" alt="" width="30" height="30">Arcilla Studio</a>
     <nav class="nav" aria-label="Principal">
-      <a href="#construir">Qué hacemos</a>
-      <a href="#como">Cómo lo hacemos</a>
-      <a href="#quien">Quiénes somos</a>
+      <a href="#servicios">Qué hacemos</a>
+      <a href="#como">Cómo funciona</a>
+      <a href="nosotros.html">Nosotros</a>
       <a class="boton" href="#diagnostico">Cuéntanos tu caso</a>
     </nav>
   </div>
@@ -39,15 +45,24 @@
 <main id="contenido">
   <section class="portada" aria-labelledby="titular">
     <div class="wrap">
-      <p class="etiqueta">Software a medida</p>
-      <h1 id="titular">Más clientes. <span class="acento">Menos teléfono.</span></h1>
-      <p class="sub">Webs, asistentes de WhatsApp y programas hechos a la medida de pequeñas empresas que no tienen tiempo para esto.</p>
+      <h1 id="titular"><span>Software a medida</span> <span>para pequeñas empresas.</span></h1>
+      <p class="sub">Creamos tu web, agentes de WhatsApp que contestan por ti y las herramientas que te falten, para que cierres más clientes y pierdas menos tiempo.</p>
     </div>
   </section>
 
-  <section class="ventana-wrap" id="diagnostico" aria-label="Diagnóstico con el asistente">
+  <section class="ventana-wrap" id="diagnostico" aria-label="Habla con el agente">
     <div class="wrap">
       <div class="ventana" id="ventana">
+        <div class="ventana-barra">
+          <div class="ventana-barra-fila">
+            <span class="marca"><img src="assets/piezas/marca.webp" alt="" width="26" height="26">Arcilla Studio</span>
+            <span class="ventana-tiempo" id="chat-tiempo">Unos 2 minutos</span>
+            <button class="ventana-cerrar" type="button" id="chat-cerrar">Cerrar<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          </div>
+          <ol class="progreso" id="chat-progreso" role="progressbar" aria-label="Avance de la conversación" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <li>Tu negocio</li><li>Lo que pasa</li><li>Propuesta</li>
+          </ol>
+        </div>
         <h2 class="ventana-lema" id="lema">Cuéntanos qué te quita el sueño.</h2>
         <div class="chat-mensajes" id="chat-mensajes" aria-live="polite" hidden></div>
         <form class="caja" id="chat-formulario" autocomplete="off">
@@ -55,10 +70,10 @@
           <textarea id="chat-entrada" rows="2" maxlength="800" placeholder="Por ejemplo: «Tengo un restaurante y no doy abasto con los WhatsApps»"></textarea>
           <div class="caja-pie">
             <div class="opciones opciones-portada" id="opciones-iniciales">
-              <button class="opcion" type="button" data-valor="telefono">No llego a coger el teléfono</button>
-              <button class="opcion" type="button" data-valor="whatsapp">Contesto WhatsApps a todas horas</button>
-              <button class="opcion" type="button" data-valor="web">Mi web no me trae clientes</button>
-              <button class="opcion" type="button" data-valor="tareas">Pierdo horas con presupuestos</button>
+              <button class="opcion" type="button" data-valor="telefono"><img src="assets/piezas/telefono.webp" alt="" width="30" height="30">No llego a coger el teléfono</button>
+              <button class="opcion" type="button" data-valor="whatsapp"><img src="assets/piezas/burbuja.webp" alt="" width="30" height="30">Contesto WhatsApps a todas horas</button>
+              <button class="opcion" type="button" data-valor="web"><img src="assets/piezas/web.webp" alt="" width="30" height="30">Mi web no me trae clientes</button>
+              <button class="opcion" type="button" data-valor="tareas"><img src="assets/piezas/libreta.webp" alt="" width="30" height="30">Pierdo horas con presupuestos</button>
             </div>
             <button class="enviar" type="submit" id="chat-enviar" aria-label="Enviar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
           </div>
@@ -67,181 +82,113 @@
     </div>
   </section>
 
-  <section class="torno" aria-label="El software era un ladrillo; ahora es arcilla">
+  <section class="servicios" id="servicios" aria-labelledby="servicios-t">
     <div class="wrap">
-      <figure class="torno-pieza">
-        <canvas id="torno-canvas" width="520" height="520" aria-hidden="true"></canvas>
-        <figcaption id="torno-cap">ladrillo</figcaption>
-      </figure>
-      <div class="torno-pasos">
-        <div class="paso-torno" data-etapa="ladrillo">
-          <h2>Lo digital era <strong>un ladrillo.</strong></h2>
-          <p>El software o lo comprabas hecho, igual para todos, o lo encargabas a medida y costaba una fortuna. Por eso tu web te la hizo un sobrino hace años y nadie se atreve a tocarla. Las reservas van como quiere el programa. Y el teléfono no para.</p>
-        </div>
-        <div class="paso-torno" data-etapa="masa">
-          <h2>Ahora <strong>se moldea.</strong></h2>
-          <p>Con inteligencia artificial, hacerlo a tu medida cuesta una fracción. Nos cuentas cómo trabajas y le damos tu forma.</p>
-        </div>
-        <div class="paso-torno" data-etapa="movil">
-          <h2>Toma la forma de <strong>tu web.</strong></h2>
-          <p>Rápida, para el móvil, escrita para que te llamen. Tus precios, tus menús, tus reservas.</p>
-        </div>
-        <div class="paso-torno" data-etapa="burbuja">
-          <h2>De <strong>tu WhatsApp.</strong></h2>
-          <p>Contesta al momento, a cualquier hora, en español y en inglés. Pregunta lo necesario y te pasa un resumen. Tú solo cierras.</p>
-        </div>
-        <div class="paso-torno" data-etapa="panel">
-          <h2>O de lo que a tu negocio <strong>le falte.</strong></h2>
-          <p>Reservas que entran solas en el calendario. Presupuestos con tus tarifas. Un panel con tus clientes y tus cobros.</p>
-        </div>
-        <div class="paso-torno" data-etapa="horno">
-          <h2>Pasa por el horno <strong>antes de entregarse.</strong></h2>
-          <p>Lo probamos contigo, con tus datos de verdad. Lo ves funcionando antes de pagar.</p>
-        </div>
-        <div class="paso-torno" data-etapa="vasija">
-          <h2>Y después <strong>lo cuidamos.</strong></h2>
-          <p>Por una cuota fija lo mantenemos y lo mejoramos. Cada mes, en euros, qué ha pasado.</p>
-        </div>
+      <div class="seccion-cabeza">
+        <h2 id="servicios-t">¿Con qué te ayudamos?</h2>
+        <p>Tres cosas, hechas a la medida de tu negocio y funcionando antes de que pagues.</p>
       </div>
-    </div>
-  </section>
-
-  <section class="taller" id="construir" aria-labelledby="construir-t">
-    <div class="wrap">
-      <div class="taller-texto">
-        <div class="taller-cabeza">
-          <p class="etiqueta">Qué hacemos</p>
-          <h2 id="construir-t">Lo que podemos construir para tu negocio.</h2>
-          <p class="taller-sub">Primero lo que más se nota. Después, lo que te falte.</p>
-        </div>
-        <div class="paso-taller" data-maqueta="web">
-          <p class="etiqueta">Tu web</p>
-          <h3>Bonita, rápida, y la cambias tú.</h3>
-          <p>Hecha para el móvil y escrita para que te llamen. Subes una foto, cambias un precio o el menú del día desde el teléfono, sin llamar a nadie. Con reservas o petición de presupuesto que te llegan al momento.</p>
-          <p class="efecto">Más contactos directos, menos comisiones a portales</p>
-        </div>
-        <div class="paso-taller" data-maqueta="wa">
-          <p class="etiqueta">Tu asistente de WhatsApp</p>
-          <h3>Contesta solo. Tú solo cierras.</h3>
-          <p>Responde al momento, a cualquier hora, en español y en inglés. Pregunta fecha, personas y presupuesto, y te pasa un resumen. Siempre dice que es una IA y nunca se inventa un precio.</p>
-          <p class="efecto">Ninguna consulta sin respuesta</p>
-        </div>
-        <div class="paso-taller" data-maqueta="panel">
-          <p class="etiqueta">Y lo que te falte</p>
-          <h3>Lo que hoy haces a mano.</h3>
-          <p>Reservas que entran solas en tu calendario. Presupuestos que se calculan con tus tarifas. Recordatorios de cita que se envían solos. Un panel con tus clientes, tus citas y tus cobros.</p>
-          <p class="efecto">Horas libres cada semana</p>
-        </div>
-      </div>
-      <div class="taller-escena" aria-hidden="true">
-        <div class="maqueta activa" data-maqueta="web" aria-hidden="true"><div class="maqueta-escenario">
-          <div class="movil"><div class="movil-pantalla m-web"><div class="m-barra"><span>casalucia.es</span></div><div class="m-scroll" id="m-scroll">
-            <div class="m-hero">
-              <div class="m-hero-texto"><strong>Casa Lucía</strong><span>Asador en Chamberí · salones para hasta 80</span><a class="m-btn">Reservar ahora</a></div>
+      <ul class="garantias">
+        <li>Lo ves funcionando antes de pagar</li>
+        <li>Precio cerrado y por escrito</li>
+        <li>Sin permanencia</li>
+      </ul>
+      <div class="servicios-grid">
+        <article class="servicio">
+          <div class="servicio-visual visual-web" aria-hidden="true">
+            <span class="ejemplo">Ejemplo</span>
+            <div class="mini-movil">
+              <div class="mini-barra">casalucia.es</div>
+              <div class="mini-foto"></div>
+              <div class="mini-texto"><strong>Casa Lucía</strong><span>Asador en Chamberí · salones para 80</span><span class="mini-btn">Reservar mesa</span></div>
             </div>
-            <div class="m-cuerpo">
-              <p class="m-tit">Menú de grupo</p>
-              <div class="m-fila"><span>Menú Tajo</span><b>38 €</b></div>
-              <div class="m-fila"><span>Menú Jardín</span><b>52 €</b></div>
-              <div class="m-fila"><span>Opción vegetariana</span><b>sí</b></div>
-              <p class="m-tit">Salones</p>
-              <div class="m-fila"><span>Salón Tajo</span><b>hasta 40</b></div>
-              <div class="m-fila"><span>Salón Jardín</span><b>hasta 80</b></div>
-            </div>
-            <div class="m-reserva">
-              <p class="m-tit">Reserva</p>
-              <div class="m-campo"><span>Fecha</span><b>vie 19 dic</b></div>
-              <div class="m-campo"><span>Personas</span><b>30</b></div>
-              <div class="m-campo"><span>Salón</span><b>Tajo</b></div>
-              <div class="m-btn m-btn-ok">Confirmar reserva</div>
-              <p class="m-peq">Sin señal hasta que Lucía confirme.</p>
-            </div>
-          </div></div></div>
-          <p class="maqueta-pie">Cambias un precio desde el móvil en diez segundos.</p>
-        </div></div>
-        <div class="maqueta" data-maqueta="wa" aria-hidden="true"><div class="maqueta-escenario">
-          <div class="movil"><div class="movil-pantalla m-wa">
-            <div class="m-top"><i></i><div>Casa Lucía<small>Asistente · responde al momento</small></div></div>
-            <div class="m-chat" id="m-chat">
-              <div class="b" data-t="0">Hola, ¿tenéis sitio para una cena de empresa el 19 de diciembre? Seríamos unos 30.<time>23:41</time></div>
-              <div class="b yo" data-t="1600">Hola, soy el asistente de Casa Lucía (una IA). El 19 tenemos libre el Salón Tajo, para hasta 40. ¿Prefieres menú de grupo desde 38 € o carta?<time>23:41</time></div>
-              <div class="b" data-t="3600">Menú de grupo. ¿Podemos tener opción vegetariana?<time>23:42</time></div>
-              <div class="b yo" data-t="5200">Sí, hay dos. Te lo dejo apuntado: 19 de diciembre, 30 personas, Salón Tajo, menú de grupo. Lucía te confirma mañana por aquí. ¿A qué nombre?<time>23:42</time></div>
-              <div class="b" data-t="7200">Marta, de Grupo Vela. ¡Gracias!<time>23:43</time></div>
-              <div class="b esc" aria-hidden="true"><i></i><i></i><i></i></div>
-            </div>
-          </div></div>
-          <p class="maqueta-pie">A las 23:41, un jueves. Lucía lo ve por la mañana con todo apuntado.</p>
-        </div></div>
-        <div class="maqueta" data-maqueta="panel" aria-hidden="true"><div class="maqueta-escenario">
-          <div class="panel">
-            <div class="panel-top">Casa Lucía · eventos <span>diciembre</span></div>
-            <div class="panel-grid">
-              <div class="panel-kpi"><b>14</b><span>eventos</span></div>
-              <div class="panel-kpi"><b>21.600 €</b><span>reservado</span></div>
-              <div class="panel-kpi"><b data-pendientes="3">3</b><span>por confirmar</span></div>
-            </div>
-            <table>
-              <tr><th>Fecha</th><th>Grupo</th><th>Salón</th><th>Estado</th></tr>
-              <tr><td>12 dic</td><td>Cumpleaños · 22</td><td>Tajo</td><td class="ok">Señal pagada</td></tr>
-              <tr class="fila-nueva"><td>19 dic</td><td>Grupo Vela · 30<small class="via">vía WhatsApp</small></td><td>Tajo</td><td class="pend">Por confirmar</td></tr>
-              <tr><td>21 dic</td><td>Boda · 76</td><td>Jardín</td><td class="ok">Señal pagada</td></tr>
-            </table>
           </div>
-          <p class="maqueta-pie">Lo que el asistente apunta aparece aquí, con la señal cobrada.</p>
-        </div></div>
+          <div class="servicio-cuerpo">
+            <p class="producto"><img src="assets/piezas/web.webp" alt="" width="40" height="40">Webs</p>
+            <h3>Que te encuentren y te reserven.</h3>
+            <ul class="servicio-lista">
+              <li>Hecha para el móvil y escrita para que te llamen</li>
+              <li>Reservas o presupuestos que te llegan al momento</li>
+              <li>Cambias precios y fotos tú, desde el teléfono</li>
+            </ul>
+            <dl class="servicio-datos"><div><dt>Plazo</dt><dd>2–3 semanas</dd></div><div><dt>Precio</dt><dd>1.490&nbsp;€ + 49&nbsp;€/mes</dd></div></dl>
+            <a class="boton servicio-cta" href="#diagnostico" data-empezar="web" data-texto="Quiero una web nueva">Quiero una web</a>
+          </div>
+        </article>
+        <article class="servicio">
+          <div class="servicio-visual visual-wa" aria-hidden="true">
+            <span class="ejemplo">Ejemplo</span>
+            <div class="mini-chat">
+              <p class="mini-top">Casa Lucía <small>Agente de IA</small></p>
+              <p class="mini-b">¿Tenéis sitio para 30 el 19 de diciembre? Es una cena de empresa.<time>23:41</time></p>
+              <p class="mini-b yo">Sí, el Salón Tajo, para hasta 40. ¿Menú de grupo o carta? Te lo dejo apuntado para Lucía.<time>23:41</time></p>
+            </div>
+          </div>
+          <div class="servicio-cuerpo">
+            <p class="producto"><img src="assets/piezas/burbuja.webp" alt="" width="40" height="40">Agentes de WhatsApp</p>
+            <h3>Ninguna consulta sin contestar.</h3>
+            <ul class="servicio-lista">
+              <li>Contesta al momento, a cualquier hora</li>
+              <li>Pregunta lo necesario y te deja un resumen</li>
+              <li>Dice que es una IA y nunca se inventa un precio</li>
+            </ul>
+            <dl class="servicio-datos"><div><dt>Plazo</dt><dd>1–2 semanas</dd></div><div><dt>Precio</dt><dd>590&nbsp;€ + 149&nbsp;€/mes</dd></div></dl>
+            <a class="boton servicio-cta" href="#diagnostico" data-empezar="whatsapp" data-texto="Quiero un agente de WhatsApp">Quiero un agente</a>
+          </div>
+        </article>
+        <article class="servicio">
+          <div class="servicio-visual visual-soft" aria-hidden="true">
+            <span class="ejemplo">Ejemplo</span>
+            <div class="mini-doc">
+              <p class="mini-doc-tit">Presupuesto 128 <small>Reforma de baño</small></p>
+              <p class="mini-fila"><span>Demolición y retirada</span><b>640&nbsp;€</b></p>
+              <p class="mini-fila"><span>Fontanería</span><b>1.180&nbsp;€</b></p>
+              <p class="mini-fila"><span>Alicatado y suelo</span><b>2.460&nbsp;€</b></p>
+              <p class="mini-fila mini-total"><span>Total</span><b>4.280&nbsp;€</b></p>
+              <p class="mini-enviado">Enviado por WhatsApp a las 18:42</p>
+            </div>
+          </div>
+          <div class="servicio-cuerpo">
+            <p class="producto"><img src="assets/piezas/panel.webp" alt="" width="40" height="40">Software a medida</p>
+            <h3>Lo que haces a mano, hecho solo.</h3>
+            <ul class="servicio-lista">
+              <li>Presupuestos con tus tarifas en minutos</li>
+              <li>Reservas, citas y recordatorios que van solos</li>
+              <li>Un panel con tus clientes y tus cobros</li>
+            </ul>
+            <dl class="servicio-datos"><div><dt>Plazo</dt><dd>Según lo que haga</dd></div><div><dt>Precio</dt><dd>Cerrado antes de empezar</dd></div></dl>
+            <a class="boton servicio-cta" href="#diagnostico" data-empezar="tareas" data-texto="Quiero quitarme algo que hago a mano">Cuéntanos qué haces a mano</a>
+          </div>
+        </article>
       </div>
+      <p class="servicios-nota">Precios sin IVA. La cuota incluye alojamiento, mantenimiento, ajustes y un informe cada mes.</p>
     </div>
   </section>
 
-  <section class="proceso" id="como" aria-labelledby="como-t">
+  <section class="seccion pasos-seccion" id="como" aria-labelledby="como-t">
     <div class="wrap">
-      <div class="proceso-cabeza">
-        <p class="etiqueta">Cómo lo hacemos</p>
-        <h2 id="como-t">Te estarás preguntando: <em>¿cuánto lío es esto para mí?</em></h2>
-        <p class="proceso-sub">Poco. Cuatro pasos, con plazos y precios claros.</p>
+      <div class="seccion-cabeza">
+        <h2 id="como-t">Cómo funciona</h2>
+        <p>Sin reuniones eternas ni sorpresas en la factura.</p>
       </div>
-      <ol class="linea" id="linea">
-        <li class="hito">
-          <span class="hito-num">1</span>
-          <h3>Cuéntanos qué necesitas</h3>
-          <p>Media hora, por teléfono o en tu local: cómo te llegan los clientes y dónde se pierden. Si no te podemos ayudar, te lo decimos.</p>
-          <dl class="ficha"><dt>Cuánto</dt><dd>30 min</dd><dt>Tú pones</dt><dd>Tus respuestas</dd><dt>Pagas</dt><dd>0 €</dd></dl>
-          <a class="boton hito-cta" href="#diagnostico">Cuéntanos tu caso</a>
-        </li>
-        <li class="hito">
-          <span class="hito-num">2</span>
-          <h3>Te lo enseñamos hecho</h3>
-          <p>Montamos una primera versión con tus datos de verdad y te la enseñamos funcionando. Si no te gusta, no pasa nada.</p>
-          <dl class="ficha"><dt>Cuánto</dt><dd>1 semana</dd><dt>Tú pones</dt><dd>Fotos y precios</dd><dt>Pagas</dt><dd>0 € hasta verlo</dd></dl>
-        </li>
-        <li class="hito">
-          <span class="hito-num">3</span>
-          <h3>Lo ajustamos contigo</h3>
-          <p>Precio cerrado por escrito. Lo afinamos hasta que encaje y lo dejamos funcionando en tu dominio, tu WhatsApp o tu agenda.</p>
-          <dl class="ficha"><dt>Cuánto</dt><dd>1 a 3 semanas</dd><dt>Tú pones</dt><dd>Una llamada a la semana</dd><dt>Pagas</dt><dd>Mitad al empezar, mitad al entregar</dd></dl>
-        </li>
-        <li class="hito">
-          <span class="hito-num">4</span>
-          <h3>Nos quedamos</h3>
-          <p>Mantenimiento, copias, mejoras pequeñas y cada mes un informe en euros.</p>
-          <dl class="ficha"><dt>Cuánto</dt><dd>Cada mes</dd><dt>Tú pones</dt><dd>Nada</dd><dt>Pagas</dt><dd>Cuota fija, sin permanencia</dd></dl>
-        </li>
+      <ol class="pasos3">
+        <li><span class="paso-num">1</span><h3>Nos lo cuentas</h3><p>Dos minutos con el agente de arriba, o un café con Álvaro en tu local.</p><p class="paso-dato">Gratis</p></li>
+        <li><span class="paso-num">2</span><h3>Te lo enseñamos funcionando</h3><p>En una o dos semanas, con tus datos de verdad. Si no te convence, no pagas.</p><p class="paso-dato">0&nbsp;€ hasta verlo</p></li>
+        <li><span class="paso-num">3</span><h3>Lo publicamos y lo cuidamos</h3><p>Precio cerrado por escrito. Después, una cuota fija sin permanencia y, cada mes, en euros, qué ha pasado.</p><p class="paso-dato">Cuota fija</p></li>
       </ol>
+      <a class="boton pasos-cta" href="#diagnostico">Cuéntanos tu caso</a>
     </div>
   </section>
 
   <section class="seccion" id="quien" aria-labelledby="quien-t">
     <div class="wrap">
       <div class="fundador">
-        <div class="fundador-foto"><img src="assets/alvaro.jpg" alt="Álvaro, fundador de Arcilla Studio" width="640" height="640"></div>
+        <div class="fundador-foto"><img src="assets/alvaro.jpg" alt="Álvaro, fundador de Arcilla Studio" width="640" height="640" loading="lazy"></div>
         <div class="fundador-texto">
-          <p class="etiqueta">Quién está detrás</p>
-          <h2 id="quien-t">Lo montamos después de vivirlo</h2>
-          <p>Soy Álvaro, fundador de Arcilla Studio. Vivo en Madrid y puede que nos hayamos conocido porque entré en tu local sin avisar.</p>
-          <p>Construyendo Hyrise me di cuenta del salto: con inteligencia artificial empecé a montar en días sistemas que antes habrían necesitado un equipo y meses. Uno de ellos, un agente que hace la primera entrevista a los candidatos, nos ahorró contratar a más de diez personas.</p>
-          <p>Ese salto lo están dando las grandes empresas. El restaurante, el hostal o la clínica de siempre se quedan fuera, no porque no lo necesiten, sino porque nadie se lo hace a su medida ni a su precio. Montamos Arcilla Studio para eso: un equipo pequeño que construye y se queda.</p>
-          <p class="firma">Álvaro, fundador</p>
+          <h2 id="quien-t">Hablas con quien lo hace</h2>
+          <p>Soy Álvaro. Construyendo Hyrise empecé a montar con inteligencia artificial, en días, sistemas que antes necesitaban un equipo y meses. Uno de ellos nos ahorró contratar a más de diez personas.</p>
+          <p>Ahora lo hago para negocios como el tuyo, en Madrid. Sin comerciales ni intermediarios: el que te escucha es el que lo construye.</p>
+          <p><a class="enlace-fuerte" href="nosotros.html">Conoce Arcilla Studio</a></p>
         </div>
       </div>
     </div>
@@ -250,16 +197,15 @@
   <section class="seccion" aria-labelledby="preguntas-t">
     <div class="wrap">
       <div class="seccion-cabeza">
-        <p class="etiqueta">Preguntas</p>
         <h2 id="preguntas-t">Lo que nos suelen preguntar</h2>
       </div>
       <div class="preguntas">
-        <details><summary>¿Cuánto cuesta?</summary><p>Depende de lo que haga falta, por eso lo vemos en la primera conversación. Te damos el precio cerrado y por escrito antes de empezar, con la cuota mensual incluida. No después de tres reuniones.</p></details>
+        <details><summary>¿Cuánto cuesta?</summary><p>Una web, 1.490&nbsp;€ y 49&nbsp;€ al mes. Un agente de WhatsApp, 590&nbsp;€ y 149&nbsp;€ al mes. El software a medida depende de lo que haga. Siempre con el precio cerrado y por escrito antes de empezar, sin permanencia y sin IVA.</p></details>
         <details><summary>¿Tengo que saber de tecnología?</summary><p>No. Tú nos cuentas cómo trabajas y nosotros nos ocupamos del resto. Si hay algo que aprender, te lo enseñamos en una sesión y te lo dejamos por escrito.</p></details>
         <details><summary>¿Y si no me gusta?</summary><p>No pagas la parte principal. Te lo enseñamos funcionando antes.</p></details>
         <details><summary>¿Qué pasa con mi web, mi dominio y mi email de ahora?</summary><p>Nos encargamos de la migración. El dominio y el email siguen siendo tuyos, a tu nombre.</p></details>
-        <details><summary>¿Cuánto se tarda?</summary><p>Una web, entre dos y tres semanas. Un asistente de WhatsApp, de una a dos. Una herramienta a medida depende de lo que haga, y te lo decimos antes de empezar.</p></details>
-        <details><summary>¿El asistente dice que es una IA?</summary><p>Siempre, desde el primer mensaje. Lo exige el Reglamento europeo de IA desde agosto de 2026 y nos parece lo justo.</p></details>
+        <details><summary>¿Cuánto se tarda?</summary><p>Una web, entre dos y tres semanas. Un agente de WhatsApp, de una a dos. Una herramienta a medida depende de lo que haga, y te lo decimos antes de empezar.</p></details>
+        <details><summary>¿El agente dice que es una IA?</summary><p>Siempre, desde el primer mensaje. Lo exige el Reglamento europeo de IA desde agosto de 2026 y nos parece lo justo.</p></details>
         <details><summary>¿Qué haces con los datos de mis clientes?</summary><p>Solo lo que tú nos encargas. Firmamos un contrato de encargado del tratamiento, como pide el RGPD, y te explicamos qué proveedores intervienen.</p></details>
       </div>
     </div>
@@ -267,8 +213,9 @@
 
   <section class="cierre" aria-labelledby="cierre-t">
     <div class="wrap">
+      <img class="cierre-pieza" src="assets/piezas/blanca.webp" alt="" width="210" height="210" loading="lazy">
       <h2 id="cierre-t">Cuéntanos qué haces <strong>a mano.</strong></h2>
-      <p>En dos minutos el asistente te dice cuánto te está costando. Si prefieres escribirnos tú, al otro lado hay una persona: <a href="mailto:hola@arcillastudio.com" data-config="email">hola@arcillastudio.com</a>.</p>
+      <p>Cuéntaselo al agente: en dos o tres minutos sabremos qué prepararte, una maqueta, una demo o una propuesta. Si prefieres escribirnos tú, al otro lado hay una persona: <a href="mailto:hola@arcillastudio.com" data-config="email">hola@arcillastudio.com</a>.</p>
       <a class="boton" href="#diagnostico">Cuéntanos tu caso</a>
     </div>
   </section>
@@ -277,11 +224,11 @@
 <footer class="pie">
   <div class="wrap">
     <div>
-      <strong>Arcilla Studio</strong>
-      <p>Webs, asistentes de WhatsApp y software a medida para negocios. Hecho en Madrid, para toda España.</p>
+      <a class="marca" href="./"><img src="assets/piezas/marca.webp" alt="" width="26" height="26" loading="lazy">Arcilla Studio</a>
+      <p>Webs, agentes de WhatsApp y software a medida para negocios. Hecho en Madrid, para toda España.</p>
       <p>Una marca de ARVENTURES S.L. Esta web no usa cookies.</p>
     </div>
-    <nav aria-label="Secciones"><strong>Qué hacemos</strong><a href="#construir">Webs a medida</a><a href="#construir">Asistente de WhatsApp</a><a href="#construir">Software a medida</a><a href="#como">Cómo lo hacemos</a></nav>
+    <nav aria-label="Secciones"><strong>Qué hacemos</strong><a href="#servicios">Webs</a><a href="#servicios">Agentes de WhatsApp</a><a href="#servicios">Software a medida</a><a href="#como">Cómo funciona</a><a href="nosotros.html">Nosotros</a></nav>
     <nav aria-label="Contacto y legal"><strong>Contacto</strong><a href="mailto:hola@arcillastudio.com" data-config="email">hola@arcillastudio.com</a><a href="aviso-legal.html">Aviso legal</a><a href="privacidad.html">Privacidad</a></nav>
   </div>
 </footer>

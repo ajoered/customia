@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Línea de diseño: la mano y el torno</title>
+<!-- Lámina de la línea de diseño (estudio/10-linea-de-diseno.md).
+     tools/linea.cjs la guarda como estudio/img/linea-de-diseno.png. -->
+<style>
+@font-face { font-family: "Source Serif 4"; src: url("../web/public/assets/fonts/source-serif-4-latin-normal.woff2") format("woff2"); font-weight: 400 600; }
+@font-face { font-family: "Source Serif 4"; src: url("../web/public/assets/fonts/source-serif-4-latin-italic.woff2") format("woff2"); font-weight: 400 500; font-style: italic; }
+@font-face { font-family: "Schibsted Grotesk"; src: url("../web/public/assets/fonts/schibsted-grotesk-latin-normal.woff2") format("woff2"); font-weight: 400 900; }
+:root { --papel: #f3f3ef; --tinta: #171a21; --tinta-2: #585d68; --linea: #dcdcd5; --cobalto: #1f3f97; --barro: #cfa080; --fuego: #e2874e; --porcelana: #f3f1ea; }
+* { box-sizing: border-box; }
+body { margin: 0; width: 1600px; height: 1000px; background: var(--papel); color: var(--tinta); font-family: "Schibsted Grotesk", sans-serif; -webkit-font-smoothing: antialiased; }
+.lamina { position: relative; width: 1600px; height: 1000px; padding: 72px 80px; display: grid; grid-template-columns: 760px 1fr; gap: 40px; }
+.cat { font-size: 15px; font-weight: 500; color: var(--tinta-2); }
+h1 { font-family: "Source Serif 4"; font-weight: 500; font-size: 104px; line-height: .92; letter-spacing: -0.035em; margin: 18px 0 22px; }
+.lema { font-size: 25px; line-height: 1.35; color: var(--tinta-2); max-width: 30ch; }
+.epocas { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 58px; border-top: 1px solid var(--tinta); }
+.epoca { padding: 18px 20px 0 0; display: grid; gap: 6px; align-content: start; }
+.epoca + .epoca { padding-left: 20px; border-left: 1px solid var(--linea); }
+.epoca .n { font-size: 13px; font-weight: 500; color: var(--tinta-2); }
+.epoca .visual { height: 96px; display: flex; align-items: center; }
+.epoca .aa { font-family: "Source Serif 4"; font-size: 84px; line-height: 1; letter-spacing: -0.02em; }
+.epoca b { font-family: "Source Serif 4"; font-weight: 600; font-size: 24px; letter-spacing: -0.01em; }
+.epoca p { margin: 0; font-size: 15px; line-height: 1.45; color: var(--tinta-2); }
+.pie { position: absolute; left: 80px; right: 80px; bottom: 64px; display: grid; grid-template-columns: 760px 1fr; gap: 40px; align-items: end; }
+.color { display: grid; gap: 10px; }
+.barra { display: flex; height: 40px; border: 1px solid var(--tinta); }
+.barra div { height: 100%; }
+.leyenda { display: flex; justify-content: space-between; font-size: 13px; color: var(--tinta-2); }
+.tipos { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--tinta); }
+.tipos div { padding-top: 14px; }
+.tipos div + div { border-left: 1px solid var(--linea); padding-left: 20px; }
+.tipos .muestra { font-family: "Source Serif 4"; font-size: 40px; line-height: 1.05; letter-spacing: -0.02em; }
+.tipos .muestra.sans { font-family: "Schibsted Grotesk"; font-size: 30px; letter-spacing: -0.01em; }
+.tipos small { display: block; margin-top: 6px; font-size: 13px; color: var(--tinta-2); }
+canvas { position: absolute; right: 70px; top: 40px; }
+</style>
+<script src="../web/public/assets/ceramica.js"></script>
+</head>
+<body>
+<div class="lamina">
+  <div>
+    <div class="cat">Arcilla Studio · Línea de diseño · N.º 10</div>
+    <h1>La mano<br>y el torno.</h1>
+    <p class="lema">Hecho a mano, con la herramienta más avanzada del mundo.</p>
+    <div class="epocas">
+      <div class="epoca"><span class="n">Hace más de 5.000 años</span><div class="visual"><canvas id="c-barro" width="192" height="192" style="position:static;width:96px;height:96px"></canvas></div><b>El torno</b><p>El primer paso hacia la industria. El alfarero lo dominó.</p></div>
+      <div class="epoca"><span class="n">1737</span><div class="visual"><span class="aa">Aa</span></div><b>La imprenta</b><p>Fournier mide los tipos con el punto. De sus letras sale la nuestra.</p></div>
+      <div class="epoca"><span class="n">Hoy</span><div class="visual"><img src="../web/public/assets/piezas/burbuja.webp" width="96" height="96" alt=""></div><b>La inteligencia artificial</b><p>Nuestro torno. La mano sigue decidiendo.</p></div>
+    </div>
+  </div>
+</div>
+<div class="pie">
+  <div class="tipos">
+    <div><div class="muestra">Más clientes.</div><small>Source Serif 4 · lo que se lee despacio</small></div>
+    <div><div class="muestra sans">38 € · 2–3 semanas</div><small>Schibsted Grotesk · interfaz y datos</small></div>
+  </div>
+  <div class="color">
+    <div class="barra"><div style="flex:80;background:var(--papel)"></div><div style="flex:15;background:var(--tinta)"></div><div style="flex:5;background:var(--cobalto)"></div></div>
+    <div class="leyenda"><span>Porcelana 80 %</span><span>Tinta 15 %</span><span>Cobalto 5 % · único acento</span></div>
+  </div>
+</div>
+<canvas id="vasija" width="1520" height="1640" style="width:760px;height:820px"></canvas>
+<script>
+"use strict";
+const C = window.Ceramica;
+function perfil(u) { return 70 + 80 * Math.sin(Math.PI * Math.pow(u, 0.9)) * (1 - 0.35 * u) + 10 * Math.pow(Math.max(0, 1 - u / 0.07), 0.5); }
+function vasija(cx, cy, k, grosor) {
+  // Contorno exterior (y, si grosor, el interior para la sección).
+  const ext = new Path2D(), n = 120;
+  const lado = (s) => { const p = []; for (let i = 0; i <= n; i++) { const u = i / n; p.push([cx + s * perfil(u) * k, cy + (-150 + 300 * u) * k]); } return p; };
+  const d = lado(1), iz = lado(-1).reverse();
+  [...d, ...iz].forEach(([x, y], i) => (i ? ext.lineTo(x, y) : ext.moveTo(x, y)));
+  ext.closePath();
+  return { ext, caja: { x: cx - 152 * k, y: cy - 150 * k, w: 304 * k, h: 300 * k }, lado };
+}
+
+function dibujar() {
+  // El torno de alfarero: una vasija de barro crudo, sin esmaltar.
+  {
+    const c = document.getElementById("c-barro").getContext("2d");
+    c.scale(2, 2);
+    const v = vasija(48, 50, 0.24);
+    C.pieza(c, v.ext, v.caja, { color: "#cfa080", acabado: "barro", dpr: 2, anillos: true });
+  }
+
+  // La pieza clave: mitad derecha hecha a mano (bañada en cobalto), mitad izquierda dibujada en sección.
+  const cv = document.getElementById("vasija"), ctx = cv.getContext("2d");
+  const dpr = 2; ctx.scale(dpr, dpr);
+  const cx = 400, cy = 400, k = 1.55;
+  const v = vasija(cx, cy, k);
+  const tinta = "#171a21";
+
+  // La mano: barro con un baño de cobalto que no llega al pie, solo en la mitad derecha.
+  ctx.save();
+  ctx.beginPath(); ctx.rect(cx, 0, 800, 900); ctx.clip();
+  ctx.translate(cx, cy); ctx.scale(k, k);
+  const local = vasija(0, 0, 1);
+  C.pieza(ctx, local.ext, local.caja, { color: "#cfa080", acabado: "barro", dpr: dpr * k });
+  C.vasija(perfil).bano(ctx, local.ext, local.caja, { color: "#24479f", canto: "#17307a", dpr: dpr * k });
+  ctx.restore();
+
+  // El torno: dibujo arqueológico en la mitad izquierda. Perfil, pared en sección (negro) y eje.
+  const pared = 9;
+  const ext = v.lado(-1), int = [];
+  for (let i = 0; i <= 120; i++) { const u = i / 120; const y = cy + (-150 + 300 * u) * k; if (u < 0.965) int.push([cx - (perfil(u) - pared) * k, y]); }
+  const fondoY = cy + (150 - pared * 1.1) * k;
+  ctx.fillStyle = tinta;
+  ctx.beginPath();
+  ext.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));
+  ctx.lineTo(cx, cy + 150 * k); ctx.lineTo(cx, fondoY);
+  ctx.lineTo(int[int.length - 1][0], fondoY);
+  for (let i = int.length - 1; i >= 0; i--) ctx.lineTo(int[i][0], int[i][1]);
+  ctx.closePath(); ctx.fill();
+  // Líneas del interior y del exterior (vistas): la boca y el fondo.
+  ctx.strokeStyle = tinta; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(int[0][0], int[0][1]); ctx.lineTo(cx, int[0][1]); ctx.stroke();
+  // Eje: trazo y punto.
+  ctx.setLineDash([22, 5, 3, 5]);
+  ctx.beginPath(); ctx.moveTo(cx, cy - 150 * k - 70); ctx.lineTo(cx, cy + 150 * k + 60); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Cotas.
+  const cota = (x1, y1, x2, y2, texto, tx, ty, alin) => {
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+    const tick = (x, y) => { ctx.beginPath(); ctx.moveTo(x - 5, y + 5); ctx.lineTo(x + 5, y - 5); ctx.stroke(); };
+    tick(x1, y1); tick(x2, y2);
+    ctx.font = "500 15px 'Schibsted Grotesk'"; ctx.textAlign = alin || "center";
+    // Un fondo de papel detrás del texto, para que el eje no lo cruce.
+    const w = ctx.measureText(texto).width, x0 = ctx.textAlign === "right" ? tx - w : ctx.textAlign === "center" ? tx - w / 2 : tx;
+    ctx.fillStyle = "#f3f3ef"; ctx.fillRect(x0 - 6, ty - 15, w + 12, 21);
+    ctx.fillStyle = tinta; ctx.fillText(texto, tx, ty);
+  };
+  const ancho = Math.max(...Array.from({ length: 101 }, (_, i) => perfil(i / 100))) * k;
+  const yTop = cy - 150 * k, yBase = cy + 150 * k;
+  cota(cx - ancho, yTop - 46, cx + ancho, yTop - 46, "Ø 26 cm", cx, yTop - 56);
+  ctx.beginPath(); ctx.moveTo(cx - ancho, yTop - 54); ctx.lineTo(cx - ancho, cy - 8); ctx.moveTo(cx + ancho, yTop - 54); ctx.lineTo(cx + ancho, cy - 8); ctx.globalAlpha = 0.35; ctx.stroke(); ctx.globalAlpha = 1;
+  cota(cx - ancho - 52, yTop, cx - ancho - 52, yBase, "30 cm", cx - ancho - 62, cy + 5, "right");
+  ctx.beginPath(); ctx.moveTo(cx - ancho - 60, yTop); ctx.lineTo(ext[0][0] - 6, yTop); ctx.moveTo(cx - ancho - 60, yBase); ctx.lineTo(cx - 70 * k - 6, yBase); ctx.globalAlpha = 0.35; ctx.stroke(); ctx.globalAlpha = 1;
+
+  // Rótulos de cada mitad y la ficha de la pieza.
+  ctx.font = "italic 500 30px 'Source Serif 4'"; ctx.fillStyle = tinta;
+  ctx.textAlign = "right"; ctx.fillText("El torno", cx - 22, yBase + 62);
+  ctx.textAlign = "left"; ctx.fillText("La mano", cx + 22, yBase + 62);
+  ctx.font = "500 14px 'Schibsted Grotesk'"; ctx.fillStyle = "#585d68";
+  ctx.textAlign = "right"; ctx.fillText("Medida, sección, eje", cx - 22, yBase + 86);
+  ctx.textAlign = "left"; ctx.fillText("Barro, esmalte cobalto, gotas", cx + 22, yBase + 86);
+}
+Promise.all(["500 15px 'Schibsted Grotesk'", "italic 500 30px 'Source Serif 4'", "500 104px 'Source Serif 4'"].map((f) => document.fonts.load(f)))
+  .then(() => { dibujar(); document.body.dataset.listo = "1"; });
+</script>
+</body>
+</html>

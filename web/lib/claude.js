@@ -1,4 +1,4 @@
-// Conversación del chat de diagnóstico con Claude.
+// La conversación del chat de la portada con Claude: un discovery corto con el dueño del negocio.
 // El historial vive en el servidor (KV) y solo se añade al final: nunca se edita,
 // así los bloques de "thinking" que devuelve el modelo siguen siendo válidos.
 
@@ -7,77 +7,158 @@ import Anthropic from "@anthropic-ai/sdk";
 const MODELO = "claude-opus-5-5";
 
 // El mismo saludo que pinta assets/app.js.
-export const SALUDO =
-  "Hola. Soy el asistente de Arcilla Studio, una inteligencia artificial. Cuéntame qué negocio tienes y qué te quita el sueño. En dos minutos te digo cuánto te está costando y si podemos ayudarte.";
+export const SALUDO = "Hola, soy el agente de Arcilla Studio, una IA. Te hago un par de preguntas y te cuento cómo lo resolveríamos.";
 
-const SISTEMA = `Eres el asistente de diagnóstico de Arcilla Studio, una marca de ARVENTURES S.L. Arcilla Studio hace webs, asistentes de WhatsApp y herramientas a medida con IA para negocios pequeños y medianos: restaurantes, fincas de bodas, hoteles y hostales, clínicas, reformas, tiendas y similares.
+const SISTEMA = `Eres el agente de Arcilla Studio, una marca de ARVENTURES S.L., y hablas en el chat de su web. Arcilla Studio hace webs, agentes de WhatsApp con IA y herramientas a medida para negocios pequeños: restaurantes, fincas de bodas, hoteles y hostales, clínicas, despachos, reformas, tiendas y similares. Al otro lado suele estar el dueño, con poco tiempo.
 
-Tu trabajo es tener una conversación corta (unas cuatro o cinco preguntas, una por mensaje) para entender el problema del negocio y estimar cuánto le cuesta al mes. Cuando tengas datos suficientes, llama a la herramienta mostrar_diagnostico: la web enseñará el resultado y un formulario para que le llamemos.
+Tu trabajo es una conversación de un par de minutos para entender bien qué le pasa y qué necesita. Dos objetivos a la vez: que se sienta escuchado y entendido, y que Álvaro, que lleva el estudio, pueda prepararle una propuesta o una maqueta sin tener que volver a preguntarle lo básico. No es un formulario ni una venta.
 
-Lo que necesitas saber:
-1. Qué tipo de negocio es.
-2. El problema: dónde pierde clientes o tiempo (llamadas o WhatsApps sin contestar, una web que no trae clientes, horas en presupuestos, reservas o facturas, comisiones de portales, u otra cosa).
-3. Cuánto pasa: veces por semana o por mes, u horas.
-4. Cuánto vale: lo que deja de media un cliente, qué parte de las consultas acaba siendo cliente, o lo que vale una hora.
-Si no saben un número, dales tres o cuatro rangos para elegir.
+Lo esencial son dos cosas, y con ellas cierras:
+1. Su negocio: qué es y cómo se llama, y su web, Instagram o ficha de Google si tiene. Con eso le preparamos la maqueta o la demo.
+2. El problema con un caso real: la última vez que pasó y qué se perdió. Es lo que más ayuda a entenderle.
+No preguntes qué producto quiere: deduce del problema qué le ayuda más. Lo que hace falta según lo que acabe siendo:
+- Una web: con el nombre y su web o Instagram ya podemos hacer la maqueta.
+- Un agente de WhatsApp o las llamadas perdidas: el caso real ya nos dice qué le preguntan; si no lo dice, pregunta qué le suelen preguntar.
+- Una herramienta a medida: casi siempre hace falta saber cómo lo hace hoy (Excel, papel, un programa), así que esa sí pregúntala.
+Solo si sin ello no puedes proponer nada concreto, una tercera pregunta: cómo lo hace hoy (WhatsApp, un programa de reservas, Excel, papel). Lo demás (cuánto le cuesta, quién atiende, plazos) se ve en la llamada: no lo preguntes, y si lo cuenta, apúntalo. No preguntes lo que ya te haya contado: si con el primer mensaje ya sabes algo, sáltatelo.
 
-La cuenta tiene que ser conservadora y estar explicada con sus propios números, por ejemplo "10 consultas/semana × 4,3 semanas × 30 % que serían clientes × 500 €". Redondea. Si no hay forma razonable de calcularlo, pon 0 y di que lo vemos en la llamada.
+Cómo consigues que se sienta entendido:
+- Antes de preguntar, devuelve en media frase lo que te acaba de contar, con sus palabras y en concreto: "A la hora de las cenas suena el teléfono y tú estás en sala." Solo lo último que ha dicho, no todo lo anterior. Varía cómo empiezas: no abras siempre con "Ya", "Así que" ni con la misma muletilla, y si el eco no aporta nada, pregunta directamente. Nada de "entiendo tu frustración" ni de "¡qué buena pregunta!".
+- En tu primera respuesta no repitas lo que ha elegido o escrito: demuestra en pocas palabras que sabes cómo es esa situación ("Pasa mucho cuando estás atendiendo") y pregunta.
+- Una sola pregunta por mensaje, la más útil en ese momento. Primero abiertas, luego concretas.
+- Pide ejemplos de verdad ("¿cuándo fue la última vez?") en vez de preguntas generales.
+- Si aporta, comenta algo que demuestre que conoces su sector. Sin cifras inventadas.
+- Usa su vocabulario: clientes, pacientes, novios, huéspedes.
+- Si te pregunta algo (precio, plazos, cómo funciona), contesta corto y con verdad, y sigue.
 
-Lo que podemos ofrecer. Propón una sola cosa concreta, contada en sus palabras y no en términos técnicos:
-- Una web a medida, pensada para el móvil, con reservas o petición de presupuesto.
-- Un asistente de WhatsApp con IA que contesta al momento, filtra las consultas y le pasa un resumen al dueño.
-- Si no pueden coger el teléfono: un WhatsApp automático a quien llamó, para atenderle por ahí.
-- Herramientas a medida para tareas repetitivas: presupuestos, recordatorios de citas, pedir reseñas, facturas.
+Cómo escribes: de tú, en castellano de España (o en el idioma en que te escriban). Una o dos frases por mensaje, unas treinta palabras como mucho. Cercano, concreto y directo, como el resto de la web. Sin jerga técnica, sin listas, sin negritas, sin superlativos, sin emojis y sin prometer resultados.
+
+Barra de avance: empieza cada mensaje con una etiqueta entre corchetes con lo que preguntas: [negocio], [problema] o [hoy]. Cuando cierres, usa [cierre]. La web la quita y mueve con ella una barra de avance; la persona no la ve.
+
+Cuándo cierras: en cuanto sepas los dos puntos esenciales, o cuando la persona quiera terminar. Lo normal son dos preguntas; nunca más de tres. Mejor corto y bien entendido que largo. Para cerrar, llama a la herramienta preparar_propuesta sin escribir nada antes: la web le enseña tu resumen ("A ver si lo he entendido: …") y le pregunta si es así. Si dice que sí, la web le cuenta lo que haríamos y le pide su WhatsApp para mandárselo.
+
+Después del resumen:
+- Si corrige algo o añade algo, vuelve a llamar a preparar_propuesta con todo corregido, sin escribir nada antes.
+- Si te pregunta algo, contesta corto y con verdad.
+- Si ya nos ha dejado su contacto, despídete en una frase: Álvaro le escribe en un día laborable.
+
+Lo que podemos hacer. Propón una sola cosa, la que más le ayude, contada con sus palabras:
+- Una web a medida, pensada para el móvil, con reservas o petición de presupuesto. Le preparamos una maqueta y se la enseñamos antes de que pague. Tarda de dos a tres semanas.
+- Un agente de WhatsApp con IA que contesta al momento, a cualquier hora, pregunta lo necesario y le pasa un resumen. Tarda de una a dos semanas.
+- Si no puede coger el teléfono: cuando no lo coge, un WhatsApp automático a quien llamó, que le atiende por ahí.
+- Herramientas a medida para lo repetitivo: presupuestos, reservas, recordatorios de citas, pedir reseñas, facturas.
 Si la tecnología no le va a ayudar, díselo.
 
-Cómo hablas: de tú, en castellano de España (o en el idioma en que te escriban), con frases cortas, cercano y directo, sin jerga técnica. Una pregunta por mensaje. Sin listas largas, sin superlativos, sin promesas de resultados y sin emojis.
+Lo que puedes contar si te preguntan:
+- Precio: depende de lo que haga falta. Le damos el precio cerrado y por escrito antes de empezar, con la cuota mensual incluida. No des cifras.
+- Si no le gusta, no paga la parte principal: se lo enseñamos funcionando antes.
+- El dominio y el email siguen siendo suyos. Nos encargamos de la migración.
+- No hace falta saber de tecnología.
 
 Límites:
-- No des precios. Di que el diagnóstico es gratis y que el precio se cierra por escrito en la llamada, antes de empezar.
-- No pidas datos de contacto en el chat: el formulario aparece junto al diagnóstico. Si los escriben, pídeles que usen el formulario.
+- No pidas teléfono, email ni nombre: la web se los pide al final, sin pasar por ti. Si los escribe en el chat, no los repitas.
 - No pidas datos de salud, bancarios ni de otras personas.
-- Solo hablas de su negocio y de cómo podemos ayudarle. Si te piden otra cosa (deberes, programar, temas generales), di con amabilidad que aquí solo puedes ayudar con el diagnóstico.
+- Solo hablas de su negocio y de cómo podemos ayudarle. Si te piden otra cosa (deberes, programar, temas generales), di con amabilidad que aquí solo puedes ayudar con eso.
 - Eres una IA. Si te lo preguntan, dilo, y nunca digas que eres una persona.
 
 El usuario ya ha visto este saludo en la pantalla: "${SALUDO}"`;
 
+const vacio = 'Cadena vacía ("") si no lo sabes.';
 const HERRAMIENTA = {
-  name: "mostrar_diagnostico",
+  name: "preparar_propuesta",
   description:
-    "Enseña al usuario su diagnóstico con el coste estimado y un formulario de contacto. Llámala cuando sepas el tipo de negocio y el problema, y tengas una estimación o sepas que no se puede estimar. Antes, escribe una frase corta que presente el resultado.",
+    "Cierra la conversación: enseña en pantalla lo que hemos entendido, lo que haríamos y el siguiente paso, con un formulario de contacto. El resto de campos son para el equipo. Llámala cuando sepas su negocio, el problema con algún ejemplo y cómo lo hace hoy, o cuando la persona quiera terminar. Antes escribe una frase corta.",
   strict: true,
   input_schema: {
     type: "object",
     properties: {
-      sector: { type: "string", description: "Tipo de negocio, en pocas palabras." },
-      problema: { type: "string", description: "El problema principal, con las palabras del usuario. Máximo 140 caracteres." },
-      coste_mensual_eur: { type: "integer", description: "Coste mensual estimado en euros, conservador y redondeado. 0 si no se puede estimar." },
-      calculo: { type: "string", description: "La cuenta en una línea con los números del usuario. Vacío si el coste es 0." },
-      propuesta: { type: "string", description: "Lo que haríamos, en una o dos frases sencillas." },
-      producto: { type: "string", enum: ["web", "asistente", "llamadas", "herramienta", "otro"] },
+      resumen: { type: "string", description: "Lo que has entendido, de tú y con sus palabras, en dos o tres frases cortas: 45 palabras como mucho. La web lo enseña tras «A ver si lo he entendido:» y le pregunta si es así." },
+      propuesta: { type: "string", description: "Lo que haríamos, en una o dos frases sencillas y sin tecnicismos: 35 palabras como mucho. Lo verá en pantalla." },
+      siguiente_paso: {
+        type: "string",
+        enum: ["maqueta_web", "demo_whatsapp", "propuesta", "llamada"],
+        description: "maqueta_web si lo principal es la web; demo_whatsapp si es un agente de WhatsApp o las llamadas perdidas (le enseñamos una demo con sus preguntas reales); propuesta para una herramienta a medida; llamada si aún no está claro.",
+      },
+      producto: { type: "string", enum: ["web", "agente_whatsapp", "llamadas", "herramienta", "otro"] },
+      sector: { type: "string", description: "Tipo de negocio en dos o tres palabras, sin nombre ni ubicación (p. ej. \"restaurante\", \"clínica dental\")." },
+      nombre_negocio: { type: "string", description: `Nombre del negocio. ${vacio}` },
+      web_o_redes: { type: "string", description: `Su web, Instagram o ficha de Google, tal y como lo dio. ${vacio}` },
+      quien_atiende: { type: "string", description: `Quién atiende o hace el trabajo. ${vacio}` },
+      problema: { type: "string", description: "El problema principal, con sus palabras." },
+      ejemplo: { type: "string", description: `Un caso concreto que haya contado. ${vacio}` },
+      como_lo_hace_hoy: { type: "string", description: `Qué usa ahora. ${vacio}` },
+      que_seria_resuelto: { type: "string", description: `Qué cambiaría si estuviera resuelto. ${vacio}` },
+      volumen: { type: "string", description: `Cuántas veces pasa o cuánto le cuesta, con sus números. ${vacio}` },
+      coste_mensual_eur: { type: "integer", description: "Coste mensual estimado en euros, conservador y redondeado. 0 si no hay datos para estimarlo." },
+      calculo: { type: "string", description: `La cuenta en una línea con sus números, p. ej. "10 llamadas/semana × 4,3 × 30 % × 60 €". ${vacio}` },
+      urgencia: { type: "string", description: `Fechas o prisas que haya mencionado. ${vacio}` },
+      para_la_llamada: { type: "string", description: "Lo que falta por saber o conviene confirmar en la llamada." },
     },
-    required: ["sector", "problema", "coste_mensual_eur", "calculo", "propuesta", "producto"],
+    required: [
+      "resumen", "propuesta", "siguiente_paso", "producto", "sector", "nombre_negocio", "web_o_redes", "quien_atiende",
+      "problema", "ejemplo", "como_lo_hace_hoy", "que_seria_resuelto", "volumen", "coste_mensual_eur", "calculo", "urgencia", "para_la_llamada",
+    ],
     additionalProperties: false,
   },
 };
 
+const PASOS = new Set(HERRAMIENTA.input_schema.properties.siguiente_paso.enum);
 const PRODUCTOS = new Set(HERRAMIENTA.input_schema.properties.producto.enum);
 
 function recortar(valor, max) {
   return String(valor ?? "").replace(/\s+/g, " ").trim().slice(0, max);
 }
 
-export function limpiarDiagnostico(d) {
-  if (!d || typeof d !== "object") return null;
-  const coste = Math.max(0, Math.min(10_000_000, Math.round(Number(d.coste_mensual_eur) || 0)));
-  return {
-    sector: recortar(d.sector, 80),
-    problema: recortar(d.problema, 200),
-    coste_mensual_eur: coste,
-    calculo: recortar(d.calculo, 240),
-    propuesta: recortar(d.propuesta, 300),
-    producto: PRODUCTOS.has(d.producto) ? d.producto : "otro",
-  };
+// Lo que el modelo pasa a preparar_propuesta, saneado. Es el resumen para el equipo.
+export function limpiarFicha(f) {
+  if (!f || typeof f !== "object") return null;
+  const coste = Math.max(0, Math.min(10_000_000, Math.round(Number(f.coste_mensual_eur) || 0)));
+  const ficha = { coste_mensual_eur: coste };
+  for (const [campo, max] of [
+    ["resumen", 600], ["propuesta", 500], ["sector", 80], ["nombre_negocio", 120], ["web_o_redes", 300], ["quien_atiende", 300],
+    ["problema", 500], ["ejemplo", 600], ["como_lo_hace_hoy", 500], ["que_seria_resuelto", 500], ["volumen", 300],
+    ["calculo", 240], ["urgencia", 300], ["para_la_llamada", 900],
+  ]) ficha[campo] = recortar(f[campo], max);
+  ficha.siguiente_paso = PASOS.has(f.siguiente_paso) ? f.siguiente_paso : "llamada";
+  ficha.producto = PRODUCTOS.has(f.producto) ? f.producto : "otro";
+  return ficha;
+}
+
+// Lo que se enseña en pantalla: sin los campos internos.
+export function paraPantalla(ficha) {
+  const { resumen, propuesta, siguiente_paso, producto, nombre_negocio, coste_mensual_eur, calculo } = ficha;
+  return { resumen, propuesta, siguiente_paso, producto, nombre_negocio, coste_mensual_eur, calculo };
+}
+
+// Para las estadísticas: sin texto libre, así no identifica a nadie.
+export function anonima(ficha) {
+  const { sector, producto, siguiente_paso, coste_mensual_eur } = ficha;
+  return { sector, producto, siguiente_paso, coste_mensual_eur };
+}
+
+// Las respuestas del modo guiado (assets/app.js), saneadas.
+const PROBLEMAS = new Set(["telefono", "whatsapp", "web", "tareas", "otro"]);
+export function limpiarGuiado(g) {
+  if (!g || typeof g !== "object") return null;
+  const r = { problema: PROBLEMAS.has(g.problema) ? g.problema : "otro" };
+  for (const campo of ["inicio", "negocio", "detalle", "hoy", "resuelto"]) r[campo] = recortar(g[campo], 600);
+  return r;
+}
+
+// La etiqueta con la que el modelo empieza cada mensaje: el tema de lo que pregunta. Mueve la barra
+// de avance de la web y no se enseña.
+const ETIQUETA = /^\s*\[(negocio|problema|hoy|resuelto|extra|cierre)\]\s*/i;
+const ETIQUETAS = /\s*\[(?:negocio|problema|hoy|resuelto|extra|cierre)\]\s*/gi;
+function separarEtiqueta(texto) {
+  const m = ETIQUETA.exec(texto);
+  return { paso: m ? m[1].toLowerCase() : null, texto: texto.replace(ETIQUETAS, " ").replace(/ {2,}/g, " ").trim() };
+}
+
+// A partir del tercer mensaje, el servidor le recuerda al modelo que vaya cerrando.
+function recordatorio(numero) {
+  if (numero >= 5) return `La persona lleva ${numero} mensajes. Cierra ya: escribe una frase corta y llama a preparar_propuesta con lo que sepas.`;
+  if (numero >= 3) return `La persona lleva ${numero} mensajes. Si ya sabes su negocio y el problema con un caso, cierra en este mensaje; si no, haz una sola pregunta más.`;
+  return null;
 }
 
 function sinThinking(messages) {
@@ -102,18 +183,27 @@ function pedir(client, messages) {
   });
 }
 
-// estado: { messages, turnos, pendiente } guardado en KV entre peticiones.
-// Devuelve { respuesta, diagnostico } y modifica estado (solo añadiendo).
-export async function conversar(apiKey, estado, mensaje) {
+// Lo que se le dice al modelo sobre su última llamada a preparar_propuesta, según lo que haya pasado
+// en la web desde entonces.
+const DESPUES = {
+  corrige: "La web le enseñó tu resumen y la persona dice que falta algo o lo corrige.",
+  contacto: "La persona confirmó tu resumen y ya nos ha dejado su contacto.",
+};
+
+// estado: { messages, turnos, pendiente, ficha } guardado en KV entre peticiones.
+// Devuelve { respuesta, paso, ficha } (ficha solo al cerrar) y modifica estado (solo añadiendo).
+export async function conversar(apiKey, estado, mensaje, fase) {
   const client = new Anthropic({ apiKey, maxRetries: 1 });
 
   const contenido = estado.pendiente
     ? [
-        { type: "tool_result", tool_use_id: estado.pendiente, content: "Diagnóstico mostrado al usuario." },
+        { type: "tool_result", tool_use_id: estado.pendiente, content: DESPUES[fase] || "La web le enseñó tu resumen." },
         { type: "text", text: mensaje },
       ]
     : mensaje;
   const historial = [...estado.messages, { role: "user", content: contenido }];
+  const aviso = estado.ficha ? null : recordatorio((estado.turnos || 0) + 1);
+  if (aviso) historial.push({ role: "system", content: aviso });
 
   let respuesta;
   try {
@@ -132,10 +222,7 @@ export async function conversar(apiKey, estado, mensaje) {
 
   if (respuesta.stop_reason === "refusal") {
     // No guardamos este turno: el historial sigue siendo válido para el siguiente.
-    return {
-      respuesta: "Eso mejor lo vemos con una persona. Escríbenos a hola@arcillastudio.com y te contestamos.",
-      diagnostico: null,
-    };
+    return { respuesta: "Eso mejor lo vemos con una persona. Escríbenos a hola@arcillastudio.com y te contestamos.", ficha: null };
   }
 
   historial.push({ role: "assistant", content: respuesta.content });
@@ -143,22 +230,25 @@ export async function conversar(apiKey, estado, mensaje) {
   estado.turnos = (estado.turnos || 0) + 1;
   estado.pendiente = null;
 
-  const texto = respuesta.content
-    .filter((b) => b.type === "text")
-    .map((b) => b.text)
-    .join("\n")
-    .trim();
+  const { paso, texto } = separarEtiqueta(
+    respuesta.content
+      .filter((b) => b.type === "text")
+      .map((b) => b.text)
+      .join("\n"),
+  );
 
-  let diagnostico = null;
+  let ficha = null;
   const llamada = respuesta.content.find((b) => b.type === "tool_use" && b.name === HERRAMIENTA.name);
   if (llamada) {
-    diagnostico = limpiarDiagnostico(llamada.input);
+    ficha = limpiarFicha(llamada.input);
+    estado.ficha = ficha;
     estado.pendiente = llamada.id;
   }
 
   return {
-    respuesta: texto || (diagnostico ? "Hecha la cuenta. Esto es lo que te puede estar costando:" : "Perdona, no te he entendido. ¿Me lo cuentas en una frase?"),
-    diagnostico,
+    respuesta: texto || (ficha ? "" : "Perdona, no te he entendido. ¿Me lo cuentas en una frase?"),
+    paso: ficha ? "cierre" : paso,
+    ficha,
   };
 }
 

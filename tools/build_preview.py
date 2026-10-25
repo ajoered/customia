@@ -42,7 +42,7 @@ def main(salida):
     out = pathlib.Path(salida)
     out.mkdir(parents=True, exist_ok=True)
     css = css_con_fuentes()
-    js = (RAIZ / "assets" / "app.js").read_text(encoding="utf-8").replace("assets/", "") + "\n" + (RAIZ / "assets" / "torno.js").read_text(encoding="utf-8")
+    js = "\n".join((RAIZ / "assets" / n).read_text(encoding="utf-8") for n in ("app.js", "ceramica.js", "torno.js"))
 
     # Portada: el visor de Artifacts pone su propio doctype/head/body.
     index = (RAIZ / "index.html").read_text(encoding="utf-8")
@@ -50,6 +50,10 @@ def main(salida):
     css_portada = css.replace('url("casa-lucia.jpg")', f'url("data:image/jpeg;base64,{foto}")')
     retrato = base64.b64encode((RAIZ / "assets" / "alvaro.jpg").read_bytes()).decode()
     index = index.replace('src="assets/alvaro.jpg"', f'src="data:image/jpeg;base64,{retrato}"')
+    # Las piezas de cerámica (iconos y vasijas), dentro del HTML.
+    for pieza in sorted((RAIZ / "assets" / "piezas").glob("*.webp")):
+        datos = base64.b64encode(pieza.read_bytes()).decode()
+        index = index.replace(f'src="assets/piezas/{pieza.name}"', f'src="data:image/webp;base64,{datos}"')
     pagina = "\n".join([
         f"<title>{titulo(index)}</title>",
         '<meta name="claude:viewport-fit-sides" content="cover">',

@@ -13,7 +13,7 @@ web/
     aviso-legal.html   aviso legal (LSSI art. 10)
     privacidad.html    política de privacidad
     assets/styles.css  diseño (colores y tipos definidos al principio)
-    assets/app.js      chat de diagnóstico
+    assets/app.js      chat de la portada
     assets/fonts/      fuentes propias (sin Google Fonts, así no hay que pedir consentimiento)
     _headers           cabeceras de seguridad y caché para Cloudflare Pages
   functions/api/       el servidor (Pages Functions), ver abajo
@@ -22,18 +22,55 @@ web/
   wrangler.toml        configuración de Pages: carpeta public, KV ARCILLA, límite diario
 ```
 
-## Diseño (v2)
+## Diseño (v3)
 
-- **Idea:** una sola pieza de arcilla (`assets/torno.js`, canvas 2D) que se moldea con el scroll: ladrillo → arcilla → tu web → tu WhatsApp → tu herramienta → horno → pieza esmaltada. Si el navegador prefiere menos movimiento, se muestra la forma fija de cada etapa.
-- **Referencias:** ritmo de una idea por pantalla (Tribe AI), paleta cálida y sobria (Distyl), producto real en pantalla (Floema), contenido claro desde la primera pantalla (Estudio Telar). Ver `../estudio/07-benchmark-web.md`.
+**Línea de diseño:** `../estudio/10-linea-de-diseno.md` ("La mano y el torno"). Léela antes de decidir nada de diseño.
+
+- **Idea:** un taller de cerámica. Una sola pieza de arcilla (`assets/torno.js`, canvas 2D) se moldea con el scroll: ladrillo → arcilla → tu web → tu WhatsApp → tu herramienta → vasija → horno (al rojo) → baño de esmalte cobalto que no llega al pie. Si el navegador prefiere menos movimiento, se muestra la forma fija de cada etapa.
+- **Piezas de cerámica en vez de iconos planos** (estilo Airbnb). `assets/ceramica.js` pinta barro y esmalte con volumen: luz, canto, motas de chamota, anillos del torno, huecos, pincel y el baño de esmalte de la vasija (`Ceramica.vasija`), que no llega al pie y deja gotas. Lo usan:
+  - el torno, en vivo;
+  - `tools/piezas.html`, que dibuja los iconos (teléfono, burbuja, web, libreta y panel), el logotipo, la vasija del cierre, la de la 404 y la imagen para compartir.
+
+  Para regenerarlas: `node tools/piezas.cjs` (escribe en `public/assets/piezas/`). Abre `tools/piezas.html` en el navegador para verlas todas.
+- **Referencias:**
+  - Ritmo de una idea por pantalla (Tribe AI).
+  - Producto real en pantalla (Floema).
+  - Contenido claro desde la primera pantalla (Estudio Telar).
+  - Piezas con volumen (Airbnb).
+
+  Ver `../estudio/07-benchmark-web.md`.
+- **Colores:**
+  - Porcelana de fondo y tinta.
+  - El cobalto de la loza de Talavera como único acento, en la interfaz y en el esmalte de las piezas.
+  - El barro, solo en las piezas (el pie sin esmaltar de la vasija).
+
+  Lejos del crema con barro, que recordaba a la marca de Claude.
+- **Tipos:**
+  - Source Serif 4 para titulares: de Adobe, inspirada en las letras de Pierre-Simon Fournier, el impresor que en 1737 midió los tipos con el punto. Tiene tamaños ópticos, así que el titular grande y el texto pequeño se ven bien.
+  - Schibsted Grotesk para el resto.
+
+  Las dos son libres (licencia OFL, en `assets/fonts/`) y están alojadas en la propia web.
+- **Sin muletillas de plantilla:**
+  - Sin rótulos en mayúsculas encima de cada título.
+  - Sin segunda línea en color ni flechas.
+  - Botones como azulejos esmaltados.
 - **En el móvil:**
   - **"Lo que podemos construir":** cada producto va debajo de su texto, sin marco de teléfono y con letra a tamaño real (el teléfono es el del visitante). La pantalla se queda fija un tramo y lo de dentro avanza con el scroll: la web baja hasta la reserva, el WhatsApp se escribe, y la reserva de Marta entra en el panel. Es la misma historia en las tres pantallas.
   - **El torno:** la pieza se queda arriba, el texto se lee en el hueco de debajo y se desvanece al pasar bajo ella.
   - Con "reducir movimiento" no hay tramos fijos y todo sale en su estado final.
-- **Colores:** papel cálido, tinta, barro para la arcilla, un solo acento cobalto (que es también el esmalte de la pieza cocida). Con versión oscura.
-- **Tipos:** Fraunces (serifa de libro) para titulares, Atkinson Hyperlegible para el texto, Spline Sans Mono para cifras. Todas alojadas en la propia web.
 - **Voz:** plural ("hacemos", "te enseñamos"): aunque el fundador sea la cara visible, hay equipo detrás. Su historia en "Quién está detrás" va en primera persona.
-- **Hilo:** portada (titular + caja del asistente) → el torno (7 pantallas) → "Lo que podemos construir para tu negocio" (infografía: la web de ejemplo con foto, Unsplash, que hace scroll hasta la reserva; el WhatsApp que se escribe solo; el panel) → cómo lo hacemos → quién está detrás → preguntas → cierre. Paleta: rosa porcelana con azul petróleo.
+- **Hilo de la portada** (orientada a la conversión):
+  1. Titular y caja del agente.
+  2. "¿Con qué te ayudamos?": webs, agentes de WhatsApp y software a medida. Cada tarjeta lleva un ejemplo marcado como tal, tres puntos, plazo, precio y un botón que abre el chat con su primera frase (`data-empezar`).
+  3. Cómo funciona, en tres pasos.
+  4. Quién está detrás, corto, con enlace a Nosotros.
+  5. Preguntas y cierre.
+- **Nosotros** (`nosotros.html`): la idea de la marca, el torno (ladrillo → vasija) y la historia de Álvaro.
+- **Detalles:**
+  - Imagen para compartir (`piezas/compartir.jpg`) e icono para el iPhone.
+  - Página 404 con la vasija rota.
+  - Espacio que no se parte antes de "€" y cifras tabulares.
+  - Color de selección propio.
 
 ## Datos que faltan
 
@@ -45,20 +82,38 @@ Decisión: por ahora la web no muestra teléfono ni WhatsApp.
 
 La clave de Anthropic se llama `CLAUDE_ANTHROPIC_API_KEY` (no `ANTHROPIC_API_KEY`). Las funciones del servidor la leen con ese nombre. Nunca se imprime ni se escribe en el repo.
 
+## El agente de la portada
+
+Una conversación de un par de minutos para entender qué le pasa al negocio, no una calculadora ni un formulario. Solo la primera respuesta es un clic (las opciones de la portada); después se escribe.
+
+- **Lo que pregunta:** solo lo esencial, sin repetir lo que ya le han contado. El negocio, con su web o Instagram para la maqueta, y el problema con un caso real ("¿cuándo fue la última vez?"). Una tercera pregunta (cómo lo hacen hoy) solo si sin ella no puede proponer nada concreto. Lo demás se ve en la llamada; si lo cuentan, lo apunta.
+- **Para que se sientan escuchados:** antes de cada pregunta repite en media frase lo último que le han dicho, con sus palabras; una pregunta por mensaje; mensajes de una o dos frases.
+- **Cierre:** lo normal es cerrar tras dos preguntas; a partir del tercer mensaje el servidor le pide cerrar. El agente llama a `preparar_propuesta` y la web sigue sola:
+  1. "A ver si lo he entendido: …" y "¿Es así?", con "Sí, es eso" y "Falta algo". Si falta algo, el agente lo corrige y lo vuelve a enseñar.
+  2. Lo que haríamos y la oferta (maqueta de la web, demo del agente de WhatsApp, propuesta o llamada), con la foto de Álvaro: "Te escribe Álvaro".
+  3. El WhatsApp (o el email, con "Prefiero email") y luego el nombre, de uno en uno en la propia caja, con el teclado que toca. No pasan por la IA. El contacto se guarda en cuanto llega, así que si se va antes de decir su nombre no se pierde.
+- **Sin casilla de consentimiento:** la persona nos pide la maqueta, la demo o la propuesta, así que la base legal es esa petición (art. 6.1.b del RGPD). Junto al campo ve "Solo lo usamos para mandarte esto y hablar de ello" y el enlace a privacidad; ese texto se guarda con el contacto.
+- **La ficha para Álvaro** (se guarda con el contacto): sector, nombre, web o redes, quién atiende, problema, ejemplo, cómo lo hacen hoy, qué sería resuelto, volumen, coste si salió, urgencia y qué falta por confirmar en la llamada.
+- **Pantalla completa:** al empezar, la caja se abre a toda la pantalla, como America.gov o ChatGPT: arriba la marca, el avance y "Cerrar"; en medio la conversación en una columna; abajo la caja. "Cerrar", Esc o el botón de atrás del móvil la devuelven a su sitio con la conversación dentro. En el ordenador, Intro envía.
+- **Barra de avance:** tres tramos (tu negocio, lo que pasa, propuesta). El agente empieza cada mensaje con una etiqueta del tema que pregunta (`[negocio]`, `[problema]`, `[hoy]`, `[cierre]`); el servidor la quita y la manda como `paso`. La barra nunca va hacia atrás y se llena al enseñar la propuesta.
+- **Sin IA** (sin clave, límite diario o error): dos preguntas fijas que también se contestan escribiendo.
+
+El texto del agente está en `lib/claude.js` (`SISTEMA`). Si lo cambias, pruébalo con varias conversaciones antes de publicar.
+
 ## El servidor
 
 Son Pages Functions en `functions/api/`:
 
 | Ruta | Qué hace |
 |---|---|
-| `POST /api/chat` | Habla con Claude (`lib/claude.js`). Guarda la conversación en KV 24 horas (`chat:<sesión>`), como promete la política de privacidad. Si no hay clave, se pasa el límite diario, la conversación pasa de 12 turnos o la API falla, contesta `{ respaldo: true }` y el navegador sigue con las preguntas guiadas. |
-| `POST /api/contacto` | Guarda el contacto solo si viene con `consentimiento: true`. Guarda también la fecha y el texto de la casilla como prueba. Se borra solo a los 12 meses. |
-| `POST /api/diagnostico` | Guarda el resultado del modo guiado sin datos personales. Los del modo IA los guarda `/api/chat`. |
+| `POST /api/chat` | Habla con Claude (`lib/claude.js`). Guarda la conversación y la ficha para el equipo en KV 24 horas (`chat:<sesión>`), como promete la política de privacidad. Si no hay clave, se pasa el límite diario, la conversación pasa de 12 turnos o la API falla, contesta `{ respaldo: true }` y el navegador sigue con las preguntas fijas. |
+| `POST /api/contacto` | Guarda el contacto: WhatsApp (pasado a +34 y con su enlace `wa.me`) o email, y el nombre, que llega en una segunda llamada y actualiza el mismo registro. Guarda el texto informativo que vio. Con él va lo que contó: la ficha del agente (o la conversación, si se cortó antes) o las respuestas del modo sin IA. Se borra solo a los 12 meses. |
+| `POST /api/diagnostico` | Guarda el cierre del modo sin IA sin texto libre ni datos personales (producto y siguiente paso). Los del modo IA los guarda `/api/chat`. |
 | `GET /api/diagnosticos` | Lista contactos o diagnósticos. Solo existe si configuras `ADMIN_TOKEN` (ver abajo). |
 
 Variables del proyecto en Cloudflare:
 
-- `CLAUDE_ANTHROPIC_API_KEY` (secreto): la clave de Anthropic. Sin ella el chat funciona en modo guiado.
+- `CLAUDE_ANTHROPIC_API_KEY` (secreto, en producción y en vista previa): la clave de Anthropic. Sin ella el chat hace dos preguntas fijas.
 - `CUPO_DIARIO` (en `wrangler.toml`, 300): conversaciones nuevas con IA al día.
 - `ADMIN_TOKEN` (secreto, opcional): activa `/api/diagnosticos`.
 - `AVISO_WEBHOOK` (opcional): URL de Slack o Discord que recibe un aviso con cada contacto nuevo.
@@ -86,7 +141,7 @@ Para probar en local: `npm run dev` (abre http://localhost:8788, con un KV de pr
 
 ## Dónde se ven los contactos
 
-- **En el panel de Cloudflare:** Storage & databases → Workers KV → `arcilla-studio`. Busca las claves que empiezan por `contacto:` (llevan la fecha y la hora). Los diagnósticos anónimos empiezan por `diagnostico:`.
+- **En el panel de Cloudflare:** Storage & databases → Workers KV → `arcilla-studio`. Busca las claves que empiezan por `contacto:` (llevan la fecha y la hora). Las estadísticas anónimas empiezan por `diagnostico:`. Ojo: la vista previa usa el mismo KV, así que las pruebas ahí también se guardan.
 - **Desde la terminal:**
   ```bash
   cd web
