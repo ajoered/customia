@@ -24,6 +24,8 @@ web/
 
 ## Diseño (v3)
 
+**Línea de diseño:** `../estudio/10-linea-de-diseno.md` ("La mano y el torno"). Léela antes de decidir nada de diseño.
+
 - **Idea:** un taller de cerámica española. Una sola pieza de arcilla (`assets/torno.js`, canvas 2D) se moldea con el scroll: ladrillo → arcilla → tu web → tu WhatsApp → tu herramienta → horno (al rojo) → esmalte cobalto y decoración a pincel. Si el navegador prefiere menos movimiento, se muestra la forma fija de cada etapa.
 - **Piezas de cerámica en vez de iconos planos** (estilo Airbnb). `assets/ceramica.js` pinta barro y esmalte con volumen: luz, canto, motas de chamota, anillos del torno, huecos y pincel. Lo usan:
   - el torno, en vivo;

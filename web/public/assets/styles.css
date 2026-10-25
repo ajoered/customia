@@ -132,7 +132,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .resultado { align-self: stretch; border: 1px solid var(--linea); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 12px; background: var(--hoja); box-shadow: var(--sombra); }
 .resultado-cifra { font-family: var(--serif); font-weight: 600; font-size: clamp(2.2rem, 1.5rem + 2vw, 3rem); line-height: 1; color: var(--cobalto); font-variant-numeric: tabular-nums lining-nums; letter-spacing: -0.02em; }
 .resultado-cifra small { font-family: var(--sans); font-weight: 400; font-size: var(--t-m); color: var(--tinta-2); letter-spacing: 0; }
-.resultado-calculo { font-size: var(--t-s); color: var(--tinta-2); overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.resultado-calculo { font-size: var(--t-s); color: var(--tinta-2); overflow-wrap: anywhere; }
 .contacto { display: grid; gap: 12px; }
 .contacto label { display: grid; gap: 5px; font-size: var(--t-s); font-weight: 600; }
 .contacto input[type="text"] { font: inherit; font-weight: 400; padding: 11px 13px; border-radius: 10px; border: 1px solid var(--linea); background: var(--papel); color: var(--tinta); width: 100%; transition: border-color .15s, background-color .15s; }
@@ -232,14 +232,15 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .m-wa .b.esc i:nth-child(2) { animation-delay: .15s; } .m-wa .b.esc i:nth-child(3) { animation-delay: .3s; }
 .m-wa .b.yo { align-self: flex-end; background: #dcf8c6; }
 .m-wa .b time { display: block; text-align: right; font-size: 8px; opacity: .55; margin-top: 2px; }
-.panel { width: 100%; max-width: 520px; font-variant-numeric: tabular-nums; background: #fffdf8; color: #1d1b17; border: 1px solid #e2ddd2; border-radius: 14px; box-shadow: var(--sombra); overflow: hidden; font-size: 11px; }
+.panel { width: 100%; max-width: 520px; background: #fffdf8; color: #1d1b17; border: 1px solid #e2ddd2; border-radius: 14px; box-shadow: var(--sombra); overflow: hidden; font-size: 11px; }
 .panel-top { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-bottom: 1px solid #e2ddd2; font-weight: 700; }
 .panel-top span { margin-left: auto; font-family: var(--mono); font-weight: 500; color: #5f5a51; }
 .panel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 10px 12px; }
 .panel-kpi { background: #f6f3ec; border-radius: 8px; padding: 8px; }
-.panel-kpi b { display: block; font-family: var(--serif); font-size: 18px; font-weight: 600; }
+.panel-kpi b { font-variant-numeric: tabular-nums; display: block; font-family: var(--serif); font-size: 18px; font-weight: 600; }
 .panel-kpi span { color: #5f5a51; }
 .panel table { width: 100%; border-collapse: collapse; }
+.panel td:first-child { font-variant-numeric: tabular-nums; }
 .panel td, .panel th { text-align: left; padding: 6px 12px; border-top: 1px solid #e2ddd2; }
 .panel th { color: #5f5a51; font-weight: 500; font-size: 10px; }
 .panel .ok { color: #1f6b3a; font-weight: 700; }
@@ -351,7 +352,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .hito.hecho .hito-num { background: var(--cobalto); border-color: var(--cobalto); color: #fff; }
 .hito h3 { font-size: var(--t-l); }
 .hito p { color: var(--tinta-2); font-size: var(--t-m); }
-.ficha { display: grid; grid-template-columns: 72px 1fr; gap: 6px 12px; margin: 8px 0 0; padding-top: 12px; border-top: 1px solid var(--linea); font-size: var(--t-s); align-self: start; font-variant-numeric: tabular-nums; }
+.ficha { display: grid; grid-template-columns: 72px 1fr; gap: 6px 12px; margin: 8px 0 0; padding-top: 12px; border-top: 1px solid var(--linea); font-size: var(--t-s); align-self: start; }
 .ficha dt { font-size: var(--t-s); color: var(--tinta-2); }
 .ficha dd { margin: 0; color: var(--tinta); }
 .compromiso { font-family: var(--serif); font-size: var(--t-l); line-height: 1.5; color: var(--tinta-2); max-width: 54ch; }
