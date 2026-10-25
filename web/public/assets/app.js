@@ -1,10 +1,12 @@
-// Chat de diagnóstico de Arcilla Studio.
+// Chat de la portada de Arcilla Studio.
 //
 // Dos modos:
-//  - "ia": habla con /api/chat (Cloudflare Pages Function + Claude).
-//  - "guiado": preguntas fijas con botones y la cuenta hecha en el navegador.
-//    Se usa si la API no responde (vista previa, sin clave configurada, límite diario).
-// Los dos acaban igual: un resultado con el coste estimado y un formulario de contacto.
+//  - "ia": habla con /api/chat (Cloudflare Pages Function + Claude): una conversación de dos o tres
+//    minutos para entender qué le pasa al negocio.
+//  - "guiado": si la API no responde (vista previa, sin clave, límite diario), cuatro preguntas fijas
+//    que se contestan escribiendo.
+// Solo la primera respuesta puede ser un clic (las opciones de la portada). Los dos modos acaban igual:
+// lo que hemos entendido, lo que haríamos, el siguiente paso y un formulario de contacto.
 
 (function () {
   "use strict";
@@ -20,7 +22,7 @@
   const $ = (sel) => document.querySelector(sel);
   const lista = $("#chat-mensajes");
   const ventana = $("#ventana");
-  const SALUDO = "Hola. Soy el asistente de Arcilla Studio, una inteligencia artificial. Cuéntame qué negocio tienes y qué te quita el sueño. En dos minutos te digo cuánto te está costando y si podemos ayudarte.";
+  const SALUDO = "Hola, soy el agente de Arcilla Studio, una IA. Cuéntame qué te pasa y en un par de minutos vemos cómo ayudarte.";
   let empezado = false;
   function empezar() {
     if (empezado) return;
@@ -43,7 +45,8 @@
   let modo = "ia";
   let ocupado = false;
   let terminado = false;
-  let diagnostico = null;
+  let respuestasIA = 0; // cuántas veces ha contestado el agente
+  let cierre = null; // lo que se enseña al final
 
   // ---------- Pintar mensajes ----------
   function burbuja(texto, quien) {
@@ -63,27 +66,7 @@
     bajar();
     return div;
   }
-  function opciones(items, alElegir) {
-    quitarOpciones();
-    const caja = document.createElement("div");
-    caja.className = "opciones";
-    items.forEach((item) => {
-      const b = document.createElement("button");
-      b.type = "button";
-      b.className = "opcion";
-      b.textContent = item.texto;
-      b.addEventListener("click", () => {
-        quitarOpciones();
-        burbuja(item.texto, "tu");
-        alElegir(item);
-      });
-      caja.appendChild(b);
-    });
-    lista.appendChild(caja);
-    bajar();
-  }
   function quitarOpciones() {
-    lista.querySelectorAll(".opciones").forEach((n) => n.remove());
     const ini = document.getElementById("opciones-iniciales");
     if (ini) ini.remove();
   }
@@ -91,26 +74,39 @@
     lista.scrollTop = lista.scrollHeight;
   }
   const pausa = (ms) => new Promise((r) => setTimeout(r, ms));
-  const euros = (n) => Math.round(n).toLocaleString("es-ES") + "\u00a0€"; // espacio que no se parte
-  const redondear = (n) => Math.round(n / 10) * 10;
+  const euros = (n) => Math.round(n).toLocaleString("es-ES") + " €"; // espacio que no se parte
+  async function decir(texto) {
+    const e = escribiendo();
+    await pausa(500);
+    e.remove();
+    burbuja(texto, "bot");
+  }
 
   // ---------- Modo guiado ----------
-  const PROBLEMAS = {
-    telefono: "No llego a coger el teléfono",
-    whatsapp: "Contesto WhatsApps a todas horas",
-    web: "Mi web no me trae clientes",
-    tareas: "Pierdo horas con presupuestos o reservas",
-    otro: "Otra cosa",
+  const PREGUNTA_PROBLEMA = {
+    telefono: "¿En qué momentos se te escapan más llamadas? Si te acuerdas de la última vez, cuéntamela.",
+    whatsapp: "¿Qué te preguntan más por WhatsApp, y a qué horas?",
+    web: "¿Qué te gustaría que pasara cuando alguien entra en tu web, y qué pasa ahora?",
+    tareas: "¿Qué tarea es la que más tiempo te quita? Cuéntame la última vez.",
+    otro: "Cuéntame qué pasa, con un ejemplo de la última vez.",
   };
+  const PREGUNTAS = [
+    { campo: "negocio", texto: () => "Vamos a ello. ¿Qué negocio tienes? Si tienes web o Instagram, pásame el enlace o el nombre." },
+    { campo: "detalle", texto: () => "Gracias. " + PREGUNTA_PROBLEMA[guia.problema] },
+    { campo: "hoy", texto: () => "Apuntado. ¿Cómo lo haces ahora? Por ejemplo, WhatsApp normal, un programa de reservas, Excel o papel." },
+    { campo: "resuelto", texto: () => "La última: si esto funcionara solo, ¿qué cambiaría en tu día?" },
+  ];
+  const ETIQUETAS = { inicio: "Lo que te pasa", negocio: "Tu negocio", detalle: "En concreto", hoy: "Cómo lo haces hoy", resuelto: "Lo que cambiaría" };
   const PROPUESTAS = {
-    telefono: "Un sistema que, cuando no puedes coger el teléfono, escribe al momento por WhatsApp a quien te llamó, le atiende y te pasa un resumen.",
-    whatsapp: "Un asistente de WhatsApp que contesta al momento, pregunta lo necesario y te pasa solo las consultas buenas, con un resumen.",
+    telefono: "Cuando no puedas coger el teléfono, a quien te llamó le llega al momento un WhatsApp que le atiende y te deja un resumen.",
+    whatsapp: "Un agente de WhatsApp que contesta al momento, pregunta lo necesario y te pasa solo las consultas buenas, con un resumen.",
     web: "Una web nueva, hecha para el móvil, con tus precios y un botón claro para reservar o pedir presupuesto. Te la enseñamos hecha antes de que pagues.",
     tareas: "Una herramienta a medida que haga esa tarea por ti y te deje solo revisar.",
-    otro: "Esto mejor lo vemos en una llamada de 20 minutos.",
+    otro: "Lo vemos en una llamada de veinte minutos y te decimos qué haríamos.",
   };
-  const guia = { problema: null, sector: null, cantidad: null, conversion: null, valor: null, tarifa: null, detalle: "" };
-  let pasoTexto = null; // si espera texto libre, función que lo recibe
+  const PASO = { telefono: "demo_whatsapp", whatsapp: "demo_whatsapp", web: "maqueta_web", tareas: "propuesta", otro: "llamada" };
+  const PRODUCTO = { telefono: "llamadas", whatsapp: "agente_whatsapp", web: "web", tareas: "herramienta", otro: "otro" };
+  const guia = { problema: "otro", respuestas: {}, paso: 0 };
 
   function adivinarProblema(texto) {
     const t = texto.toLowerCase();
@@ -121,169 +117,132 @@
     return "otro";
   }
 
-  async function guiado(problema, textoLibre) {
+  async function guiado(problema, inicio) {
     modo = "guiado";
     guia.problema = problema;
-    if (textoLibre) guia.detalle = textoLibre;
-    await decir("Vamos con tres preguntas rápidas. ¿Qué tipo de negocio tienes?");
-    opciones([
-      { texto: "Restaurante o eventos" }, { texto: "Finca para bodas" }, { texto: "Hotel u hostal" },
-      { texto: "Clínica" }, { texto: "Despacho" }, { texto: "Reformas" }, { texto: "Tienda" }, { texto: "Otro" },
-    ], (o) => { guia.sector = o.texto; preguntarCantidad(); });
-    pasoTexto = (t) => { guia.sector = t; preguntarCantidad(); };
+    guia.respuestas = { inicio };
+    guia.paso = 0;
+    await decir(PREGUNTAS[0].texto());
   }
-
-  async function decir(texto) {
-    const e = escribiendo();
-    await pausa(500);
-    e.remove();
-    burbuja(texto, "bot");
-  }
-
-  async function preguntarCantidad() {
+  async function responderGuiado(texto) {
+    guia.respuestas[PREGUNTAS[guia.paso].campo] = texto.slice(0, 600);
+    guia.paso += 1;
+    if (guia.paso < PREGUNTAS.length) return decir(PREGUNTAS[guia.paso].texto());
+    await decir("Gracias. Con esto ya podemos preparar algo concreto para ti.");
     const p = guia.problema;
-    pasoTexto = null;
-    if (p === "telefono" || p === "whatsapp") {
-      await decir("Más o menos, ¿cuántas llamadas o mensajes se te quedan sin contestar a tiempo cada semana?");
-      opciones([{ texto: "1 a 5", v: 3 }, { texto: "5 a 15", v: 10 }, { texto: "15 a 30", v: 22 }, { texto: "Más de 30", v: 40 }],
-        (o) => { guia.cantidad = o; preguntarConversion(); });
-    } else if (p === "web") {
-      await decir("Con una web que funcionase de verdad, ¿cuántos clientes más al mes te parecería realista?");
-      opciones([{ texto: "1 o 2", v: 1.5 }, { texto: "3 a 5", v: 4 }, { texto: "6 a 10", v: 8 }, { texto: "Más de 10", v: 12 }],
-        (o) => { guia.cantidad = o; preguntarValor(); });
-    } else if (p === "tareas") {
-      await decir("¿Cuántas horas a la semana se te van en eso?");
-      opciones([{ texto: "1 a 3", v: 2 }, { texto: "3 a 6", v: 4.5 }, { texto: "6 a 10", v: 8 }, { texto: "Más de 10", v: 12 }],
-        (o) => { guia.cantidad = o; preguntarTarifa(); });
-    } else {
-      if (guia.detalle) return mostrarResultado();
-      await decir("Cuéntamelo en una frase y lo vemos.");
-      pasoTexto = (t) => { guia.detalle = t; mostrarResultado(); };
-    }
-  }
-  async function preguntarConversion() {
-    await decir("De cada 10 personas que te llaman o escriben, ¿cuántas acaban siendo clientes?");
-    opciones([{ texto: "1 de cada 10", v: 0.1 }, { texto: "3 de cada 10", v: 0.3 }, { texto: "5 de cada 10", v: 0.5 }, { texto: "No lo sé", v: 0.2 }],
-      (o) => { guia.conversion = o; preguntarValor(); });
-  }
-  async function preguntarValor() {
-    await decir("¿Cuánto te deja de media un cliente?");
-    opciones([{ texto: "Menos de 50 €", v: 30 }, { texto: "50 a 200 €", v: 120 }, { texto: "200 a 1.000 €", v: 500 },
-      { texto: "1.000 a 5.000 €", v: 2500 }, { texto: "Más de 5.000 €", v: 8000 }],
-      (o) => { guia.valor = o; mostrarResultado(); });
-  }
-  async function preguntarTarifa() {
-    await decir("¿Cuánto vale una hora tuya, o de quien lo hace?");
-    opciones([{ texto: "15 €", v: 15 }, { texto: "25 €", v: 25 }, { texto: "40 €", v: 40 }, { texto: "60 € o más", v: 70 }],
-      (o) => { guia.tarifa = o; mostrarResultado(); });
+    mostrarCierre({ propuesta: PROPUESTAS[p], siguiente_paso: PASO[p], producto: PRODUCTO[p], coste_mensual_eur: 0 }, guia.respuestas);
+    enviarAnonimo({ producto: PRODUCTO[p], siguiente_paso: PASO[p] });
   }
 
-  function calcularGuiado() {
-    const p = guia.problema;
-    let coste = 0;
-    let calculo = "";
-    if (p === "telefono" || p === "whatsapp") {
-      coste = guia.cantidad.v * 4.3 * guia.conversion.v * guia.valor.v;
-      calculo = `${guia.cantidad.v} consultas/semana × 4,3 semanas × ${Math.round(guia.conversion.v * 100)} % que serían clientes × ${euros(guia.valor.v)}`;
-    } else if (p === "web") {
-      coste = guia.cantidad.v * guia.valor.v;
-      calculo = `${guia.cantidad.v} clientes más al mes × ${euros(guia.valor.v)} (estimación tuya)`;
-    } else if (p === "tareas") {
-      coste = guia.cantidad.v * 4.3 * guia.tarifa.v;
-      calculo = `${guia.cantidad.v} h/semana × 4,3 semanas × ${euros(guia.tarifa.v)}/hora`;
-    }
-    return {
-      sector: guia.sector || "",
-      problema: PROBLEMAS[p] + (guia.detalle ? `: ${guia.detalle}` : ""),
-      coste_mensual_eur: redondear(coste),
-      calculo,
-      propuesta: PROPUESTAS[p],
-    };
-  }
+  // ---------- Cierre y contacto ----------
+  const PASOS = {
+    maqueta_web: { titulo: "¿Te preparamos la maqueta?", texto: "Déjanos tu contacto y te la enseñamos antes de que pagues nada.", boton: "Sí, preparadla" },
+    demo_whatsapp: { titulo: "¿Te enseñamos una demo?", texto: "Con las preguntas que te hacen de verdad. Déjanos tu contacto y te la enseñamos.", boton: "Sí, enseñádmela" },
+    propuesta: { titulo: "¿Te mandamos la propuesta?", texto: "Con lo que haríamos y el precio cerrado, por escrito.", boton: "Sí, mandádmela" },
+    llamada: { titulo: "¿Lo vemos en una llamada?", texto: "Veinte minutos para entenderlo bien y decirte qué haríamos.", boton: "Sí, llamadme" },
+  };
 
-  async function mostrarResultado(datos) {
-    pasoTexto = null;
+  // datos: { resumen?, propuesta, siguiente_paso, producto, nombre_negocio?, coste_mensual_eur, calculo? }
+  // respuestas: lo contestado en el modo guiado, que se enseña tal cual.
+  function mostrarCierre(datos, respuestas) {
     terminado = true;
-    diagnostico = datos || calcularGuiado();
-    if (!datos) {
-      await decir("Hecha la cuenta. Esto es lo que te puede estar costando:");
-      enviarAnonimo(diagnostico);
-    }
-    pintarResultado(diagnostico);
-  }
-
-  // ---------- Resultado y contacto ----------
-  function pintarResultado(d) {
+    cierre = datos;
+    const paso = PASOS[datos.siguiente_paso] || PASOS.llamada;
     const caja = document.createElement("div");
     caja.className = "resultado";
-    const tieneCifra = Number(d.coste_mensual_eur) > 0;
     caja.innerHTML = `
-      <p class="etiqueta">Tu diagnóstico</p>
-      ${tieneCifra ? `<p class="resultado-cifra">≈ ${euros(d.coste_mensual_eur)} <small>al mes</small></p>` : ""}
-      ${d.calculo ? `<p class="resultado-calculo"></p>` : ""}
-      ${tieneCifra ? `<p>Aunque solo recuperases la mitad, serían unos <strong>${euros(redondear(d.coste_mensual_eur / 2))} al mes</strong>.</p>` : ""}
-      <p class="resultado-propuesta"><strong>Lo que haríamos:</strong> <span></span></p>
+      <p class="etiqueta">Lo que hemos entendido</p>
+      <div class="resultado-entendido"></div>
+      <p class="etiqueta">Lo que haríamos</p>
+      <p class="resultado-propuesta"></p>
       <form class="contacto" novalidate>
+        <p class="resultado-paso"><strong></strong> <span></span></p>
         <label for="c-nombre">Tu nombre<input type="text" id="c-nombre" autocomplete="name" maxlength="80" required></label>
         <label for="c-contacto">Teléfono o email<input type="text" id="c-contacto" autocomplete="tel" maxlength="120" required></label>
         <label for="c-negocio">Nombre del negocio (opcional)<input type="text" id="c-negocio" maxlength="120"></label>
+        <label for="c-web">Tu web o Instagram (opcional)<input type="text" id="c-web" autocomplete="url" maxlength="200"></label>
         <label class="consentimiento" for="c-permiso"><input type="checkbox" id="c-permiso" required>
-          <span>Acepto que Arcilla Studio (ARVENTURES S.L.) me contacte sobre este diagnóstico. <a href="privacidad.html">Privacidad</a>.</span></label>
-        <button class="boton" type="submit">Quiero que me llaméis</button>
+          <span>Acepto que Arcilla Studio (ARVENTURES S.L.) me contacte sobre lo que he contado en este chat. <a href="privacidad.html">Privacidad</a>.</span></label>
+        <button class="boton" type="submit"></button>
         <p class="contacto-estado" role="status"></p>
       </form>
       <button class="enlace-boton" type="button" data-accion="reiniciar">Empezar de nuevo</button>`;
-    if (d.calculo) caja.querySelector(".resultado-calculo").textContent = d.calculo;
-    caja.querySelector(".resultado-propuesta span").textContent = d.propuesta || "";
-    caja.querySelector("form").addEventListener("submit", (ev) => enviarContacto(ev, caja));
+    const entendido = caja.querySelector(".resultado-entendido");
+    if (respuestas) {
+      const ul = document.createElement("ul");
+      ul.className = "resultado-lista";
+      Object.entries(ETIQUETAS).forEach(([campo, etiqueta]) => {
+        if (!respuestas[campo]) return;
+        const li = document.createElement("li");
+        const b = document.createElement("strong");
+        b.textContent = etiqueta + ": ";
+        li.append(b, respuestas[campo]);
+        ul.appendChild(li);
+      });
+      entendido.appendChild(ul);
+    } else {
+      const p = document.createElement("p");
+      p.textContent = datos.resumen || "";
+      entendido.appendChild(p);
+    }
+    caja.querySelector(".resultado-propuesta").textContent = datos.propuesta || "";
+    if (Number(datos.coste_mensual_eur) > 0) {
+      const c = document.createElement("p");
+      c.className = "resultado-calculo";
+      c.textContent = `Ahora mismo esto te puede estar costando unos ${euros(datos.coste_mensual_eur)} al mes` + (datos.calculo ? ` (${datos.calculo}).` : ".");
+      caja.querySelector(".resultado-propuesta").after(c);
+    }
+    caja.querySelector(".resultado-paso strong").textContent = paso.titulo;
+    caja.querySelector(".resultado-paso span").textContent = paso.texto;
+    caja.querySelector("button[type=submit]").textContent = paso.boton;
+    if (datos.nombre_negocio) caja.querySelector("#c-negocio").value = datos.nombre_negocio;
+    caja.querySelector("form").addEventListener("submit", (ev) => enviarContacto(ev, respuestas));
     caja.querySelector('[data-accion="reiniciar"]').addEventListener("click", () => window.location.reload());
     lista.appendChild(caja);
     bajar();
   }
 
-  function resumenTexto(d, nombre, contacto, negocio) {
-    return [
-      "Hola, vengo del diagnóstico de arcillastudio.com.",
-      `Nombre: ${nombre}`,
-      negocio ? `Negocio: ${negocio}` : "",
-      d.sector ? `Sector: ${d.sector}` : "",
-      `Problema: ${d.problema}`,
-      Number(d.coste_mensual_eur) > 0 ? `Coste estimado: ${euros(d.coste_mensual_eur)} al mes` : "",
-      `Contacto: ${contacto}`,
-    ].filter(Boolean).join("\n");
+  function resumenTexto(nombre, contacto, negocio, web, respuestas) {
+    const lineas = ["Hola, vengo del chat de arcillastudio.com.", `Nombre: ${nombre}`, negocio ? `Negocio: ${negocio}` : "", web ? `Web o Instagram: ${web}` : ""];
+    if (respuestas) Object.entries(ETIQUETAS).forEach(([campo, etiqueta]) => { if (respuestas[campo]) lineas.push(`${etiqueta}: ${respuestas[campo]}`); });
+    else if (cierre && cierre.resumen) lineas.push(`Lo que os conté: ${cierre.resumen}`);
+    lineas.push(`Contacto: ${contacto}`);
+    return lineas.filter(Boolean).join("\n");
   }
 
-  async function enviarContacto(ev, caja) {
+  async function enviarContacto(ev, respuestas) {
     ev.preventDefault();
     const form = ev.currentTarget;
     const estado = form.querySelector(".contacto-estado");
     const nombre = form.querySelector("#c-nombre").value.trim();
     const contacto = form.querySelector("#c-contacto").value.trim();
     const negocio = form.querySelector("#c-negocio").value.trim();
+    const web = form.querySelector("#c-web").value.trim();
     const permiso = form.querySelector("#c-permiso").checked;
-    if (!nombre || !contacto) { estado.textContent = "Pon tu nombre y un teléfono o email para poder llamarte."; return; }
+    if (!nombre || !contacto) { estado.textContent = "Pon tu nombre y un teléfono o email para poder escribirte."; return; }
     if (!permiso) { estado.textContent = "Marca la casilla para que podamos contactarte."; return; }
     const boton = form.querySelector("button[type=submit]");
     boton.disabled = true;
     estado.textContent = "Enviando…";
     try {
+      const guiadoDatos = respuestas ? { problema: guia.problema, ...respuestas } : null;
       const r = await fetch(`${CONFIG.api}/contacto`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sesion, nombre, contacto, negocio, consentimiento: true, modo, diagnostico }),
+        body: JSON.stringify({ sesion, nombre, contacto, negocio, web, consentimiento: true, modo, guiado: guiadoDatos }),
       });
       if (!r.ok) throw new Error(String(r.status));
       form.innerHTML = "";
       const ok = document.createElement("p");
       ok.className = "aviso";
-      ok.textContent = `Recibido, ${nombre}. Te contactamos en un día laborable.`;
+      ok.textContent = `Recibido, ${nombre}. Te escribimos en un día laborable.`;
       form.appendChild(ok);
     } catch (e) {
       boton.disabled = false;
       estado.textContent = "";
       const aviso = document.createElement("div");
       aviso.className = "aviso";
-      const texto = resumenTexto(diagnostico, nombre, contacto, negocio);
+      const texto = resumenTexto(nombre, contacto, negocio, web, respuestas);
       aviso.innerHTML = `<p>No hemos podido enviarlo desde aquí. Mándanos este resumen por email a ${CONFIG.email}:</p><pre></pre>`;
       aviso.querySelector("pre").textContent = texto;
       const copiar = document.createElement("button");
@@ -307,12 +266,12 @@
     }
   }
 
-  function enviarAnonimo(d) {
-    // Solo datos del diagnóstico, sin nombre ni contacto: sirven para medir cuánto duele cada problema por sector.
+  function enviarAnonimo(datos) {
+    // Solo el tipo de problema y el siguiente paso, sin texto libre ni contacto: sirve para ver qué es lo más común.
     fetch(`${CONFIG.api}/diagnostico`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sesion, modo, diagnostico: d }),
+      body: JSON.stringify({ sesion, modo, anonima: datos }),
     }).catch(() => {});
   }
 
@@ -331,13 +290,20 @@
       const datos = await r.json();
       e.remove();
       if (datos.respaldo) throw new Error("respaldo");
+      respuestasIA += 1;
       if (datos.respuesta) burbuja(datos.respuesta, "bot");
-      if (datos.diagnostico) mostrarResultado(datos.diagnostico);
+      if (datos.cierre && !terminado) mostrarCierre(datos.cierre);
     } catch (err) {
       e.remove();
-      // Sin API (vista previa, límite o error): seguimos con las preguntas guiadas.
-      if (modo === "ia" && !terminado) {
-        await guiado(clave || adivinarProblema(texto), clave ? "" : texto);
+      if (terminado) {
+        await decir(`Si quieres añadir algo, escríbelo en el formulario o mándanos un email a ${CONFIG.email}.`);
+      } else if (respuestasIA > 0) {
+        // Se ha cortado a mitad: lo seguimos en persona.
+        await decir("Perdona, se me ha cortado la conexión. Déjanos tu contacto y lo seguimos por ahí.");
+        mostrarCierre({ resumen: "Nos llega lo que nos has contado hasta aquí, así que no tendrás que repetirlo.", propuesta: PROPUESTAS.otro, siguiente_paso: "llamada", producto: "otro", coste_mensual_eur: 0 });
+      } else {
+        // Sin API (vista previa, límite o error): seguimos con las preguntas fijas.
+        await guiado(clave || adivinarProblema(texto), texto);
       }
     } finally {
       ocupado = false;
@@ -351,10 +317,9 @@
       if (ocupado) return;
       empezar();
       quitarOpciones();
-      burbuja(b.textContent, "tu");
-      const clave = b.dataset.valor;
-      if (modo === "ia") hablarConIA(PROBLEMAS[clave], clave);
-      else guiado(clave, "");
+      const texto = b.textContent.trim();
+      burbuja(texto, "tu");
+      hablarConIA(texto, b.dataset.valor);
     });
   });
 
@@ -367,10 +332,9 @@
     empezar();
     quitarOpciones();
     burbuja(texto, "tu");
-    if (modo === "ia" && !terminado) return hablarConIA(texto);
-    if (pasoTexto) return pasoTexto(texto);
-    if (terminado) return decir("Si quieres afinar algo, déjanos tu contacto en el formulario de arriba y lo vemos en la llamada.");
-    decir("Elige una de las opciones de arriba o escríbeme en una frase.");
+    if (modo === "ia") return hablarConIA(texto);
+    if (!terminado) return responderGuiado(texto);
+    decir(`Si quieres añadir algo, escríbelo en el formulario o mándanos un email a ${CONFIG.email}.`);
   });
 
   entrada.addEventListener("input", () => {
@@ -451,7 +415,7 @@
   }
 
   // El chat avanza con el scroll: el primer mensaje ya está al llegar y el último cae al 85 % del tramo.
-  // Antes de cada mensaje del asistente aparece "escribiendo".
+  // Antes de cada mensaje del agente aparece "escribiendo".
   function escribirChat(t) {
     if (!cajaChat) return;
     const bs = Array.from(cajaChat.querySelectorAll(".b[data-t]"));

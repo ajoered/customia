@@ -134,9 +134,12 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .opcion:hover { background: var(--acento-suave); border-color: var(--acento); }
 .chat-formulario { display: flex; gap: 10px; align-items: center; }
 .resultado { align-self: stretch; border: 1px solid var(--linea); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 12px; background: var(--hoja); box-shadow: var(--sombra); }
-.resultado-cifra { font-family: var(--serif); font-weight: 600; font-size: clamp(2.2rem, 1.5rem + 2vw, 3rem); line-height: 1; color: var(--acento); font-variant-numeric: tabular-nums lining-nums; letter-spacing: -0.02em; }
-.resultado-cifra small { font-family: var(--sans); font-weight: 400; font-size: var(--t-m); color: var(--tinta-2); letter-spacing: 0; }
+.resultado p, .resultado ul { margin: 0; }
+.resultado .etiqueta { margin-bottom: -6px; }
+.resultado-lista { padding-left: 1.1em; display: grid; gap: 6px; }
 .resultado-calculo { font-size: var(--t-s); color: var(--tinta-2); overflow-wrap: anywhere; }
+.resultado-paso { margin-top: 6px; border-top: 1px solid var(--linea); padding-top: 16px; }
+.resultado-paso strong { font-family: var(--serif); font-weight: 600; font-size: var(--t-l); display: block; margin-bottom: 2px; }
 .contacto { display: grid; gap: 12px; }
 .contacto label { display: grid; gap: 5px; font-size: var(--t-s); font-weight: 600; }
 .contacto input[type="text"] { font: inherit; font-weight: 400; padding: 11px 13px; border-radius: 10px; border: 1px solid var(--linea); background: var(--papel); color: var(--tinta); width: 100%; transition: border-color .15s, background-color .15s; }
