@@ -185,7 +185,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .maqueta-escenario { display: flex; flex-direction: column; align-items: center; gap: 14px; width: 100%; }
 .taller-escena .maqueta.activa { opacity: 1; transform: none; }
 .maqueta-pie { font-family: var(--mono); font-size: var(--t-xs); color: var(--tinta-2); text-align: center; max-width: 40ch; }
-}
 .seccion .wrap { display: flex; flex-direction: column; gap: clamp(28px, 4vw, 48px); padding-block: clamp(64px, 9vw, 120px); }
 .seccion-cabeza { display: flex; flex-direction: column; gap: 12px; max-width: 60ch; }
 .seccion-cabeza p { font-size: var(--t-l); color: var(--tinta-2); line-height: 1.5; }
