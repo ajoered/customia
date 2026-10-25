@@ -196,7 +196,9 @@ html.chat-abierto { overflow: hidden; }
   .torno-pieza::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 44px; background: linear-gradient(var(--papel), rgba(243, 243, 239, 0)); pointer-events: none; }
   .torno-pieza canvas { max-width: min(29vh, 66vw); }
   .torno-pieza figcaption { position: static; }
-  .paso-torno { min-height: 54vh; padding-block: 5vh; justify-content: center; }
+  /* Sin altura mínima: cada texto va justo debajo del anterior y no quedan huecos vacíos. */
+  .paso-torno { min-height: 0; padding-block: 6vh; justify-content: flex-start; }
+  .torno-pasos { padding-bottom: 18vh; } /* que el último paso llegue al centro y la vasija se termine */
   .paso-torno h2 { font-size: clamp(1.8rem, 1.2rem + 3vw, 2.4rem); }
   .paso-torno p { font-size: var(--t-m); }
 }
