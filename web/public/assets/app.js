@@ -1,9 +1,9 @@
 // Chat de la portada de Arcilla Studio.
 //
 // Dos modos:
-//  - "ia": habla con /api/chat (Cloudflare Pages Function + Claude): una conversación de dos o tres
-//    minutos para entender qué le pasa al negocio.
-//  - "guiado": si la API no responde (vista previa, sin clave, límite diario), cuatro preguntas fijas
+//  - "ia": habla con /api/chat (Cloudflare Pages Function + Claude): una conversación de un par de
+//    minutos para entender qué le pasa al negocio. Lo esencial: el negocio y un caso real.
+//  - "guiado": si la API no responde (vista previa, sin clave, límite diario), dos preguntas fijas
 //    que se contestan escribiendo.
 // Solo la primera respuesta puede ser un clic (las opciones de la portada). Los dos modos acaban igual:
 // lo que hemos entendido, lo que haríamos, el siguiente paso y un formulario de contacto.
@@ -139,7 +139,7 @@
   // ---------- Avance ----------
   // Lo marca el tema de lo que el agente pregunta (lo manda el servidor) o la pregunta fija del modo
   // sin IA. Nunca va hacia atrás y se llena al enseñar la propuesta.
-  const AVANCE = { negocio: 0.125, problema: 0.375, hoy: 0.625, resuelto: 0.7, extra: 0.75, cierre: 1 };
+  const AVANCE = { negocio: 1 / 6, problema: 0.5, hoy: 0.6, cierre: 1 };
   const tramos = Array.from(document.querySelectorAll("#chat-progreso li"));
   const progreso = $("#chat-progreso");
   let avance = 0;
@@ -177,10 +177,8 @@
   const PREGUNTAS = [
     { campo: "negocio", paso: "negocio", texto: () => "Vamos a ello. ¿Qué negocio tienes? Si tienes web o Instagram, pásame el enlace o el nombre." },
     { campo: "detalle", paso: "problema", texto: () => "Gracias. " + PREGUNTA_PROBLEMA[guia.problema] },
-    { campo: "hoy", paso: "hoy", texto: () => "Apuntado. ¿Cómo lo haces ahora? Por ejemplo, WhatsApp normal, un programa de reservas, Excel o papel." },
-    { campo: "resuelto", paso: "resuelto", texto: () => "La última: si esto funcionara solo, ¿qué cambiaría en tu día?" },
   ];
-  const ETIQUETAS = { inicio: "Lo que te pasa", negocio: "Tu negocio", detalle: "En concreto", hoy: "Cómo lo haces hoy", resuelto: "Lo que cambiaría" };
+  const ETIQUETAS = { inicio: "Lo que te pasa", negocio: "Tu negocio", detalle: "En concreto" };
   const PROPUESTAS = {
     telefono: "Cuando no puedas coger el teléfono, a quien te llamó le llega al momento un WhatsApp que le atiende y te deja un resumen.",
     whatsapp: "Un agente de WhatsApp que contesta al momento, pregunta lo necesario y te pasa solo las consultas buenas, con un resumen.",

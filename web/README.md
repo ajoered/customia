@@ -85,15 +85,15 @@ La clave de Anthropic se llama `CLAUDE_ANTHROPIC_API_KEY` (no `ANTHROPIC_API_KEY
 
 ## El agente de la portada
 
-Una conversación de dos o tres minutos para entender qué le pasa al negocio, no una calculadora. Solo la primera respuesta es un clic (las opciones de la portada); después se escribe.
+Una conversación de un par de minutos para entender qué le pasa al negocio, no una calculadora ni un formulario. Solo la primera respuesta es un clic (las opciones de la portada); después se escribe.
 
-- **Lo que pregunta**, por orden y sin repetir lo que ya le han contado: el negocio (y su web o Instagram, para la maqueta), el problema con un ejemplo real, cómo lo hacen hoy, qué sería tenerlo resuelto y, solo si sale, el tamaño y la urgencia.
+- **Lo que pregunta:** solo lo esencial, sin repetir lo que ya le han contado. El negocio, con su web o Instagram para la maqueta, y el problema con un caso real ("¿cuándo fue la última vez?"). Una tercera pregunta (cómo lo hacen hoy) solo si sin ella no puede proponer nada concreto. Lo demás se ve en la llamada; si lo cuentan, lo apunta.
 - **Para que se sientan escuchados:** antes de cada pregunta repite en media frase lo último que le han dicho, con sus palabras; una pregunta por mensaje; mensajes de una o dos frases.
-- **Cierre:** a partir del quinto mensaje el servidor le pide cerrar. Llama a `preparar_propuesta` y la web enseña lo que hemos entendido, lo que haríamos y el siguiente paso (maqueta de la web, demo del agente de WhatsApp, propuesta o llamada) con el formulario.
+- **Cierre:** lo normal es cerrar tras dos preguntas; a partir del tercer mensaje el servidor le pide cerrar. Llama a `preparar_propuesta` y la web enseña lo que hemos entendido, lo que haríamos y el siguiente paso (maqueta de la web, demo del agente de WhatsApp, propuesta o llamada) con el formulario.
 - **La ficha para Álvaro** (se guarda con el contacto): sector, nombre, web o redes, quién atiende, problema, ejemplo, cómo lo hacen hoy, qué sería resuelto, volumen, coste si salió, urgencia y qué falta por confirmar en la llamada.
 - **Pantalla completa:** al empezar, la caja se abre a toda la pantalla, como America.gov o ChatGPT: arriba la marca, el avance y "Cerrar"; en medio la conversación en una columna; abajo la caja. "Cerrar", Esc o el botón de atrás del móvil la devuelven a su sitio con la conversación dentro. En el ordenador, Intro envía.
-- **Barra de avance:** cuatro tramos (tu negocio, lo que pasa, cómo lo haces, propuesta). El agente empieza cada mensaje con una etiqueta del tema que pregunta (`[negocio]`, `[problema]`, `[hoy]`, `[resuelto]`, `[extra]`, `[cierre]`); el servidor la quita y la manda como `paso`. La barra nunca va hacia atrás y se llena al enseñar la propuesta.
-- **Sin IA** (sin clave, límite diario o error): cuatro preguntas fijas que también se contestan escribiendo.
+- **Barra de avance:** tres tramos (tu negocio, lo que pasa, propuesta). El agente empieza cada mensaje con una etiqueta del tema que pregunta (`[negocio]`, `[problema]`, `[hoy]`, `[cierre]`); el servidor la quita y la manda como `paso`. La barra nunca va hacia atrás y se llena al enseñar la propuesta.
+- **Sin IA** (sin clave, límite diario o error): dos preguntas fijas que también se contestan escribiendo.
 
 El texto del agente está en `lib/claude.js` (`SISTEMA`). Si lo cambias, pruébalo con varias conversaciones antes de publicar.
 
@@ -110,7 +110,7 @@ Son Pages Functions en `functions/api/`:
 
 Variables del proyecto en Cloudflare:
 
-- `CLAUDE_ANTHROPIC_API_KEY` (secreto, en producción y en vista previa): la clave de Anthropic. Sin ella el chat hace cuatro preguntas fijas.
+- `CLAUDE_ANTHROPIC_API_KEY` (secreto, en producción y en vista previa): la clave de Anthropic. Sin ella el chat hace dos preguntas fijas.
 - `CUPO_DIARIO` (en `wrangler.toml`, 300): conversaciones nuevas con IA al día.
 - `ADMIN_TOKEN` (secreto, opcional): activa `/api/diagnosticos`.
 - `AVISO_WEBHOOK` (opcional): URL de Slack o Discord que recibe un aviso con cada contacto nuevo.
