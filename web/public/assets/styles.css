@@ -93,8 +93,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 /* Portada: alineada a la izquierda, el titular manda. */
 .portada .wrap { display: flex; flex-direction: column; align-items: flex-start; gap: clamp(20px, 2.4vw, 30px); padding-block: clamp(52px, 8.5vw, 124px) clamp(24px, 3vw, 40px); }
-.portada h1 { font-size: clamp(2.8rem, 1rem + 5.4vw, 6.4rem); font-weight: 500; line-height: .96; letter-spacing: -0.03em; max-width: 19ch; }
-/* Cortes de línea a mano en pantallas anchas: "Hacemos el software / de tu negocio, / a medida." */
+.portada h1 { font-size: clamp(2.8rem, 1rem + 5.4vw, 6.4rem); font-weight: 500; line-height: .96; letter-spacing: -0.03em; max-width: 24ch; }
+/* Cortes de línea a mano en pantallas anchas: "Software a medida / para pequeñas empresas." */
 @media (min-width: 700px) { .portada h1 span { display: block; } }
 .portada .sub { font-size: clamp(1.15rem, 1rem + .55vw, 1.45rem); color: var(--tinta-2); max-width: 40ch; line-height: 1.42; }
 
